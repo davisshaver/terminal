@@ -1,0 +1,11 @@
+{
+  "name": "davisshaver/terminal",
+  "description": "Starter theme for a Philly Publishing site, hosted on Pantheon.",
+  "type": "wordpress-theme",
+  "keywords": [
+    "wordpress",
+    "wordpress-development",
+    "wordpress-api"
+  ],
+  "minimum-stability": "alpha"
+}
