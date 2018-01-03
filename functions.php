@@ -38,3 +38,4 @@ require_once __DIR__ . '/inc/class-data.php';
 require_once __DIR__ . '/inc/class-frontend.php';
 require_once __DIR__ . '/inc/class-menu.php';
 require_once __DIR__ . '/inc/class-permalinks.php';
+require_once __DIR__ . '/inc/class-settings.php';

@@ -63,14 +63,22 @@ class Frontend {
 	 * Enqueue scripts.
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/build/app.js', array(), TERMINAL_VERSION, true );
+		if ( is_single() ) {
+			wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/single.bundle.js', array(), TERMINAL_VERSION, true );
+		} else {
+			wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/homepage.bundle.js', array(), TERMINAL_VERSION, true );
+		}
 	}
 
 	/**
 	 * Enqueue styles.
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( 'terminal-style', get_template_directory_uri() . '/build/style.css', array(), TERMINAL_VERSION );
+		if ( is_single() ) {
+			wp_enqueue_style( 'homepage', get_template_directory_uri() . '/client/build/single.css', array(), TERMINAL_VERSION );
+		} else {
+			wp_enqueue_style( 'homepage', get_template_directory_uri() . '/client/build/homepage.css', array(), TERMINAL_VERSION );
+		}
 		$fonts_url = $this->terminal_fonts_url();
 		if ( ! empty( $fonts_url ) ) {
 			wp_enqueue_style( 'terminal-fonts', esc_url_raw( $fonts_url ), array(), null );

@@ -11,34 +11,27 @@
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-<head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<?php wp_head(); ?>
-</head>
-
-<body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'terminal' ); ?></a>
-
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation" role="navigation" aria-live="assertive">
-			<div class="menu-toggle">
-				<button aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'terminal' ); ?></button>
+	<head>
+		<meta charset="<?php bloginfo( 'charset' ); ?>">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<?php wp_head(); ?>
+	</head>
+	<body <?php body_class(); ?>>
+		<div id="header">
+			<div id="header-inside">
+				<div id="header-leaderboard"></div>
+				<div id="logo_bar">
+					<div id="logo">
+						<a href="<?php echo esc_url( site_url() ); ?>">
+							<img height="54" width="455" src="<?php bloginfo( 'template_directory' ); ?>/client/static/images/banner.png" alt="Onward State" /></a>
+					</div>
+					<div id="search"></div>
+				</div>
 			</div>
-			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'primary',
-					'menu_id'        => 'primary-menu',
-					'fallback_cb'    => '__return_false',
-				) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">
+			<div id="nav-bar">
+				<div id="nav-bar-inside">
+					<?php wp_nav_menu( array( 'theme_location' => 'primary-nav' ) ); ?>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+		</div>
