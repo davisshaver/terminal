@@ -9,8 +9,9 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
   entry: {
-    homepage: './client/src/homepage.js',
+    index: './client/src/index.js',
     single: './client/src/single.js',
+    customizerPreview: './client/src/customizer-preview.js',
   },
   output: {
     filename: '[name].bundle.js',

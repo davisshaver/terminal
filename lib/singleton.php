@@ -1,6 +1,6 @@
 <?php
 /**
- * Terminal singletone trait.
+ * Terminal singleton trait.
  *
  * @package Terminal
  */

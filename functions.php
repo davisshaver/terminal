@@ -30,6 +30,7 @@ if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
 }
 
 require_once __DIR__ . '/lib/singleton.php';
+require_once __DIR__ . '/inc/class-theme.php';
 
 // Remaining classes can be loaded independently.
 require_once __DIR__ . '/inc/class-api.php';

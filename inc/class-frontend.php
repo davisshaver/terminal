@@ -26,7 +26,6 @@ class Frontend {
 		remove_action( 'wp_head', 'feed_links', 2 );
 		remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
 		add_action( 'wp_footer', [ $this, 'disable_wp_embed' ] );
-		add_filter( 'rest_page_query', [ $this, 'terminal_add_path_to_page_query' ], 10, 2 );
 	}
 
 	/**
@@ -64,9 +63,9 @@ class Frontend {
 	 */
 	public function enqueue_scripts() {
 		if ( is_single() ) {
-			wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/single.bundle.js', array(), TERMINAL_VERSION, true );
+			wp_enqueue_script( TERMINAL_APP . '-single', get_template_directory_uri() . '/client/build/single.bundle.js', array(), TERMINAL_VERSION, true );
 		} else {
-			wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/homepage.bundle.js', array(), TERMINAL_VERSION, true );
+			wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.bundle.js', array(), TERMINAL_VERSION, true );
 		}
 	}
 
@@ -75,69 +74,10 @@ class Frontend {
 	 */
 	public function enqueue_styles() {
 		if ( is_single() ) {
-			wp_enqueue_style( 'homepage', get_template_directory_uri() . '/client/build/single.css', array(), TERMINAL_VERSION );
+			wp_enqueue_style( TERMINAL_APP . '-single', get_template_directory_uri() . '/client/build/single.css', array(), TERMINAL_VERSION );
 		} else {
-			wp_enqueue_style( 'homepage', get_template_directory_uri() . '/client/build/homepage.css', array(), TERMINAL_VERSION );
+			wp_enqueue_style( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.css', array(), TERMINAL_VERSION );
 		}
-		$fonts_url = $this->terminal_fonts_url();
-		if ( ! empty( $fonts_url ) ) {
-			wp_enqueue_style( 'terminal-fonts', esc_url_raw( $fonts_url ), array(), null );
-		}
-	}
-
-	/**
-	 * Generate fonts URL.
-	 */
-	private function terminal_fonts_url() {
-		$fonts_url = '';
-
-		/*
-			* Translators: If there are characters in your language that are not
-			* supported by Alegreya, translate this to 'off'. Do not translate
-			* into your own language.
-			*/
-		$alegreya = _x( 'on', 'Alegreya font: on or off', 'terminal' );
-
-		/*
-			* Translators: If there are characters in your language that are not
-			* supported by Alegreya Sans, translate this to 'off'. Do not translate into
-			* your own language.
-			*/
-		$alegreya_sans = _x( 'on', 'Alegreya Sans font: on or off', 'terminal' );
-
-		/*
-			* Translators: If there are characters in your language that are not
-			* supported by Alegreya SC, translate this to 'off'. Do not translate into
-			* your own language.
-			*/
-		$alegreya_sc = _x( 'on', 'Alegreya SC (smallcaps) font: on or off', 'terminal' );
-
-		if ( 'off' !== $alegreya || 'off' !== $alegreya_sans || 'off' !== $alegreya_sc ) {
-			$font_families = array();
-
-			if ( 'off' !== $alegreya ) {
-				$font_families[] = rawurlencode( 'Alegreya:400,400italic,700,700italic,900italic' );
-			}
-
-			if ( 'off' !== $alegreya_sans ) {
-				$font_families[] = rawurlencode( 'Alegreya Sans:700' );
-			}
-
-			if ( 'off' !== $alegreya_sc ) {
-				$font_families[] = rawurlencode( 'Alegreya SC:700' );
-			}
-
-			$protocol = is_ssl() ? 'https' : 'http';
-
-			$query_args = array(
-				'family' => implode( '|', $font_families ),
-				'subset' => rawurlencode( 'latin,latin-ext' ),
-			);
-
-			$fonts_url = add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" );
-		}
-
-		return $fonts_url;
 	}
 }
 

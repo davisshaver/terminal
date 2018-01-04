@@ -6,8 +6,8 @@
 	<file>.</file>
 	<exclude-pattern>vendor/*</exclude-pattern>
 
-	<!-- Only check the PHP, CSS and SCSS files. JS files are checked separately with JSCS and JSHint. -->
-	<arg name="extensions" value="php,css,scss/css"/>
+	<!-- Only check the PHP. CSS/PHP files are checked separately with JSCS and JSHint. -->
+	<arg name="extensions" value="php"/>
 
 	<rule ref="WordPress">
 		<exclude name="WordPress.VIP.SuperGlobalInputUsage" />
