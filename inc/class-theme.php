@@ -25,7 +25,18 @@ class Theme {
 
 		add_theme_support( 'post-thumbnails' );
 
-		add_theme_support( 'header-image' );
+		register_default_headers( array(
+			'terminal' => array(
+				'url'           => '%s/client/static/images/banner.png',
+				'thumbnail_url' => '%s/client/static/images/banner-thumbnail.png',
+			),
+		) );
+		$args = array(
+			'height'         => 54,
+			'random-default' => true,
+			'width'          => 455,
+		);
+		add_theme_support( 'custom-header', $args );
 
 		register_nav_menus( array(
 			'primary' => esc_html__( 'Primary Menu', 'terminal' ),
