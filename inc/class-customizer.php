@@ -18,16 +18,14 @@ class Customizer {
 	 */
 	public function setup() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		if ( is_customize_preview() ) {
-			$this->enqueue_customize_scripts();
-		}
+		add_action( 'customize_preview_init', [ $this, 'enqueue_customize_scripts' ] );
 	}
 
 	/**
 	 * Enqueue customize scripts.
 	 */
 	public function enqueue_customize_scripts() {
-		wp_enqueue_script( 'terminal-customize-preview', get_template_directory_uri() . '/build/customizePreview.js', $deps, TERMINAL_VERSION, true );
+		wp_enqueue_script( 'terminal-customize-preview', get_template_directory_uri() . '/client/build/customizerPreview.bundle.js', array(), TERMINAL_VERSION, true );
 	}
 
 	/**

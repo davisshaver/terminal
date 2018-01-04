@@ -17,15 +17,17 @@ class Frontend {
 	 * Setup actions.
 	 */
 	public function setup() {
-		$this->enqueue_scripts();
-		$this->enqueue_styles();
-		$this->disable_emojis();
+		if ( ! is_admin() ) {
+			remove_action( 'wp_head', 'wp_generator' );
+			remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+			remove_action( 'wp_head', 'feed_links', 2 );
+			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
+			add_action( 'wp_footer', [ $this, 'disable_wp_embed' ] );
+			$this->enqueue_scripts();
+			$this->enqueue_styles();
+		}
 
-		remove_action( 'wp_head', 'wp_generator' );
-		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-		remove_action( 'wp_head', 'feed_links', 2 );
-		remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
-		add_action( 'wp_footer', [ $this, 'disable_wp_embed' ] );
+		$this->disable_emojis();
 	}
 
 	/**
