@@ -2,8 +2,6 @@
 /**
  * The header for our theme.
  *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
  * @package Terminal
@@ -23,7 +21,7 @@
 				<div id="logo_bar">
 					<div id="logo">
 						<a href="<?php echo esc_url( site_url() ); ?>">
-							<img height="54" width="455" src="<?php bloginfo( 'template_directory' ); ?>/client/static/images/banner.png" alt="Onward State" /></a>
+							<img id="logo-image" src="<?php header_image(); ?>" height="<?php echo esc_attr( get_custom_header()->height ); ?>" width="<?php echo esc_attr( get_custom_header()->width ); ?>"  alt="<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>" />
 					</div>
 					<div id="search"></div>
 				</div>
@@ -31,7 +29,6 @@
 			<div id="nav-bar">
 				<div id="nav-bar-inside">
 					<?php wp_nav_menu( array( 'theme_location' => 'primary-nav' ) ); ?>
-					<div style="clear: both;"></div>
 				</div>
 			</div>
 		</div>

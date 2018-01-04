@@ -36,7 +36,10 @@ class Customizer {
 	 * @param \WP_Customize_Manager $wp_customize Customize manager.
 	 */
 	public function customize_register( \WP_Customize_Manager $wp_customize ) {
-		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
+		$wp_customize->get_setting( 'blogname' )->transport          = 'postMessage';
+		$wp_customize->get_setting( 'header_image' )->transport      = 'postMessage';
+		$wp_customize->get_setting( 'header_image_data' )->transport = 'postMessage';
+
 	}
 }
 
