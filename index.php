@@ -18,15 +18,17 @@ get_header(); ?>
 	<div id="master-content-container">
 		<div id="content">
 			<div id="stories-header">
-				<h2 id="top-stories-header"><?php echo esc_html( get_theme_mod( 'content_stories_header', __( 'Latest Stories', 'terminal' ) ) ); ?></h2>
-				<a name="latest"></a>
+				<?php if ( 1 === get_query_var( 'page', 1 ) ) { ?>
+					<h2 id="top-stories-header"><?php echo esc_html( get_theme_mod( 'content_stories_header', __( 'Latest Stories', 'terminal' ) ) ); ?></h2>
+					<a name="latest"></a>
+				<?php } ?>
 				<div id="stories-header-filters">
 					<a
 						id="filter-content-all"
-						title="<?php esc_attr_e( 'Just show the latest', 'terminal' ); ?>"
-						class="filter-select <?php echo esc_attr( terminal_home_filter_class( 'latest' ) ); ?>"
-						href="<?php echo esc_url( terminal_home_link( 'latest' ) ); ?>">
-						<?php esc_html_e( 'Latest', 'terminal' ); ?>
+						title="<?php esc_attr_e( 'Show all', 'terminal' ); ?>"
+						class="filter-select <?php echo esc_attr( terminal_home_filter_class( 'all' ) ); ?>"
+						href="<?php echo esc_url( terminal_home_link( 'all' ) ); ?>">
+						<?php esc_html_e( 'All', 'terminal' ); ?>
 					</a>
 					<a
 						id="filter-content-staff"
@@ -52,7 +54,19 @@ get_header(); ?>
 				</div>
 			</div>
 			<div id="stories">
-				<?php get_template_part( 'loop' ); ?>
+				<?php
+					if ( have_posts() ) :
+						while ( have_posts() ) :
+							the_post();
+							get_template_part( 'partials/content', get_post_type( $post ) );
+						endwhile;
+					endif;
+				?>
+			</div>
+			<div class="navigation">
+				<div class="alignleft"><?php previous_posts_link( '<span class="nav_button">&laquo; Now</span>' ); ?></div>
+				<div class="alignright"><?php next_posts_link( '<span class="nav_button">Then &raquo;</span>', '' ); ?></div>
+				<div style="clear: both;"></div>
 			</div>
 		</div>
 	</div>

@@ -30,7 +30,7 @@
 					</div>
 				</div>
 				<div id="ppc-logo">
-					<a href="https://phillypublishing.com" alt="<?php esc_attr_e( 'Philadelphia Publishing Company' ); ?>">
+					<a href="https://phillypublishing.com" title="<?php esc_attr_e( 'Philadelphia Publishing Company' ); ?>">
 						<img draggable="false" src="<?php echo esc_url( get_template_directory_uri() ); ?>/client/static/images/ppc.png" alt="<?php esc_attr_e( 'Philadelphia Publishing Company logo' ); ?>" />
 					</a>
 				</div>

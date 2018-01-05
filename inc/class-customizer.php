@@ -149,10 +149,11 @@ class Customizer {
 		/**
 		 * Opt some core fields into immediate update.
 		 */
-		$wp_customize->get_setting( 'blogname' )->transport          = 'postMessage';
-		$wp_customize->get_setting( 'header_image' )->transport      = 'postMessage';
-		$wp_customize->get_setting( 'header_image_data' )->transport = 'postMessage';
-		$wp_customize->get_setting( 'header_image_data' )->transport = 'postMessage';
+		$wp_customize->get_setting( 'blogname' )->transport            = 'postMessage';
+		$wp_customize->get_setting( 'header_image' )->transport        = 'postMessage';
+		$wp_customize->get_setting( 'header_image_data' )->transport   = 'postMessage';
+		$wp_customize->get_setting( 'header_image_data' )->transport   = 'postMessage';
+		$wp_customize->get_section( 'static_front_page' )->description = '';
 
 		/**
 		 * Remove some core fields we aren't using.
@@ -160,6 +161,9 @@ class Customizer {
 		$wp_customize->remove_control( 'header_textcolor' );
 		$wp_customize->remove_control( 'display_header_text' );
 		$wp_customize->remove_control( 'blogdescription' );
+		// $wp_customize->remove_control( 'page_for_posts' );
+		// $wp_customize->remove_control( 'show_on_front' );
+		// $wp_customize->remove_control( 'page_on_front' );
 	}
 }
 
