@@ -15,34 +15,39 @@
 get_header(); ?>
 
 <div id="master-content">
-	<div id="content-container" class="index_container" style="width: 900px;">
+	<div id="master-content-container">
 		<div id="content">
 			<div id="stories-header">
+				<h2 class="top-stories-header">Latest Stories</h2>
 				<a name="latest"></a>
 				<div id="stories-header-filters">
 					<a
 						id="filter-content-all"
-						class="filter-select"
+						title="<?php esc_attr_e( 'Just show the latest', 'terminal' ); ?>"
+						class="filter-select <?php echo esc_attr( terminal_home_filter_class( 'latest' ) ); ?>"
 						href="<?php echo esc_url( terminal_home_link( 'latest' ) ); ?>">
-						All
+						<?php esc_html_e( 'Latest', 'terminal' ); ?>
 					</a>
 					<a
 						id="filter-content-staff"
-						class="filter-select"
+						title="<?php esc_attr_e( 'Filter to staff content', 'terminal' ); ?>"
+						class="filter-select <?php echo esc_attr( terminal_home_filter_class( 'staff' ) ); ?>"
 						href="<?php echo esc_url( terminal_home_link( 'staff' ) ); ?>">
-						Staff
+						<?php esc_html_e( 'Staff', 'terminal' ); ?>
 					</a>
 					<a
 						id="filter-content-community"
-						class="filter-select"
+						title="<?php esc_attr_e( 'Filter to community content', 'terminal' ); ?>"
+						class="filter-select <?php echo esc_attr( terminal_home_filter_class( 'community' ) ); ?>"
 						href="<?php echo esc_url( terminal_home_link( 'community' ) ); ?>">
-						Community
+						<?php esc_html_e( 'Community', 'terminal' ); ?>
 					</a>
 					<a
 						id="filter-content-links"
-						class="filter-select"
+						title="<?php esc_attr_e( 'Filter to links', 'terminal' ); ?>"
+						class="filter-select <?php echo esc_attr( terminal_home_filter_class( 'links' ) ); ?>"
 						href="<?php echo esc_url( terminal_home_link( 'links' ) ); ?>">
-						Links
+						<?php esc_html_e( 'Links', 'terminal' ); ?>
 					</a>
 				</div>
 			</div>

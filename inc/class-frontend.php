@@ -25,9 +25,21 @@ class Frontend {
 			add_action( 'wp_footer', [ $this, 'disable_wp_embed' ] );
 			$this->enqueue_scripts();
 			$this->enqueue_styles();
+			add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
 		}
-
 		$this->disable_emojis();
+	}
+
+	/**
+	 * Okay 'filter' as query var.
+	 *
+	 * @param array $vars Query vars.
+	 *
+	 * @return array Filtered query vars.
+	 */
+	public function add_query_vars_filter( $vars ) {
+			$vars[] = 'filter';
+			return $vars;
 	}
 
 	/**

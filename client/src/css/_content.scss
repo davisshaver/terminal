@@ -1,0 +1,18 @@
+// Gives some margin on the edge of screen.
+#master-content {
+	align-items: center;
+	display: flex;
+	margin: 7px 10px;
+  justify-content: center;
+}
+
+// Sets content bucket (will contain content & sidebar).
+#master-content-container {
+	flex-grow: 1;
+	max-width: 1400px;
+}
+
+// Take up as much room as you'd like, content!
+#content {
+	flex-grow: 1;
+}

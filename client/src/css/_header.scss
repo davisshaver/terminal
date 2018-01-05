@@ -2,13 +2,13 @@
 
 #header-inside {
 	margin: 0 auto;
-	width: 1200px;
+	max-width: 1200px;
 }
 
 #header-leaderboard {
 	text-align: center;
 	padding: 5px 0 15px 0;
-}   
+}
 
 #header-leaderboard div {
 	margin: 0 auto;
@@ -21,10 +21,12 @@
 }
 
 #logo_bar #logo {
-	width: 455px;
+	max-width: 455px;
 	margin: 0 auto;
 }
 
 #logo-image {
+	max-width: 100%;
+	height: auto;
 	user-select: none;
 }

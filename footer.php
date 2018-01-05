@@ -26,8 +26,13 @@
 						?>
 					</div>
 					<div id="footer-right">
-						<p>&copy;<?php echo esc_html( date( 'Y' ) ); ?> <span id="footer-title"><?php echo esc_html( get_bloginfo( 'title' ) ); ?></span></p>
+						<p>&copy;&nbsp;<?php echo esc_html( date( 'Y' ) ); ?> <span id="footer-title"><?php echo esc_html( get_bloginfo( 'title' ) ); ?></span></p>
 					</div>
+				</div>
+				<div id="ppc-logo">
+					<a href="https://phillypublishing.com" alt="<?php esc_attr_e( 'Philadelphia Publishing Company' ); ?>">
+						<img draggable="false" src="<?php echo esc_url( get_template_directory_uri() ); ?>/client/static/images/ppc.png" alt="<?php esc_attr_e( 'Philadelphia Publishing Company logo' ); ?>" />
+					</a>
 				</div>
 			</div>
 		</div>
