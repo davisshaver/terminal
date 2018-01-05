@@ -28,4 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
       footer.style['background-color'] = newval;
     });
   });
+  wp.customize('content_stories_header', (value) => {
+    value.bind((newval) => {
+      const topStoriesHeader = document.getElementById('top-stories-header');
+      topStoriesHeader.innerText = newval;
+    });
+  });
 });

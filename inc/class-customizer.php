@@ -110,6 +110,20 @@ class Customizer {
 			)
 		);
 
+		$wp_customize->add_setting( 'content_stories_header', array(
+			'capability'        => 'edit_theme_options',
+			'default'           => __( 'Latest Stories', 'terminal' ),
+			'type'              => 'theme_mod',
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport'         => 'postMessage',
+		) );
+
+		$wp_customize->add_control( 'content_stories_header', array(
+			'type'    => 'text',
+			'section' => 'static_front_page',
+			'label'   => __( 'Stories feed header text' ),
+		) );
+
 		$wp_customize->add_control(
 			new \WP_Customize_Color_Control(
 				$wp_customize,

@@ -18,7 +18,7 @@ get_header(); ?>
 	<div id="master-content-container">
 		<div id="content">
 			<div id="stories-header">
-				<h2 class="top-stories-header">Latest Stories</h2>
+				<h2 id="top-stories-header"><?php echo esc_html( get_theme_mod( 'content_stories_header', __( 'Latest Stories', 'terminal' ) ) ); ?></h2>
 				<a name="latest"></a>
 				<div id="stories-header-filters">
 					<a
