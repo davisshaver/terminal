@@ -1,15 +1,15 @@
 /* nav bar ********************************************/
 #nav-bar {
-	color: #FFF;
-	height: 28px;
 	background-color: #333;
+	color: #FFF;
 	font-family: Arial, Helvetica, sans-serif;
+	height: 28px;
 }
 
 #nav-bar-inside {
-	width: 1200px;
-	margin: 0 auto;
 	background-color: #333;
+	margin: 0 auto;
+	width: 1200px;
 }
 
 #menu-header, #menu-header ul, #menu-header li {
@@ -29,7 +29,6 @@
 }
 
 #menu-header li {
-	float: left;
 	display: block;
 	position: relative;
 }

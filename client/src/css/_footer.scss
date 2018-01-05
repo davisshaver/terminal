@@ -1,38 +1,27 @@
-
-/* footer *********************************************/
-
 #footer {
-	width: 100%;
-	font-size: 13px;
-	clear: both;
-	margin: 15px 0 0 0;
 	border-top: 1px solid #CCC;
-	min-height: 100px;
 	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	margin: 15px 0 0 0;
+	width: 100%;
 }
 
 #footer-inside {
-	width: 1200px;
 	margin: 0 auto;
 	padding: 15px;
+	width: 1200px;
 }
 
 #footer-leaderboard {
 	text-align: center;
-	padding: 5px 0 15px 0;
-}   
+}
 
 #footer-leaderboard div {
 	margin: 0 auto;
 }
 
-#footer-left {
-	float: left;
-}
-
 #footer-rss {
 	display: inline-block;
-	padding-top: 2px;
 }
 
 #footer-rss img {
@@ -45,8 +34,12 @@
 	vertical-align: top;
 }
 
+#footer-split {
+	display: flex; 
+	justify-content: space-between;
+}
+
 #footer-right {
-	float: right;
 	text-align: right;
 }
 
@@ -56,5 +49,4 @@
 
 #footer li {
 	display: inline-block;
-	margin: 5px 20px 5px 0;
 }

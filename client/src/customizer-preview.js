@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     value.bind((newval) => {
       const logo = document.getElementById('logo-image');
       logo.alt = newval;
+      const footerTitle = document.getElementById('footer-title');
+      footerTitle.innerText = newval;
     });
   });
   wp.customize('header_image', (value) => {
