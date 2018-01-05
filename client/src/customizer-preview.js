@@ -14,4 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
       logo.src = newval;
     });
   });
+  wp.customize('header_background_color_setting', (value) => {
+    value.bind((newval) => {
+      const header = document.getElementById('header');
+      header.style['background-color'] = newval;
+    });
+  });
+  wp.customize('footer_background_color_setting', (value) => {
+    value.bind((newval) => {
+      const footer = document.getElementById('footer');
+      footer.style['background-color'] = newval;
+    });
+  });
 });

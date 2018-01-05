@@ -31,15 +31,21 @@ class Theme {
 				'thumbnail_url' => '%s/client/static/images/banner-thumbnail.png',
 			),
 		) );
-		$args = array(
+		$custom_header_args = array(
 			'height'         => 54,
 			'random-default' => true,
 			'width'          => 455,
 		);
-		add_theme_support( 'custom-header', $args );
+		add_theme_support( 'custom-header', $custom_header_args );
+
+		$custom_background_args = array(
+			'default-color' => '#ffffff',
+		);
+		add_theme_support( 'custom-background', $custom_background_args );
 
 		register_nav_menus( array(
-			'primary' => esc_html__( 'Primary Menu', 'terminal' ),
+			'header' => esc_html__( 'Header Menu', 'terminal' ),
+			'footer' => esc_html__( 'Footer Menu', 'terminal' ),
 		) );
 
 		add_theme_support( 'html5', array(

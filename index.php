@@ -14,7 +14,44 @@
 
 get_header(); ?>
 
-Here be dragons.
+<div id="master-content">
+	<div id="content-container" class="index_container" style="width: 900px;">
+		<div id="content">
+			<div id="stories-header">
+				<a name="latest"></a>
+				<div id="stories-header-filters">
+					<a
+						id="filter-content-all"
+						class="filter-select"
+						href="<?php echo esc_url( terminal_home_link( 'latest' ) ); ?>">
+						All
+					</a>
+					<a
+						id="filter-content-staff"
+						class="filter-select"
+						href="<?php echo esc_url( terminal_home_link( 'staff' ) ); ?>">
+						Staff
+					</a>
+					<a
+						id="filter-content-community"
+						class="filter-select"
+						href="<?php echo esc_url( terminal_home_link( 'community' ) ); ?>">
+						Community
+					</a>
+					<a
+						id="filter-content-links"
+						class="filter-select"
+						href="<?php echo esc_url( terminal_home_link( 'links' ) ); ?>">
+						Links
+					</a>
+				</div>
+			</div>
+			<div id="stories">
+				<?php get_template_part( 'loop' ); ?>
+			</div>
+		</div>
+	</div>
+</div>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

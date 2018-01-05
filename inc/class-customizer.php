@@ -20,6 +20,23 @@ class Customizer {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'customize_preview_init', [ $this, 'enqueue_customize_scripts' ] );
 		add_filter( 'site_icon_meta_tags', [ $this, 'site_icon_meta_tags' ] );
+		add_action( 'wp_head', [ $this, 'customizer_custom_css' ] );
+	}
+
+	/**
+	 * Prints CSS from customizer.
+	 */
+	public function customizer_custom_css() {
+		?>
+		<style type="text/css">
+			#header {
+				background-color: <?php echo esc_attr( get_theme_mod( 'header_background_color_setting', '#9DC1FD' ) ); ?>;
+			}
+			#footer {
+				background-color: <?php echo esc_attr( get_theme_mod( 'footer_background_color_setting', '#9DC1FD' ) ); ?>;
+			}
+		</style>
+		<?php
 	}
 
 	/**
@@ -44,11 +61,77 @@ class Customizer {
 	}
 
 	/**
+	 * HEX Color sanitization callback.
+	 *
+	 * - Sanitization: hex_color
+	 * - Control: text, WP_Customize_Color_Control
+	 *
+	 * Note: sanitize_hex_color_no_hash() can also be used here, depending on whether
+	 * or not the hash prefix should be stored/retrieved with the hex color value.
+	 *
+	 * @see sanitize_hex_color() https://developer.wordpress.org/reference/functions/sanitize_hex_color/
+	 * @link sanitize_hex_color_no_hash() https://developer.wordpress.org/reference/functions/sanitize_hex_color_no_hash/
+	 *
+	 * @param string               $hex_color HEX color to sanitize.
+	 * @param WP_Customize_Setting $setting   Setting instance.
+	 * @return string The sanitized hex color if not null; otherwise, the setting default.
+	 */
+	public function sanitize_hex_color( $hex_color, $setting ) {
+		// Sanitize $inpt as a hex value.
+		$hex_color = sanitize_hex_color( $hex_color );
+		return ( ! is_null( $hex_color ) ? $hex_color : $setting->default );
+	}
+
+	/**
 	 * Register customizer settings.
 	 *
 	 * @param \WP_Customize_Manager $wp_customize Customize manager.
 	 */
 	public function customize_register( \WP_Customize_Manager $wp_customize ) {
+		/**
+		 * Add some fields.
+		 */
+		$wp_customize->add_setting(
+			'header_background_color_setting',
+			array(
+				'default'           => '#9DC1FD',
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_setting(
+			'footer_background_color_setting',
+			array(
+				'default'           => '#9DC1FD',
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'header_background_color_setting',
+				array(
+					'label'   => __( 'Header background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'footer_background_color_setting',
+				array(
+					'label'   => __( 'Footer background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+
 		/**
 		 * Opt some core fields into immediate update.
 		 */
