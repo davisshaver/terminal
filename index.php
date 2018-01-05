@@ -14,13 +14,15 @@
 
 get_header(); ?>
 
-<div id="master-content">
-	<div id="master-content-container">
+<div id="container">
+	<div id="body">
 		<div id="content">
 			<div id="stories-header">
-				<?php if ( 1 === get_query_var( 'page', 1 ) ) { ?>
+				<?php if ( 0 === get_query_var( 'paged', 0 ) ) { ?>
 					<h2 id="top-stories-header"><?php echo esc_html( get_theme_mod( 'content_stories_header', __( 'Latest Stories', 'terminal' ) ) ); ?></h2>
 					<a name="latest"></a>
+				<?php } else { ?>
+					<h2 id="top-stories-header"><?php echo esc_html( get_theme_mod( 'content_stories_header', __( 'Archival Stories', 'terminal' ) ) ); ?></h2>
 				<?php } ?>
 				<div id="stories-header-filters">
 					<a
@@ -63,14 +65,17 @@ get_header(); ?>
 					endif;
 				?>
 			</div>
-			<div class="navigation">
-				<div class="alignleft"><?php previous_posts_link( '<span class="nav_button">&laquo; Now</span>' ); ?></div>
-				<div class="alignright"><?php next_posts_link( '<span class="nav_button">Then &raquo;</span>', '' ); ?></div>
-				<div style="clear: both;"></div>
-			</div>
+		</div>
+		<div id="sidebar">
+			<?php get_sidebar(); ?>	
 		</div>
 	</div>
+	<div class="index-navigation">
+		<div class="index-navigation-links">
+			<div class="alignleft"><?php previous_posts_link( '<span class="nav_button">&laquo; Now</span>' ); ?></div>
+			<div class="alignright"><?php next_posts_link( '<span class="nav_button">Then &raquo;</span>', '' ); ?></div>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
 </div>
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

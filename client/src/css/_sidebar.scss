@@ -1,0 +1,9 @@
+#sidebar {
+	// @todo change these to vars.
+	flex: 1 0 300px;
+	order: -1;
+
+	@media (max-width: 819px) {
+		order: 1;
+	}
+}

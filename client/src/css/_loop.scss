@@ -56,6 +56,14 @@
 .headline {
 	font-size: 22px;
 	font-weight: 700;
+
+	a {
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
 }
 
 .community-avatar {
@@ -105,8 +113,14 @@
 
 .image {
 	display: block;
+
 	padding: 8px 0 5px;
 	text-align: center;
+
+	img {
+		height: auto;
+		max-width: 100%;
+	}
 }
 
 .story-text {

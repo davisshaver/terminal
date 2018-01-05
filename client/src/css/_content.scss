@@ -1,18 +1,52 @@
-// Gives some margin on the edge of screen.
-#master-content {
-	align-items: center;
+#container {
 	display: flex;
 	margin: 7px 10px;
-  justify-content: center;
+	max-width: 100%;
+	min-height: 100vh;
+	flex-direction: column;
 }
 
-// Sets content bucket (will contain content & sidebar).
-#master-content-container {
+#body {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.index-navigation {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+}
+
+.index-navigation-links {
+	justify-content: center;
 	flex-grow: 1;
-	max-width: 1400px;
+	display: flex;
+	max-width: 1200px;
 }
 
-// Take up as much room as you'd like, content!
 #content {
-	flex-grow: 1;
+	max-width: 900px;
+	flex: 1 0 500px;
 }
+
+// // Gives some margin on the edge of screen.
+// #master-content {
+// 	align-items: center;
+// 	display: flex;
+// 	margin: 7px 10px;
+// 	justify-content: center;
+// 	flex-direction: row;
+// // }
+
+// // Sets content bucket (will contain content & sidebar).
+// #master-content-container {
+// 	flex-grow: 1;
+// 	max-width: 1400px;
+// }
+
+// // Take up as much room as you'd like, content!
+// #content {
+// 	box-flex: 1;
+// }
