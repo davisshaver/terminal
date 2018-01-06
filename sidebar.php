@@ -6,5 +6,8 @@
  */
 
 ?>
-
-Test
+<div class="sidebar-section">
+	<div class="sidebar-inside-small">
+		Test
+	</div>
+</div>

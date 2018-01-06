@@ -14,6 +14,8 @@
 
 #stories-header-filters {
 	color: #666;
+	// @todo enable after post types
+	display: none;
 	font-size: 12px;
 	padding-top: 6px;
 }
@@ -33,9 +35,17 @@
 
 .post {
 	border-bottom: 1px solid #ccc;
-	padding-bottom: 5px;
 	margin-top: 10px;
-	overflow: hidden;
+	padding-bottom: 5px;
+}
+
+.post-row {
+	display: flex;
+	flex-direction: row;
+
+	@media ( max-width: 500px ) {
+		flex-direction: column;
+	}
 }
 
 .icon-container {
@@ -54,7 +64,7 @@
 }
 
 .headline {
-	font-size: 22px;
+	font-size: 30px;
 	font-weight: 700;
 
 	a {
@@ -112,10 +122,9 @@
 }
 
 .image {
-	display: block;
-
 	padding: 8px 0 5px;
 	text-align: center;
+	flex: 1;
 
 	img {
 		height: auto;
@@ -124,8 +133,9 @@
 }
 
 .story-text {
-	font-size: 14px;
-	padding-top: 5px;
+	flex: 1;
+	font-size: 20px;
+	padding: 5px;
 }
 
 .story-text li {
@@ -148,18 +158,35 @@
 }
 
 .more {
-	clear: both;
-	display: block;
+	display: flex;
+	flex-direction: column;
+	flex: 0.3;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
+	font-size: 9px;
 	font-weight: 700;
-	margin-bottom: 2px;
+	justify-content: space-evenly;
+	margin: 0 auto 2px;
+	max-height: 90px;
+	min-height: 40px;
 	padding: 8px 3px 0 0;
 	text-align: right;
+
+	div {
+		flex: 1;
+	}
+
+	@media (max-width: 500px) {
+		flex-direction: row;
+		max-height: initial;
+		min-height: initial;
+		text-align: center;
+		width: 100%;
+	}
+
 }
 
 .more a {
-	padding-right: 2px;
+	margin: 0 5px;
 	text-decoration: none;
 }
 
@@ -186,17 +213,18 @@
 
 .more-twitter {
 	display: inline-block;
-	margin-left: 30px;
 }
 
 .more-comments {
 	display: inline-block;
-	margin-left: 30px;
 }
 
 .more-text {
 	display: inline-block;
-	margin-left: 30px;
+
+	a {
+		margin: 0;
+	}
 }
 
 #stories .community {

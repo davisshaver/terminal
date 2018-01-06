@@ -1,9 +1,47 @@
 #sidebar {
 	// @todo change these to vars.
-	flex: 1 0 300px;
+	flex: 0 0 350px;
 	order: -1;
 
-	@media (max-width: 819px) {
+	@media (max-width: 869px) {
+		margin: 10px 0;
 		order: 1;
+		flex: 0 0 100%;
 	}
+}
+
+.sidebar-section {
+	border: 1px solid #f0f0f0;
+	background-color: #fff;
+
+	@media (min-width: 870px) {
+		margin: 15px 15px 0 0;
+	}
+}
+
+.sidebar-header {
+	background-color: #f8f8f8;
+	width: 100%;
+	padding: 3px 8px;
+	padding: 4px;
+	font-size: 1.3em;
+	color: #666;
+}
+
+.sidebar-header-link {
+	display: inline-block;
+	font-size: 10px;
+	position: relative;
+	right: 5px;
+	top: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar-inside {
+	padding: 5px 8px 8px;
+	color: #333;
+}
+
+.sidebar-inside-small {
+	padding: 4px;
 }
