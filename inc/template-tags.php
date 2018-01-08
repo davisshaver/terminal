@@ -92,3 +92,60 @@ function terminal_home_filter_class( $type ) {
 function terminal_time_ago() {
 	return human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ago';
 }
+
+/**
+ * Template function to print an index header. Encapsulates logic.
+ */
+function terminal_print_index_header() {
+	if ( is_home() ) {
+		if ( 0 === get_query_var( 'paged', 0 ) ) {
+			printf(
+				'<h2 id="top-stories-header">%s</h2><a name="latest"></a>',
+				esc_html( get_theme_mod( 'content_stories_header', __( 'Latest Stories', 'terminal' ) ) )
+			);
+		} else {
+			printf(
+				'<h2 id="top-stories-header">%s</h2>',
+				esc_html( get_theme_mod( 'content_stories_header', __( 'Archival Stories', 'terminal' ) ) )
+			);
+		}
+	} else {
+		printf(
+			'<h2 id="top-stories-header">%s</h2>',
+			esc_html( the_archive_title() )
+		);
+	}
+}
+
+/**
+ * Template function to get Twitter count for a post.
+ */
+function terminal_print_twitter_count_for_post() {
+	$data  = Terminal\Data::instance();
+	$count = $data->get_twitter_count_for_post();
+	if ( 0 !== $count ) {
+		echo esc_html( $count );
+	}
+}
+
+/**
+ * Template function to get Comment count for a post.
+ */
+function terminal_print_comment_count_for_post() {
+	$data  = Terminal\Data::instance();
+	$count = $data->get_twitter_count_for_post();
+	if ( 0 !== $count ) {
+		echo esc_html( $count );
+	}
+}
+
+/**
+ * Template function to get Facebook count for a post.
+ */
+function terminal_print_facebook_count_for_post() {
+	$data  = Terminal\Data::instance();
+	$count = $data->get_twitter_count_for_post();
+	if ( 0 !== $count ) {
+		echo esc_html( $count );
+	}
+}

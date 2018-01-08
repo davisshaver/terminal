@@ -5,9 +5,6 @@
  * @package Terminal
  */
 
-?>
-<div class="sidebar-section">
-	<div class="sidebar-inside-small">
-		Test
-	</div>
-</div>
+if ( is_active_sidebar( 'primary-sidebar' ) ) {
+	dynamic_sidebar( 'primary-sidebar' );
+}

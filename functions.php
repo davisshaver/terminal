@@ -31,7 +31,6 @@ if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
 
 require_once __DIR__ . '/lib/singleton.php';
 
-require_once __DIR__ . '/inc/template-tags.php';
 require_once __DIR__ . '/inc/class-theme.php';
 
 // Remaining classes can be loaded independently.
@@ -42,3 +41,6 @@ require_once __DIR__ . '/inc/class-frontend.php';
 require_once __DIR__ . '/inc/class-menu.php';
 require_once __DIR__ . '/inc/class-permalinks.php';
 require_once __DIR__ . '/inc/class-settings.php';
+
+// Define template tags last. They may need classes.
+require_once __DIR__ . '/inc/template-tags.php';

@@ -8,6 +8,13 @@
 		order: 1;
 		flex: 0 0 100%;
 	}
+
+	.textwidget,
+	.custom-html-widget,
+	.search-form {
+		padding: 5px 8px 8px;
+		color: #333;
+	}
 }
 
 .sidebar-section {
@@ -21,11 +28,12 @@
 
 .sidebar-header {
 	background-color: #f8f8f8;
-	width: 100%;
-	padding: 3px 8px;
-	padding: 4px;
-	font-size: 1.3em;
+	box-sizing: border-box;
 	color: #666;
+	font-size: 1.3em;
+	line-height: 30px;
+	text-indent: 8px;
+	width: 100%;
 }
 
 .sidebar-header-link {
@@ -35,13 +43,4 @@
 	right: 5px;
 	top: 5px;
 	font-family: Arial, Helvetica, sans-serif;
-}
-
-.sidebar-inside {
-	padding: 5px 8px 8px;
-	color: #333;
-}
-
-.sidebar-inside-small {
-	padding: 4px;
 }

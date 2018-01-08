@@ -53,6 +53,57 @@ class Theme {
 			'gallery',
 			'caption',
 		) );
+
+		add_action( 'admin_init', [ $this, 'remove_unused_meta_box' ] );
+		add_action( 'admin_menu', [ $this, 'remove_unused_admin_menu' ] );
+		add_action( 'wp_before_admin_bar_render', [ $this, 'admin_bar_disable_comments' ] );
+		add_filter( 'comments_open', '__return_false', 20, 2 );
+		add_filter( 'pings_open', '__return_false', 20, 2 );
+		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
+	}
+
+	/**
+	 * Register sidebars.
+	 */
+	public function register_sidebars() {
+		register_sidebar( array(
+			'name'          => __( 'Primary Sidebar', 'terminal' ),
+			'id'            => 'primary-sidebar',
+			'description'   => __( 'Homepage sidebar.', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="sidebar-section %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="sidebar-header">',
+			'after_title'   => '</div>',
+		) );
+	}
+
+	/**
+	 * Remove unused metaboxes.
+	 */
+	public function remove_unused_meta_box() {
+		remove_meta_box( 'dashboard_quick_press', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+		remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
+		remove_meta_box( 'commentstatusdiv', 'post', 'normal' );
+		remove_meta_box( 'trackbacksdiv', 'post', 'normal' );
+	}
+
+	/**
+	 * Admin bar disable comments.
+	 */
+	public function admin_bar_disable_comments() {
+		global $wp_admin_bar;
+		$wp_admin_bar->remove_menu( 'comments' );
+	}
+
+	/**
+	 * Remove unused admin menus.
+	 */
+	public function remove_unused_admin_menu() {
+		remove_menu_page( 'edit-comments.php' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			remove_menu_page( 'tools.php' );
+		}
 	}
 }
 

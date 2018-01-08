@@ -18,12 +18,7 @@ get_header(); ?>
 	<div id="body">
 		<div id="content">
 			<div id="stories-header">
-				<?php if ( 0 === get_query_var( 'paged', 0 ) ) { ?>
-					<h2 id="top-stories-header"><?php echo esc_html( get_theme_mod( 'content_stories_header', __( 'Latest Stories', 'terminal' ) ) ); ?></h2>
-					<a name="latest"></a>
-				<?php } else { ?>
-					<h2 id="top-stories-header"><?php echo esc_html( get_theme_mod( 'content_stories_header', __( 'Archival Stories', 'terminal' ) ) ); ?></h2>
-				<?php } ?>
+				<?php terminal_print_index_header(); ?>
 				<div id="stories-header-filters">
 					<a
 						id="filter-content-all"
