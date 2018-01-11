@@ -35,6 +35,10 @@ require_once __DIR__ . '/inc/class-theme.php';
 
 // Remaining classes can be loaded independently.
 require_once __DIR__ . '/inc/class-api.php';
+
+// Load our custom customizer classes before registering in customizer.
+require_once __DIR__ . '/inc/class-google-font-dropdown-custom-control.php';
+
 require_once __DIR__ . '/inc/class-customizer.php';
 require_once __DIR__ . '/inc/class-data.php';
 require_once __DIR__ . '/inc/class-frontend.php';

@@ -1,0 +1,7 @@
+// Disable ugly blue highlight on inputs.
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+	outline: none;
+}

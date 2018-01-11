@@ -10,10 +10,46 @@
 	}
 
 	.textwidget,
-	.custom-html-widget,
-	.search-form {
+	.custom-html-widget {
 		padding: 5px 8px 8px;
 		color: #333;
+	}
+
+
+	.widget_search {
+
+		.search-form-field {
+			color: #333;
+			display: flex;
+			flex-wrap: nowrap;
+
+			label {
+				background-color: #f8f8f8;
+				color: #666;
+				display: flex;
+				font-size: 1.3em;
+				padding: 8px;
+				flex: 1;
+				user-select: none;
+			}
+
+			.search-field {
+				border: none;
+				display: flex;
+				flex: 2;
+				background-color: #fff;
+			}
+
+			.search-submit {
+				background-color: #f8f8f8;
+				border: none;
+				color: #666;
+				cursor: pointer;
+				display: flex;
+				flex: 0.5;
+				font-size: 1.3em;
+			}
+		}
 	}
 }
 
@@ -33,6 +69,7 @@
 	font-size: 1.3em;
 	line-height: 30px;
 	text-indent: 8px;
+	user-select: none;
 	width: 100%;
 }
 

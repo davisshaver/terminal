@@ -106,9 +106,16 @@ function terminal_print_index_header() {
 		} else {
 			printf(
 				'<h2 id="top-stories-header">%s</h2>',
-				esc_html( get_theme_mod( 'content_stories_header', __( 'Archival Stories', 'terminal' ) ) )
+				esc_html( __( 'Archival Stories', 'terminal' ) )
 			);
 		}
+	} elseif ( is_search() ) {
+		$search_query = get_search_query();
+		printf(
+			'<h2 id="top-stories-header">%s "%s"</h2>',
+			esc_html( 'Search results for', 'terminal' ),
+			esc_html( $search_query )
+		);
 	} else {
 		printf(
 			'<h2 id="top-stories-header">%s</h2>',
@@ -133,7 +140,7 @@ function terminal_print_twitter_count_for_post() {
  */
 function terminal_print_comment_count_for_post() {
 	$data  = Terminal\Data::instance();
-	$count = $data->get_twitter_count_for_post();
+	$count = $data->get_comment_count_for_post();
 	if ( 0 !== $count ) {
 		echo esc_html( $count );
 	}
@@ -144,7 +151,7 @@ function terminal_print_comment_count_for_post() {
  */
 function terminal_print_facebook_count_for_post() {
 	$data  = Terminal\Data::instance();
-	$count = $data->get_twitter_count_for_post();
+	$count = $data->get_facebook_count_for_post();
 	if ( 0 !== $count ) {
 		echo esc_html( $count );
 	}
