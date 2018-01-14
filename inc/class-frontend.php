@@ -23,11 +23,24 @@ class Frontend {
 			remove_action( 'wp_head', 'feed_links', 2 );
 			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
 			add_action( 'wp_footer', [ $this, 'disable_wp_embed' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'disable_unipress_styles' ], 100 );
+			add_action( 'wp_print_scripts', [ $this, 'disable_unipress_scripts' ], 100 );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 			add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
+			add_filter( 'simple_local_avatar', [ $this, 'hack_for_ssl' ] );
 		}
 		$this->disable_emojis();
+	}
+
+	/**
+	 * Don't let http image URL be used.
+	 *
+	 * @param string $avatar Avatar URL.
+	 * @return string Avatar URL.
+	 */
+	public function hack_for_ssl( $avatar ) {
+		return str_replace( 'http://', 'https://', $avatar );
 	}
 
 	/**
@@ -40,6 +53,20 @@ class Frontend {
 	public function add_query_vars_filter( $vars ) {
 			$vars[] = 'filter';
 			return $vars;
+	}
+
+	/**
+	 * Disable Unipress garbage.
+	 */
+	public function disable_unipress_styles() {
+		wp_dequeue_style( 'unipress-api' );
+	}
+
+	/**
+	 * Disable Unipress garbage.
+	 */
+	public function disable_unipress_scripts() {
+		wp_dequeue_script( 'unipress-api' );
 	}
 
 	/**
