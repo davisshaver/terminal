@@ -23,8 +23,8 @@ class Frontend {
 			remove_action( 'wp_head', 'feed_links', 2 );
 			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
 			add_action( 'wp_footer', [ $this, 'disable_wp_embed' ] );
-			$this->enqueue_scripts();
-			$this->enqueue_styles();
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 			add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
 		}
 		$this->disable_emojis();
