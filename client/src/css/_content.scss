@@ -30,24 +30,5 @@
 	max-width: 900px;
 	flex-grow: 1;
 	flex-basis: 500px;
+	font-family: Georgia, Cambria, "Times New Roman", Times, serif;
 }
-
-// // Gives some margin on the edge of screen.
-// #master-content {
-// 	align-items: center;
-// 	display: flex;
-// 	margin: 7px 10px;
-// 	justify-content: center;
-// 	flex-direction: row;
-// // }
-
-// // Sets content bucket (will contain content & sidebar).
-// #master-content-container {
-// 	flex-grow: 1;
-// 	max-width: 1400px;
-// }
-
-// // Take up as much room as you'd like, content!
-// #content {
-// 	box-flex: 1;
-// }

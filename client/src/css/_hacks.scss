@@ -5,3 +5,9 @@ textarea:focus,
 button:focus {
 	outline: none;
 }
+
+// No images outside their containers. This isn't the wild west.
+img {
+	max-width: 100%;
+	height: auto;
+}

@@ -13,6 +13,11 @@
 		</a>
 	</div>
 	<div class="dateline">
+		<div class="avatar">
+			<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>">
+				<?php terminal_print_avatar(); ?>
+			</a>
+		</div>
 		<?php esc_html_e( 'Posted', 'terminal' ); ?>
 		<abbr title="<?php the_time( 'l, F j, Y \a\t g:ia' ); ?>" class="time-1">
 			<?php echo esc_html( terminal_time_ago() ); ?>

@@ -57,7 +57,6 @@ class Theme {
 		add_action( 'admin_init', [ $this, 'remove_unused_meta_box' ] );
 		add_action( 'admin_menu', [ $this, 'remove_unused_admin_menu' ] );
 		add_action( 'wp_before_admin_bar_render', [ $this, 'admin_bar_disable_comments' ] );
-		add_filter( 'comments_open', '__return_false', 20, 2 );
 		add_filter( 'pings_open', '__return_false', 20, 2 );
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 	}

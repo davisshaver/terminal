@@ -27,7 +27,7 @@ get_header(); ?>
 							<?php
 							if ( is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
 							?>
-								<div class="icon-container-4"><a href="<?php echo esc_url( get_edit_post_link() ); ?>"><img src="<?php get_template_directory_uri(); ?>/static/images/edit.png" alt="E" /></a></div>
+								<a href="<?php echo esc_url( get_edit_post_link() ); ?>"><img  height="14" width="14" src="<?php echo esc_url( get_template_directory_uri() ); ?>/client/static/images/edit.png" alt="E" /></a>
 							<?php
 							}
 							?>
