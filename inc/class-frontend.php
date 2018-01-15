@@ -103,7 +103,7 @@ class Frontend {
 	 * Enqueue scripts.
 	 */
 	public function enqueue_scripts() {
-		if ( is_single() ) {
+		if ( is_singular() ) {
 			wp_enqueue_script( TERMINAL_APP . '-single', get_template_directory_uri() . '/client/build/single.bundle.js', array(), TERMINAL_VERSION, true );
 		} else {
 			wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.bundle.js', array(), TERMINAL_VERSION, true );
@@ -114,7 +114,7 @@ class Frontend {
 	 * Enqueue styles.
 	 */
 	public function enqueue_styles() {
-		if ( is_single() ) {
+		if ( is_singular() ) {
 			wp_enqueue_style( TERMINAL_APP . '-single', get_template_directory_uri() . '/client/build/single.css', array(), TERMINAL_VERSION );
 		} else {
 			wp_enqueue_style( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.css', array(), TERMINAL_VERSION );
