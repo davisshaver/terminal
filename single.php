@@ -17,7 +17,10 @@ get_header(); ?>
 			<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 				<div id="single">
 					<div id="single-topbar">
-						<div id="single-avatar">
+						<div class="avatar">
+							<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>">
+								<?php terminal_print_avatar( 50 ); ?>
+							</a>
 						</div>
 						<div id="single-author-and-date">
 							<abbr id="single-date" title="<?php the_time( 'l, F j, Y \a\t g:ia' ); ?>"><?php echo esc_html( terminal_time_ago() ); ?></abbr>

@@ -159,7 +159,9 @@ function terminal_print_facebook_count_for_post() {
 
 /**
  * Template function to print author avatar.
+ *
+ * @param int $size Size.
  */
-function terminal_print_avatar() {
-	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), 32, null, false, array( 'scheme' => 'https' ) ) );
+function terminal_print_avatar( $size = 32 ) {
+	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), $size, null, false, array( 'scheme' => 'https' ) ) );
 }

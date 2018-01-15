@@ -8,14 +8,16 @@
 	margin: 0 auto;
 
 	a {
+		background-color: #333;
 		color: #fff;
+		display: block;
+		font-size: 14px;
 		margin: 0;
 		padding: 0;
-		font-size: 14px;
-		background-color: #333;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;
+		width: 100%;
 	}
 
 	#menu-header {
