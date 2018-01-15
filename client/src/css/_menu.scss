@@ -1,69 +1,64 @@
 /* nav bar ********************************************/
 #nav-bar {
 	background-color: #333;
-	color: #FFF;
-	font-family: Arial, Helvetica, sans-serif;
-	height: 28px;
-}
-
-#nav-bar-inside {
-	background-color: #333;
-	margin: 0 auto;
-	width: 1200px;
-}
-
-#menu-header,
-#menu-header ul,
-#menu-header li {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	z-index: 99;
-}
-
-#menu-header {
-	margin-left: 225px;
-}
-
-#menu-header ul {
-	width: 200px;
-	display: none;
-}
-
-#menu-header li {
-	display: block;
-	position: relative;
-}
-
-#menu-header ul li {
-	width: 100%;
-}
-
-#menu-header a {
 	color: #fff;
-	margin: 0;
-	padding: 0;
-	padding: 7px 23px;
-	display: block;
-	font-size: 14px;
-	background-color: #333;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-}
+	font-family: Arial, Helvetica, sans-serif;
+	box-sizing: border-box;
+	max-width: 1250px;
+	margin: 0 auto;
 
-#menu-header ul li a {
-	text-align: left;
-}
+	a {
+		color: #fff;
+		margin: 0;
+		padding: 0;
+		font-size: 14px;
+		background-color: #333;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
 
-#menu-header li:hover ul {
-	display: block;
-	position: absolute;
-	top: 28px;
-	padding-left: 0;
-	background-color: #333;
-}
+	#menu-header {
+		display: flex;
+		flex-direction: column;
 
-#menu-header li a:hover {
-	background-color: #666;
+		@media (min-width: 350px) {
+			flex-direction: row;
+			justify-content: space-around;
+
+			li > ul {
+				display: none;
+				position: absolute;
+			}
+		}
+
+		li {
+			display: block;
+
+			a {
+				display: flex;
+				padding: 5px;
+				width: 100%;
+			}
+
+			&.menu-item-has-children > a:after {
+				content: " +";
+			}
+
+			ul.sub-menu {
+				display: none;
+
+				li {
+					display: flex;
+				}
+			}
+
+			&:hover {
+
+				ul.sub-menu {
+					display: block;
+				}
+			}
+		}
+	}
 }

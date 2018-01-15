@@ -26,4 +26,14 @@
 					</div>
 				</div>
 			</div>
+			<div id="nav-bar">
+				<div id="nav-bar-inside">
+					<?php
+						wp_nav_menu( array(
+							'theme_location' => 'header',
+							'depth'          => 2,
+						) );
+					?>
+				</div>
+			</div>
 		</div>
