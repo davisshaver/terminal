@@ -32,6 +32,8 @@ class Theme {
 			),
 		) );
 		$custom_header_args = array(
+			'flex-height'    => true,
+			'flex-width'     => true,
 			'height'         => 54,
 			'random-default' => true,
 			'width'          => 455,

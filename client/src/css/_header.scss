@@ -17,16 +17,17 @@
 #logo_bar {
 	text-align: center;
 	position: relative;
-	padding: 0 0 10px;
 }
 
 #logo_bar #logo {
-	max-width: 455px;
+	max-width: 50%;
 	margin: 0 auto;
+
+	a {
+		display: block;
+	}
 }
 
 #logo-image {
-	max-width: 100%;
-	height: auto;
 	user-select: none;
 }
