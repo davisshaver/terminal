@@ -40,6 +40,8 @@ class Theme {
 		);
 		add_theme_support( 'custom-header', $custom_header_args );
 
+		add_image_size( 'terminal-primary-thumbnail', 800, 423, false );
+
 		$custom_background_args = array(
 			'default-color' => 'fff',
 		);
