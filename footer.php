@@ -11,6 +11,7 @@
 		<div id="footer">
 			<div id="footer-inside">
 				<div id="footer-leaderboard">
+					<broadstreet-zone zone-id="64592"></broadstreet-zone>
 				</div>
 				<div id="footer-split">
 					<div id="footer-left">

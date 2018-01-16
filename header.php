@@ -13,6 +13,7 @@
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<?php wp_head(); ?>
+		<?php terminal_print_data_layer(); ?>
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -24,7 +25,9 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div id="header">
 			<div id="header-inside">
-				<div id="header-leaderboard"></div>
+				<div id="header-leaderboard">
+					<broadstreet-zone zone-id="64586"></broadstreet-zone>
+				</div>
 				<div id="logo_bar">
 					<div id="logo">
 						<a title="<?php esc_attr_e( 'Home', 'terminal' ); ?>" href="<?php echo esc_url( home_url() ); ?>">

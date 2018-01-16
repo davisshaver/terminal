@@ -103,6 +103,7 @@ class Frontend {
 	 * Enqueue scripts.
 	 */
 	public function enqueue_scripts() {
+			wp_enqueue_script( 'broadstreet', 'https://cdn.broadstreetads.com/init-2.min.js', array(), TERMINAL_VERSION, true );
 		if ( is_singular() ) {
 			wp_enqueue_script( TERMINAL_APP . '-single', get_template_directory_uri() . '/client/build/single.bundle.js', array(), TERMINAL_VERSION, true );
 		} else {

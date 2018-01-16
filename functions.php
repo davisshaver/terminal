@@ -35,7 +35,7 @@ require_once __DIR__ . '/inc/class-theme.php';
 
 // Remaining classes can be loaded independently.
 require_once __DIR__ . '/inc/class-api.php';
-
+require_once __DIR__ . '/inc/class-ads.php';
 require_once __DIR__ . '/inc/class-customizer.php';
 require_once __DIR__ . '/inc/class-data.php';
 require_once __DIR__ . '/inc/class-frontend.php';

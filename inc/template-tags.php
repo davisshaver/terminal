@@ -165,3 +165,39 @@ function terminal_print_facebook_count_for_post() {
 function terminal_print_avatar( $size = 32 ) {
 	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), $size, null, false, array( 'scheme' => 'https' ) ) );
 }
+
+/**
+ * Boolean helper for whether ads enabled.
+ *
+ * @return boolean
+ */
+function terminal_has_ads_enabled() {
+	return true;
+}
+
+/**
+ * Print data layer.
+ */
+function terminal_print_data_layer() { ?>
+	<script type="text/javascript">
+		var terminal =
+		<?php
+			echo wp_json_encode( array(
+				// @todo Move these to a setting.
+				'clientProfiles' => array(
+					// OS Main.
+					'UA-10930536-1',
+					// OS site + app.
+					'UA-10930536-4',
+					// SC.com and OS combined.
+					'UA-1249139-15',
+				),
+			) );
+		?>
+		;
+		dataLayer = [{
+			terminal
+		}];
+	</script>
+<?php
+}
