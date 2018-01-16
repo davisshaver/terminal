@@ -184,6 +184,7 @@ function terminal_print_data_layer() { ?>
 		<?php
 			echo wp_json_encode( array(
 				// @todo Move these to a setting.
+				'debugMode' => WP_DEBUG,
 				'clientProfiles' => array(
 					// OS Main.
 					'UA-10930536-1',
