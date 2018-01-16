@@ -13,6 +13,13 @@ if ( class_exists( '\FM_Widget' ) ) {
 	class Broadstreet_Widget extends \FM_Widget {
 
 		/**
+		 * Track uses as printing.
+		 *
+		 * @var int Uses.
+		 */
+		private $uses = 0;
+
+		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
@@ -31,7 +38,23 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			echo 'ad';
+			$this->uses += 1;
+			if ( ! empty( $args['unit'] ) ) {
+				$ad_unit = $args['unit'];
+			} else {
+				$ad_unit = '64590';
+			}
+			if ( ! empty( $args['title'] ) ) {
+				$ad_title = $args['title'];
+			} else {
+				$ad_title = __( 'Sponsored By', 'terminal' );
+			}
+			printf(
+				'<div id="%s" class="sidebar-section terminal-broadstreet terminal-broadstreet-sidebar"><div class="sidebar-header">%s</div><div class="terminal-broadstreet-sidebar-interior"><broadstreet-zone zone-id="%s"></broadstreet-zone></div></div>',
+				esc_attr( 'terminal-broadstreet-ad-sidebar-' . $this->uses ),
+				esc_html( $ad_title ),
+				esc_attr( $ad_unit )
+			);
 		}
 
 		/**
@@ -41,7 +64,8 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 */
 		protected function fieldmanager_children() {
 			return [
-				'unit' => new \Fieldmanager_TextField( __( 'Unit Override', 'terminal' ) ),
+				'title' => new \Fieldmanager_TextField( __( 'Title Override', 'terminal' ) ),
+				'unit'  => new \Fieldmanager_TextField( __( 'Unit Override', 'terminal' ) ),
 			];
 		}
 	}

@@ -15,7 +15,8 @@
 	}
 
 	.textwidget,
-	.custom-html-widget {
+	.custom-html-widget,
+	.terminal-broadstreet-sidebar-interior {
 		padding: 5px 8px 8px;
 		color: #333;
 
@@ -69,10 +70,7 @@
 .sidebar-section {
 	border: 1px solid #f0f0f0;
 	background-color: #fff;
-
-	@media (min-width: 870px) {
-		margin: 15px 15px 0 0;
-	}
+	margin: 15px 15px 0 0;
 }
 
 .sidebar-header {
