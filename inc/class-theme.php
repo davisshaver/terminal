@@ -39,7 +39,7 @@ class Theme {
 		add_theme_support( 'custom-header', $custom_header_args );
 
 		$custom_background_args = array(
-			'default-color' => '#ffffff',
+			'default-color' => 'fff',
 		);
 		add_theme_support( 'custom-background', $custom_background_args );
 
