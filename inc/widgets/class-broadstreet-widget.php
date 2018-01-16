@@ -5,8 +5,6 @@
  * @package Terminal
  */
 
-namespace Terminal;
-
 if ( class_exists( '\FM_Widget' ) ) {
 
 	/**
@@ -43,20 +41,10 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 */
 		protected function fieldmanager_children() {
 			return [
-				'media' => new \Fieldmanager_Media( __( 'Image', 'text-domain' ) ),
-				'autocomplete' => new \Fieldmanager_Autocomplete( [
-					'label' => __( 'Autocomplete', 'text-domain' ),
-					'datasource' => new \Fieldmanager_Datasource_Post,
-				] ),
-				'repeatable' => new \Fieldmanager_TextField( [
-					'label' => __( 'Repeatable', 'text-domain' ),
-					'limit' => 0,
-				] ),
+				'unit' => new \Fieldmanager_TextField( __( 'Unit Override', 'terminal' ) ),
 			];
 		}
 	}
 
-	add_action( 'widgets_init', function() {
-		register_widget( '\Terminal\Broadstreet_Widget' );
-	} );
+	register_widget( '\Broadstreet_Widget' );
 }
