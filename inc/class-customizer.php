@@ -29,6 +29,42 @@ class Customizer {
 	public function customizer_custom_css() {
 		?>
 		<style type="text/css">
+			.terminal-utility-font {
+				font-size: <?php echo esc_attr( get_theme_mod( 'utility_font_size', '14px' ) ); ?>;
+				font-family: <?php echo esc_attr( get_theme_mod( 'utility_font', 'Arial, Helvetica, sans-serif' ) ); ?>;
+				text-transform: <?php echo esc_attr( get_theme_mod( 'utility_transform', 'none' ) ); ?>;
+			}
+
+			.terminal-headline-font {
+				font-size: <?php echo esc_attr( get_theme_mod( 'headline_font_size', '28px' ) ); ?>;
+				font-family: <?php echo esc_attr( get_theme_mod( 'headline_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
+				text-transform: <?php echo esc_attr( get_theme_mod( 'headline_transform', 'none' ) ); ?>;
+			}
+
+			.terminal-sidebar-header-font {
+				font-size: <?php echo esc_attr( get_theme_mod( 'sidebar_header_font_size', '21px' ) ); ?>;
+				font-family: <?php echo esc_attr( get_theme_mod( 'sidebar_header_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
+				text-transform: <?php echo esc_attr( get_theme_mod( 'sidebar_header_transform', 'none' ) ); ?>;
+			}
+
+			.terminal-sidebar-body-font {
+				font-size: <?php echo esc_attr( get_theme_mod( 'sidebar_body_font_size', '16px' ) ); ?>;
+				font-family: <?php echo esc_attr( get_theme_mod( 'sidebar_body_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
+				text-transform: <?php echo esc_attr( get_theme_mod( 'sidebar_body_transform', 'none' ) ); ?>;
+			}
+
+			.terminal-single-meta-font {
+				font-size: <?php echo esc_attr( get_theme_mod( 'single_meta_font_size', '14px' ) ); ?>;
+				font-family: <?php echo esc_attr( get_theme_mod( 'single_meta_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
+				text-transform: <?php echo esc_attr( get_theme_mod( 'single_meta_transform', 'none' ) ); ?>;
+			}
+
+			.terminal-body-font {
+				font-size: <?php echo esc_attr( get_theme_mod( 'body_font_size', '16px' ) ); ?>;
+				font-family: <?php echo esc_attr( get_theme_mod( 'body_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
+				text-transform: <?php echo esc_attr( get_theme_mod( 'body_transform', 'none' ) ); ?>;
+			}
+
 			#header {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_background_color_setting', '#9DC1FD' ) ); ?>;
 			}

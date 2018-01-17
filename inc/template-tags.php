@@ -163,7 +163,11 @@ function terminal_print_facebook_count_for_post() {
  * @param int $size Size.
  */
 function terminal_print_avatar( $size = 32 ) {
-	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), $size, null, false, array( 'scheme' => 'https' ) ) );
+	if ( function_exists( 'get_simple_local_avatar' ) ) {
+		echo wp_kses_post( get_simple_local_avatar( get_the_author_meta( 'ID' ), $size, null, false, array( 'scheme' => 'https' ) ) );
+	} else {
+		echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), $size, null, false, array( 'scheme' => 'https' ) ) );
+	}
 }
 
 /**
