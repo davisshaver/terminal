@@ -2,6 +2,28 @@
 /* global wp */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const mapping = {
+    utility: '.terminal-utility-font',
+    headline: '.terminal-headline-font',
+    sidebar_header: '.terminal-sidebar-header-font',
+    sidebar_body: '.terminal-sidebar-body-font',
+    single_meta: '.terminal-single-meta-font',
+    body: '.terminal-body-font',
+  };
+  wp.customize('option_fields', (value) => {
+    value.bind((newval) => {
+      Object.keys(mapping)
+        .forEach((key) => {
+          const elements = document.querySelectorAll(mapping[key]);
+          [].forEach.call(elements, (element) => {
+            element.style['font-size'] = newval[key].size; // eslint-disable-line no-param-reassign
+            element.style['font-size'] = newval[key].transform; // eslint-disable-line no-param-reassign
+            element.style['font-size'] = newval[key].font; // eslint-disable-line no-param-reassign
+          });
+        });
+    });
+  });
+
   wp.customize('blogname', (value) => {
     value.bind((newval) => {
       const logo = document.getElementById('logo-image');

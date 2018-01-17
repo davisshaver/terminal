@@ -43,7 +43,7 @@ class Theme {
 		add_image_size( 'terminal-primary-thumbnail', 800, 423, false );
 
 		$custom_background_args = array(
-			'default-color' => 'fff',
+			'default-color' => '#ffffff',
 		);
 		add_theme_support( 'custom-background', $custom_background_args );
 

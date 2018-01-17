@@ -21,6 +21,13 @@ class Customizer {
 		add_action( 'customize_preview_init', [ $this, 'enqueue_customize_scripts' ] );
 		add_filter( 'site_icon_meta_tags', [ $this, 'site_icon_meta_tags' ] );
 		add_action( 'wp_head', [ $this, 'customizer_custom_css' ] );
+
+		// Helllllo Fieldmanager!
+		// add_action( 'fm_beta_customize', 'fm_beta_customize_demo' );
+		require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
+		if ( defined( 'FM_BETA_CUSTOMIZE_VERSION' ) ) {
+			require_once __DIR__ . '/customizer/class-fm-fonts.php';
+		}
 	}
 
 	/**
