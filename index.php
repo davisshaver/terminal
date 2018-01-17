@@ -39,8 +39,8 @@ get_header(); ?>
 	</div>
 	<div class="index-navigation">
 		<div class="index-navigation-links">
-			<div class="alignleft"><?php previous_posts_link( '<span class="nav_button">&laquo; Now</span>' ); ?></div>
-			<div class="alignright"><?php next_posts_link( '<span class="nav_button">Then &raquo;</span>', '' ); ?></div>
+			<div class="alignleft"><?php previous_posts_link( '<span class="nav_button">&laquo; Previous</span>' ); ?></div>
+			<div class="alignright"><?php next_posts_link( '<span class="nav_button">Next &raquo;</span>', '' ); ?></div>
 		</div>
 		<div style="clear: both;"></div>
 	</div>
