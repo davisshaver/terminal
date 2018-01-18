@@ -78,6 +78,24 @@ class Theme {
 			'before_title'  => '<div class="sidebar-header terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
+		register_sidebar( array(
+			'name'          => __( 'Header ', 'terminal' ),
+			'id'            => 'header',
+			'description'   => __( 'Header', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="header-section %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="header-header">',
+			'after_title'   => '</div>',
+		) );
+		register_sidebar( array(
+			'name'          => __( 'Footer ', 'terminal' ),
+			'id'            => 'footer',
+			'description'   => __( 'Footer', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="footer-section %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="footer-header">',
+			'after_title'   => '</div>',
+		) );
 	}
 
 	/**

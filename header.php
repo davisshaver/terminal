@@ -26,7 +26,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div id="header">
 			<div id="header-inside">
 				<div id="header-leaderboard">
-					<broadstreet-zone zone-id="64586"></broadstreet-zone>
+					<?php
+					if ( is_active_sidebar( 'header' ) ) {
+						dynamic_sidebar( 'header' );
+					}
+					?>
 				</div>
 				<div id="logo_bar">
 					<div id="logo">

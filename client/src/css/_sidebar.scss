@@ -71,6 +71,11 @@
 	border: 1px solid #f0f0f0;
 	background-color: #fff;
 	margin: 15px 15px 0 0;
+
+	&.widget_ad_layers_ad_widget {
+		border: none;
+		text-align: center;
+	}
 }
 
 .sidebar-header {

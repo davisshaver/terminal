@@ -11,8 +11,12 @@
 		<div id="footer" class="terminal-utility-font">
 			<div id="footer-inside">
 				<div id="footer-leaderboard">
-					<broadstreet-zone zone-id="64592"></broadstreet-zone>
-				</div>
+				<?php
+				if ( is_active_sidebar( 'footer' ) ) {
+					dynamic_sidebar( 'footer' );
+				}
+				?>
+			</div>
 				<div id="footer-split">
 					<div id="footer-left">
 						<div id="footer-rss">

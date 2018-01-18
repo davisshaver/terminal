@@ -180,6 +180,15 @@ function terminal_has_ads_enabled() {
 }
 
 /**
+ * Boolean helper for whether Broadstreet ads are enabled.
+ *
+ * @return boolean
+ */
+function terminal_has_broadstreet_enabled() {
+	return false;
+}
+
+/**
  * Print data layer.
  */
 function terminal_print_data_layer() { ?>

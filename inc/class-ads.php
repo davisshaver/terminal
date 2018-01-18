@@ -29,7 +29,9 @@ class Ads {
 			terminal_has_ads_enabled() &&
 			class_exists( '\FM_Widget' )
 		) {
-			require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
+			if ( terminal_has_broadstreet_enabled() ) {
+				require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
+			}
 		}
 	}
 }
