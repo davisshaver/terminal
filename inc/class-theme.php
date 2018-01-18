@@ -73,9 +73,9 @@ class Theme {
 			'name'          => __( 'Primary Sidebar', 'terminal' ),
 			'id'            => 'primary-sidebar',
 			'description'   => __( 'Homepage sidebar.', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="sidebar-section %2$s">',
+			'before_widget' => '<div id="%1$s" class="sidebar-section terminal-sidebar-body-font %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="sidebar-header">',
+			'before_title'  => '<div class="sidebar-header terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
 	}

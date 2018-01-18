@@ -10,15 +10,27 @@ document.addEventListener('DOMContentLoaded', () => {
     single_meta: '.terminal-single-meta-font',
     body: '.terminal-body-font',
   };
-  wp.customize('option_fields', (value) => {
+  wp.customize('typography', (value) => {
     value.bind((newval) => {
       Object.keys(mapping)
         .forEach((key) => {
           const elements = document.querySelectorAll(mapping[key]);
           [].forEach.call(elements, (element) => {
-            element.style['font-size'] = newval[key].size; // eslint-disable-line no-param-reassign
-            element.style['font-size'] = newval[key].transform; // eslint-disable-line no-param-reassign
-            element.style['font-size'] = newval[key].font; // eslint-disable-line no-param-reassign
+            if (newval[`${key}_size`] !== 'default') {
+              element.style['font-size'] = newval[`${key}_size`]; // eslint-disable-line no-param-reassign
+            } else {
+              element.style['font-size'] = null; // eslint-disable-line no-param-reassign
+            }
+            if (newval[`${key}_transform`] !== 'default') {
+              element.style['text-transform'] = newval[`${key}_transform`]; // eslint-disable-line no-param-reassign
+            } else {
+              element.style['text-transform'] = null; // eslint-disable-line no-param-reassign
+            }
+            if (newval[`${key}_font`] !== 'default') {
+              element.style['font-family'] = newval[`${key}_font`]; // eslint-disable-line no-param-reassign
+            } else {
+              element.style['font-family'] = null; // eslint-disable-line no-param-reassign
+            }
           });
         });
     });

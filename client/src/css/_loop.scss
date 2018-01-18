@@ -6,31 +6,6 @@
 	padding: 2px 0;
 	user-select: none;
 	width: 100%;
-
-	.active-filter {
-		text-decoration: none;
-	}
-}
-
-#stories-header-filters {
-	color: #666;
-	// @todo enable after post types
-	display: none;
-	font-size: 12px;
-	padding-top: 6px;
-}
-
-#stories-header-filters a {
-	color: #ccc;
-	padding-left: 6px;
-}
-
-#stories-header-filters a:hover {
-	color: #333;
-}
-
-#stories-header-filters a.filter-select {
-	color: #666;
 }
 
 .post {
@@ -63,7 +38,6 @@
 	}
 
 	.headline {
-		font-size: 30px;
 		font-weight: 700;
 
 		a {
@@ -77,63 +51,8 @@
 		}
 	}
 
-	.community-avatar {
-		padding: 0 0 10px 10px;
-	}
-
 	.link-image {
 		padding: 0 0 10px 10px;
-	}
-
-	.dateline {
-		color: #666;
-		font-size: 13px;
-		margin: 5px 0 3px;
-
-		a {
-			color: #19232d;
-		}
-
-		.avatar {
-			display: inline-block;
-			vertical-align: bottom;
-
-			img {
-				height: 15px;
-				width: auto;
-			}
-		}
-
-		abbr {
-			text-decoration: none;
-		}
-	}
-
-	.dateline a:hover {
-		color: #000;
-		text-decoration: underline;
-	}
-
-	.author {
-		color: #000;
-		display: inline-block;
-	}
-
-	.time {
-		border-bottom: none !important;
-		color: #000;
-		cursor: text !important;
-		display: inline-block;
-	}
-
-	.category {
-		color: #000;
-		display: inline-block;
-	}
-
-	.topic {
-		color: #000;
-		display: inline-block;
 	}
 
 	.image {

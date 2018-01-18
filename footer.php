@@ -8,7 +8,7 @@
  */
 
 ?>
-		<div id="footer">
+		<div id="footer" class="terminal-utility-font">
 			<div id="footer-inside">
 				<div id="footer-leaderboard">
 					<broadstreet-zone zone-id="64592"></broadstreet-zone>

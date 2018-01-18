@@ -50,7 +50,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				$ad_title = __( 'Sponsored By', 'terminal' );
 			}
 			printf(
-				'<div id="%s" class="sidebar-section terminal-broadstreet terminal-broadstreet-sidebar"><div class="sidebar-header">%s</div><div class="terminal-broadstreet-sidebar-interior"><broadstreet-zone zone-id="%s"></broadstreet-zone></div></div>',
+				'<div id="%s" class="sidebar-section terminal-broadstreet terminal-broadstreet-sidebar terminal-sidebar-body-font"><div class="sidebar-header terminal-sidebar-header-font">%s</div><div class="terminal-broadstreet-sidebar-interior"><broadstreet-zone zone-id="%s"></broadstreet-zone></div></div>',
 				esc_attr( 'terminal-broadstreet-ad-sidebar-' . $this->uses ),
 				esc_html( $ad_title ),
 				esc_attr( $ad_unit )

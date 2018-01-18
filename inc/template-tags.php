@@ -206,3 +206,19 @@ function terminal_print_data_layer() { ?>
 	</script>
 <?php
 }
+
+/**
+ * Template helper for FM Customizer options.
+ *
+ * @param string      $name    FM group name.
+ * @param string      $key  FM option name.
+ * @param bool|string $default Default.
+ * @return string
+ */
+function terminal_get_fm_theme_mod( $name, $key, $default = false ) {
+	$option = get_theme_mod( $name, array() );
+	if ( isset( $option[ $key ] ) ) {
+		return $option[ $key ];
+	}
+	return $default;
+}

@@ -1,7 +1,6 @@
 #single {
 
 	.story-text {
-		font-size: 16px;
 		padding-top: 6px;
 		line-height: 19px;
 	}
@@ -39,7 +38,6 @@
 	}
 
 	h1 {
-		font-size: 28px;
 		font-weight: 700;
 		color: #000;
 		border: 0;
@@ -62,13 +60,12 @@
 	}
 }
 
-#single-avatar {
+.single-avatar {
 	display: flex;
 	flex: 0 0 15%;
 }
 
 #single-author {
-	font-size: 14px;
 	padding-left: 25px;
 	color: #036;
 	font-weight: 700;
@@ -80,7 +77,7 @@
 	flex: 0 0 85%;
 	padding-top: 6px;
 	margin-left: 10px;
-	font-size: 14px;
+	margin-top: 15px;
 }
 
 #single-numberofcomments {

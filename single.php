@@ -16,8 +16,8 @@ get_header(); ?>
 		?>
 			<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 				<div id="single">
-					<div id="single-topbar">
-						<div class="avatar">
+					<div id="single-topbar" class="terminal-single-meta-font">
+						<div class="single-avatar">
 							<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>">
 								<?php terminal_print_avatar( 50 ); ?>
 							</a>
@@ -36,13 +36,13 @@ get_header(); ?>
 							?>
 						</div>
 					</div>
-					<h1><?php the_title(); ?></h1>
+					<h1 class="terminal-headline-font"><?php the_title(); ?></h1>
 					<?php if ( has_post_thumbnail() ) : ?>
 						<div class="image">
 							<?php the_post_thumbnail( 'terminal-primary-thumbnail' ); ?>
 						</div>
 					<?php endif; ?>
-					<div class="story-text">
+					<div class="story-text terminal-body-font">
 						<?php the_content( '<p>Read the rest of this entry &raquo;</p>' ); ?>
 					</div>
 				</div>

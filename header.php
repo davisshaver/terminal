@@ -36,7 +36,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					</div>
 				</div>
 			</div>
-			<div id="nav-bar">
+			<div id="nav-bar" class="terminal-utility-font">
 				<div id="nav-bar-inside">
 					<?php
 						wp_nav_menu( array(

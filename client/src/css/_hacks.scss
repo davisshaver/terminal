@@ -40,3 +40,8 @@ h6 {
 b {
 	font-weight: 700;
 }
+
+// Don't inherit font family for font
+input, select, textarea, button {
+	font-family:inherit;
+}

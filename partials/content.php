@@ -7,7 +7,7 @@
 
 ?>
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="headline">
+	<div class="headline terminal-headline-font">
 		<a href="<?php the_permalink(); ?>">
 			<?php the_title(); ?>
 		</a>
@@ -20,7 +20,7 @@
 				</a>
 			</div>
 		<?php endif; ?>
-		<div class="story-text">
+		<div class="story-text terminal-body-font">
 			<?php
 				the_excerpt();
 			?>

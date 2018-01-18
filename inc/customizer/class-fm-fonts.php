@@ -34,37 +34,50 @@ class FM_Fonts {
 			'utility'        => __( 'Utility', 'terminal' ),
 			'headline'       => __( 'Headline', 'terminal' ),
 		);
-		$children = array();
+		$children   = array();
 		foreach ( $font_slots as $slot => $name ) {
-			$children[] = new \Fieldmanager_Group( array(
-				'name'     => $slot,
-				'children' => array(
-
-					'size'      => new \Fieldmanager_Textfield( $name . ' Font Size', array( 'default_value' => 'inherit' ) ),
-					'transform' => new \Fieldmanager_Select( $name . ' Transform', array( 'options' => array( 'inherit', 'lowercase', 'uppercase', 'capitalize' ) ) ),
-					'font'      => new \Fieldmanager_Select( $name . ' Font Family', array(
-						'options' => array(
-							'inherit',
-							'"Arial Black", Gadget, sans-serif',
-							'"Comic Sans MS", cursive, sans-serif',
-							'"Courier New", Courier, monospace',
-							'"Lucida Console", Monaco, monospace',
-							'"Lucida Sans Unicode", "Lucida Grande", sans-serif',
-							'"Palatino Linotype", "Book Antiqua", Palatino, serif',
-							'"Times New Roman", Times, serif',
-							'"Trebuchet MS", Helvetica, sans-serif',
-							'Arial, Helvetica, sans-serif',
-							'Georgia, Cambria, "Times New Roman", Times, serif',
-							'Impact, Charcoal, sans-serif',
-							'Tahoma, Geneva, sans-serif',
-							'Verdana, Geneva, sans-serif',
-						),
-					) ),
+			$children[ "${slot}_size" ]      = new \Fieldmanager_Select( $name . ' Font Size', array(
+				'options' => array(
+					'default',
+					'12px',
+					'14px',
+					'16px',
+					'18px',
+					'20px',
+					'22px',
+					'24px',
+					'26px',
+					'28px',
+					'30px',
+					'32px',
+					'34px',
+					'36px',
+					'38px',
+					'40px',
+				),
+			) );
+			$children[ "${slot}_transform" ] = new \Fieldmanager_Select( $name . ' Transform', array( 'options' => array( 'default', 'lowercase', 'uppercase', 'capitalize' ) ) );
+			$children[ "${slot}_font" ]      = new \Fieldmanager_Select( $name . ' Font Family', array(
+				'options' => array(
+					'default',
+					'Arial Black, Gadget, sans-serif',
+					'Comic Sans MS, cursive, sans-serif',
+					'Courier New, Courier, monospace',
+					'Lucida Console, Monaco, monospace',
+					'Lucida Sans Unicode, Lucida Grande, sans-serif',
+					'Palatino Linotype, Book Antiqua, Palatino, serif',
+					'Times New Roman, Times, serif',
+					'Trebuchet MS, Helvetica, sans-serif',
+					'Arial, Helvetica, sans-serif',
+					'Georgia, Cambria, Times New Roman, Times, serif',
+					'Impact, Charcoal, sans-serif',
+					'Tahoma, Geneva, sans-serif',
+					'Verdana, Geneva, sans-serif',
 				),
 			) );
 		}
 		$fm = new \Fieldmanager_Group( array(
-			'name'     => 'option_fields',
+			'name'     => 'typography',
 			'children' => $children,
 		) );
 		fm_beta_customize_add_to_customizer( array(

@@ -23,7 +23,6 @@ class Customizer {
 		add_action( 'wp_head', [ $this, 'customizer_custom_css' ] );
 
 		// Helllllo Fieldmanager!
-		// add_action( 'fm_beta_customize', 'fm_beta_customize_demo' );
 		require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
 		if ( defined( 'FM_BETA_CUSTOMIZE_VERSION' ) ) {
 			require_once __DIR__ . '/customizer/class-fm-fonts.php';
@@ -34,42 +33,81 @@ class Customizer {
 	 * Prints CSS from customizer.
 	 */
 	public function customizer_custom_css() {
+		if ( ! function_exists( 'terminal_get_fm_theme_mod' ) ) {
+			return;
+		}
 		?>
 		<style type="text/css">
 			.terminal-utility-font {
-				font-size: <?php echo esc_attr( get_theme_mod( 'utility_font_size', '14px' ) ); ?>;
-				font-family: <?php echo esc_attr( get_theme_mod( 'utility_font', 'Arial, Helvetica, sans-serif' ) ); ?>;
-				text-transform: <?php echo esc_attr( get_theme_mod( 'utility_transform', 'none' ) ); ?>;
+			<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_font_size', '14px' ) ) : ?>
+				font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_size', '14px' ) ); ?>;
+			<?php endif; ?>
+			<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_font_family', 'Arial, Helvetica, sans-serif' ) ) : ?>
+				font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_font', 'Arial, Helvetica, sans-serif' ) ); ?>;
+			<?php endif; ?>
+			<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_transform', 'none' ) ) : ?>
+				text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_transform', 'none' ) ); ?>;
+			<?php endif; ?>
 			}
 
 			.terminal-headline-font {
-				font-size: <?php echo esc_attr( get_theme_mod( 'headline_font_size', '28px' ) ); ?>;
-				font-family: <?php echo esc_attr( get_theme_mod( 'headline_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
-				text-transform: <?php echo esc_attr( get_theme_mod( 'headline_transform', 'none' ) ); ?>;
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_font_size', '30px' ) ) : ?>
+				font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_font_size', '30px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_transform', 'none' ) ); ?>;
+				<?php endif; ?>
 			}
 
 			.terminal-sidebar-header-font {
-				font-size: <?php echo esc_attr( get_theme_mod( 'sidebar_header_font_size', '21px' ) ); ?>;
-				font-family: <?php echo esc_attr( get_theme_mod( 'sidebar_header_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
-				text-transform: <?php echo esc_attr( get_theme_mod( 'sidebar_header_transform', 'none' ) ); ?>;
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_font_size', '21px' ) ) : ?>
+				font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_font_size', '21px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_transform', 'none' ) ); ?>;
+				<?php endif; ?>
 			}
 
 			.terminal-sidebar-body-font {
-				font-size: <?php echo esc_attr( get_theme_mod( 'sidebar_body_font_size', '16px' ) ); ?>;
-				font-family: <?php echo esc_attr( get_theme_mod( 'sidebar_body_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
-				text-transform: <?php echo esc_attr( get_theme_mod( 'sidebar_body_transform', 'none' ) ); ?>;
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_body_font_size', '16px' ) ) : ?>
+				font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_body_font_size', '16px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_body_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_body_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_body_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_body_transform', 'none' ) ); ?>;
+				<?php endif; ?>
 			}
 
 			.terminal-single-meta-font {
-				font-size: <?php echo esc_attr( get_theme_mod( 'single_meta_font_size', '14px' ) ); ?>;
-				font-family: <?php echo esc_attr( get_theme_mod( 'single_meta_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
-				text-transform: <?php echo esc_attr( get_theme_mod( 'single_meta_transform', 'none' ) ); ?>;
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'single_meta_font_size', '14px' ) ) : ?>
+				font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'single_meta_font_size', '14px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'single_meta_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'single_meta_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'single_meta_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'single_meta_transform', 'none' ) ); ?>;
+				<?php endif; ?>
 			}
 
 			.terminal-body-font {
-				font-size: <?php echo esc_attr( get_theme_mod( 'body_font_size', '16px' ) ); ?>;
-				font-family: <?php echo esc_attr( get_theme_mod( 'body_font', 'Georgia, Cambria, "Times New Roman", Times, serif' ) ); ?>;
-				text-transform: <?php echo esc_attr( get_theme_mod( 'body_transform', 'none' ) ); ?>;
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_size', '14px' ) ) : ?>
+					font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_size', '14px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_transform', 'none' ) ); ?>;
+				<?php endif; ?>
 			}
 
 			#header {
