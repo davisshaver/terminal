@@ -26,6 +26,7 @@ class Customizer {
 		require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
 		if ( defined( 'FM_BETA_CUSTOMIZE_VERSION' ) ) {
 			require_once __DIR__ . '/customizer/class-fm-fonts.php';
+			require_once __DIR__ . '/customizer/class-fm-header.php';
 		}
 	}
 

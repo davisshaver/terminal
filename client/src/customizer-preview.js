@@ -10,6 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
     single_meta: '.terminal-single-meta-font',
     body: '.terminal-body-font',
   };
+  console.log('hello');
+  wp.customize('content_stories_header', (value) => {
+    value.bind((newval) => {
+      let topStoriesHeader = document.getElementById('top-stories-header');
+      if (!topStoriesHeader) {
+        const content = document.getElementById('content');
+        topStoriesHeader = document.createElement('h2');
+        topStoriesHeader.id = 'top-stories-header';
+        content.insertBefore(topStoriesHeader, content.firstChild);
+      }
+      if (!newval) {
+        topStoriesHeader.style.display = 'none';
+      } else {
+        topStoriesHeader.innerText = newval;
+        topStoriesHeader.style.display = 'block';
+      }
+    });
+  });
   wp.customize('typography', (value) => {
     value.bind((newval) => {
       Object.keys(mapping)
@@ -60,12 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     value.bind((newval) => {
       const footer = document.getElementById('footer');
       footer.style['background-color'] = newval;
-    });
-  });
-  wp.customize('content_stories_header', (value) => {
-    value.bind((newval) => {
-      const topStoriesHeader = document.getElementById('top-stories-header');
-      topStoriesHeader.innerText = newval;
     });
   });
 });

@@ -17,9 +17,7 @@ get_header(); ?>
 <div id="container">
 	<div id="body">
 		<div id="content">
-			<div id="stories-header">
-				<?php terminal_print_index_header(); ?>
-			</div>
+			<?php terminal_print_index_header(); ?>
 			<div id="stories">
 				<?php
 				if ( have_posts() ) :

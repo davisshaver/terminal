@@ -84,7 +84,7 @@ class FM_Fonts {
 			'section_args' => array(
 				'capability' => 'edit_posts',
 				'title'      => __( 'Typography', 'terminal' ),
-				'priority'   => 15,
+				'priority'   => 50,
 			),
 			'setting_args' => array(
 				'type'      => 'theme_mod',

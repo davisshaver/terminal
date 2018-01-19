@@ -99,9 +99,13 @@ function terminal_time_ago() {
 function terminal_print_index_header() {
 	if ( is_home() ) {
 		if ( 0 === get_query_var( 'paged', 0 ) ) {
+			$theme_mod = get_theme_mod( 'content_stories_header', __( 'Latest Stories', 'terminal' ) );
+			if ( empty( $theme_mod ) ) {
+				return;
+			}
 			printf(
 				'<h2 id="top-stories-header">%s</h2><a name="latest"></a>',
-				esc_html( get_theme_mod( 'content_stories_header', __( 'Latest Stories', 'terminal' ) ) )
+				esc_html( $theme_mod )
 			);
 		} else {
 			printf(
