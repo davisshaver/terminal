@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (newval[`${key}_font`] !== 'default') {
               element.style['font-family'] = newval[`${key}_font`]; // eslint-disable-line no-param-reassign
             } else {
-              element.style['font-family'] = null; // eslint-disable-line no-param-reassign
+              element.style['font-family'] = 'initial'; // eslint-disable-line no-param-reassign
             }
           });
         });

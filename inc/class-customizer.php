@@ -102,8 +102,8 @@ class Customizer {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_size', '14px' ) ) : ?>
 					font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_size', '14px' ) ); ?>;
 				<?php endif; ?>
-				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ) : ?>
-					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ); ?>;
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_font', 'initial' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_font', 'initial' ) ); ?>;
 				<?php endif; ?>
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_transform', 'none' ) ) : ?>
 					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_transform', 'none' ) ); ?>;
