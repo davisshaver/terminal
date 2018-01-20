@@ -18,8 +18,6 @@
 	.custom-html-widget,
 	.terminal-broadstreet-sidebar-interior {
 		padding: 5px 8px 8px;
-		color: #333;
-
 		a {
 			text-decoration: none;
 		}
@@ -33,13 +31,10 @@
 	.widget_search {
 
 		.search-form-field {
-			color: #333;
 			display: flex;
 			flex-wrap: nowrap;
 
 			label {
-				background-color: #f8f8f8;
-				color: #666;
 				display: flex;
 				font-size: 1.3em;
 				padding: 8px;
@@ -55,9 +50,7 @@
 			}
 
 			.search-submit {
-				background-color: #f8f8f8;
 				border: none;
-				color: #666;
 				cursor: pointer;
 				display: flex;
 				flex: 0.5;
@@ -68,7 +61,6 @@
 }
 
 .sidebar-section {
-	background-color: #fff;
 	margin: 15px 15px 0 0;
 
 	&.widget_ad_layers_ad_widget {
@@ -78,9 +70,7 @@
 }
 
 .sidebar-header {
-	background-color: #f8f8f8;
 	box-sizing: border-box;
-	color: #666;
 	font-size: 1.3em;
 	line-height: 30px;
 	text-indent: 8px;

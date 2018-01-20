@@ -33,6 +33,8 @@ class FM_Fonts {
 			'single_meta'    => __( 'Single Meta', 'terminal' ),
 			'utility'        => __( 'Utility', 'terminal' ),
 			'headline'       => __( 'Headline', 'terminal' ),
+			'tagline'        => __( 'Tagline', 'terminal' ),
+			'cta_button'     => __( 'Call to Action', 'terminal' ),
 		);
 		$children   = array();
 		foreach ( $font_slots as $slot => $name ) {

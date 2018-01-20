@@ -69,7 +69,7 @@ class FM_Header {
 				'children' => array(
 					'cta_show_on_desktop'          => new \Fieldmanager_Checkbox( 'Show CTA on Desktop' ),
 					'cta_show_on_mobile'           => new \Fieldmanager_Checkbox( 'Show CTA on Mobile' ),
-					'cta_tagline'                  => new \Fieldmanager_Textfield( 'CTA Tagline' ),
+					'cta_tagline'                  => new \Fieldmanager_TextArea( 'CTA Tagline' ),
 					'cta_button'                   => new \Fieldmanager_Textfield( 'CTA Button' ),
 					'cta_icon'                     => new \Fieldmanager_Media( 'CTA Icon' ),
 					'cta_link'                     => new \Fieldmanager_Link( 'CTA Link' ),

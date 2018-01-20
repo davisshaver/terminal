@@ -95,21 +95,42 @@ $desktop_optional_mobile_override_flag = ! empty( $header_data['mobile_header_im
 					<?php
 					if ( ! empty( $header_data['cta_tagline'] ) ) {
 					?>
-						<p><?php echo esc_html( $header_data['cta_tagline'] ); ?></p>
+						<div class="terminal-cta-tagline-font"><?php echo wp_kses_post( wpautop( $header_data['cta_tagline'] ) ); ?></div>
 					<?php
 					}
 					?>
+					<div class="cta-link terminal-cta-button-font">
 					<?php
-					if ( ! empty( $header_data['cta_link'] ) ) {
-						printf( '<a href="%s">', esc_url( $header_data['cta_link'] ) );
-					}
 					if ( ! empty( $header_data['cta_icon'] ) ) {
-						echo wp_get_attachment_image( $header_data['cta_icon'], 'full' );
+						echo '<div class="cta-icon">';
+						if ( ! empty( $header_data['cta_link'] ) ) {
+							printf( '<a href="%s">', esc_url( $header_data['cta_link'] ) );
+						}
+						$image = wp_get_attachment_image_src( $header_data['cta_icon'], 'thumbnail' );
+						if ( ! empty( $image ) ) {
+							printf(
+								'<img src="%s" />',
+								esc_url( $image[0] )
+							);
+						}
+						if ( ! empty( $header_data['cta_link'] ) ) {
+							echo '</a>';
+						}
+						echo '</div>';
 					}
-					if ( ! empty( $header_data['cta_link'] ) ) {
-						echo '</a>';
+					if ( ! empty( $header_data['cta_button'] ) ) {
+						echo '<div class="cta-action">';
+						if ( ! empty( $header_data['cta_link'] ) ) {
+							printf( '<a href="%s" class="action">', esc_url( $header_data['cta_link'] ) );
+						}
+						echo esc_html( $header_data['cta_button'] );
+						if ( ! empty( $header_data['cta_link'] ) ) {
+							echo '</a>';
+						}
+						echo '</div>';
 					}
 					?>
+					</div>
 				</div>
 			</div>
 		</div>

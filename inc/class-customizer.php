@@ -111,6 +111,30 @@ class Customizer {
 				<?php endif; ?>
 			}
 
+			.terminal-cta-tagline-font {
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'tagline_size', '14px' ) ) : ?>
+					font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'tagline_size', '14px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'tagline_font', 'initial' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'tagline_font', 'initial' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'tagline_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'tagline_transform', 'none' ) ); ?>;
+				<?php endif; ?>
+			}
+
+			.terminal-cta-button-font {
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'cta_button_size', '14px' ) ) : ?>
+					font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'cta_button_size', '14px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'cta_button_font', 'initial' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'cta_button_font', 'initial' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'cta_button_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'cta_button_transform', 'none' ) ); ?>;
+				<?php endif; ?>
+			}
+
 			#header {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_background_color_setting', '#9DC1FD' ) ); ?>;
 			}

@@ -14,6 +14,7 @@
 }
 
 #header-inside-container {
+	padding: 0 2px;
 	margin: 0 auto;
 	max-width: 1100px;
 }
@@ -33,6 +34,9 @@
 #logo_bar {
 	padding: 5px 0;
 	position: relative;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
 }
 
 #logo_bar #logo {
@@ -73,16 +77,19 @@
 	.desktop-header-alignment-center {
 		margin: 0 auto;
 		text-align: center;
+		justify-content: center;
 	}
 
 	.desktop-header-alignment-left {
 		margin: 0;
 		text-align: left;
+		justify-content: left;
 	}
 
 	.desktop-header-alignment-right {
 		margin-left: auto;
 		text-align: right;
+		justify-content: right;
 	}
 }
 @media (max-width: 869px) {
@@ -113,17 +120,21 @@
 	.mobile-header-alignment-center {
 		margin: 0 auto;
 		text-align: center;
+		justify-content: center;
 	}
 	
 	.mobile-header-alignment-left {
 		margin: 0;
 		text-align: left;
+		justify-content: left;
 	}
 	
 	.mobile-header-alignment-right {
 		margin-left: auto;
 		text-align: right;
+		justify-content: right;
 	}
+
 }
 #logo img,
 #logo-mobile img {
@@ -132,12 +143,44 @@
 		height: auto;
 }
 
+#logos {
+	flex: 1 1 auto;
+	margin: 5px;
+}
+
 #logo-mobile {
 	display: none;
 }
 
 .cta {
 	display: none;
+	justify-content: center;
+	align-items: center;
+
+	.cta-link {
+		display: flex;
+		margin: -15px;
+		flex-wrap: nowrap;
+		align-items: center;
+		padding: 20px;
+
+		a {
+			display: flex;
+			text-decoration: none;
+			color: inherit;
+			user-select: none;
+		}
+
+		img {
+			width: 50px;
+			height: 100%;
+		}
+
+		div {
+			flex: 1 0 auto;
+			margin-left: 5px;
+ 		}
+	}
 }
 @media (max-width: 869px) {
 	#logo-mobile {
@@ -153,12 +196,25 @@
 	}
 
 	.cta-show-on-mobile {
-		display: block;
+		flex: 1 0 150px;
+		flex-wrap: wrap;
+		display: flex;
+		flex-direction: column;
+		text-align: left;
 	}
 }
 
 @media (min-width: 870px) {
 	.cta-show-on-desktop {
-		display: block;
+		flex: 1 0 auto;
+		flex-wrap: nowrap;
+		display: flex;
+		text-align: right;
+		margin-left: 10px;
+
+		p {
+			margin-right: 10px;
+			user-select: none;
+		}
 	}
 }

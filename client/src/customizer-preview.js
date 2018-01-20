@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebar_body: '.terminal-sidebar-body-font',
     single_meta: '.terminal-single-meta-font',
     body: '.terminal-body-font',
+    tagline: '.terminal-cta-tagline-font',
+    cta_button: '.terminal-cta-button-font',
   };
-  console.log('hello');
   wp.customize('content_stories_header', (value) => {
     value.bind((newval) => {
       let topStoriesHeader = document.getElementById('top-stories-header');
@@ -37,12 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (newval[`${key}_size`] !== 'default') {
               element.style['font-size'] = newval[`${key}_size`]; // eslint-disable-line no-param-reassign
             } else {
-              element.style['font-size'] = null; // eslint-disable-line no-param-reassign
+              element.style['font-size'] = 'unset'; // eslint-disable-line no-param-reassign
             }
             if (newval[`${key}_transform`] !== 'default') {
               element.style['text-transform'] = newval[`${key}_transform`]; // eslint-disable-line no-param-reassign
             } else {
-              element.style['text-transform'] = null; // eslint-disable-line no-param-reassign
+              element.style['text-transform'] = 'unset'; // eslint-disable-line no-param-reassign
             }
             if (newval[`${key}_font`] !== 'default') {
               element.style['font-family'] = newval[`${key}_font`]; // eslint-disable-line no-param-reassign
