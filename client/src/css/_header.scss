@@ -1,13 +1,20 @@
 /* header ********************************************/
 
+#header {
+	padding: 2px 0;
+}
+
 #header-inside {
-	margin: 0 auto;
+	padding: 5px 0;
 	max-width: 1200px;
 }
 
 #header-leaderboard {
 	text-align: center;
-	padding: 5px 0 15px;
+
+	.dfp-ad {
+		padding: 5px 0;
+	}
 }
 
 #header-leaderboard div {
@@ -15,13 +22,11 @@
 }
 
 #logo_bar {
-	text-align: center;
+	padding: 5px 0;
 	position: relative;
 }
 
 #logo_bar #logo {
-	max-width: 50%;
-	margin: 0 auto;
 
 	a {
 		display: block;
@@ -30,4 +35,121 @@
 
 #logo-image {
 	user-select: none;
+}
+	
+._50-percent-desktop-header-width {
+	width: 50%;
+}
+
+._60-percent-desktop-header-width {
+	width: 60%;
+}
+
+._70-percent-desktop-header-width {
+	width: 70%;
+}
+
+._80-percent-desktop-header-width {
+	width: 80%;
+}
+
+._90-percent-desktop-header-width {
+	width: 90%;
+}
+
+._100-percent-desktop-header-width {
+	width: 100%;
+}
+@media (min-width: 870px) {
+	.desktop-header-alignment-center {
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.desktop-header-alignment-left {
+		margin: 0;
+		text-align: left;
+	}
+
+	.desktop-header-alignment-right {
+		margin-left: auto;
+		text-align: right;
+	}
+}
+@media (max-width: 869px) {
+	._50-percent-mobile-header-width {
+		width: 50%;
+	}
+
+	._60-percent-mobile-header-width {
+		width: 60%;
+	}
+
+	._70-percent-mobile-header-width {
+		width: 70%;
+	}
+
+	._80-percent-mobile-header-width {
+		width: 80%;
+	}
+
+	._90-percent-mobile-header-width {
+		width: 90%;
+	}
+
+	._100-percent-mobile-header-width {
+		width: 100%;
+	}
+
+	.mobile-header-alignment-center {
+		margin: 0 auto;
+		text-align: center;
+	}
+	
+	.mobile-header-alignment-left {
+		margin: 0;
+		text-align: left;
+	}
+	
+	.mobile-header-alignment-right {
+		margin-left: auto;
+		text-align: right;
+	}
+}
+#logo img,
+#logo-mobile img {
+	width: auto;
+	height: inherit !important;
+	max-height: inherit;
+}
+
+#logo-mobile {
+	display: none;
+}
+
+.cta {
+	display: none;
+}
+@media (max-width: 869px) {
+	#logo-mobile {
+		display: block;
+	}
+
+	.desktop-header-has-mobile-override {
+		display: none;
+	}
+
+	#logo-mobile {
+		display: block;
+	}
+
+	.cta-show-on-mobile {
+		display: block;
+	}
+}
+
+@media (min-width: 870px) {
+	.cta-show-on-desktop {
+		display: block;
+	}
 }

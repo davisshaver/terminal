@@ -62,9 +62,72 @@ class FM_Header {
 	 * Add a customizer GROUP in a single SECTION for header.
 	 */
 	public function customizer_init() {
-		$fm = new \Fieldmanager_TextField(
-			'Text Field with Selective Refresh',
-			array( 'name' => 'terminal_header_options' )
+		$fm = new \Fieldmanager_Group(
+			'Header Layout Options',
+			array(
+				'name'     => 'terminal_header_options',
+				'children' => array(
+					'cta_show_on_desktop'          => new \Fieldmanager_Checkbox( 'Show CTA on Desktop' ),
+					'cta_show_on_mobile'           => new \Fieldmanager_Checkbox( 'Show CTA on Mobile' ),
+					'cta_tagline'                  => new \Fieldmanager_Textfield( 'CTA Tagline' ),
+					'cta_button'                   => new \Fieldmanager_Textfield( 'CTA Button' ),
+					'cta_icon'                     => new \Fieldmanager_Media( 'CTA Icon' ),
+					'cta_link'                     => new \Fieldmanager_Link( 'CTA Link' ),
+					'desktop_alignment'            => new \Fieldmanager_Select( 'Desktop Alignment', array(
+						'options' => array(
+							'center',
+							'left',
+							'right',
+						),
+					) ),
+					'desktop_width'                => new \Fieldmanager_Select( 'Desktop Width', array(
+						'options' => array(
+							'50%',
+							'60%',
+							'70%',
+							'90%',
+							'100%',
+						),
+					) ),
+					'desktop_max_height'           => new \Fieldmanager_Select( 'Desktop Max-Height', array(
+						'options' => array(
+							'200px',
+							'300px',
+							'400px',
+							'500px',
+							'600px',
+						),
+					) ),
+					'desktop_background_accent'    => new \Fieldmanager_Colorpicker( 'Desktop Background Accent' ),
+					'mobile_header_image_override' => new \Fieldmanager_Media( 'Mobile Header Image Override' ),
+					'mobile_alignment'             => new \Fieldmanager_Select( 'Mobile Alignment', array(
+						'options' => array(
+							'center',
+							'left',
+							'right',
+						),
+					) ),
+					'mobile_width'                 => new \Fieldmanager_Select( 'Mobile Width', array(
+						'options' => array(
+							'60%',
+							'70%',
+							'90%',
+							'100%',
+						),
+					) ),
+					'mobile_max_height'            => new \Fieldmanager_Select( 'Mobile Max-Height', array(
+						'options' => array(
+							'100px',
+							'200px',
+							'300px',
+							'400px',
+							'500px',
+							'600px',
+						),
+					) ),
+					'mobile_background_accent'     => new \Fieldmanager_Colorpicker( 'Mobile Background Accent' ),
+				),
+			)
 		);
 		fm_beta_customize_add_to_customizer( array(
 			'section_args' => array(

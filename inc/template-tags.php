@@ -230,8 +230,20 @@ function terminal_print_data_layer() { ?>
  */
 function terminal_get_fm_theme_mod( $name, $key, $default = false ) {
 	$option = get_theme_mod( $name, array() );
-	if ( isset( $option[ $key ] ) ) {
+	if ( ! isset( $option[ $key ] ) ) {
 		return $option[ $key ];
 	}
 	return $default;
+}
+
+
+/**
+ * Template function to get Facebook count for a post.
+ *
+ * @param array $default Template default.
+ * @return array Prepared header data.
+ */
+function terminal_get_header_data( $default = array() ) {
+	$data = Terminal\Data::instance();
+	return $data->get_prepared_header_data( $default );
 }
