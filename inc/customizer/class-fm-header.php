@@ -125,7 +125,6 @@ class FM_Header {
 							'600px',
 						),
 					) ),
-					'mobile_background_accent'     => new \Fieldmanager_Colorpicker( 'Mobile Background Accent' ),
 				),
 			)
 		);

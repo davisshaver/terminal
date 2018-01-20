@@ -5,8 +5,17 @@
 }
 
 #header-inside {
+	overflow: auto;
 	padding: 5px 0;
-	max-width: 1200px;
+
+	@media(max-width: 869px) {
+		background: none !important;
+	}
+}
+
+#header-inside-container {
+	margin: 0 auto;
+	max-width: 1100px;
 }
 
 #header-leaderboard {
@@ -119,8 +128,8 @@
 #logo img,
 #logo-mobile img {
 	width: auto;
-	height: inherit !important;
-	max-height: inherit;
+		max-height: -webkit-fill-available;
+		height: auto;
 }
 
 #logo-mobile {

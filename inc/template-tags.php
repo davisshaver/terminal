@@ -230,7 +230,7 @@ function terminal_print_data_layer() { ?>
  */
 function terminal_get_fm_theme_mod( $name, $key, $default = false ) {
 	$option = get_theme_mod( $name, array() );
-	if ( ! isset( $option[ $key ] ) ) {
+	if ( isset( $option[ $key ] ) ) {
 		return $option[ $key ];
 	}
 	return $default;
