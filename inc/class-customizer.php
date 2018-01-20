@@ -40,18 +40,27 @@ class Customizer {
 		?>
 		<style type="text/css">
 			.terminal-utility-font {
-			<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_size', '14px' ) ) : ?>
-				font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_size', '14px' ) ); ?>;
-			<?php endif; ?>
-			<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_font_family', 'Arial, Helvetica, sans-serif' ) ) : ?>
-				font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_font', 'Arial, Helvetica, sans-serif' ) ); ?>;
-			<?php endif; ?>
-			<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_transform', 'none' ) ) : ?>
-				text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_transform', 'none' ) ); ?>;
-			<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_size', '14px' ) ) : ?>
+					font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_size', '14px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_font_family', 'Arial, Helvetica, sans-serif' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_font', 'Arial, Helvetica, sans-serif' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_transform', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_style', 'none' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_style', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_weight', '400' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_color', 'initial' ) ); ?>;
+				<?php endif; ?>
 			}
 
-			.terminal-headline-font {
+			.terminal-headline-font, .terminal-headline-font a {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_size', '30px' ) ) : ?>
 				font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_size', '30px' ) ); ?>;
 				<?php endif; ?>
@@ -60,6 +69,15 @@ class Customizer {
 				<?php endif; ?>
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_transform', 'none' ) ) : ?>
 					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_transform', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_style', 'none' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_style', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_weight', '700' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_weight', '700' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_color', 'initial' ) ); ?>;
 				<?php endif; ?>
 			}
 
@@ -73,6 +91,15 @@ class Customizer {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_transform', 'none' ) ) : ?>
 					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_transform', 'none' ) ); ?>;
 				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_style', 'none' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_style', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_weight', '700' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_weight', '700' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_color', 'initial' ) ); ?>;
+				<?php endif; ?>
 			}
 
 			.terminal-sidebar-body-font {
@@ -84,6 +111,15 @@ class Customizer {
 				<?php endif; ?>
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_body_transform', 'none' ) ) : ?>
 					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_body_transform', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_body_style', 'none' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_body_style', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_body_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_body_weight', '400' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidbear_body_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidbear_body_color', 'initial' ) ); ?>;
 				<?php endif; ?>
 			}
 
@@ -97,6 +133,15 @@ class Customizer {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'single_meta_transform', 'none' ) ) : ?>
 					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'single_meta_transform', 'none' ) ); ?>;
 				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'single_meta_style', 'none' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'single_meta_style', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'single_meta_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'single_meta_weight', '400' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'single_meta_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'single_meta_color', 'initial' ) ); ?>;
+				<?php endif; ?>
 			}
 
 			.terminal-body-font {
@@ -108,6 +153,15 @@ class Customizer {
 				<?php endif; ?>
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_transform', 'none' ) ) : ?>
 					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_transform', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_style', 'none' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_style', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_weight', '400' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'body_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'body_color', 'initial' ) ); ?>;
 				<?php endif; ?>
 			}
 
@@ -121,6 +175,15 @@ class Customizer {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'tagline_transform', 'none' ) ) : ?>
 					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'tagline_transform', 'none' ) ); ?>;
 				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'tagline_style', 'none' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'tagline_style', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'tagline_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'tagline_weight', '400' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'tagline_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'tagline_color', 'initial' ) ); ?>;
+				<?php endif; ?>
 			}
 
 			.terminal-cta-button-font {
@@ -133,13 +196,35 @@ class Customizer {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'cta_button_transform', 'none' ) ) : ?>
 					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'cta_button_transform', 'none' ) ); ?>;
 				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'cta_button_style', 'none' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'cta_button_style', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'cta_button_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'cta_button_weight', '400' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'cta_button_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'cta_button_color', 'initial' ) ); ?>;
+				<?php endif; ?>
+			}
+
+			a {
+				color: <?php echo esc_attr( get_theme_mod( 'link_default_color_setting', '#333' ) ); ?>;
 			}
 
 			#header {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_background_color_setting', '#9DC1FD' ) ); ?>;
 			}
+
 			#footer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_background_color_setting', '#9DC1FD' ) ); ?>;
+			}
+
+			#footer-leaderboard {
+				background-color: <?php echo esc_attr( get_theme_mod( 'footer_ad_background_color_setting', 'inherit' ) ); ?>;
+			}
+
+			#header-leaderboard {
+				background-color: <?php echo esc_attr( get_theme_mod( 'header_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 		</style>
 		<?php
@@ -215,7 +300,15 @@ class Customizer {
 				'transport'         => 'postMessage',
 			)
 		);
-
+		$wp_customize->add_setting(
+			'link_default_color_setting',
+			array(
+				'default'           => '#333',
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'refresh',
+			)
+		);
 		$wp_customize->add_setting( 'content_stories_header', array(
 			'capability'        => 'edit_theme_options',
 			'default'           => __( 'Latest Stories', 'terminal' ),
@@ -252,6 +345,53 @@ class Customizer {
 			)
 		);
 
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'link_default_color_setting',
+				array(
+					'label'   => __( 'Default link color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'header_ad_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'header_ad_background_color_setting',
+				array(
+					'label'   => __( 'Header ad background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'footer_ad_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'footer_ad_background_color_setting',
+				array(
+					'label'   => __( 'Footer ad background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
 		/**
 		 * Opt some core fields into immediate update.
 		 */

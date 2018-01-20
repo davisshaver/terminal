@@ -117,6 +117,8 @@ class FM_Header {
 					) ),
 					'mobile_max_height'            => new \Fieldmanager_Select( 'Mobile Max-Height', array(
 						'options' => array(
+							'35px',
+							'50px',
 							'100px',
 							'200px',
 							'300px',

@@ -247,3 +247,18 @@ function terminal_get_header_data( $default = array() ) {
 	$data = Terminal\Data::instance();
 	return $data->get_prepared_header_data( $default );
 }
+
+/**
+ * Template function to print stories loop.
+ */
+function terminal_print_stories_loop() {
+	global $post;
+	if ( have_posts() ) :
+		while ( have_posts() ) :
+			the_post();
+			get_template_part( 'partials/content', get_post_type( $post ) );
+		endwhile;
+	else :
+		esc_html_e( 'No posts founds', 'terminal' );
+	endif;
+}

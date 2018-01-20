@@ -50,6 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
               element.style['font-family'] = 'initial'; // eslint-disable-line no-param-reassign
             }
+            if (newval[`${key}_weight`] !== 'default') {
+              element.style['font-weight'] = newval[`${key}_weight`]; // eslint-disable-line no-param-reassign
+            } else {
+              element.style['font-weight'] = null; // eslint-disable-line no-param-reassign
+            }
+            if (newval[`${key}_style`] !== 'default') {
+              element.style['font-style'] = newval[`${key}_style`]; // eslint-disable-line no-param-reassign
+            } else {
+              element.style['font-style'] = 'initial'; // eslint-disable-line no-param-reassign
+            }
+            if (newval[`${key}_color`] !== '') {
+              element.style.color = newval[`${key}_color`]; // eslint-disable-line no-param-reassign
+            } else {
+              element.style.color = 'initial'; // eslint-disable-line no-param-reassign
+            }
           });
         });
     });
@@ -75,9 +90,21 @@ document.addEventListener('DOMContentLoaded', () => {
       header.style['background-color'] = newval;
     });
   });
+  wp.customize('header_ad_background_color_setting', (value) => {
+    value.bind((newval) => {
+      const header = document.getElementById('header-leaderboard');
+      header.style['background-color'] = newval;
+    });
+  });
   wp.customize('footer_background_color_setting', (value) => {
     value.bind((newval) => {
       const footer = document.getElementById('footer');
+      footer.style['background-color'] = newval;
+    });
+  });
+  wp.customize('footer_ad_background_color_setting', (value) => {
+    value.bind((newval) => {
+      const footer = document.getElementById('footer-leaderboard');
       footer.style['background-color'] = newval;
     });
   });

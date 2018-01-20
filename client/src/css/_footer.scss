@@ -3,22 +3,19 @@
 	margin: 15px 0 0;
 	user-select: none;
 	width: 100%;
-
-	a {
-		color: #19232d;
-	}
-
 }
 
 #footer-inside {
 	margin: 0 auto;
-	padding: 15px;
 	max-width: 1400px;
 }
 
 #footer-leaderboard {
 	text-align: center;
-	padding: 5px 0 15px;
+
+	.dfp-ad {
+		padding: 5px 0;
+	}
 }
 
 #footer-leaderboard div {
@@ -41,6 +38,7 @@
 
 #footer-split {
 	display: flex;
+	padding: 15px;
 }
 
 #footer-left {
@@ -68,12 +66,12 @@
 }
 
 #ppc-logo {
-	margin: 10px 0;
 	text-align: center;
 
 	img {
 		height: auto;
 		user-select: none;
+		margin: 10px 0;
 		width: 25px;
 	}
 }

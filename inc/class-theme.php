@@ -57,7 +57,10 @@ class Theme {
 			'gallery',
 			'caption',
 		) );
-
+		add_theme_support( 'infinite-scroll', array(
+			'container' => 'stories',
+			'render'    => 'terminal_print_stories_loop',
+		) );
 		add_action( 'admin_init', [ $this, 'remove_unused_meta_box' ] );
 		add_action( 'admin_menu', [ $this, 'remove_unused_admin_menu' ] );
 		add_action( 'wp_before_admin_bar_render', [ $this, 'admin_bar_disable_comments' ] );

@@ -19,16 +19,7 @@ get_header(); ?>
 		<div id="content">
 			<?php terminal_print_index_header(); ?>
 			<div id="stories">
-				<?php
-				if ( have_posts() ) :
-					while ( have_posts() ) :
-						the_post();
-						get_template_part( 'partials/content', get_post_type( $post ) );
-					endwhile;
-				else :
-					esc_html_e( 'No posts founds', 'terminal' );
-				endif;
-				?>
+				<?php terminal_print_stories_loop(); ?>
 			</div>
 		</div>
 		<div id="sidebar">

@@ -37,6 +37,7 @@ class FM_Fonts {
 			'cta_button'     => __( 'Call to Action', 'terminal' ),
 		);
 		$children   = array();
+		$colors = array();
 		foreach ( $font_slots as $slot => $name ) {
 			$children[ "${slot}_size" ]      = new \Fieldmanager_Select( $name . ' Font Size', array(
 				'options' => array(
@@ -58,7 +59,16 @@ class FM_Fonts {
 					'40px',
 				),
 			) );
-			$children[ "${slot}_transform" ] = new \Fieldmanager_Select( $name . ' Transform', array( 'options' => array( 'default', 'lowercase', 'uppercase', 'capitalize' ) ) );
+			$children[ "${slot}_weight" ]    = new \Fieldmanager_Select( $name . ' Font Weight', array(
+				'options' => array(
+					'default',
+					'400',
+					'700',
+				),
+			) );
+			$children[ "${slot}_style" ]     = new \Fieldmanager_Select( $name . ' Font Style', array( 'options' => array( 'default', 'italic' ) ) );
+			$children[ "${slot}_transform" ] = new \Fieldmanager_Select( $name . ' Text Transform', array( 'options' => array( 'default', 'lowercase', 'uppercase', 'capitalize' ) ) );
+			$children[ "${slot}_color" ]     = new \Fieldmanager_Colorpicker( $name . ' Text Color' );
 			$children[ "${slot}_font" ]      = new \Fieldmanager_Select( $name . ' Font Family', array(
 				'options' => array(
 					'default',
