@@ -15,11 +15,11 @@
 		</div>
 	<?php endif; ?>
 	<div class="post-row">
-		<div class="headline terminal-headline-font">
+		<h3 class="headline terminal-headline-font">
 			<a href="<?php the_permalink(); ?>">
 				<?php the_title(); ?>
 			</a>
-		</div>
+		</h3>
 		<div class="story-text terminal-body-font">
 			<?php
 				the_excerpt();

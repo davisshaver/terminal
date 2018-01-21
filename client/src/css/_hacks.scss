@@ -63,15 +63,6 @@ p, h1, h2, h3, h4, h5, h6, a {
 	hyphens: auto;
 }
 
-li {
-	margin: 0 0 6px 0;
-	line-height: 120%;
-}
-
-p {
-	line-height: 120%;
-}
-
 .dfp-ad iframe {
 	background-color: #fff;
 }
@@ -82,4 +73,8 @@ p {
 
 img {
 	user-select: none;
+}
+
+body {
+	margin: 0;
 }

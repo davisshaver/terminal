@@ -15,9 +15,10 @@
 		flex: 1 0 100%;
 	}
 
-	ul {
-		padding: 5px 8px 8px;
-
+	ol, ul {
+		list-style: none;
+		padding: 10px;
+		margin: 0;
 	}
 
 	.textwidget {
@@ -97,8 +98,6 @@
 
 .sidebar-header {
 	box-sizing: border-box;
-	font-size: 1.3em;
-	line-height: 30px;
 	text-indent: 8px;
 	user-select: none;
 	width: 100%;
