@@ -9,11 +9,9 @@
 
 	&.bottom {
 		flex-basis: 100%;
-    order: 3;
 	}
 
 	@media (max-width: 869px) {
-		order: 1;
 		flex: 1 0 100%;
 	}
 

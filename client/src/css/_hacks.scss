@@ -75,7 +75,11 @@ p {
 .dfp-ad iframe {
 	background-color: #fff;
 }
-.post.sticky::before {
+.post.sticky .headline::after {
 	content: '📌';
+	user-select: none;
+}
+
+img {
 	user-select: none;
 }

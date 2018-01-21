@@ -14,39 +14,9 @@
 		height: auto;
 		max-width: 100%;
 		padding: 8px 5px;
+		box-sizing: border-box;
 	}
 
-	.story-text li {
-		list-style-type: square;
-		margin: 0 0 1em 1.5em;
-	}
-
-	.story-text img {
-		padding: 8px 0;
-		margin: 0;
-	}
-
-	.story-text img.alignleft {
-		padding: 0 10px 5px 0;
-	}
-
-	.story-text p {
-		margin-bottom: 15px;
-	}
-
-	.story-text a {
-		text-decoration: none;
-	}
-
-	.story-text a:hover {
-		text-decoration: underline;
-	}
-
-	h1 {
-		border: 0;
-		margin: 0;
-		padding: 0;
-	}
 }
 
 #single-topbar {
@@ -59,12 +29,13 @@
 	a:hover {
 		text-decoration: underline;
 	}
+
+	.single-avatar {
+		display: flex;
+		flex: 0 0 15%;
+	}
 }
 
-.single-avatar {
-	display: flex;
-	flex: 0 0 15%;
-}
 
 #single-author {
 	padding-left: 25px;

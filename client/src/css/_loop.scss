@@ -8,8 +8,20 @@
 
 .post {
 	margin: 10px 0;
-	clear: both;
+	display: flex;
 	padding: 5px 0;
+	align-items: center;
+	@media (max-width: 400px) {
+		flex-direction: column;
+		
+		.post-row {
+			flex: 1 1 auto !important;
+		}
+	}
+
+	.post-row {
+		flex: 1 1 300px;
+	}
 
 	.icon-container {
 		bottom: -2px;
@@ -20,16 +32,13 @@
 		width: 14px;
 	}
 
-	.story-border {
-		clear: both;
-		margin-top: 10px;
-	}
-
 	.headline {
 		margin-bottom: 10px;
 
 		a {
 			text-decoration: none;
+			user-select: none;
+			hyphens: unset;
 		}
 
 		a:hover {
@@ -39,11 +48,31 @@
 
 
 	.image {
-		float: left;
+		flex-basis: 300px;
+		flex-shrink: 1;
+		flex-grow: 1;
 		margin-right: 10px;
+		text-align: center;
 
+		a {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+
+		@media (max-width: 400px) {
+			flex-basis: 100%;
+			text-align: center;
+
+			img {
+				max-height: 300px !important;
+				max-width: 100%;
+				height: auto;
+				width: auto;
+			}
+		}
 		img {
-			max-height: 9.375rem;
+			max-height: 15rem;
 			width: auto;
 			margin: 0 auto;
 		}
