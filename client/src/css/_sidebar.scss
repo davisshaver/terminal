@@ -83,8 +83,8 @@
 
 		.dfp-ad {
 			padding-bottom: 10px;
-			height: 250px;
-			width: 300px;
+			min-height: 250px;
+			min-width: 300px;
 		}
 	}
 }
