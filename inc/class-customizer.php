@@ -25,6 +25,7 @@ class Customizer {
 		// Helllllo Fieldmanager!
 		// require_once __DIR__ . '/widgets/class-broadstreet-widget.php' // @todo add this back.
 		if ( defined( 'FM_BETA_CUSTOMIZE_VERSION' ) ) {
+			require_once __DIR__ . '/customizer/class-fm-ads.php';
 			require_once __DIR__ . '/customizer/class-fm-sidebar.php';
 			require_once __DIR__ . '/customizer/class-fm-fonts.php';
 			require_once __DIR__ . '/customizer/class-fm-header.php';
@@ -74,8 +75,8 @@ class Customizer {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_style', 'none' ) ) : ?>
 					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_style', 'none' ) ); ?>;
 				<?php endif; ?>
-				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_weight', '700' ) ) : ?>
-					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_weight', '700' ) ); ?>;
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_weight', '400' ) ); ?>;
 				<?php endif; ?>
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'headline_color', '' ) ) : ?>
 					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'headline_color', 'initial' ) ); ?>;
@@ -95,8 +96,8 @@ class Customizer {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_style', 'none' ) ) : ?>
 					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_style', 'none' ) ); ?>;
 				<?php endif; ?>
-				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_weight', '700' ) ) : ?>
-					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_weight', '700' ) ); ?>;
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_weight', '400' ) ); ?>;
 				<?php endif; ?>
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidebar_header_color', '' ) ) : ?>
 					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidebar_header_color', 'initial' ) ); ?>;
@@ -228,7 +229,7 @@ class Customizer {
 			}
 
 			.sidebar-section {
-				background-color: <?php echo esc_attr( get_theme_mod( 'sidebar_section_background_color_setting', 'inherit' ) ); ?>;
+				background-color: <?php echo esc_attr( get_theme_mod( 'sidebar_section_background_color_setting', 'initial' ) ); ?>;
 			}
 
 			#header-leaderboard {

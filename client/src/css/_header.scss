@@ -5,7 +5,7 @@
 }
 
 #header-inside {
-	overflow: auto;
+	overflow: visible;
 
 	@media(max-width: 869px) {
 		background: none !important;
@@ -21,6 +21,15 @@
 
 	.dfp-ad {
 		padding: 5px 0;
+
+		@media(min-width: 729px) {
+			height: 90px;
+			width: 728px;
+		}
+		@media(max-width: 728px) {
+			height: 50px;
+			width: 320px;
+		}
 	}
 }
 
@@ -30,12 +39,12 @@
 
 #logo_bar {
 	max-width: 1100px;
-	padding: 0 2px;
 	position: relative;
 	display: flex;
 	user-select: none;
 	flex-wrap: nowrap;
 	align-items: center;
+	margin: auto;
 }
 
 #logo_bar #logo {
@@ -74,19 +83,16 @@
 }
 @media (min-width: 870px) {
 	.desktop-header-alignment-center {
-		margin: 0 auto;
 		text-align: center;
 		justify-content: center;
 	}
 
 	.desktop-header-alignment-left {
-		margin: 0;
 		text-align: left;
 		justify-content: left;
 	}
 
 	.desktop-header-alignment-right {
-		margin-left: auto;
 		text-align: right;
 		justify-content: right;
 	}
@@ -117,19 +123,16 @@
 	}
 
 	.mobile-header-alignment-center {
-		margin: 0 auto;
 		text-align: center;
 		justify-content: center;
 	}
 	
 	.mobile-header-alignment-left {
-		margin: 0;
 		text-align: left;
 		justify-content: left;
 	}
 	
 	.mobile-header-alignment-right {
-		margin-left: auto;
 		text-align: right;
 		justify-content: right;
 	}
@@ -173,6 +176,10 @@
 		img {
 			width: 50px;
 			height: 100%;
+
+			@media(max-width: 869px) {
+				width: 25px;
+			}
 		}
 
 		div {

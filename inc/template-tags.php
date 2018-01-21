@@ -167,11 +167,7 @@ function terminal_print_facebook_count_for_post() {
  * @param int $size Size.
  */
 function terminal_print_avatar( $size = 32 ) {
-	if ( function_exists( 'get_simple_local_avatar' ) ) {
-		echo wp_kses_post( get_simple_local_avatar( get_the_author_meta( 'ID' ), $size, null, false, array( 'scheme' => 'https' ) ) );
-	} else {
-		echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), $size, null, false, array( 'scheme' => 'https' ) ) );
-	}
+	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), $size, null, false, array( 'scheme' => 'https' ) ) );
 }
 
 /**
@@ -271,7 +267,6 @@ function terminal_print_stories_loop() {
 	$has_inline_ads  = $data->has_inline_ads();
 	$inline_ads_rate = $data->get_inline_ads_rate();
 	$inline_ads_unit = $data->get_inline_ads_tag();
-
 	if ( have_posts() ) :
 		while ( have_posts() ) :
 			$count++;

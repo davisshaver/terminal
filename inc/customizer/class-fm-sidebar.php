@@ -63,8 +63,8 @@ class FM_Sidebar {
 				'children' => array(
 					'alignment' => new \Fieldmanager_Select( 'Alignment', array(
 						'options' => array(
-							'left',
 							'right',
+							'left',
 							'bottom',
 						),
 					) ),

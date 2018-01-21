@@ -25,4 +25,4 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<?php
 			get_template_part( 'partials/header' );
-			get_template_part( 'partials/nav' );
+			// get_template_part( 'partials/nav' );

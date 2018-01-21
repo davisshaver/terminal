@@ -16,6 +16,11 @@ class Data {
 	use Singleton;
 
 	/**
+	 * Ad data. Not used in customizer so can be cached.
+	 */
+	private $ad_data = array();
+
+	/**
 	 * Setup actions.
 	 */
 	public function setup() {
@@ -32,12 +37,34 @@ class Data {
 	}
 
 	/**
+	 * Get prepared data.
+	 *
+	 * @param string $key Optional key.
+	 * @return array Prepared data.
+	 */
+	public function get_ad_data( $key = false ) {
+		if ( empty( $this->ad_data ) ) {
+			$this->ad_data = get_option( 'terminal_ad_options', array(
+				'inline_ads'  => false,
+				'inline_rate' => 6,
+				'inline_unit' => '',
+			) );
+		}
+		if ( ! $key ) {
+			return $this->ad_data;
+		} elseif ( isset( $this->ad_data[ $key ] ) ) {
+			return $this->ad_data[ $key ];
+		}
+		return null;
+	}
+
+	/**
 	 * Are inline stream ads enabled?
 	 *
 	 * @return boolean Has inline ads
 	 */
 	public function has_inline_ads() {
-		return true;
+		return (bool) $this->get_ad_data( 'inline_ads' );
 	}
 
 	/**
@@ -46,7 +73,7 @@ class Data {
 	 * @return integer Ad rate
 	 */
 	public function get_inline_ads_rate() {
-		return 1;
+		return (int) $this->get_ad_data( 'inline_rate' );
 	}
 
 	/**
@@ -55,7 +82,7 @@ class Data {
 	 * @return string Ad unit
 	 */
 	public function get_inline_ads_tag() {
-		return '';
+		return $this->get_ad_data( 'inline_unit' );
 	}
 
 	/**

@@ -16,7 +16,7 @@ get_header(); ?>
 
 <div id="container">
 	<div id="body">
-		<div id="content">
+		<div class="content">
 			<?php terminal_print_index_header(); ?>
 			<div id="stories">
 				<?php terminal_print_stories_loop(); ?>

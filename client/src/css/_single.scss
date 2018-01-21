@@ -3,6 +3,11 @@
 	.story-text {
 		padding-top: 6px;
 		line-height: 120%;
+
+		iframe {
+			width: 100%;
+			height: -webkit-fill-available;
+		}
 	}
 
 	.image img {
@@ -38,7 +43,6 @@
 	}
 
 	h1 {
-		font-weight: 700;
 		border: 0;
 		margin: 0;
 		padding: 0;
@@ -48,9 +52,8 @@
 #single-topbar {
 	display: flex;
 	flex-wrap: nowrap;
-	justify-content: space-around;
-	padding: 0 0 5px;
-	margin: 0 0 2px;
+	justify-content: space-evenly;
+	padding: 0 5px;
 	min-height: 30px;
 
 	a:hover {
@@ -65,18 +68,27 @@
 
 #single-author {
 	padding-left: 25px;
-	font-weight: 700;
+}
+
+#single-category {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	max-width: 200px;
 }
 
 #single-author-and-date {
 	display: flex;
 	justify-content: space-between;
 	flex: 0 0 85%;
-	padding-top: 6px;
-	margin-left: 10px;
-	margin-top: 15px;
+	align-items: center;
 }
 
 #single-numberofcomments {
 	padding-left: 25px;
+
+	@media (max-width: 870px) {
+		display: none;
+	}
 }

@@ -6,7 +6,7 @@ $m_small: 5px;
 $m_big: 20px;
 
 .alignnone {
-    margin:$m_small $m_big $m_big 0;
+    margin:$m_big 0 $m_big 0;
 }
 .aligncenter, div.aligncenter {
     display:block;
@@ -14,27 +14,27 @@ $m_big: 20px;
 }
 .alignright {
     float:right;
-    margin:$m_small 0 $m_big $m_big;
+    margin:$m_big 0 $m_big $m_big;
 }
 .alignleft {
     float:left;
-    margin:$m_small $m_big $m_big 0;
+    margin:$m_big $m_big $m_big 0;
 }
 .aligncenter {
     display:block;
-    margin:$m_small auto $m_small auto;
+    margin: $m_big auto $m_big auto;
 }
 a {
     img.alignright {
         float:right;
-        margin:$m_small 0 $m_big $m_big;
+        margin:$m_big 0 $m_big $m_big;
     }
     img.alignnone {
-        margin:$m_small $m_big $m_big 0;
+        margin:$m_big 0 $m_big 0;
     }
     img.alignleft {
         float:left;
-        margin:$m_small $m_big $m_big 0;
+        margin:$m_big $m_big $m_big 0;
     }
     img.aligncenter {
         display:block;

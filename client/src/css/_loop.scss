@@ -1,5 +1,4 @@
 #top-stories-header {
-	border-bottom: 1px solid #ccc;
 	display: block;
 	margin-top: 15px;
 	padding: 2px 0;
@@ -8,18 +7,9 @@
 }
 
 .post {
-	border-bottom: 1px solid #ccc;
-	margin-top: 10px;
-	padding-bottom: 5px;
-
-	.post-row {
-		display: flex;
-		flex-direction: row;
-
-		@media ( max-width: 500px ) {
-			flex-direction: column;
-		}
-	}
+	margin: 10px 0;
+	clear: both;
+	padding: 5px 0;
 
 	.icon-container {
 		bottom: -2px;
@@ -31,13 +21,11 @@
 	}
 
 	.story-border {
-		border-bottom: 1px solid #ccc;
 		clear: both;
 		margin-top: 10px;
 	}
 
 	.headline {
-		font-weight: 700;
 		margin-bottom: 10px;
 
 		a {
@@ -49,60 +37,17 @@
 		}
 	}
 
-	.link-image {
-		padding: 0 0 10px 10px;
-	}
 
 	.image {
-		flex: 1;
+		float: left;
+		margin-right: 10px;
 
 		img {
-			height: auto;
+			max-height: 9.375rem;
+			width: auto;
 			margin: 0 auto;
-			max-width: 100%;
 		}
 	}
 
-	.story-text {
-		flex: 1;
-		line-height: 120%;
-		letter-spacing: 0.1px;
-		padding: 0 0 0 10px;
-	}
-
-	.story-text li {
-		list-style-type: square;
-		margin: 0 0 1em 1.5em;
-	}
-
-	.story-text img {
-		padding: 10px 0;
-		margin-left: 0 !important;
-	}
-
-	.story-text a {
-		text-decoration: none;
-	}
-
-	.story-text a:hover {
-		text-decoration: underline;
-	}
 }
 
-#stories .community {
-	border-bottom: 0 none;
-	border-left: 8px solid #9dc1fd;
-	padding: 0 0 0 10px;
-}
-
-#stories .community .more {
-	border-bottom: 1px solid #ccc;
-	margin: 0;
-	padding-bottom: 7px;
-}
-
-#stories .link {
-	border-bottom: 0 none;
-	border-left: 8px solid #666;
-	padding: 0 0 0 10px;
-}

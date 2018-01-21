@@ -1,22 +1,20 @@
 #sidebar {
 	// @todo change these to vars.
-	flex: 0 0 350px;
-	order: -1;
-	padding: 0 10px;
+	flex: 0 0 325px;
+	order: 2;
 
-	&.right {
-		order: 1;
+	&.left {
+		order: 0;
 	}
 
 	&.bottom {
 		flex-basis: 100%;
-    order: 2;
+    order: 3;
 	}
 
 	@media (max-width: 869px) {
-		margin: 10px 0;
 		order: 1;
-		flex: 0 0 100%;
+		flex: 1 0 100%;
 	}
 
 	ul {
@@ -81,9 +79,20 @@
 		padding: 0;
 		border: none;
 		text-align: center;
+		margin: 0 auto;
+		background-color: initial;
 
 		.dfp-ad {
-			padding: 20px 0;
+			padding-bottom: 10px;
+
+			@media(min-width: 729px) {
+				height: 600px;
+				width: 300px;
+			}
+			@media(max-width: 728px) {
+				height: 250px;
+				width: 300px;
+			}
 		}
 	}
 }

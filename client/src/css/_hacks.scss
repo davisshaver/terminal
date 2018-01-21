@@ -48,4 +48,34 @@ input, select, textarea, button {
 
 .dfp-ad {
 	margin: auto;
+	overflow: hidden;
+}
+
+p, h1, h2, h3, h4, h5, h6, a {
+	/* These are technically the same, but use both */
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-word;
+	/* Adds a hyphen where the word breaks, if supported (No Blink) */
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+
+li {
+	margin: 0 0 6px 0;
+	line-height: 120%;
+}
+
+p {
+	line-height: 120%;
+}
+
+.dfp-ad iframe {
+	background-color: #fff;
+}
+.post.sticky::before {
+	content: '📌';
+	user-select: none;
 }

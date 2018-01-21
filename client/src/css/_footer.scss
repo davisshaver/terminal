@@ -1,12 +1,10 @@
 #footer {
-	margin: 15px 0 0;
 	user-select: none;
 	width: 100%;
 }
 
 #footer-inside {
 	margin: 0 auto;
-	max-width: 1400px;
 }
 
 #footer-leaderboard {
@@ -14,6 +12,15 @@
 
 	.dfp-ad {
 		padding: 5px 0;
+
+		@media(min-width: 729px) {
+			height: 90px;
+			width: 728px;
+		}
+		@media(max-width: 728px) {
+			height: 50px;
+			width: 320px;
+		}
 	}
 }
 
@@ -38,6 +45,8 @@
 #footer-split {
 	display: flex;
 	padding: 15px;
+	max-width: 1100px;
+	margin: auto;
 }
 
 #footer-left {
