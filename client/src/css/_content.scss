@@ -4,7 +4,6 @@ body {
 
 #container {
 	display: flex;
-	margin: 7px 10px;
 	max-width: 100%;
 	min-height: 100vh;
 	flex-direction: column;
@@ -33,5 +32,6 @@ body {
 #content {
 	max-width: 750px;
 	flex-grow: 1;
+	padding: 0 10px;
 	flex-basis: 500px;
 }

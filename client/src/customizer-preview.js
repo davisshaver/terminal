@@ -102,10 +102,24 @@ document.addEventListener('DOMContentLoaded', () => {
       footer.style['background-color'] = newval;
     });
   });
+  wp.customize('footer_accent_color_setting', (value) => {
+    value.bind((newval) => {
+      const footer = document.getElementById('footer');
+      footer.style['border-bottom'] = `1px solid ${newval}`;
+    });
+  });
   wp.customize('footer_ad_background_color_setting', (value) => {
     value.bind((newval) => {
       const footer = document.getElementById('footer-leaderboard');
       footer.style['background-color'] = newval;
+    });
+  });
+  wp.customize('sidebar_section_background_color_setting', (value) => {
+    value.bind((newval) => {
+      const elements = document.querySelectorAll('.sidebar-section');
+      [].forEach.call(elements, (element) => {
+        element.style['background-color'] = newval; // eslint-disable-line no-param-reassign
+      });
     });
   });
 });

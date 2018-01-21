@@ -23,8 +23,9 @@ class Customizer {
 		add_action( 'wp_head', [ $this, 'customizer_custom_css' ] );
 
 		// Helllllo Fieldmanager!
-		require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
+		// require_once __DIR__ . '/widgets/class-broadstreet-widget.php' // @todo add this back.
 		if ( defined( 'FM_BETA_CUSTOMIZE_VERSION' ) ) {
+			require_once __DIR__ . '/customizer/class-fm-sidebar.php';
 			require_once __DIR__ . '/customizer/class-fm-fonts.php';
 			require_once __DIR__ . '/customizer/class-fm-header.php';
 		}
@@ -217,10 +218,17 @@ class Customizer {
 
 			#footer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_background_color_setting', '#9DC1FD' ) ); ?>;
+				<?php if ( ! empty( get_theme_mod( 'footer_accent_color_setting', '#9DC1FD' ) ) ) : ?>
+					border-bottom: 2px solid <?php echo esc_attr( get_theme_mod( 'footer_accent_color_setting', 'inherit' ) ); ?>
+				<?php endif; ?>
 			}
 
 			#footer-leaderboard {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_ad_background_color_setting', 'inherit' ) ); ?>;
+			}
+
+			.sidebar-section {
+				background-color: <?php echo esc_attr( get_theme_mod( 'sidebar_section_background_color_setting', 'inherit' ) ); ?>;
 			}
 
 			#header-leaderboard {
@@ -344,7 +352,24 @@ class Customizer {
 				)
 			)
 		);
-
+		$wp_customize->add_setting(
+			'footer_accent_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'footer_accent_color_setting',
+				array(
+					'label'   => __( 'Footer accent color' ),
+					'section' => 'colors',
+				)
+			)
+		);
 		$wp_customize->add_control(
 			new \WP_Customize_Color_Control(
 				$wp_customize,
@@ -392,6 +417,26 @@ class Customizer {
 				)
 			)
 		);
+		$wp_customize->add_setting(
+			'sidebar_section_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'sidebar_section_background_color_setting',
+				array(
+					'label'   => __( 'Sidebar background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+
 		/**
 		 * Opt some core fields into immediate update.
 		 */

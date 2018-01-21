@@ -238,7 +238,18 @@ function terminal_get_fm_theme_mod( $name, $key, $default = false ) {
 
 
 /**
- * Template function to get Facebook count for a post.
+ * Template function to get sidebar data for theme.
+ *
+ * @param array $default Template default.
+ * @return array Prepared sidebar data.
+ */
+function terminal_get_sidebar_data( $default = array() ) {
+	$data = Terminal\Data::instance();
+	return $data->get_prepared_sidebar_data( $default );
+}
+
+/**
+ * Template function to get header data for theme.
  *
  * @param array $default Template default.
  * @return array Prepared header data.
@@ -253,10 +264,22 @@ function terminal_get_header_data( $default = array() ) {
  */
 function terminal_print_stories_loop() {
 	global $post;
+
+	$count = 0;
+
+	$data            = Terminal\Data::instance();
+	$has_inline_ads  = $data->has_inline_ads();
+	$inline_ads_rate = $data->get_inline_ads_rate();
+	$inline_ads_unit = $data->get_inline_ads_tag();
+
 	if ( have_posts() ) :
 		while ( have_posts() ) :
+			$count++;
 			the_post();
 			get_template_part( 'partials/content', get_post_type( $post ) );
+			if ( $has_inline_ads && 0 === $count % $inline_ads_rate && ! empty( $inline_ads_unit ) ) {
+				do_action( 'ad_layers_render_ad_unit', $inline_ads_unit );
+			}
 		endwhile;
 	else :
 		esc_html_e( 'No posts founds', 'terminal' );

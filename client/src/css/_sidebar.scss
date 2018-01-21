@@ -2,6 +2,16 @@
 	// @todo change these to vars.
 	flex: 0 0 350px;
 	order: -1;
+	padding: 0 10px;
+
+	&.right {
+		order: 1;
+	}
+
+	&.bottom {
+		flex-basis: 100%;
+    order: 2;
+	}
 
 	@media (max-width: 869px) {
 		margin: 10px 0;
@@ -12,6 +22,10 @@
 	ul {
 		padding: 5px 8px 8px;
 
+	}
+
+	.textwidget {
+		text-align: center;
 	}
 
 	.textwidget,
@@ -60,11 +74,17 @@
 }
 
 .sidebar-section {
-	margin: 15px 15px 0 0;
+	margin: 0 auto 10px auto;
+	max-width: 750px;
 
 	&.widget_ad_layers_ad_widget {
+		padding: 0;
 		border: none;
 		text-align: center;
+
+		.dfp-ad {
+			padding: 20px 0;
+		}
 	}
 }
 

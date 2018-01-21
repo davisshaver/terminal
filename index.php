@@ -22,16 +22,22 @@ get_header(); ?>
 				<?php terminal_print_stories_loop(); ?>
 			</div>
 		</div>
-		<div id="sidebar">
-			<?php get_sidebar(); ?>	
-		</div>
+		<?php
+			get_template_part( 'partials/sidebar' );
+		?>
 	</div>
-	<div class="index-navigation">
-		<div class="index-navigation-links">
-			<div class="alignleft"><?php previous_posts_link( '<span class="nav_button">&laquo; Previous</span>' ); ?></div>
-			<div class="alignright"><?php next_posts_link( '<span class="nav_button">Next &raquo;</span>', '' ); ?></div>
+	<?php if ( ! empty( get_previous_posts_link() ) || ! empty( get_next_posts_link() ) ) : ?>
+		<div class="index-navigation">
+			<div class="index-navigation-links">
+				<?php if ( ! empty( get_previous_posts_link() ) ) : ?>
+					<div class="alignleft"><?php previous_posts_link( '<span class="nav_button">&laquo; Previous</span>' ); ?></div>
+				<?php endif; ?>
+				<?php if ( ! empty( get_next_posts_link() ) ) : ?>
+					<div class="alignright"><?php next_posts_link( '<span class="nav_button">Next &raquo;</span>', '' ); ?></div>
+					<?php endif; ?>
+			</div>
+			<div style="clear: both;"></div>
 		</div>
-		<div style="clear: both;"></div>
-	</div>
+	<?php endif; ?>
 </div>
 <?php get_footer(); ?>

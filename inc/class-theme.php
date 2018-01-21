@@ -48,8 +48,10 @@ class Theme {
 		add_theme_support( 'custom-background', $custom_background_args );
 
 		register_nav_menus( array(
-			'header' => esc_html__( 'Header Menu', 'terminal' ),
-			'footer' => esc_html__( 'Footer Menu', 'terminal' ),
+			'header'      => esc_html__( 'Header Menu', 'terminal' ),
+			'header-more' => esc_html__( 'Header More Menu', 'terminal' ),
+			'footer-more' => esc_html__( 'Footer More Menu', 'terminal' ),
+			'footer'      => esc_html__( 'Footer Menu', 'terminal' ),
 		) );
 
 		add_theme_support( 'html5', array(
