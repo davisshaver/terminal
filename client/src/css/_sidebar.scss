@@ -2,8 +2,8 @@
 	// @todo change these to vars.
 	flex: 0 0 325px;
 	order: 2;
-	margin: 0 10px;
 	box-sizing: border-box;
+	margin: 0 10px;
 
 	&.left {
 		order: 0;
@@ -15,6 +15,7 @@
 
 	@media (max-width: 869px) {
 		flex: 1 0 100%;
+		margin: 0;
 	}
 
 	ol, ul {
