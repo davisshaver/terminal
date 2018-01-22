@@ -164,10 +164,18 @@ function terminal_print_facebook_count_for_post() {
 /**
  * Template function to print author avatar.
  *
- * @param int $size Size.
+ * @param int      $size Size.
+ * @param int|bool $default_author Opt default author.
  */
-function terminal_print_avatar( $size = 32 ) {
-	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), $size, null, false, array( 'scheme' => 'https' ) ) );
+function terminal_print_avatar( $size = 32, $default_author = false ) {
+	$default = null;
+	if ( is_int( $default_author ) ) {
+		$image = wp_get_attachment_image_src( $default_author, array( $size, $size ) );
+		if ( ! empty( $image ) ) {
+			$default = $image[0];
+		}
+	}
+	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), $size, $default, false, array( 'scheme' => 'https' ) ) );
 }
 
 /**

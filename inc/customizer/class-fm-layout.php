@@ -30,14 +30,16 @@ class FM_Layout {
 			array(
 				'name'     => 'terminal_layout_options',
 				'children' => array(
-					'single_meta_position' => new \Fieldmanager_Select(
+					'hide_excerpt_on_mobile' => new \Fieldmanager_Checkbox( 'Hide loop excerpt on mobile' ),
+					'hide_byline_on_mobile'  => new \Fieldmanager_Checkbox( 'Hide loop byline on mobile' ),
+					'single_meta_position'   => new \Fieldmanager_Select(
 						'Single - Byline Position',
 						array(
 							'default_value' => 'top',
 							'options'       => array( 'top', 'middle', 'bottom', 'none' ),
 						)
 					),
-					'loop_meta_position'   => new \Fieldmanager_Select(
+					'loop_meta_position'     => new \Fieldmanager_Select(
 						'Loop - Byline Position',
 						array(
 							'default_value' => 'top',

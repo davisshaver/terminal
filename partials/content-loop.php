@@ -6,8 +6,13 @@
  */
 
 $loop_data = terminal_get_layout_data( array(
-	'loop_meta_position' => 'middle',
+	'loop_meta_position'     => 'middle',
+	'hide_excerpt_on_mobile' => false,
 ) );
+
+$hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
+	true :
+	false;
 ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -39,7 +44,7 @@ endif;
 				get_template_part( 'partials/byline', get_post_type( $post ) );
 			endif;
 			?>
-			<div class="story-text terminal-body-font">
+			<div class="story-text terminal-body-font <?php echo esc_attr( "mobile-hide-$hide_excerpt_on_mobile" ); ?>">
 				<?php
 					the_excerpt();
 				?>

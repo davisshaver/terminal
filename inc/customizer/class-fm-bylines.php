@@ -30,6 +30,9 @@ class FM_Bylines {
 			array(
 				'name'     => 'terminal_byline_options',
 				'children' => array(
+					'default_gravatar'     => new \Fieldmanager_Media( 'Default author image' ),
+					'time_ago_format'      => new \Fieldmanager_Select( 'Relative or absolute post date', array( 'options' => array( 'relative', 'absolute' ) ) ),
+					'hide_by'              => new \Fieldmanager_Checkbox( 'Hide \'By\' in byline' ),
 					'loop_hide_avatar'     => new \Fieldmanager_Checkbox( 'Loop - Disable Avatar' ),
 					'loop_avatar_size'     => new \Fieldmanager_Select( 'Loop - Avatar Size', array( 'options' => array( 25, 30, 40, 50, 60, 75, 100 ) ) ),
 					'loop_hide_date'       => new \Fieldmanager_Checkbox( 'Loop - Disable Publish Date' ),

@@ -73,12 +73,22 @@ p, h1, h2, h3, h4, h5, h6, a {
 
 img {
 	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 body {
 	margin: 0;
 }
 
-.infinte-wrap {
+.infinite-wrap {
 	margin-top: -10px;
+}
+
+@media (max-width: 400px) {
+	.mobile-hide-1 {
+		display: none;
+	}
 }

@@ -5,7 +5,14 @@
  * @package Terminal
  */
 
-$header_data = terminal_get_byline_options( array(
+$template_data = terminal_get_layout_data( array(
+	'hide_byline_on_mobile' => false,
+) );
+
+$byline_data = terminal_get_byline_options( array(
+	'default_gravatar'     => null,
+	'time_ago_format'      => 'relative',
+	'hide_by'              => false,
 	'loop_hide_avatar'     => false,
 	'loop_avatar_size'     => 25,
 	'loop_hide_date'       => false,
@@ -24,77 +31,102 @@ $header_data = terminal_get_byline_options( array(
 
 $avatar_size = intval(
 	is_singular() ?
-	$header_data['single_avatar_size'] :
-	$header_data['loop_avatar_size']
+	$byline_data['single_avatar_size'] :
+	$byline_data['loop_avatar_size']
 );
 
 $avatar_size_class = "flex-basis-$avatar_size";
 
+$hide_byline_on_mobile = ! empty( $template_data['hide_byline_on_mobile'] ) ?
+	true :
+	false;
+
+$format = ! empty( $byline_data['time_ago_format'] ) ?
+	strval( $byline_data['time_ago_format'] ) :
+	'relative';
+
+$default_gravatar = ! empty( $byline_data['default_gravatar'] ) ?
+	intval( $byline_data['default_gravatar'] ):
+	false;
+
 $hide_avatar = boolval(
 	is_singular() ?
-	$header_data['single_hide_avatar'] :
-	$header_data['loop_hide_avatar']
+	$byline_data['single_hide_avatar'] :
+	$byline_data['loop_hide_avatar']
 );
 
 $hide_date = boolval(
 	is_singular() ?
-	$header_data['single_hide_date'] :
-	$header_data['loop_hide_date']
+	$byline_data['single_hide_date'] :
+	$byline_data['loop_hide_date']
 );
 
 $hide_author = boolval(
 	is_singular() ?
-	$header_data['single_hide_author'] :
-	$header_data['loop_hide_author']
+	$byline_data['single_hide_author'] :
+	$byline_data['loop_hide_author']
 );
 
 $hide_category = boolval(
 	is_singular() ?
-	$header_data['single_hide_category'] :
-	$header_data['loop_hide_category']
+	$byline_data['single_hide_category'] :
+	$byline_data['loop_hide_category']
 );
 
 $hide_comments = boolval(
 	is_singular() ?
-	$header_data['single_hide_comments'] :
-	$header_data['loop_hide_comments']
+	$byline_data['single_hide_comments'] :
+	$byline_data['loop_hide_comments']
 );
 
 $hide_edit = boolval(
 	is_singular() ?
-	$header_data['single_hide_edit'] :
-	$header_data['loop_hide_edit']
+	$byline_data['single_hide_edit'] :
+	$byline_data['loop_hide_edit']
+);
+
+$hide_by = boolval(
+	! empty( $byline_data['hide_by'] )
 );
 
 $byline_style = is_singular() ? 'terminal-single-meta-font' : 'terminal-index-meta-font';
+printf(
+	'<div class="topbar %s %s">',
+	esc_attr( $byline_style ),
+	esc_attr( "mobile-hide-$hide_byline_on_mobile" )
+);
+if ( ! $hide_avatar ) :
 ?>
-<div class="topbar <?php echo esc_attr( $byline_style ); ?>">
-	<?php
-	if ( ! $hide_avatar ) :
-	?>
-		<div class="avatar <?php echo esc_attr( $avatar_size_class ); ?>">
-			<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>">
-				<?php terminal_print_avatar( $avatar_size ); ?>
-			</a>
-		</div>
-	<?php
-	endif;
-	?>
+	<div class="avatar <?php echo esc_attr( $avatar_size_class ); ?>">
+		<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>">
+			<?php terminal_print_avatar( $avatar_size, $default_gravatar ); ?>
+		</a>
+	</div>
+<?php
+endif;
+?>
 	<div class="author-and-date">
 		<?php
 		if ( ! $hide_author ) :
 		?>
 			<div class="author">
 				<?php
+				if ( ! $hide_by ) {
 					esc_html_e( 'By ', 'terminal' );
-					the_author_posts_link();
+				}
+				the_author_posts_link();
 				?>
 			</div>
 		<?php
 		endif;
 		if ( ! $hide_date ) :
+			if ( 'relative' === $format ) {
+				$time = terminal_time_ago();
+			} else {
+				$time = get_the_time( 'F jS, Y' );
+			}
 		?>
-			<abbr class="date" title="<?php the_time( 'l, F j, Y \a\t g:ia' ); ?>"><?php echo esc_html( terminal_time_ago() ); ?></abbr>
+			<abbr class="date" title="<?php the_time( 'l, F j, Y \a\t g:ia' ); ?>"><?php echo esc_html( $time ); ?></abbr>
 		<?php
 		endif;
 		if ( ! $hide_category ) :
