@@ -1,0 +1,61 @@
+.topbar {
+	display: flex;
+	flex-wrap: nowrap;
+	min-height: 30px;
+	padding: 10px;
+	box-sizing: border-box;
+
+	a:hover {
+		text-decoration: underline;
+	}
+	
+	.avatar {
+		display: flex;
+
+		&.flex-basis-25 {
+			flex-basis: 25;
+		}
+
+		&.flex-basis-30 {
+			flex-basis: 30;
+		}
+
+		&.flex-basis-40 {
+			flex-basis: 40;
+		}
+
+		&.flex-basis-50 {
+			flex-basis: 50px;
+		}
+
+		&.flex-basis-60 {
+			flex-basis: 60px;
+		}
+
+		&.flex-basis-75 {
+			flex-basis: 75px;
+		}
+
+		&.flex-basis-100 {
+			flex-basis: 100px;
+		}
+	}
+}
+
+.category {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	max-width: 200px;
+}
+
+.author-and-date {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+
+	abbr, div {
+		margin-left: 10px;
+	}
+}

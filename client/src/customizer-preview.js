@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebar_header: '.terminal-sidebar-header-font',
     sidebar_body: '.terminal-sidebar-body-font',
     single_meta: '.terminal-single-meta-font',
+    index_meta: '.terminal-index-meta-font',
     body: '.terminal-body-font',
     tagline: '.terminal-cta-tagline-font',
     cta_button: '.terminal-cta-button-font',
@@ -87,18 +88,27 @@ document.addEventListener('DOMContentLoaded', () => {
   wp.customize('header_background_color_setting', (value) => {
     value.bind((newval) => {
       const header = document.getElementById('header');
+      if (!newval) {
+        header.style['background-color'] = 'unset';
+      }
       header.style['background-color'] = newval;
     });
   });
   wp.customize('header_ad_background_color_setting', (value) => {
     value.bind((newval) => {
       const header = document.getElementById('header-leaderboard');
+      if (!newval) {
+        header.style['background-color'] = 'unset';
+      }
       header.style['background-color'] = newval;
     });
   });
   wp.customize('footer_background_color_setting', (value) => {
     value.bind((newval) => {
       const footer = document.getElementById('footer');
+      if (!newval) {
+        footer.style['background-color'] = 'unset';
+      }
       footer.style['background-color'] = newval;
     });
   });
@@ -111,6 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
   wp.customize('footer_ad_background_color_setting', (value) => {
     value.bind((newval) => {
       const footer = document.getElementById('footer-leaderboard');
+      if (!newval) {
+        footer.style['background-color'] = 'unset';
+      }
       footer.style['background-color'] = newval;
     });
   });
@@ -118,6 +131,20 @@ document.addEventListener('DOMContentLoaded', () => {
     value.bind((newval) => {
       const elements = document.querySelectorAll('.sidebar-section');
       [].forEach.call(elements, (element) => {
+        if (!newval) {
+          element.style['background-color'] = 'unset'; // eslint-disable-line no-param-reassign
+        }
+        element.style['background-color'] = newval; // eslint-disable-line no-param-reassign
+      });
+    });
+  });
+  wp.customize('byline_background_color_setting', (value) => {
+    value.bind((newval) => {
+      const elements = document.querySelectorAll('.topbar');
+      [].forEach.call(elements, (element) => {
+        if (!newval) {
+          element.style['background-color'] = 'unset'; // eslint-disable-line no-param-reassign
+        }
         element.style['background-color'] = newval; // eslint-disable-line no-param-reassign
       });
     });

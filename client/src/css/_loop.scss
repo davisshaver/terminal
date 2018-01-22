@@ -8,12 +8,18 @@
 
 .post {
 	margin: 10px 0;
-	display: flex;
-	padding: 5px 0;
-	align-items: center;
+	padding: 10px;
+	box-sizing: border-box;
+
+	.post-flex-box {
+		display: flex;
+		align-items: center;
+		@media (max-width: 400px) {
+			flex-direction: column;
+		}
+	}
+
 	@media (max-width: 400px) {
-		flex-direction: column;
-		
 		.post-row {
 			flex: 1 1 auto !important;
 			min-width: 100%;
@@ -25,6 +31,7 @@
 
 		.story-text p {
 			margin-top: 5px;
+			margin-bottom: 0;
 		}
 	}
 

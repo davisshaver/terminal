@@ -26,6 +26,8 @@ class Customizer {
 		// require_once __DIR__ . '/widgets/class-broadstreet-widget.php' // @todo add this back.
 		if ( defined( 'FM_BETA_CUSTOMIZE_VERSION' ) ) {
 			require_once __DIR__ . '/customizer/class-fm-ads.php';
+			require_once __DIR__ . '/customizer/class-fm-bylines.php';
+			require_once __DIR__ . '/customizer/class-fm-layout.php';
 			require_once __DIR__ . '/customizer/class-fm-sidebar.php';
 			require_once __DIR__ . '/customizer/class-fm-fonts.php';
 			require_once __DIR__ . '/customizer/class-fm-header.php';
@@ -122,6 +124,27 @@ class Customizer {
 				<?php endif; ?>
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'sidbear_body_color', '' ) ) : ?>
 					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'sidbear_body_color', 'initial' ) ); ?>;
+				<?php endif; ?>
+			}
+
+			.terminal-index-meta-font {
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'index_meta_size', '14px' ) ) : ?>
+				font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'index_meta_size', '14px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'index_meta_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'index_meta_font', 'Georgia, Cambria, Times New Roman, Times, serif' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'index_meta_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'index_meta_transform', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'index_meta_style', 'none' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'index_meta_style', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'index_meta_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'index_meta_weight', '400' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'index_meta_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'index_meta_color', 'initial' ) ); ?>;
 				<?php endif; ?>
 			}
 
@@ -230,6 +253,10 @@ class Customizer {
 
 			.sidebar-section {
 				background-color: <?php echo esc_attr( get_theme_mod( 'sidebar_section_background_color_setting', 'initial' ) ); ?>;
+			}
+
+			.topbar {
+				background-color: <?php echo esc_attr( get_theme_mod( 'byline_background_color_setting', 'inherit' ) ); ?>;
 			}
 
 			#header-leaderboard {
@@ -433,6 +460,25 @@ class Customizer {
 				'sidebar_section_background_color_setting',
 				array(
 					'label'   => __( 'Sidebar background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'byline_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'byline_background_color_setting',
+				array(
+					'label'   => __( 'Byline background color' ),
 					'section' => 'colors',
 				)
 			)

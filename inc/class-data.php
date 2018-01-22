@@ -16,7 +16,9 @@ class Data {
 	use Singleton;
 
 	/**
-	 * Ad data. Not used in customizer so can be cached.
+	 * Ad data.
+	 *
+	 * @var array $ad_data Ad data. Not used in customizer so can be cached.
 	 */
 	private $ad_data = array();
 
@@ -24,6 +26,34 @@ class Data {
 	 * Setup actions.
 	 */
 	public function setup() {
+	}
+
+	/**
+	 * Get layout data.
+	 *
+	 * @param array $default Default options.
+	 * @return array Data.
+	 */
+	public function get_prepared_layout_data( $default = array() ) {
+		$layout_options = get_option( 'terminal_layout_options', $default );
+		if ( empty( $layout_options ) ) {
+			return $default;
+		}
+		return $layout_options;
+	}
+
+	/**
+	 * Get byline data.
+	 *
+	 * @param array $default Default options.
+	 * @return array Data.
+	 */
+	public function get_prepared_byline_data( $default = array() ) {
+		$byline_option = get_option( 'terminal_byline_options', $default );
+		if ( empty( $byline_option ) ) {
+			return $default;
+		}
+		return $byline_option;
 	}
 
 	/**

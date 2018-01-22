@@ -271,7 +271,7 @@ function terminal_print_stories_loop() {
 		while ( have_posts() ) :
 			$count++;
 			the_post();
-			get_template_part( 'partials/content', get_post_type( $post ) );
+			get_template_part( 'partials/content-loop', get_post_type( $post ) );
 			if ( $has_inline_ads && 0 === $count % $inline_ads_rate && ! empty( $inline_ads_unit ) ) {
 				do_action( 'ad_layers_render_ad_unit', $inline_ads_unit );
 			}
@@ -279,4 +279,26 @@ function terminal_print_stories_loop() {
 	else :
 		esc_html_e( 'No posts founds', 'terminal' );
 	endif;
+}
+
+/**
+ * Get byline data.
+ *
+ * @param array $default Default data.
+ * @return array data
+ */
+function terminal_get_byline_options( $default = array() ) {
+	$data = Terminal\Data::instance();
+	return $data->get_prepared_byline_data( $default );
+}
+
+/**
+ * Get layout data.
+ *
+ * @param array $default Default data.
+ * @return array data
+ */
+function terminal_get_layout_data( $default = array() ) {
+	$data = Terminal\Data::instance();
+	return $data->get_prepared_layout_data( $default );
 }

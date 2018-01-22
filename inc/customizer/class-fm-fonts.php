@@ -31,13 +31,14 @@ class FM_Fonts {
 			'sidebar_body'   => __( 'Sidebar Body', 'terminal' ),
 			'sidebar_header' => __( 'Sidebar Header', 'terminal' ),
 			'single_meta'    => __( 'Single Meta', 'terminal' ),
+			'index_meta'     => __( 'Index Meta', 'terminal' ),
 			'utility'        => __( 'Utility', 'terminal' ),
 			'headline'       => __( 'Headline', 'terminal' ),
 			'tagline'        => __( 'Tagline', 'terminal' ),
 			'cta_button'     => __( 'Call to Action', 'terminal' ),
 		);
 		$children   = array();
-		$colors = array();
+		$colors     = array();
 		foreach ( $font_slots as $slot => $name ) {
 			$children[ "${slot}_size" ]      = new \Fieldmanager_Select( $name . ' Font Size', array(
 				'options' => array(
