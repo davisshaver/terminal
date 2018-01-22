@@ -2,6 +2,8 @@
 	// @todo change these to vars.
 	flex: 0 0 325px;
 	order: 2;
+	margin: 0 10px;
+	box-sizing: border-box;
 
 	&.left {
 		order: 0;
