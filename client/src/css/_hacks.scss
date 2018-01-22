@@ -89,6 +89,6 @@ body {
 
 @media (max-width: 400px) {
 	.mobile-hide-1 {
-		display: none;
+		display: none !important;
 	}
 }
