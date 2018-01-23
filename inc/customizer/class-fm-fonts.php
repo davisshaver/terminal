@@ -36,6 +36,7 @@ class FM_Fonts {
 			'headline'       => __( 'Headline', 'terminal' ),
 			'tagline'        => __( 'Tagline', 'terminal' ),
 			'cta_button'     => __( 'Call to Action', 'terminal' ),
+			'loop_header'    => __( 'Loop Header', 'terminal' ),
 		);
 		$children   = array();
 		$colors     = array();

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     body: '.terminal-body-font',
     tagline: '.terminal-cta-tagline-font',
     cta_button: '.terminal-cta-button-font',
+    loop_header: '.terminal-loop-header-font',
   };
   wp.customize('content_stories_header', (value) => {
     value.bind((newval) => {
@@ -137,6 +138,17 @@ document.addEventListener('DOMContentLoaded', () => {
   wp.customize('sidebar_section_background_color_setting', (value) => {
     value.bind((newval) => {
       const elements = document.querySelectorAll('.sidebar-section');
+      [].forEach.call(elements, (element) => {
+        if (!newval) {
+          element.style['background-color'] = 'unset'; // eslint-disable-line no-param-reassign
+        }
+        element.style['background-color'] = newval; // eslint-disable-line no-param-reassign
+      });
+    });
+  });
+  wp.customize('loop_header_background_color_setting', (value) => {
+    value.bind((newval) => {
+      const elements = document.querySelectorAll('.loop-header');
       [].forEach.call(elements, (element) => {
         if (!newval) {
           element.style['background-color'] = 'unset'; // eslint-disable-line no-param-reassign

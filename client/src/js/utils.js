@@ -7,9 +7,8 @@ export function loadInfiniteAds() {
     if (unit.dataset.googleQueryId) {
       return;
     }
-    console.log(unit);
     if (googletag) {
-      googletag.cmd.push(() => { googletag.display(`dfp-${unit}`); });
+      // googletag.cmd.push(() => { googletag.display(`dfp-${unit}`); });
     }
   });
 }
