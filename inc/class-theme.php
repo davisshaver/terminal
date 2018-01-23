@@ -40,7 +40,9 @@ class Theme {
 		);
 		add_theme_support( 'custom-header', $custom_header_args );
 
-		add_image_size( 'terminal-primary-thumbnail', 800, 423, false );
+		add_image_size( 'terminal-primary-thumbnail', 1600, 850, false );
+		add_image_size( 'terminal-widget-thumbnail', 0, 50, false );
+		add_image_size( 'terminal-widget-featured', 800, 600, true );
 
 		$custom_background_args = array(
 			'default-color' => '#f4f4f4',

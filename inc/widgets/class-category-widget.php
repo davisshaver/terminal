@@ -38,9 +38,37 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			printf(
-				'<div></div>'
-			);
+			if ( empty( $instance['category'] ) || ! is_int( $instance['category'] ) ) {
+				return;
+			}
+			$widget_title = get_cat_name( $instance['category'] );
+			$cat_query = new \WP_Query( array(
+				'cat'                 => $instance['category'],
+				'posts_per_page'      => $instance['number'],
+				'ignore_sticky_posts' => true,
+			) );
+			if ( $cat_query->have_posts() ) :
+				// phpcs:ignore
+				echo $args['before_widget'];
+				if ( ! empty( $widget_title ) ) {
+					// phpcs:ignore
+					echo $args['before_title'] . $widget_title . $args['after_title'];
+				}
+				echo '<div class="category-widget">';
+				while ( $cat_query->have_posts() ) :
+					$cat_query->the_post();
+					if ( ! empty( $instance['first_featured'] ) && 0 === $cat_query->current_post ) {
+						get_template_part( 'partials/post-widget-featured' );
+					} else {
+						get_template_part( 'partials/post-widget' );
+					}
+				endwhile;
+				echo '</div>';
+				// phpcs:ignore
+				echo $args['after_widget'];
+			endif;
+			wp_reset_postdata();
+			// phpcs:ignore
 		}
 
 		/**
@@ -50,7 +78,8 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 */
 		protected function fieldmanager_children() {
 			return [
-				'number'   => new \Fieldmanager_Select( 'Number to show', array(
+				'first_featured' => new \Fieldmanager_Checkbox( 'Use featured template for first post' ),
+				'number'         => new \Fieldmanager_Select( 'Number to show', array(
 					'default_value' => 3,
 					'options'       => array(
 						2,
@@ -59,7 +88,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 						5,
 					),
 				) ),
-				'category' => new \Fieldmanager_Select( array(
+				'category'       => new \Fieldmanager_Select( array(
 					'datasource' => new \Fieldmanager_Datasource_Term( array(
 						'taxonomy' => 'category',
 					) ),

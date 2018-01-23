@@ -84,8 +84,10 @@ body {
 }
 
 @media (max-width: 400px) {
-	.mobile-hide-1 {
-		display: none !important;
+	body.home {
+		.mobile-hide-1 {
+			display: none !important;
+		}
 	}
 }
 
