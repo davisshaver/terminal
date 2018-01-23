@@ -123,7 +123,7 @@ function terminal_print_index_header() {
 	} else {
 		printf(
 			'<h2 class="loop-header terminal-loop-header-font">%s</h2>',
-			esc_html( the_archive_title() )
+			esc_html( strip_tags( get_the_archive_title() ) )
 		);
 	}
 }
