@@ -72,6 +72,9 @@
 		}
 		.post-widget-featured {
 			.image {
+				max-height: 300px;
+				text-align: center;
+				overflow: hidden;
 				margin: 10px 0;
 			}
 		}
