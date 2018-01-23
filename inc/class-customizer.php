@@ -269,6 +269,12 @@ class Customizer {
 			}
 
 			.loop-header {
+				<?php
+				$loop_header_background_color = get_theme_mod( 'loop_header_background_color_setting', 'inherit' );
+				if ( 'inherit' !== $loop_header ) {
+					echo 'box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1);';
+				}
+				?>
 				background-color: <?php echo esc_attr( get_theme_mod( 'loop_header_background_color_setting', 'inherit' ) ); ?>;
 			}
 
