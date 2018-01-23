@@ -38,7 +38,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 			$cta = ! empty( $instance['call_to_action'] ) ? $instance['call_to_action'] : __( 'Like us on Facebook', 'terminal' );
 			$icon = $this->buffer_template();
 			printf(
-				'<div id="%s" class="sidebar-section terminal-follow terminal-facebook terminal-facebook-sidebar terminal-sidebar-body-font"><div class="terminal-custom-sidebar-interior"><a href="%s">%s %s</a></div></div>',
+				'<div id="%s" class="sidebar-section terminal-follow terminal-facebook terminal-facebook-sidebar terminal-sidebar-body-font"><div class="terminal-custom-sidebar-interior"><a href="%s" target="_blank">%s %s</a></div></div>',
 				esc_attr( 'terminal-facebook-widget-sidebar' ),
 				esc_attr( "https://facebook.com/$facebook_handle" ),
 				$icon,

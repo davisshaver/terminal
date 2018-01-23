@@ -94,3 +94,45 @@ body {
 twitterwidget {
 	width: inherit !important;
 }
+
+
+.terminal-twitter {
+	background-color: #55acee !important;
+
+	&:hover {
+		background-color: #147bc9!important
+	}
+}
+
+.terminal-facebook {
+background-color: #3b5998 !important;
+
+	&:hover {
+		background-color: #1e2e4f !important;
+	}
+}
+
+.terminal-follow {
+	text-align: center;
+
+	a {
+		color: #fff;
+		display: block;
+		height: 100%;
+		width: 100%;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: none !important;
+		}
+	}
+
+	svg {
+		width: 1rem!important;
+		height: 1rem!important;
+		fill: #fff!important;
+		top: 0.125rem!important;
+		margin-right: 0.5rem;
+		position: relative !important;
+	}
+}

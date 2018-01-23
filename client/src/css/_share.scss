@@ -1,0 +1,31 @@
+.terminal-share-footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #fff;
+	z-index: 98;
+	box-shadow: 0 0 1px rgba(0,0,0,0.4);
+	height: 38px;
+	line-height: 28px;
+	vertical-align: middle;
+	font-size: 13px;
+}
+
+.terminal-share-footer-content {
+	padding: 0 1.125rem;
+	float: right;
+
+	@media (max-width: 869px) {
+		float: none;
+		text-align: center;
+	}
+}
+
+.terminal-share-footer-link {
+	width: 120px;
+	border-radius: 14px;
+	display: inline-block;
+	margin-top: 5px;
+	padding: 0 10px;
+}
