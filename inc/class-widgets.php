@@ -33,6 +33,8 @@ class Widgets {
 				require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
 			}
 			require_once __DIR__ . '/widgets/class-category-widget.php';
+			require_once __DIR__ . '/widgets/class-twitter-follow-widget.php';
+			require_once __DIR__ . '/widgets/class-facebook-follow-widget.php';
 		}
 	}
 }

@@ -30,7 +30,7 @@
 
 	.textwidget,
 	.custom-html-widget,
-	.terminal-broadstreet-sidebar-interior {
+	.terminal-custom-sidebar-interior {
 		padding: 5px 8px 8px;
 		a {
 			text-decoration: none;
@@ -112,6 +112,47 @@
 	box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1);
 	border: 1px solid rgba(0,0,0,.1);
 	border-radius: 3px;
+
+	&.terminal-follow {
+		text-align: center;
+
+		a {
+			color: #fff;
+			display: block;
+			height: 100%;
+			width: 100%;
+
+			&:hover {
+				text-decoration: none !important;
+			}
+		}
+	
+		svg {
+			width: 1rem!important;
+			height: 1rem!important;
+			fill: #fff!important;
+			top: 0.125rem!important;
+			margin-right: 0.5rem;
+			position: relative !important;
+		}
+	}
+		
+
+	&.terminal-twitter {
+		background-color: #55acee;
+
+		&:hover {
+			background-color: #147bc9!important
+		}
+	}
+
+	&.terminal-facebook {
+		background-color: #3b5998;
+
+		&:hover {
+			background-color: #1e2e4f!important;
+		}
+	}
 
 	&.widget_ad_layers_ad_widget {
 		padding: 0;
