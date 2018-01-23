@@ -43,6 +43,26 @@ class Customizer {
 		}
 		?>
 		<style type="text/css">
+			.terminal-share-button-font {
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'share_size', '14px' ) ) : ?>
+					font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'share_size', '14px' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'share_font_family', 'Arial, Helvetica, sans-serif' ) ) : ?>
+					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'share_font', 'Arial, Helvetica, sans-serif' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'share_transform', 'none' ) ) : ?>
+					text-transform: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'share_transform', 'none' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'share_style', 'inheritt' ) ) : ?>
+					font-style: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'share_style', 'inheritt' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'share_weight', '400' ) ) : ?>
+					font-weight: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'share_weight', '700' ) ); ?>;
+				<?php endif; ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'share_color', '' ) ) : ?>
+					color: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'share_color', 'initial' ) ); ?>;
+				<?php endif; ?>
+			}
 			.terminal-utility-font {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'utility_size', '14px' ) ) : ?>
 					font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'utility_size', '14px' ) ); ?>;

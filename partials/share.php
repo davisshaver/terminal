@@ -7,7 +7,7 @@
 
 ?>
 
-<div class="terminal-share-footer terminal-follow">
+<div class="terminal-share-footer terminal-share-button-font terminal-follow">
 	<div class="terminal-share-footer-content">
 		<div class="terminal-share-footer-link terminal-twitter">
 			<?php

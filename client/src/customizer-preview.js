@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tagline: '.terminal-cta-tagline-font',
     cta_button: '.terminal-cta-button-font',
     loop_header: '.terminal-loop-header-font',
+    share: '.terminal-share-button-font',
   };
   wp.customize('content_stories_header', (value) => {
     value.bind((newval) => {
