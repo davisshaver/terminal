@@ -1,6 +1,6 @@
 <?php
 /**
- * Ads integration.
+ * Widgets integration.
  *
  * @package Terminal
  */
@@ -8,9 +8,9 @@
 namespace Terminal;
 
 /**
- * Class wrapper for ads.
+ * Class wrapper for widgets.
  */
-class Ads {
+class Widgets {
 
 	use Singleton;
 
@@ -32,8 +32,9 @@ class Ads {
 			if ( terminal_has_broadstreet_enabled() ) {
 				require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
 			}
+			require_once __DIR__ . '/widgets/class-category-widget.php';
 		}
 	}
 }
 
-add_action( 'after_setup_theme', [ '\Terminal\Ads', 'instance' ] );
+add_action( 'after_setup_theme', [ '\Terminal\Widgets', 'instance' ] );

@@ -66,7 +66,7 @@ p, h1, h2, h3, h4, h5, h6, a {
 .dfp-ad iframe {
 	background-color: #fff;
 }
-.post.sticky .headline::after {
+.post.sticky .headline::before {
 	content: '📌';
 	user-select: none;
 }
