@@ -104,25 +104,25 @@ function terminal_print_index_header() {
 				return;
 			}
 			printf(
-				'<h2 id="top-stories-header">%s</h2><a name="latest"></a>',
+				'<h2 id="index-header" class="loop-header">%s</h2><a name="latest"></a>',
 				esc_html( $theme_mod )
 			);
 		} else {
 			printf(
-				'<h2 id="top-stories-header">%s</h2>',
+				'<h2 class="loop-header">%s</h2>',
 				esc_html( __( 'Archival Stories', 'terminal' ) )
 			);
 		}
 	} elseif ( is_search() ) {
 		$search_query = get_search_query();
 		printf(
-			'<h2 id="top-stories-header">%s "%s"</h2>',
+			'<h2 class="loop-header">%s "%s"</h2>',
 			esc_html( 'Search results for', 'terminal' ),
 			esc_html( $search_query )
 		);
 	} else {
 		printf(
-			'<h2 id="top-stories-header">%s</h2>',
+			'<h2 class="loop-header">%s</h2>',
 			esc_html( the_archive_title() )
 		);
 	}

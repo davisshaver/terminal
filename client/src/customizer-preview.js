@@ -15,12 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   wp.customize('content_stories_header', (value) => {
     value.bind((newval) => {
-      let topStoriesHeader = document.getElementById('top-stories-header');
+      if (!document.getElementsByTagName('body')[0].className.match(/home/)) {
+        return;
+      }
+      let topStoriesHeader = document.getElementById('index-header');
       if (!topStoriesHeader) {
-        const content = document.getElementById('content');
+        const content = document.getElementsByClassName('content');
+        const stories = document.getElementById('stories');
+        if (!content || !stories) {
+          return;
+        }
         topStoriesHeader = document.createElement('h2');
-        topStoriesHeader.id = 'top-stories-header';
-        content.insertBefore(topStoriesHeader, content.firstChild);
+        topStoriesHeader.id = 'index-header';
+        content[0].insertBefore(topStoriesHeader, stories);
       }
       if (!newval) {
         topStoriesHeader.style.display = 'none';

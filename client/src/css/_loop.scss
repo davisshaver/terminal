@@ -1,12 +1,12 @@
-#top-stories-header {
+.loop-header {
 	display: block;
-	margin-top: 15px;
-	padding: 2px 0;
+	padding: 10px 10px 10px 20px;
 	user-select: none;
-	width: 100%;
+	max-width: 100%;
+	margin: 10px 10px 10px 0;
 }
 
-.post {
+.post, .page {
 	margin: 0 0 10px 0;
 
 	@media (min-width: 869px) {
@@ -63,7 +63,7 @@
 		a {
 			text-decoration: none;
 			user-select: none;
-			hyphens: unset;
+			hyphens: none;
 		}
 
 		a:hover {
@@ -77,16 +77,17 @@
 		flex-shrink: 1;
 		flex-grow: 1;
 		text-align: center;
+		min-height: 200px;
 
 		a {
 			display: grid;
 			height: 100%;
-			width: 100%;
 		}
 
 		@media (max-width: 400px) {
 			flex-basis: 100%;
 			text-align: center;
+			width: 100%;
 			
 			img {
 				max-height: 300px !important;
@@ -98,7 +99,7 @@
 		img {
 			max-height: 15rem;
 			width: auto;
-			margin: 0;
+			margin: 0 auto;
 		}
 	}
 
