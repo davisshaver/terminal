@@ -41,7 +41,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 			if ( empty( $instance['category'] ) || ! is_int( $instance['category'] ) ) {
 				return;
 			}
-			$widget_title = get_cat_name( $instance['category'] );
+			$widget_title = ! empty( $instance['custom_header'] ) ? $instance['custom_header'] : get_cat_name( $instance['category'] );
 			$cat_query = new \WP_Query( array(
 				'cat'                 => $instance['category'],
 				'posts_per_page'      => $instance['number'],
@@ -50,7 +50,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 			if ( $cat_query->have_posts() ) :
 				// phpcs:ignore
 				echo $args['before_widget'];
-				if ( ! empty( $widget_title ) ) {
+				if ( ! empty( $widget_title ) && empty( $instance['disable_header'] ) ) {
 					// phpcs:ignore
 					echo $args['before_title'] . $widget_title . $args['after_title'];
 				}
@@ -78,6 +78,8 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 */
 		protected function fieldmanager_children() {
 			return [
+				'disable_header' => new \Fieldmanager_Checkbox( 'Disable category header' ),
+				'custom_header'  => new \Fieldmanager_Textfield( 'Optional custom header' ),
 				'first_featured' => new \Fieldmanager_Checkbox( 'Use featured template for first post' ),
 				'number'         => new \Fieldmanager_Select( 'Number to show', array(
 					'default_value' => 3,

@@ -111,7 +111,7 @@ class Theme {
 			'description'   => __( 'Featured', 'terminal' ),
 			'before_widget' => '<div id="%1$s" class="featured-section %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="featured-header">',
+			'before_title'  => '<div class="featured-header terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
 	}
