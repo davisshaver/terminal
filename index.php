@@ -18,8 +18,10 @@ get_header(); ?>
 	<div id="body">
 		<div class="content">
 			<?php
+			if ( is_home() ) {
 				get_template_part( 'partials/featured' );
-				terminal_print_index_header();
+			}
+			terminal_print_index_header();
 			?>
 			<div id="stories">
 				<?php terminal_print_stories_loop(); ?>
