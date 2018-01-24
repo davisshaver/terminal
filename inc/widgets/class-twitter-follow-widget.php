@@ -38,7 +38,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 			$cta = ! empty( $instance['call_to_action'] ) ? $instance['call_to_action'] : __( 'Follow us on Twitter', 'terminal' );
 			$icon = $this->buffer_template();
 			printf(
-				'<div id="%s" class="sidebar-section terminal-follow terminal-twitter terminal-twitter-sidebar terminal-sidebar-body-font"><div class="terminal-custom-sidebar-interior"><a href="%s" target="_blank">%s %s</a></div></div>',
+				'<div id="%s" class="terminal-follow terminal-twitter terminal-twitter-sidebar terminal-sidebar-body-font"><div class="terminal-custom-sidebar-interior"><a href="%s" target="_blank">%s %s</a></div></div>',
 				esc_attr( 'terminal-twitter-widget-sidebar' ),
 				esc_attr( "https://twitter.com/$twitter_handle" ),
 				$icon,

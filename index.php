@@ -17,7 +17,10 @@ get_header(); ?>
 <div id="container">
 	<div id="body">
 		<div class="content">
-			<?php terminal_print_index_header(); ?>
+			<?php
+				get_template_part( 'partials/featured' );
+				terminal_print_index_header();
+			?>
 			<div id="stories">
 				<?php terminal_print_stories_loop(); ?>
 			</div>
