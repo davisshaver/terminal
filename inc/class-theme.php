@@ -67,6 +67,18 @@ class Theme {
 			'footer'         => false,
 			'footer_widgets' => 'sidebar',
 		) );
+		register_taxonomy(
+			'terminal-placement',
+			'post',
+			array(
+				'label' => __( 'Placements', 'terminal' ),
+				'public' => false,
+				'rewrite' => false,
+				'hierarchical' => false,
+				'show_ui' => true,
+				'show_admin_column' => true,
+			)
+		);
 		add_action( 'admin_init', [ $this, 'remove_unused_meta_box' ] );
 		add_action( 'admin_menu', [ $this, 'remove_unused_admin_menu' ] );
 		add_action( 'wp_before_admin_bar_render', [ $this, 'admin_bar_disable_comments' ] );

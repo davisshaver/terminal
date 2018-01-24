@@ -35,9 +35,15 @@ if ( class_exists( '\FM_Widget' ) ) {
 				return;
 			}
 			$cat_query = new \WP_Query( array(
-				'cat'                 => $instance['category'],
 				'posts_per_page'      => 1,
 				'ignore_sticky_posts' => true,
+				'tax_query' => array(
+					array(
+						'taxonomy' => 'terminal-placement',
+						'field'    => 'id',
+						'terms'    => $instance['category'],
+					),
+				),
 			) );
 			if ( $cat_query->have_posts() ) :
 				// phpcs:ignore
@@ -60,8 +66,9 @@ if ( class_exists( '\FM_Widget' ) ) {
 		protected function fieldmanager_children() {
 			return [
 				'category'       => new \Fieldmanager_Select( array(
+					'first_empty' => true,
 					'datasource' => new \Fieldmanager_Datasource_Term( array(
-						'taxonomy' => 'category',
+						'taxonomy' => 'terminal-placement',
 					) ),
 				) ),
 			];
