@@ -162,14 +162,23 @@
 
 	a {
 		text-align: left !important;
+		font-size: 75% !important;
 	}
 }
 
 .hero-widget, .hero-secondary-widget {
 
-	.story-text {
-		margin: 0 10px 10px 10px;
+	h2 {
+		margin: 10px 0;
 	}
+	.story-text {
+		margin: 0 5px 10px 5px;
+		
+		p {
+			margin: 0;
+		}
+	}
+
 	a {
 		display: block;
 		height: 100%;

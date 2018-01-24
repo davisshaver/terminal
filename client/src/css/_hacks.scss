@@ -51,7 +51,8 @@ input, select, textarea, button {
 	overflow: hidden;
 }
 
-p, h1, h2, h3, h4, h5, h6, a {
+
+h1, h2, h3, h4, h5, h6, p, a {
 	/* These are technically the same, but use both */
 	overflow-wrap: break-word;
 	word-wrap: break-word;
