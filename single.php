@@ -21,6 +21,7 @@ get_header(); ?>
 			<p><?php esc_html_e( 'Sorry, no posts matched your criteria.', 'terminal' ); ?></p>
 		<?php
 		endif;
+		get_template_part( 'partials/recirc' );
 		?>
 		</div>
 		<?php

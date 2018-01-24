@@ -126,6 +126,15 @@ class Theme {
 			'before_title'  => '<div class="featured-header terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
+		register_sidebar( array(
+			'name'          => __( 'Recirculation ', 'terminal' ),
+			'id'            => 'recirc',
+			'description'   => __( 'Recirculation', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="featured-section %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="featured-header terminal-sidebar-header-font">',
+			'after_title'   => '</div>',
+		) );
 	}
 
 	/**
