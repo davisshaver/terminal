@@ -147,6 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+  wp.customize('featured_section_background_color_setting', (value) => {
+    value.bind((newval) => {
+      const elements = document.querySelectorAll('.featured-section');
+      [].forEach.call(elements, (element) => {
+        if (!newval) {
+          element.style['background-color'] = 'unset'; // eslint-disable-line no-param-reassign
+        }
+        element.style['background-color'] = newval; // eslint-disable-line no-param-reassign
+      });
+    });
+  });
   wp.customize('loop_header_background_color_setting', (value) => {
     value.bind((newval) => {
       const elements = document.querySelectorAll('.loop-header');

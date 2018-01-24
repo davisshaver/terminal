@@ -290,20 +290,36 @@ class Customizer {
 
 			.loop-header {
 				<?php
-				$loop_header_background_color = get_theme_mod( 'loop_header_background_color_setting', 'inherit' );
-				if ( 'inherit' !== $loop_header ) {
+				$loop_header_background_color = get_theme_mod( 'loop_header_background_color_setting', false );
+				if ( ! empty( $loop_header_background_color ) ) {
 					echo 'box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1);';
+					printf( 'background-color: %s;', esc_attr( $loop_header_background_color ) );
 				}
 				?>
-				background-color: <?php echo esc_attr( get_theme_mod( 'loop_header_background_color_setting', 'inherit' ) ); ?>;
 			}
 
 			#footer-leaderboard {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 
+			.featured-section {
+				<?php
+				$featured_section = get_theme_mod( 'featured_section_background_color_setting', false );
+				if ( ! empty( $featured_section ) ) {
+					echo 'box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1); border: 1px solid rgba(0, 0, 0, 0.1); ';
+					printf( 'background-color: %s;', esc_attr( $featured_section ) );
+				}
+				?>
+			}
+
 			.sidebar-section {
-				background-color: <?php echo esc_attr( get_theme_mod( 'sidebar_section_background_color_setting', 'initial' ) ); ?>;
+				<?php
+				$sidebar_section = get_theme_mod( 'sidebar_section_background_color_setting', false );
+				if ( ! empty( $sidebar_section ) ) {
+					echo 'box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1); border: 1px solid rgba(0, 0, 0, 0.1); ';
+					printf( 'background-color: %s;', esc_attr( $sidebar_section ) );
+				}
+				?>
 			}
 
 			.topbar {
@@ -504,7 +520,6 @@ class Customizer {
 				'transport'         => 'postMessage',
 			)
 		);
-
 		$wp_customize->add_control(
 			new \WP_Customize_Color_Control(
 				$wp_customize,
@@ -515,7 +530,25 @@ class Customizer {
 				)
 			)
 		);
+		$wp_customize->add_setting(
+			'featured_section_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
 
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'featured_section_background_color_setting',
+				array(
+					'label'   => __( 'Featured background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
 		$wp_customize->add_setting(
 			'byline_background_color_setting',
 			array(
