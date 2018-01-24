@@ -10,6 +10,7 @@ if ( ! is_active_sidebar( 'recirc' ) ) {
 }
 
 echo '<div id="recirc">';
+terminal_print_recirc_header();
 dynamic_sidebar( 'recirc' );
 echo '</div>';
 

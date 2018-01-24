@@ -94,6 +94,16 @@ function terminal_time_ago() {
 }
 
 /**
+ * Template function to print a recirc header.
+ */
+function terminal_print_recirc_header() {
+	printf(
+		'<h2 id="recirc-header" class="loop-header terminal-loop-header-font">%s</h2><a name="recirc"></a>',
+		esc_html__( 'Other stories', 'terminal' )
+	);
+}
+
+/**
  * Template function to print an index header. Encapsulates logic.
  */
 function terminal_print_index_header() {

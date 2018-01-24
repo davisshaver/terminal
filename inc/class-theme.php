@@ -144,7 +144,6 @@ class Theme {
 		remove_meta_box( 'dashboard_quick_press', 'dashboard', 'normal' );
 		remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
 		remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
-		remove_meta_box( 'commentstatusdiv', 'post', 'normal' );
 		remove_meta_box( 'trackbacksdiv', 'post', 'normal' );
 	}
 
