@@ -151,7 +151,19 @@
 	text-transform: initial;
 }
 
-.hero-widget {
+.widget_terminal-hero-secondary-widget {
+	display: flex;
+}
+
+.hero-secondary-widget {
+	flex-basis: 50%;
+
+	a {
+		text-align: left;
+	}
+}
+
+.hero-widget, .hero-secondary-widget {
 
 	.story-text {
 		margin: 0 10px 10px 10px;
