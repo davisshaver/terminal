@@ -1,9 +1,10 @@
 #sidebar {
 	// @todo change these to vars.
-	flex: 0 0 325px;
+	flex: 1 0 325px;
 	order: 2;
 	box-sizing: border-box;
-	margin: 0 10px;
+	margin: 0 auto;
+	max-width: 775px;
 
 	&.left {
 		order: 0;
@@ -12,23 +13,10 @@
 	&.bottom {
 		flex-basis: 100%;
 	}
-
-	@media (max-width: 869px) {
-		flex: 1 0 100%;
-		margin: 0;
-	}
-}
-
-.featured-section {
-	margin: 0 10px 10px 10px;
-}
-
-.sidebar-section {
-	margin: 0 auto 10px auto;
 }
 
 .sidebar-section, .featured-section {
-	max-width: 90vw;
+	margin: 0 10px 10px 10px;
 	background-color: #fff;
 	box-sizing: border-box;
 	box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1);
@@ -136,7 +124,7 @@
 		}
 	}
 
-	.sidebar-header {
+	.sidebar-header, .featured-header {
 		box-sizing: border-box;
 		text-indent: 8px;
 		user-select: none;
