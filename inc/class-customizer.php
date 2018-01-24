@@ -288,6 +288,16 @@ class Customizer {
 				<?php endif; ?>
 			}
 
+			.post, .page {
+				<?php
+				$post_page_background = get_theme_mod( 'post_page_background_color_setting', false );
+				if ( ! empty( $post_page_background ) ) {
+					echo 'box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1); border: 1px solid rgba(0,0,0,.1);';
+					printf( 'background-color: %s;', esc_attr( $post_page_background ) );
+				}
+				?>
+			}
+
 			.loop-header {
 				<?php
 				$loop_header_background_color = get_theme_mod( 'loop_header_background_color_setting', false );
@@ -581,6 +591,24 @@ class Customizer {
 				'loop_header_background_color_setting',
 				array(
 					'label'   => __( 'Loop header background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'post_page_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'post_page_background_color_setting',
+				array(
+					'label'   => __( 'Post/page background color' ),
 					'section' => 'colors',
 				)
 			)
