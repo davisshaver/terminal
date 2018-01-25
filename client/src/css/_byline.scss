@@ -5,6 +5,14 @@
 	padding: 10px;
 	box-sizing: border-box;
 
+	.category {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		max-width: 200px;
+	}
+	
 	a:hover {
 		text-decoration: underline;
 	}
@@ -40,14 +48,6 @@
 			flex-basis: 100px;
 		}
 	}
-}
-
-.category {
-	overflow: hidden;
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-	max-width: 200px;
 }
 
 .author-and-date {
