@@ -15,7 +15,6 @@ get_header(); ?>
 				the_post();
 				get_template_part( 'partials/content-single', get_post_type( $post ) );
 			endwhile;
-			get_template_part( 'partials/share' );
 		else :
 		?>
 			<p><?php esc_html_e( 'Sorry, no posts matched your criteria.', 'terminal' ); ?></p>

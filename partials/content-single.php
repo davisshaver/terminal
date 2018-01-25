@@ -41,6 +41,7 @@ $single_data = terminal_get_layout_data( array(
 		?>
 	</div>
 	<?php
+	get_template_part( 'partials/share' );
 	if ( empty( $single_data['hide_bio_on_single'] ) ) :
 		get_template_part( 'partials/author-snippet' );
 	endif;
