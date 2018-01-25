@@ -18,6 +18,6 @@ $default_gravatar = ! empty( $byline_data['default_gravatar'] ) ?
 		<?php terminal_print_avatar( 100, $default_gravatar ); ?>
 	</div>
 	<div class="bio">
-		<?php echo esc_html( wpautop( get_the_author_meta( 'description' ) ) ); ?>
+		<?php the_author_meta( 'description' ); ?>
 	</div>
 </div>

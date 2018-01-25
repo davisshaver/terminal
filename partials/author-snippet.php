@@ -22,6 +22,6 @@ $default_gravatar = ! empty( $byline_data['default_gravatar'] ) ?
 			<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>"><?php the_author(); ?>
 			</a>
 		</h4>
-		<?php echo esc_html( wpautop( get_the_author_meta( 'description' ) ) ); ?>
+		<?php the_author_meta( 'description' ); ?>
 	</div>
 </div>
