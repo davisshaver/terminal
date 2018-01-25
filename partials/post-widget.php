@@ -20,7 +20,7 @@
 	endif;
 	?>
 	<div class="post-row">
-		<h4>
+		<h4 class="terminal-headline-font">
 			<a href="<?php the_permalink(); ?>">
 				<?php the_title(); ?>
 			</a>
