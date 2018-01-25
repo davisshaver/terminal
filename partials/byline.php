@@ -134,7 +134,10 @@ endif;
 			<div class="category"><?php the_category( ', ' ); ?></div>
 		<?php
 		endif;
-		if ( ! $hide_comments && comments_open( get_the_ID() ) ) :
+		if (
+			! $hide_comments &&
+			apply_filters( 'terminal_comments_open', ( ! post_password_required() && comments_open( get_the_ID() ) ) )
+		) :
 		?>
 			<div class="numberofcomments"><a href="<?php comments_link(); ?>"><strong>Comments</strong></a><span class="share-number">&nbsp;<?php terminal_print_comment_count_for_post(); ?></span></div>
 		<?php
