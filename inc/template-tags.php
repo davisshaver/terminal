@@ -243,8 +243,13 @@ function terminal_print_data_layer() { ?>
  * @return string
  */
 function terminal_get_fm_theme_mod( $name, $key, $default = false ) {
+
 	$option = get_theme_mod( $name, array() );
-	if ( isset( $option[ $key ] ) ) {
+	if ( isset( $option[ $key ] ) && ! empty( $option[ $key ] ) ) {
+		if ( 'typography' === $name && false !== strpos( $key, 'font' ) ) {
+			$fm_fonts = Terminal\FM_Fonts::instance();
+			return $fm_fonts->fonts[ $option[ $key ] ]['font-family'];
+		}
 		return $option[ $key ];
 	}
 	return $default;

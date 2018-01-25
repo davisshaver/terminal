@@ -15,6 +15,79 @@ class FM_Fonts {
 	use Singleton;
 
 	/**
+	 * Private fonts array.
+	 *
+	 * @var $fonts
+	 */
+	public $fonts = array(
+		'default' => array(
+			'default' => true,
+			'font-family' => 'inherit',
+			'google' => false,
+		),
+		'arial-black' => array(
+			'default' => false,
+			'font-family' => 'Arial Black, Gadget, sans-serif',
+			'google' => false,
+		),
+		'comic-sans' => array(
+			'default' => false,
+			'font-family' => 'Comic Sans MS, cursive, sans-serif',
+			'google' => false,
+		),
+		'courier-new' => array(
+			'default' => false,
+			'font-family' => 'Courier New, Courier, monospace',
+			'google' => false,
+		),
+		'lucida-console' => array(
+			'default' => false,
+			'font-family' => 'Lucida Console, Monaco, monospace',
+			'google' => false,
+		),
+		'lucida-sans' => array(
+			'default' => false,
+			'font-family' => 'Lucida Sans Unicode, Lucida Grande, sans-serif',
+			'google' => false,
+		),
+		'palatino' => array(
+			'default' => false,
+			'font-family' => 'Palatino Linotype, Book Antiqua, Palatino, serif',
+			'google' => false,
+		),
+		'times-new-roman' => array(
+			'default' => false,
+			'font-family' => 'Times New Roman, Times, serif',
+			'google' => false,
+		),
+		'helvetica' => array(
+			'default' => false,
+			'font-family' => 'Trebuchet MS, Helvetica, sans-serif',
+			'google' => false,
+		),
+		'georgia' => array(
+			'default' => false,
+			'font-family' => 'Georgia, Cambria, Times New Roman, Times, serif',
+			'google' => false,
+		),
+		'impact' => array(
+			'default' => false,
+			'font-family' => 'Impact, Charcoal, sans-serif',
+			'google' => false,
+		),
+		'tahoma' => array(
+			'default' => false,
+			'font-family' => 'Tahoma, Geneva, sans-serif',
+			'google' => false,
+		),
+		'verdana' => array(
+			'default' => false,
+			'font-family' => 'Verdana, Geneva, sans-serif',
+			'google' => false,
+		),
+	);
+
+	/**
 	 * Setup.
 	 */
 	public function setup() {
@@ -73,22 +146,7 @@ class FM_Fonts {
 			$children[ "${slot}_transform" ] = new \Fieldmanager_Select( $name . ' Text Transform', array( 'options' => array( 'default', 'lowercase', 'uppercase', 'capitalize' ) ) );
 			$children[ "${slot}_color" ]     = new \Fieldmanager_Colorpicker( $name . ' Text Color' );
 			$children[ "${slot}_font" ]      = new \Fieldmanager_Select( $name . ' Font Family', array(
-				'options' => array(
-					'default',
-					'Arial Black, Gadget, sans-serif',
-					'Comic Sans MS, cursive, sans-serif',
-					'Courier New, Courier, monospace',
-					'Lucida Console, Monaco, monospace',
-					'Lucida Sans Unicode, Lucida Grande, sans-serif',
-					'Palatino Linotype, Book Antiqua, Palatino, serif',
-					'Times New Roman, Times, serif',
-					'Trebuchet MS, Helvetica, sans-serif',
-					'Arial, Helvetica, sans-serif',
-					'Georgia, Cambria, Times New Roman, Times, serif',
-					'Impact, Charcoal, sans-serif',
-					'Tahoma, Geneva, sans-serif',
-					'Verdana, Geneva, sans-serif',
-				),
+				'options' => array_keys( $this->fonts ),
 			) );
 		}
 		$fm = new \Fieldmanager_Group( array(
@@ -103,7 +161,7 @@ class FM_Fonts {
 			),
 			'setting_args' => array(
 				'type'      => 'theme_mod',
-				'transport' => 'postMessage',
+				'transport' => 'refresh',
 			),
 		), $fm );
 	}

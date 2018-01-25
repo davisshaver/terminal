@@ -256,7 +256,7 @@ class Customizer {
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'loop_header_size', '20px' ) ) : ?>
 					font-size: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'loop_header_size', '20px' ) ); ?>;
 				<?php endif; ?>
-				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'loop_header_font', 'initial' ) ) : ?>
+				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'loop_header_font', 'default' ) ) : ?>
 					font-family: <?php echo esc_attr( terminal_get_fm_theme_mod( 'typography', 'loop_header_font', 'initial' ) ); ?>;
 				<?php endif; ?>
 				<?php if ( 'default' !== terminal_get_fm_theme_mod( 'typography', 'loop_header_transform', 'none' ) ) : ?>

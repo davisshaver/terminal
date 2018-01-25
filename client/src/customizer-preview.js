@@ -2,19 +2,6 @@
 /* global wp */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const mapping = {
-    utility: '.terminal-utility-font',
-    headline: '.terminal-headline-font',
-    sidebar_header: '.terminal-sidebar-header-font',
-    sidebar_body: '.terminal-sidebar-body-font',
-    single_meta: '.terminal-single-meta-font',
-    index_meta: '.terminal-index-meta-font',
-    body: '.terminal-body-font',
-    tagline: '.terminal-cta-tagline-font',
-    cta_button: '.terminal-cta-button-font',
-    loop_header: '.terminal-loop-header-font',
-    share: '.terminal-share-button-font',
-  };
   wp.customize('content_stories_header', (value) => {
     value.bind((newval) => {
       if (!document.getElementsByTagName('body')[0].className.match(/home/)) {
@@ -37,46 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         topStoriesHeader.innerText = newval;
         topStoriesHeader.style.display = 'block';
       }
-    });
-  });
-  wp.customize('typography', (value) => {
-    value.bind((newval) => {
-      Object.keys(mapping)
-        .forEach((key) => {
-          const elements = document.querySelectorAll(mapping[key]);
-          [].forEach.call(elements, (element) => {
-            if (newval[`${key}_size`] !== 'default') {
-              element.style['font-size'] = newval[`${key}_size`]; // eslint-disable-line no-param-reassign
-            } else {
-              element.style['font-size'] = 'unset'; // eslint-disable-line no-param-reassign
-            }
-            if (newval[`${key}_transform`] !== 'default') {
-              element.style['text-transform'] = newval[`${key}_transform`]; // eslint-disable-line no-param-reassign
-            } else {
-              element.style['text-transform'] = 'unset'; // eslint-disable-line no-param-reassign
-            }
-            if (newval[`${key}_font`] !== 'default') {
-              element.style['font-family'] = newval[`${key}_font`]; // eslint-disable-line no-param-reassign
-            } else {
-              element.style['font-family'] = 'initial'; // eslint-disable-line no-param-reassign
-            }
-            if (newval[`${key}_weight`] !== 'default') {
-              element.style['font-weight'] = newval[`${key}_weight`]; // eslint-disable-line no-param-reassign
-            } else {
-              element.style['font-weight'] = null; // eslint-disable-line no-param-reassign
-            }
-            if (newval[`${key}_style`] !== 'default') {
-              element.style['font-style'] = newval[`${key}_style`]; // eslint-disable-line no-param-reassign
-            } else {
-              element.style['font-style'] = 'initial'; // eslint-disable-line no-param-reassign
-            }
-            if (newval[`${key}_color`] !== '') {
-              element.style.color = newval[`${key}_color`]; // eslint-disable-line no-param-reassign
-            } else {
-              element.style.color = 'initial'; // eslint-disable-line no-param-reassign
-            }
-          });
-        });
     });
   });
 
