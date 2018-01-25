@@ -29,8 +29,23 @@ class Frontend {
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 			add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
 			add_filter( 'simple_local_avatar', [ $this, 'hack_for_ssl' ] );
+			add_action( 'wp_head', [ $this, 'maybe_print_app_meta' ] );
 		}
 		$this->disable_emojis();
+	}
+
+	/**
+	 * Maybe print iOS install bug.
+	 */
+	public function maybe_print_app_meta() {
+		$data = Data::instance();
+		$ios  = $data->get_ad_data( 'ios_install' );
+		if ( ! empty( $ios ) ) {
+			printf(
+				'<meta name="apple-itunes-app" content="app-id=%s">',
+				esc_attr( $ios )
+			);
+		}
 	}
 
 	/**

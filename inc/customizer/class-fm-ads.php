@@ -33,6 +33,7 @@ class FM_Ads {
 					'inline_ads'  => new \Fieldmanager_Checkbox( 'Enable inline ads' ),
 					'inline_rate' => new \Fieldmanager_Select( 'Insertion rate', array( 'options' => array( 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ) ) ),
 					'inline_unit' => new \Fieldmanager_Textfield( 'Ad Layers unit to use' ),
+					'ios_install' => new \Fieldmanager_Textfield( 'iOS app ID for install banner' ),
 				),
 			)
 		);

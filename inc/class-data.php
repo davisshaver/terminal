@@ -78,6 +78,7 @@ class Data {
 				'inline_ads'  => false,
 				'inline_rate' => 6,
 				'inline_unit' => '',
+				'ios_install' => null,
 			) );
 		}
 		if ( ! $key ) {
@@ -113,6 +114,16 @@ class Data {
 	 */
 	public function get_inline_ads_tag() {
 		return $this->get_ad_data( 'inline_unit' );
+	}
+
+	/**
+	 * Get prepared data.
+	 *
+	 * @param array $default Default options.
+	 * @return array Prepared data.
+	 */
+	public function get_prepared_footer_data( $default = array() ) {
+		return get_option( 'terminal_footer_options', $default );
 	}
 
 	/**

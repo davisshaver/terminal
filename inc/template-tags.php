@@ -279,6 +279,17 @@ function terminal_get_header_data( $default = array() ) {
 }
 
 /**
+ * Template function to get footer data for theme.
+ *
+ * @param array $default Template default.
+ * @return array Prepared footer data.
+ */
+function terminal_get_footer_data( $default = array() ) {
+	$data = Terminal\Data::instance();
+	return $data->get_prepared_footer_data( $default );
+}
+
+/**
  * Template function to print stories loop.
  */
 function terminal_print_stories_loop() {
