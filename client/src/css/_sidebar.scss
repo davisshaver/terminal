@@ -166,14 +166,15 @@
 	}
 }
 
+.hero-widget > .story-text {
+	padding: 0 20px 10px 20px;
+}
 .hero-widget, .hero-secondary-widget {
 
 	h2 {
 		margin: 10px 0;
 	}
 	.story-text {
-		margin: 0 5px 10px 5px;
-		
 		p {
 			margin: 0;
 		}
