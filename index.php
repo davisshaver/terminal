@@ -22,6 +22,9 @@ get_header(); ?>
 				get_template_part( 'partials/featured' );
 			}
 			terminal_print_index_header();
+			if ( is_author() ) {
+				get_template_part( 'partials/author' );
+			}
 			?>
 			<div id="stories">
 				<?php terminal_print_stories_loop(); ?>

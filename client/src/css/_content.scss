@@ -76,3 +76,25 @@ body {
 		padding: 10px;
 	}
 }
+
+#author {
+	display: flex;
+	box-sizing: border-box;
+	margin: 10px;
+	.bio {
+		padding: 10px;
+
+		h4 {
+			margin: 0 0 10px 0;
+		}
+	}
+	.image {
+		flex-basis: 20%;
+
+		img {
+			display: flex;
+			width: 100%;
+			height: auto;
+		}
+	}
+}

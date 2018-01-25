@@ -7,7 +7,9 @@
 
 $single_data = terminal_get_layout_data( array(
 	'single_meta_position' => 'top',
+	'hide_bio_on_single' => false,
 ) );
+
 ?>
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
@@ -38,6 +40,11 @@ $single_data = terminal_get_layout_data( array(
 		endif;
 		?>
 	</div>
+	<?php
+	if ( empty( $single_data['hide_bio_on_single'] ) ) :
+		get_template_part( 'partials/author-snippet' );
+	endif;
+	?>
 	<a name="respond"></a>
 	<?php
 	$default = ! post_password_required() && comments_open( get_the_ID() );
