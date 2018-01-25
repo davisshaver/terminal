@@ -17,6 +17,7 @@ class Theme {
 	 * Setup actions.
 	 */
 	public function setup() {
+
 		load_theme_textdomain( 'terminal', get_template_directory() . '/languages' );
 
 		add_theme_support( 'automatic-feed-links' );
@@ -72,11 +73,13 @@ class Theme {
 			'post',
 			array(
 				'label' => __( 'Placements', 'terminal' ),
-				'public' => false,
+				'public' => true,
 				'rewrite' => false,
-				'hierarchical' => false,
+				'hierarchical' => true,
 				'show_ui' => true,
 				'show_admin_column' => true,
+				'show_in_rest' => true,
+				'publicly_queryable' => true,
 			)
 		);
 		add_action( 'admin_init', [ $this, 'remove_unused_meta_box' ] );
@@ -84,6 +87,34 @@ class Theme {
 		add_action( 'wp_before_admin_bar_render', [ $this, 'admin_bar_disable_comments' ] );
 		add_filter( 'pings_open', '__return_false', 20, 2 );
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
+		add_filter( 'unipress_push_taxonomies_post_types', [ $this, 'remove_unipress_buggy_tax' ] );
+		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
+	}
+
+	/**
+	 * Removes placements. Filter docs via Gutenberg...
+	 *
+	 * Fires right before the meta boxes are rendered.
+	 *
+	 * This allows for the filtering of meta box data, that should already be
+	 * present by this point. Do not use as a means of adding meta box data.
+	 *
+	 * By default gutenberg_filter_meta_boxes() is hooked in and can be
+	 * unhooked to restore core meta boxes.
+	 *
+	 * @param array $wp_meta_boxes Global meta box state.
+	 */
+	public function remove_custom_tax_from_gutenberg( $wp_meta_boxes ) {
+		unset( $wp_meta_boxes['post']['side']['core']['terminal-placementdiv'] );
+		unset( $wp_meta_boxes['post']['side']['core']['fm_meta_box_ad_layer'] );
+		return $wp_meta_boxes;
+	}
+
+	/**
+	 * Remove buggy taxo
+	 */
+	public function remove_unipress_buggy_tax() {
+		return array();
 	}
 
 	/**
