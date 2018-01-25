@@ -40,7 +40,9 @@ $single_data = terminal_get_layout_data( array(
 	</div>
 	<a name="respond"></a>
 	<?php
-	if ( ! post_password_required() && comments_open( get_the_ID() ) ) :
+	$default = ! post_password_required() && comments_open( get_the_ID() );
+	$terminal_comments_open = apply_filters( 'terminal_comments_open', $default );
+	if ( $terminal_comments_open ) :
 		comments_template();
 	endif;
 	?>
