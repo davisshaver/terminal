@@ -32,6 +32,7 @@ class FM_Layout {
 				'children' => array(
 					'hide_excerpt_on_mobile' => new \Fieldmanager_Checkbox( 'Hide loop excerpt on mobile' ),
 					'hide_byline_on_mobile'  => new \Fieldmanager_Checkbox( 'Hide loop byline on mobile' ),
+					'hide_bio_on_single'     => new \Fieldmanager_Checkbox( 'Hide bio on single' ),
 					'single_meta_position'   => new \Fieldmanager_Select(
 						'Single - Byline Position',
 						array(
