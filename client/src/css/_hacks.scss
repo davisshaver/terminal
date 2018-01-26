@@ -142,3 +142,11 @@ background-color: #3b5998 !important;
 		position: relative !important;
 	}
 }
+
+.terminal-headline-font a {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
