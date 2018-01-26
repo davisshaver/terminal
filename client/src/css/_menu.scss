@@ -8,7 +8,7 @@
 		margin-right: 0.8rem;
 		position: relative !important;
 		margin-top: .2rem;
-		transition: transform .05s;
+		transition: transform .15s ease-out;
 		&.open {
 			transform: rotate(180deg);
 		}
