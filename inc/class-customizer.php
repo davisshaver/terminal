@@ -121,8 +121,8 @@ class Customizer {
 				'.terminal-index-meta-font' => 'index_meta',
 				'.terminal-single-meta-font' => 'single_meta',
 				'.terminal-body-font' => 'body',
-				'.terminal-cta-tagline' => 'tagline',
-				'.terminal-cta-button' => 'cta_button',
+				'.terminal-cta-tagline-font' => 'tagline',
+				'.terminal-cta-button-font' => 'cta_button',
 				'.terminal-loop-header-font' => 'loop_header',
 			),
 		);
