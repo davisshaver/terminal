@@ -21,7 +21,7 @@ if ( ! has_nav_menu( 'header' ) ) {
 			) );
 			if ( has_nav_menu( 'header-more' ) ) {
 				$more = sprintf(
-					'<li><a id="nav-bar-inside-more-link" href="#">%s</a></li></ul>',
+					'<li id="nav-bar-inside-more-link-container" class="hidden"><a id="nav-bar-inside-more-link" href="#">%s</a></li></ul>',
 					esc_html( '▼', 'terminal' )
 				);
 				$nav_menu = str_replace( '</ul>', $more, $nav_menu );

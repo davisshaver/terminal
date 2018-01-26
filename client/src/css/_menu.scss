@@ -28,6 +28,10 @@
 		li {
 			display: block;
 
+			&.hidden {
+				display: none !important;
+			}
+
 			a {
 				display: flex;
 				width: 100%;
@@ -40,8 +44,5 @@
 	}
 	#nav-bar-inside-more {
 		display: none;
-	}
-	#nav-bar-inside-more-link {
-		display: block;
 	}
 }
