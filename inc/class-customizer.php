@@ -57,11 +57,14 @@ class Customizer {
 		 * Helper font family.
 		 *
 		 * @param string $key String.
-		 * @return string value.
+		 * @return array font/opt stylesheet.
 		 */
 		function terminal_customizer_font_family( $key ) {
-			return ( 'default' !== terminal_get_fm_theme_mod( 'typography', "${key}_font", 'default' ) ) ?
-			terminal_get_fm_theme_mod( 'typography', '"${key}_font"', 'inherit' ) : false;
+			$font = terminal_get_fm_theme_mod( 'typography', "${key}_font", 'default' );
+			if ( 'default' === $font ) {
+				return null;
+			}
+			return $font;
 		}
 
 		/**
@@ -107,7 +110,7 @@ class Customizer {
 			return ( 'default' !== terminal_get_fm_theme_mod( 'typography', "${key}_weight", 'default' ) ) ?
 			terminal_get_fm_theme_mod( 'typography', "${key}_weight", 'inherit' ) : false;
 		}
-
+		$google_stylesheets = array();
 		$font_data = array(
 			'targets' => array(
 				'.terminal-share-button-font' => 'share',
@@ -127,7 +130,35 @@ class Customizer {
 		foreach ( $font_data['targets'] as $key => $value ) {
 			$styles = array(
 				'font-size' => terminal_customizer_font_size( $value ),
+				'text-transform' => terminal_customizer_text_transform( $value ),
+				'font-style' => terminal_customizer_font_style( $value ),
+				'font-weight' => terminal_customizer_weight( $value ),
+				'color' => terminal_customizer_color( $value ),
 			);
+			printf(
+				'%s { ',
+				esc_js( $key )
+			);
+			foreach ( $styles as $style_key => $style_value ) {
+				if ( ! empty( $style_value ) ) {
+					printf(
+						'%s: %s; ',
+						esc_js( $style_key ),
+						esc_js( $style_value )
+					);
+				}
+			}
+			$font_family = terminal_customizer_font_family( $value );
+			if ( ! empty( $font_family['stylesheet'] ) ) {
+				$google_stylesheets[] = $font_family['stylesheet'];
+			}
+			if ( ! empty( $font_family['family'] ) ) {
+				printf(
+					'font-family: %s; ',
+					$font_family['family']
+				);
+			}
+			echo ' } ';
 		}
 		?>
 
@@ -199,6 +230,14 @@ class Customizer {
 			}
 		</style>
 		<?php
+		if ( ! empty( $google_stylesheets ) ) {
+			foreach ( $google_stylesheets as $google_stylesheet ) {
+				printf(
+					'<link href="%s" rel="stylesheet">',
+					esc_url( $google_stylesheet )
+				);
+			}
+		}
 	}
 
 	/**

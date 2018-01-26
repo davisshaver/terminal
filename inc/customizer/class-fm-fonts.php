@@ -22,7 +22,7 @@ class FM_Fonts {
 	public $fonts = array(
 		'default' => array(
 			'default' => true,
-			'font-family' => 'inherit',
+			'font-family' => 'default',
 			'google' => false,
 		),
 		'arial-black' => array(
@@ -84,6 +84,26 @@ class FM_Fonts {
 			'default' => false,
 			'font-family' => 'Verdana, Geneva, sans-serif',
 			'google' => false,
+		),
+		'garamond' => array(
+			'default' => false,
+			'font-family' => 'EB Garamond, serif',
+			'google' => 'EB+Garamond',
+		),
+		'lato' => array(
+			'default' => false,
+			'font-family' => 'Lato, sans-serif',
+			'google' => 'Lato',
+		),
+		'slabo' => array(
+			'default' => false,
+			'font-family' => '"Slabo 27px", serif',
+			'google' => 'Slabo+27px',
+		),
+		'ubuntu' => array(
+			'default' => false,
+			'font-family' => 'Ubuntu, sans-serif',
+			'google' => 'Ubuntu',
 		),
 	);
 

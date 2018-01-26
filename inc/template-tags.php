@@ -248,7 +248,23 @@ function terminal_get_fm_theme_mod( $name, $key, $default = false ) {
 	if ( isset( $option[ $key ] ) && ! empty( $option[ $key ] ) ) {
 		if ( 'typography' === $name && false !== strpos( $key, 'font' ) ) {
 			$fm_fonts = Terminal\FM_Fonts::instance();
-			return $fm_fonts->fonts[ $option[ $key ] ]['font-family'];
+			$stylesheet = null;
+			if ( ! empty( $fm_fonts->fonts[ $option[ $key ] ]['google'] ) ) {
+				$style_key = str_replace( 'font', 'style', $key );
+				$weight_key = str_replace( 'font', 'weight', $key );
+				$weight = ! empty( $option[ $weight_key ] ) ? $option[ $weight_key ] : '400';
+				$style = ! empty( $option[ $style_key ] ) && 'italic' === $option[ $style_key ] ? 'i' : null;
+				$stylesheet = sprintf(
+					'https://fonts.googleapis.com/css?family=%s:%s%s',
+					esc_attr( $fm_fonts->fonts[ $option[ $key ] ]['google'] ),
+					esc_attr( $weight ),
+					esc_attr( $style )
+				);
+			}
+			return array(
+				'family' => $fm_fonts->fonts[ $option[ $key ] ]['font-family'],
+				'stylesheet' => $stylesheet,
+			);
 		}
 		return $option[ $key ];
 	}
