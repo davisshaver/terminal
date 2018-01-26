@@ -166,6 +166,10 @@ class Customizer {
 				color: <?php echo esc_attr( get_theme_mod( 'link_default_color_setting', '#333' ) ); ?>;
 			}
 
+			#nav-bar {
+				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?>;
+			}
+
 			#header {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_background_color_setting', '#9DC1FD' ) ); ?>;
 			}
@@ -378,6 +382,24 @@ class Customizer {
 				'link_default_color_setting',
 				array(
 					'label'   => __( 'Default link color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'nav_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'nav_background_color_setting',
+				array(
+					'label'   => __( 'Nav background color' ),
 					'section' => 'colors',
 				)
 			)

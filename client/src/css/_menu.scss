@@ -3,6 +3,7 @@
 	box-sizing: border-box;
 	max-width: 1100px;
 	margin: 0 auto;
+	padding: 10px 0;
 
 	a {
 		display: block;
@@ -13,18 +14,15 @@
 		width: 100%;
 	}
 
-	#menu-header {
+	#menu-header-nav {
 		display: flex;
 		flex-direction: column;
+		padding: 0;
+		margin: 0;
 
 		@media (min-width: 350px) {
 			flex-direction: row;
 			justify-content: space-around;
-
-			li > ul {
-				display: none;
-				position: absolute;
-			}
 		}
 
 		li {
@@ -35,24 +33,15 @@
 				width: 100%;
 			}
 
-			&.menu-item-has-children > a:after {
-				content: " +";
-			}
-
-			ul.sub-menu {
-				display: none;
-
-				li {
-					display: flex;
-				}
-			}
-
-			&:hover {
-
-				ul.sub-menu {
-					display: block;
-				}
+			a:hover {
+				filter: brightness(40%);
 			}
 		}
+	}
+	#nav-bar-inside-more {
+		display: none;
+	}
+	#nav-bar-inside-more-link {
+		display: block;
 	}
 }
