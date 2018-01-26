@@ -166,19 +166,15 @@
 	}
 }
 
-.hero-widget > h2 {
-	padding: 20px 10px 0 10px;
+.hero-widget > h2, .hero-secondary-widget > h2 {
+	padding: 10px 0;
 	margin: 0;
 }
 
 .hero-widget > .story-text {
-	padding: 0 20px 10px 20px;
+	padding: 10px 20px 0 20px;
 }
 .hero-widget, .hero-secondary-widget {
-
-	h2 {
-		margin: 10px 0;
-	}
 	.story-text {
 		p {
 			margin: 0;
