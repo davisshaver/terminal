@@ -3,8 +3,11 @@
 export function setupMenu() {
   const moreLink = document.getElementById('nav-bar-inside-more-link-container');
   const moreNav = document.getElementById('nav-bar-inside-more');
-  function toggleHoverReveal(element) {
-    element.classList.toggle('hover-reveal');
+  const container = document.getElementById('container');
+  const footer = document.getElementById('footer');
+
+  function toggleFixed(element) {
+    element.classList.toggle('fixed');
   }
   function toggleHidden(element) {
     element.classList.toggle('hidden');
@@ -16,26 +19,13 @@ export function setupMenu() {
         e.preventDefault();
         e.stopImmediatePropagation();
         toggleHidden(moreNav);
-      },
-    );
-  }
-  function addHoverListener(element) {
-    element.addEventListener(
-      'mouseover',
-      () => {
-        toggleHoverReveal(moreNav);
-        element.addEventListener(
-          'mouseout',
-          () => {
-            toggleHoverReveal(moreNav);
-          },
-        );
+        toggleHidden(container);
+        toggleFixed(footer);
       },
     );
   }
   toggleHidden(moreLink);
   addClickListener(moreLink);
-  addHoverListener(moreLink);
 }
 
 export default {

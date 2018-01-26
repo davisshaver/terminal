@@ -2,10 +2,18 @@
 #nav-bar {
 	box-sizing: border-box;
 
+	svg {
+		width: 1rem !important;
+		height: 1rem !important;
+		margin-right: 0.8rem;
+		position: relative !important;
+		margin-top: .2rem;
+	}
+
 	#nav-bar-inside {
 		max-width: 1100px;
 		margin: 0 auto;
-		padding: 10px 0;
+		padding: 10px 0 0 0;
 	}
 	a {
 		display: block;
@@ -18,31 +26,48 @@
 
 	#menu-header-nav {
 		flex-direction: row;
-		padding: 0;
+		padding: 0 0 10px 0;
 
 		li {
 			display: block;
 		}
 	}
-
+	.menu-more-meta-container {
+		background-color: #f4f4f4;
+	}
 	#menu-header-inside {
-		flex-direction: column;
-		padding: 10px;
+		flex-flow: column wrap;
+		max-height: 400px;
+	}
+	#menu-header-inside, #menu-header-inside-meta {
+		display: flex;
+		align-content: stretch;
+		height: 100%;
 
 		li {
 			display: flex;
-			flex: 1 0 50%;
+		}
+	}
+	#menu-header-inside-meta {
+		padding: 10px;
+	}
+	#menu-header-inside {
+		padding: 0 10px 10px 10px;
+	}
+
+	#menu-header-nav {
+		li {
+			height: 100%;
+			width: 100%;
 		}
 	}
 
-	#menu-header-nav, #menu-header-inside {
+	#menu-header-nav, #menu-header-inside, #menu-header-inside-meta {
 		display: flex;
 		margin: 0;
 		justify-content: space-around;
 
 		li {
-			height: 100%;
-			width: 100%;
 
 			&.hidden {
 				display: none !important;
@@ -60,24 +85,11 @@
 		}
 	}
 	#nav-bar-inside-more {
-		background-color: #f4f4f4;
-		border-radius: 3px!important;
-		border: 1px solid rgba(0,0,0,.2)!important;
-		display: block;
-		height: auto;
-		max-width: 1100px;
-		overflow-y: inherit;
-		position: absolute;
-		width: 50vw;
-		left: 40%; 
-		right: 0; 
-		margin-left: auto; 
-		margin-right: auto; 
+		position: relative;
+		margin-top: 20px;
+		margin-left: auto;
+		margin-right: auto;
 
-		@media (max-width: 870px) {
-			left: 5%;
-			width: 90vw;
-		}
 		&.hover-reveal {
 			display: block !important;
 		}

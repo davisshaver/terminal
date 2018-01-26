@@ -134,6 +134,7 @@ class Customizer {
 				'font-style' => terminal_customizer_font_style( $value ),
 				'font-weight' => terminal_customizer_weight( $value ),
 				'color' => terminal_customizer_color( $value ),
+				'fill-color' => terminal_customizer_color( $value ),
 			);
 			printf(
 				'%s { ',
@@ -164,6 +165,10 @@ class Customizer {
 
 			a {
 				color: <?php echo esc_attr( get_theme_mod( 'link_default_color_setting', '#333' ) ); ?>;
+			}
+
+			svg {
+				fill: <?php echo esc_attr( get_theme_mod( 'link_default_color_setting', '#333' ) ); ?>;
 			}
 
 			#nav-bar, #nav-bar-inside-more {

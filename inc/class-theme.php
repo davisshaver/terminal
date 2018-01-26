@@ -52,7 +52,8 @@ class Theme {
 
 		register_nav_menus( array(
 			'header'      => esc_html__( 'Header Menu', 'terminal' ),
-			'header-more' => esc_html__( 'Header More Menu', 'terminal' ),
+			'header-more' => esc_html__( 'Header More Menu - Content', 'terminal' ),
+			'header-more-meta' => esc_html__( 'Header More Menu - Meta', 'terminal' ),
 			'footer-more' => esc_html__( 'Footer More Menu', 'terminal' ),
 			'footer'      => esc_html__( 'Footer Menu', 'terminal' ),
 		) );
