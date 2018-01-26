@@ -17,9 +17,6 @@ export function setupMenu() {
         e.stopImmediatePropagation();
         toggleHidden(moreNav);
       },
-      {
-        passive: true,
-      },
     );
   }
   function addHoverListener(element) {
@@ -32,13 +29,7 @@ export function setupMenu() {
           () => {
             toggleHoverReveal(moreNav);
           },
-          {
-            passive: true,
-          },
         );
-      },
-      {
-        passive: true,
       },
     );
   }
