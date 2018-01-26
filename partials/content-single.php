@@ -10,6 +10,9 @@ $single_data = terminal_get_layout_data( array(
 	'hide_bio_on_single' => false,
 ) );
 
+if ( is_page() ) {
+	$single_data['single_meta_position'] = false;
+}
 ?>
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
@@ -42,7 +45,7 @@ $single_data = terminal_get_layout_data( array(
 	</div>
 	<?php
 	get_template_part( 'partials/share' );
-	if ( empty( $single_data['hide_bio_on_single'] ) ) :
+	if ( ! is_page() && empty( $single_data['hide_bio_on_single'] ) ) :
 		get_template_part( 'partials/author-snippet' );
 	endif;
 	?>
@@ -50,7 +53,7 @@ $single_data = terminal_get_layout_data( array(
 	<?php
 	$default = ! post_password_required() && comments_open( get_the_ID() );
 	$terminal_comments_open = apply_filters( 'terminal_comments_open', $default );
-	if ( $terminal_comments_open ) :
+	if ( ! is_page() && $terminal_comments_open ) :
 		comments_template();
 	endif;
 	?>
