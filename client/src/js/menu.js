@@ -5,7 +5,11 @@ export function setupMenu() {
   const moreNav = document.getElementById('nav-bar-inside-more');
   const container = document.getElementById('container');
   const footer = document.getElementById('footer');
+  const svgLink = document.querySelector('#nav-bar-inside-more-link > svg');
 
+  function toggleOpen(element) {
+    element.classList.toggle('open');
+  }
   function toggleFixed(element) {
     element.classList.toggle('fixed');
   }
@@ -18,6 +22,7 @@ export function setupMenu() {
       (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
+        toggleOpen(svgLink);
         toggleHidden(moreNav);
         toggleHidden(container);
         toggleFixed(footer);

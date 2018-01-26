@@ -8,6 +8,10 @@
 		margin-right: 0.8rem;
 		position: relative !important;
 		margin-top: .2rem;
+		transition: transform .5s;
+		&.open {
+			transform: rotate(180deg);
+		}
 	}
 
 	#nav-bar-inside {
@@ -41,15 +45,16 @@
 	}
 	#menu-header-inside, #menu-header-inside-meta {
 		display: flex;
+		flex-wrap: wrap;
 		align-content: stretch;
 		height: 100%;
-
+		padding: 0;
 		li {
 			display: flex;
+			padding: 10px 2px;
+			flex-basis: 25%;
+			box-sizing: border-box;
 		}
-	}
-	#menu-header-inside-meta {
-		padding: 10px;
 	}
 	#menu-header-inside {
 		padding: 0 10px 10px 10px;
