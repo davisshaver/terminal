@@ -252,7 +252,7 @@ function terminal_get_fm_theme_mod( $name, $key, $default = false ) {
 			if ( ! empty( $fm_fonts->fonts[ $option[ $key ] ]['google'] ) ) {
 				$style_key = str_replace( 'font', 'style', $key );
 				$weight_key = str_replace( 'font', 'weight', $key );
-				$weight = ! empty( $option[ $weight_key ] ) ? $option[ $weight_key ] : '400';
+				$weight = ! empty( $option[ $weight_key ] ) && 'default' !== $option[ $weight_key ] ? $option[ $weight_key ] : '400';
 				$style = ! empty( $option[ $style_key ] ) && 'italic' === $option[ $style_key ] ? 'i' : null;
 				$stylesheet = sprintf(
 					'https://fonts.googleapis.com/css?family=%s:%s%s',
