@@ -22,16 +22,17 @@ if ( ! has_nav_menu( 'header' ) ) {
 			if ( has_nav_menu( 'header-more' ) ) {
 				$more = sprintf(
 					'<li id="nav-bar-inside-more-link-container" class="hidden"><a id="nav-bar-inside-more-link" href="#">%s</a></li></ul>',
-					esc_html( '▼', 'terminal' )
+					esc_html( 'More ▼', 'terminal' )
 				);
 				$nav_menu = str_replace( '</ul>', $more, $nav_menu );
 			}
 			echo $nav_menu;
 			if ( has_nav_menu( 'header-more' ) ) {
-				echo '<div id="nav-bar-inside-more">';
+				echo '<div id="nav-bar-inside-more" class="hidden">';
 				wp_nav_menu( array(
 					'theme_location' => 'header-more',
 					'depth'          => 1,
+					'menu_id'        => 'menu-header-inside',
 				) );
 				echo '</div>';
 			}

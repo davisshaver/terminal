@@ -1,19 +1,9 @@
 /* eslint-env browser */
-/* global jQuery */
 
 import './index.scss';
-import { loadInfiniteAds } from './js/utils';
+import { setupMenu } from './js/menu';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const { broadstreet = false } = window;
-  if (broadstreet) {
-    broadstreet.watch({ networkId: 5348 });
-  }
+  setupMenu();
 });
 
-
-(($) => {
-  $(document.body).on('post-load', () => {
-    loadInfiniteAds();
-  });
-})(jQuery);

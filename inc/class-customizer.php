@@ -166,8 +166,8 @@ class Customizer {
 				color: <?php echo esc_attr( get_theme_mod( 'link_default_color_setting', '#333' ) ); ?>;
 			}
 
-			#nav-bar {
-				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?>;
+			#nav-bar, #nav-bar-inside-more {
+				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?> !important;
 			}
 
 			#header {
