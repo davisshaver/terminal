@@ -1,6 +1,6 @@
 /* eslint-env browser */
 
-import './index.scss';
+import './single.scss';
 import { setupMenu } from './js/menu';
 
 document.addEventListener('DOMContentLoaded', () => {
