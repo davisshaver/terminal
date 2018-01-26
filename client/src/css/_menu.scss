@@ -51,9 +51,15 @@
 		padding: 0;
 		li {
 			display: flex;
-			padding: 10px 2px;
 			flex-basis: 25%;
 			box-sizing: border-box;
+
+			a {
+				padding: 10px 2px;
+				height: 100%;
+				width: 100%;
+				box-sizing: border-box;
+			}
 		}
 	}
 	#menu-header-inside {
