@@ -91,6 +91,8 @@ class FM_Header {
 					) ),
 					'desktop_max_height'           => new \Fieldmanager_Select( 'Desktop Max-Height', array(
 						'options' => array(
+							'50px',
+							'75px',
 							'100px',
 							'200px',
 							'300px',
