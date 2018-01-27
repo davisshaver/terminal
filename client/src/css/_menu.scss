@@ -17,7 +17,7 @@
 	#nav-bar-inside {
 		max-width: 1100px;
 		margin: 0 auto;
-		padding: 10px 0 0 0;
+		padding: 5px 0 0 0;
 	}
 	a {
 		display: block;
@@ -30,7 +30,7 @@
 
 	#menu-header-nav {
 		flex-direction: row;
-		padding: 0 0 10px 0;
+		padding: 0 0 5px 0;
 
 		li {
 			display: block;
@@ -55,10 +55,11 @@
 			box-sizing: border-box;
 
 			a {
-				padding: 10px 2px;
+				padding: 5px 2px;
 				height: 100%;
 				width: 100%;
 				box-sizing: border-box;
+				hyphens: none;
 			}
 		}
 	}
