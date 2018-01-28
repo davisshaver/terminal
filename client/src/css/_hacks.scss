@@ -58,10 +58,10 @@ h1, h2, h3, h4, h5, h6, p, a {
 	word-wrap: break-word;
 	word-break: break-word;
 	/* Adds a hyphen where the word breaks, if supported (No Blink) */
-	-ms-hyphens: auto;
-	-moz-hyphens: auto;
-	-webkit-hyphens: auto;
-	hyphens: auto;
+	-ms-hyphens: none;
+	-moz-hyphens: none;
+	-webkit-hyphens: none;
+	hyphens: none;
 }
 
 .dfp-ad iframe {
