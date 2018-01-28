@@ -53,11 +53,6 @@ input, select, textarea, button {
 
 
 h1, h2, h3, h4, h5, h6, p, a {
-	/* These are technically the same, but use both */
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	word-break: break-word;
-	/* Adds a hyphen where the word breaks, if supported (No Blink) */
 	-ms-hyphens: none;
 	-moz-hyphens: none;
 	-webkit-hyphens: none;
