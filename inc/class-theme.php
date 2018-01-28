@@ -150,7 +150,7 @@ class Theme {
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(
-			'name'          => __( 'Above comments ', 'terminal' ),
+			'name'          => __( 'Above Comments ', 'terminal' ),
 			'id'            => 'above-comments',
 			'description'   => __( 'Above Comments', 'terminal' ),
 			'before_widget' => '<div id="%1$s" class="comments-section %2$s">',
