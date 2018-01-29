@@ -246,7 +246,11 @@ function terminal_get_fm_theme_mod( $name, $key, $default = false ) {
 
 	$option = get_theme_mod( $name, array() );
 	if ( isset( $option[ $key ] ) && ! empty( $option[ $key ] ) ) {
-		if ( 'typography' === $name && false !== strpos( $key, 'font' ) ) {
+		if (
+			'typography' === $name &&
+			false !== strpos( $key, 'font' ) &&
+			class_exists( '\Terminal\FM_Fonts' )
+			) {
 			$fm_fonts = Terminal\FM_Fonts::instance();
 			$stylesheet = null;
 			if ( ! empty( $fm_fonts->fonts[ $option[ $key ] ]['google'] ) ) {
