@@ -105,6 +105,61 @@ class FM_Fonts {
 			'font-family' => 'Ubuntu, sans-serif',
 			'google' => 'Ubuntu',
 		),
+		'alegreya' => array(
+			'default' => false,
+			'font-family' => 'Alegreya, serif',
+			'google' => 'Alegreya',
+		),
+		'alegreya-sans' => array(
+			'default' => false,
+			'font-family' => 'Alegreya, sans-serif',
+			'google' => 'Alegreya+Sans',
+		),
+		'merriweather' => array(
+			'default' => false,
+			'font-family' => 'Merriweather, serif',
+			'google' => 'Merriweather',
+		),
+		'merriweather-sans' => array(
+			'default' => false,
+			'font-family' => 'Merriweather, sans-serif',
+			'google' => 'Merriweather+Sans',
+		),
+		'nunito' => array(
+			'default' => false,
+			'font-family' => 'Nunito, sans-serif',
+			'google' => 'Nunito',
+		),
+		'nunito-sans' => array(
+			'default' => false,
+			'font-family' => 'Nunito, sans-serif',
+			'google' => 'Nunito+Sans',
+		),
+		'roboto' => array(
+			'default' => false,
+			'font-family' => 'Roboto, sans-serif',
+			'google' => 'Roboto',
+		),
+		'roboto-slab' => array(
+			'default' => false,
+			'font-family' => 'Roboto Slab, serif',
+			'google' => 'Roboto+Slab',
+		),
+		'roboto-mono' => array(
+			'default' => false,
+			'font-family' => 'Roboto Mono, monospace',
+			'google' => 'Roboto+Mono',
+		),
+		'quattrocento' => array(
+			'default' => false,
+			'font-family' => 'Quattrocento, serif',
+			'google' => 'Quattrocento',
+		),
+		'quattrocento-sans' => array(
+			'default' => false,
+			'font-family' => 'Quattrocento Sans, sans-serif',
+			'google' => 'Quattrocento+Sans',
+		),
 	);
 
 	/**
