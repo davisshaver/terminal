@@ -23,7 +23,7 @@ if ( is_page() ) {
 		endif;
 		if ( function_exists( 'yoast_breadcrumb' ) ) {
 			yoast_breadcrumb(
-				'<p id="breadcrumbs">',
+				'<p id="breadcrumbs" class="terminal-single-meta-font">',
 				'</p>'
 			);
 		}
