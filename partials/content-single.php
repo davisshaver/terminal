@@ -21,6 +21,12 @@ if ( is_page() ) {
 		if ( 'top' === $single_data['single_meta_position'] ) :
 			get_template_part( 'partials/byline', get_post_type( $post ) );
 		endif;
+		if ( function_exists( 'yoast_breadcrumb' ) ) {
+			yoast_breadcrumb(
+				'<p id="breadcrumbs">',
+				'</p>'
+			);
+		}
 		?>
 		<h1 class="terminal-headline-font"><?php the_title(); ?></h1>
 		<?php if ( has_post_thumbnail() ) : ?>
