@@ -6,7 +6,7 @@ export function setupComments() {
     .contentWindow
     .document.body.scrollHeight;
   document.getElementById('facebook-comments').height =
-    height;
+    height + 50;
 }
 
 export default {
