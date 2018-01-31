@@ -33,7 +33,12 @@ if ( is_page() ) {
 			<div class="image">
 				<?php the_post_thumbnail( 'terminal-primary-thumbnail' ); ?>
 			</div>
-		<?php endif; ?>
+		<?php
+		if ( function_exists( 'cc_featured_image_caption' ) ) {
+			cc_featured_image_caption();
+		}
+		endif;
+		?>
 		<?php
 		if ( 'middle' === $single_data['single_meta_position'] ) :
 			get_template_part( 'partials/byline', get_post_type( $post ) );
