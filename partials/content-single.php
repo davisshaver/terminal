@@ -34,9 +34,6 @@ if ( is_page() ) {
 				<?php the_post_thumbnail( 'terminal-primary-thumbnail' ); ?>
 			</div>
 		<?php
-		if ( function_exists( 'cc_featured_image_caption' ) ) {
-			cc_featured_image_caption();
-		}
 		endif;
 		?>
 		<?php
