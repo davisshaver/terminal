@@ -1,5 +1,4 @@
 const path = require('path');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
@@ -44,7 +43,6 @@ module.exports = {
     }],
   },
   plugins: [
-    new DashboardPlugin(),
     extractSass,
   ],
 };
