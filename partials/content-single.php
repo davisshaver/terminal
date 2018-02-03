@@ -34,6 +34,7 @@ if ( is_page() ) {
 				<?php the_post_thumbnail( 'terminal-primary-thumbnail' ); ?>
 			</div>
 		<?php
+		terminal_print_featured_image_caption();
 		endif;
 		?>
 		<?php

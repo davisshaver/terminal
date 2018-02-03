@@ -94,6 +94,22 @@ function terminal_time_ago() {
 }
 
 /**
+ * Template function to print featured image credit (if available).
+ */
+function terminal_print_featured_image_caption() {
+	$data = Terminal\Data::instance();
+	$meta = $data->get_post_featured_meta();
+	$meta = apply_filters( 'terminal_featured_meta', $meta );
+	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
+		printf(
+			'<div class="featured-meta"><div class="featured-credit">%s</div><div class="featured-caption">%s</div></div>',
+			esc_html( $meta['credit'] ),
+			wp_kses_post( $meta['caption'] )
+		);
+	}
+}
+
+/**
  * Template function to print a recirc header.
  */
 function terminal_print_recirc_header() {

@@ -162,6 +162,24 @@ class Data {
 	public function get_facebook_count_for_post() {
 		return 0;
 	}
+
+	/**
+	 * Get post featured metadata.
+	 */
+	public function get_post_featured_meta() {
+		$default = array(
+			'caption' => '',
+			'credit' => '',
+		);
+		$options = array(
+			'caption' => get_post_meta( get_the_ID(), 'terminal_featured_meta_caption', true ),
+			'credit'  => get_post_meta( get_the_ID(), 'terminal_featured_meta_credit', true ),
+		);
+		return array(
+			'caption' => ! empty( $options['caption'] ) ? $options['caption'] : $default['caption'],
+			'credit'  => ! empty( $options['credit'] ) ? $options['credit'] : $default['credit'],
+		);
+	}
 }
 
 add_action( 'after_setup_theme', [ '\Terminal\Data', 'instance' ] );
