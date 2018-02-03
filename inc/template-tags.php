@@ -102,7 +102,7 @@ function terminal_print_featured_image_caption() {
 	$meta = apply_filters( 'terminal_featured_meta', $meta );
 	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
 		printf(
-			'<div class="featured-meta"><div class="featured-credit">%s</div><div class="featured-caption">%s</div></div>',
+			'<div class="featured-meta"><div class="featured-credit terminal-single-meta-font">%s</div><div class="featured-caption terminal-body-font">%s</div></div>',
 			esc_html( $meta['credit'] ),
 			wp_kses_post( $meta['caption'] )
 		);
