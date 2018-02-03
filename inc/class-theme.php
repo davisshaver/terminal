@@ -68,6 +68,7 @@ class Theme {
 			'render'         => 'terminal_print_stories_loop',
 			'footer'         => false,
 			'footer_widgets' => 'sidebar',
+			'posts_per_page' => 15,
 		) );
 		register_taxonomy(
 			'terminal-placement',
