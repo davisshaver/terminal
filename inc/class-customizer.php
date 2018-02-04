@@ -54,17 +54,31 @@ class Customizer {
 		}
 
 		/**
+		 * Helper font stylesheet.
+		 *
+		 * @param string $key String.
+		 * @return string font/opt stylesheet.
+		 */
+		function terminal_customizer_font_stylesheet( $key ) {
+			$font = terminal_get_fm_theme_mod( 'typography', "${key}_font", 'none' );
+			if ( empty( $font['stylesheet'] || 'default' !== $font['stylesheet'] ) ) {
+				return false;
+			}
+			return $font['stylesheet'];
+		}
+
+		/**
 		 * Helper font family.
 		 *
 		 * @param string $key String.
-		 * @return array font/opt stylesheet.
+		 * @return string font/opt stylesheet.
 		 */
 		function terminal_customizer_font_family( $key ) {
-			$font = terminal_get_fm_theme_mod( 'typography', "${key}_font", 'default' );
-			if ( 'default' === $font ) {
-				return null;
+			$font = terminal_get_fm_theme_mod( 'typography', "${key}_font", 'none' );
+			if ( empty( $font['family'] || 'default' !== $font['family'] ) ) {
+				return 'none';
 			}
-			return $font;
+			return $font['family'];
 		}
 
 		/**
@@ -149,9 +163,10 @@ class Customizer {
 					);
 				}
 			}
-			$font_family = terminal_customizer_font_family( $value );
-			if ( ! empty( $font_family['stylesheet'] ) ) {
-				$google_stylesheets[] = $font_family['stylesheet'];
+			$font_family     = terminal_customizer_font_family( $value );
+			$font_stylesheet = terminal_customizer_font_stylesheet( $value );
+			if ( ! empty( $font_stylesheet ) ) {
+				$google_stylesheets[] = $font_stylesheet;
 			}
 			if ( ! empty( $font_family['family'] ) ) {
 				printf(

@@ -29,8 +29,10 @@ export function setupMenu() {
       },
     );
   }
-  toggleHidden(moreLink);
-  addClickListener(moreLink);
+  if (moreLink) {
+    toggleHidden(moreLink);
+    addClickListener(moreLink);
+  }
 }
 
 export default {
