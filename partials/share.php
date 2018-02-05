@@ -16,7 +16,6 @@
 				esc_url( 'https://twitter.com/intent/tweet/
 				?url=' . rawurlencode( get_the_permalink() ) )
 			);
-			get_template_part( 'partials/svg/twitter.svg' );
 			esc_html_e( ' Tweet', 'terminal' );
 			?>
 			</a>
@@ -27,7 +26,6 @@
 				'<a href="%s" target="_blank">',
 				esc_url( 'https://www.facebook.com/sharer/sharer.php?u=' . rawurlencode( get_the_permalink() ) )
 			);
-			get_template_part( 'partials/svg/facebook.svg' );
 			esc_html_e( ' Share', 'terminal' );
 			?>
 			</a>
