@@ -8,6 +8,21 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMenu();
 });
 
+function exponentialBackoff(toTry, maxTries = 5, delay, callback) {
+  const result = toTry();
+  let max = maxTries || 10;
+  if (result) {
+    callback(result);
+  } else if (max > 0) {
+    setTimeout(() => {
+      max -= 1;
+      exponentialBackoff(toTry, max, delay * 2, callback);
+    }, delay);
+  } else {
+    console.log('we give up');
+  }
+}
+
 if (window.AdLayersAPI &&
   window.adLayersDFP &&
   window.jQuery &&
@@ -24,24 +39,21 @@ if (window.AdLayersAPI &&
       const adTag = jQuery('<div />')
         .attr('id', adLayersDFP.adUnitPrefix + slotName)
         .attr('class', 'dfp-ad');
-      if (jQuery(infiniteTarget).length !== 0) {
-        jQuery(infiniteTarget).after(adTag);
-        (new AdLayersAPI()).lazyLoadAd({ slotName, format: terminal.inlineAds.unit });
-      } else {
-        setTimeout(() => {
-          if (jQuery(infiniteTarget).length !== 0) {
-            jQuery(infiniteTarget).after(adTag);
-            (new AdLayersAPI()).lazyLoadAd({ slotName, format: terminal.inlineAds.unit });
-          } else {
-            setTimeout(() => {
-              if (jQuery(infiniteTarget).length !== 0) {
-                jQuery(infiniteTarget).after(adTag);
-                (new AdLayersAPI()).lazyLoadAd({ slotName, format: terminal.inlineAds.unit });
-              }
-            }, 1500);
+      exponentialBackoff(
+        (thisSlotName = `${slotName}`, thisTag = adTag, thisTarget = infiniteTarget) => {
+          if (jQuery(thisTarget).length !== 0) {
+            return [thisSlotName, thisTag, thisTarget];
           }
-        }, 1000);
-      }
+          return false;
+        },
+        10,
+        500,
+        ([thisSlotName, thisTag, thisTarget]) => {
+          console.log(thisSlotName, thisTag, thisTarget);
+          jQuery(thisTarget).after(thisTag);
+          (new AdLayersAPI()).lazyLoadAd({ slotName: thisSlotName, format: terminal.inlineAds.unit });
+        },
+      );
       slotNum += 1;
     }, 500);
   });
