@@ -21,7 +21,7 @@
 				<?php the_post_thumbnail( 'terminal-primary-thumbnail', array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
-		<div class="story-text terminal-body-font">
+		<div class="story-text terminal-sidebar-body-font">
 			<?php
 				the_excerpt();
 			?>
