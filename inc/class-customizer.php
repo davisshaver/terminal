@@ -168,10 +168,10 @@ class Customizer {
 			if ( ! empty( $font_stylesheet ) ) {
 				$google_stylesheets[] = $font_stylesheet;
 			}
-			if ( ! empty( $font_family['family'] ) ) {
+			if ( ! empty( $font_family ) ) {
 				printf(
 					'font-family: %s; ',
-					$font_family['family']
+					esc_html( $font_family )
 				);
 			}
 			echo ' } ';
