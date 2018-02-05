@@ -61,7 +61,7 @@ class Customizer {
 		 */
 		function terminal_customizer_font_stylesheet( $key ) {
 			$font = terminal_get_fm_theme_mod( 'typography', "${key}_font", 'none' );
-			if ( empty( $font['stylesheet'] || 'default' !== $font['stylesheet'] ) ) {
+			if ( empty( $font['stylesheet'] || 'default' === $font['stylesheet'] ) ) {
 				return false;
 			}
 			return $font['stylesheet'];
@@ -75,7 +75,7 @@ class Customizer {
 		 */
 		function terminal_customizer_font_family( $key ) {
 			$font = terminal_get_fm_theme_mod( 'typography', "${key}_font", 'none' );
-			if ( empty( $font['family'] || 'default' !== $font['family'] ) ) {
+			if ( empty( $font['family'] || 'default' === $font['family'] ) ) {
 				return 'none';
 			}
 			return $font['family'];
