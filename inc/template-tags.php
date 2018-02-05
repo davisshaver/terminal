@@ -225,7 +225,9 @@ function terminal_has_broadstreet_enabled() {
 /**
  * Print data layer.
  */
-function terminal_print_data_layer() { ?>
+function terminal_print_data_layer() {
+	$data = Terminal\Data::instance();
+	?>
 	<script type="text/javascript">
 		var terminal =
 		<?php
@@ -239,6 +241,10 @@ function terminal_print_data_layer() { ?>
 					'UA-10930536-4',
 					// SC.com and OS combined.
 					'UA-1249139-15',
+				),
+				'inlineAds' => array(
+					'enabled' => esc_attr( $data->has_inline_ads() ),
+					'unit'    => esc_attr( $data->get_inline_ads_tag() ),
 				),
 			) );
 		?>
@@ -335,14 +341,13 @@ function terminal_print_stories_loop() {
 
 	$data            = Terminal\Data::instance();
 	$has_inline_ads  = $data->has_inline_ads();
-	$inline_ads_rate = $data->get_inline_ads_rate();
 	$inline_ads_unit = $data->get_inline_ads_tag();
 	if ( have_posts() ) :
 		while ( have_posts() ) :
 			$count++;
 			the_post();
 			get_template_part( 'partials/content-loop', get_post_type( $post ) );
-			if ( $has_inline_ads && 0 === $count % $inline_ads_rate && ! empty( $inline_ads_unit ) ) {
+			if ( is_home() && ! is_paged() && $has_inline_ads && 0 === $count % 7 && ! empty( $inline_ads_unit ) ) {
 				do_action( 'ad_layers_render_ad_unit', $inline_ads_unit );
 			}
 		endwhile;

@@ -76,7 +76,6 @@ class Data {
 		if ( empty( $this->ad_data ) ) {
 			$this->ad_data = get_option( 'terminal_ad_options', array(
 				'inline_ads'  => false,
-				'inline_rate' => 6,
 				'inline_unit' => '',
 				'ios_install' => null,
 			) );
@@ -96,15 +95,6 @@ class Data {
 	 */
 	public function has_inline_ads() {
 		return (bool) $this->get_ad_data( 'inline_ads' );
-	}
-
-	/**
-	 * How frequently should we inject an ad?
-	 *
-	 * @return integer Ad rate
-	 */
-	public function get_inline_ads_rate() {
-		return (int) $this->get_ad_data( 'inline_rate' );
 	}
 
 	/**
