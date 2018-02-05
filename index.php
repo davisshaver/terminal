@@ -18,7 +18,7 @@ get_header(); ?>
 	<div id="body">
 		<div class="content">
 			<?php
-			if ( is_home() ) {
+			if ( is_home() && ! is_paged() ) {
 				get_template_part( 'partials/featured' );
 			}
 			terminal_print_index_header();

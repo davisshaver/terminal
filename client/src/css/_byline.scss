@@ -2,7 +2,12 @@
 	display: flex;
 	flex-wrap: nowrap;
 	min-height: 30px;
-	padding: 10px;
+	padding: 30px 40px;
+
+	@media (max-width: 869px) {
+		padding: 30px;
+	}
+
 	box-sizing: border-box;
 
 	.category {

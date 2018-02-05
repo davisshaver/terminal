@@ -35,7 +35,7 @@ endif;
 	?>
 		<div class="post-row">
 			<h3 class="headline terminal-headline-font">
-				<a href="<?php the_permalink(); ?>">
+				<a href="<?php the_permalink(); ?>" class="link-gray">
 					<?php the_title(); ?>
 				</a>
 			</h3>
@@ -44,7 +44,7 @@ endif;
 				get_template_part( 'partials/byline', get_post_type( $post ) );
 			endif;
 			?>
-			<div class="story-text terminal-body-font <?php echo esc_attr( "mobile-hide-$hide_excerpt_on_mobile" ); ?>">
+			<div class="story-text terminal-body-font text-gray-lighter <?php echo esc_attr( "mobile-hide-$hide_excerpt_on_mobile" ); ?>">
 				<?php
 					the_excerpt();
 				?>

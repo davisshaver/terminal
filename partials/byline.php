@@ -114,8 +114,13 @@ endif;
 				if ( ! $hide_by ) {
 					esc_html_e( 'By ', 'terminal' );
 				}
-				the_author_posts_link();
+				printf(
+					'<a href="%s" class="link-gray-lighter">',
+					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) )
+				);
+				the_author();
 				?>
+				</a>
 			</div>
 		<?php
 		endif;
@@ -125,13 +130,18 @@ endif;
 			} else {
 				$time = get_the_time( 'F jS, Y' );
 			}
-		?>
-			<abbr class="date" title="<?php the_time( 'l, F j, Y \a\t g:ia' ); ?>"><?php echo esc_html( $time ); ?></abbr>
+			$archive_year  = get_the_time( 'Y' );
+			$archive_month = get_the_time( 'm' );
+			$archive_day   = get_the_time( 'd' );
+			?>
+			<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"  class="link-gray-lighter">
+				<abbr class="date link-gray-lighter" title="<?php the_time( 'l, F j, Y \a\t g:ia' ); ?>"><?php echo esc_html( $time ); ?></abbr>
+			</a>
 		<?php
 		endif;
 		if ( ! $hide_category ) :
 		?>
-			<div class="category"><?php the_category( ', ' ); ?></div>
+			<div class="category link-gray-lighter"><?php the_category( ', ' ); ?></div>
 		<?php
 		endif;
 		if (

@@ -25,7 +25,7 @@
 				<?php the_title(); ?>
 			</a>
 		</h4>
-		<div class="terminal-body-font">
+		<div class="terminal-body-font story-text">
 			<?php
 				the_excerpt();
 			?>

@@ -28,7 +28,7 @@ if ( is_page() ) {
 			);
 		}
 		?>
-		<h1 class="terminal-headline-font"><?php the_title(); ?></h1>
+		<h1 class="terminal-headline-featured-font"><?php the_title(); ?></h1>
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="image">
 				<?php the_post_thumbnail( 'terminal-primary-thumbnail' ); ?>

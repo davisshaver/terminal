@@ -8,8 +8,8 @@
 ?>
 
 <div class="hero-widget">
-	<h2 class="terminal-headline-font">
-		<a href="<?php the_permalink(); ?>">
+	<h2 class="terminal-headline-featured-font">
+		<a href="<?php the_permalink(); ?>" class="link-gray">
 			<?php the_title(); ?>
 		</a>
 	</h2>

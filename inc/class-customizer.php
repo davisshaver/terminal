@@ -54,6 +54,17 @@ class Customizer {
 		}
 
 		/**
+		 * Helper line height.
+		 *
+		 * @param string $key String.
+		 * @return string value.
+		 */
+		function terminal_customizer_line_height( $key ) {
+			return ( 'default' !== terminal_get_fm_theme_mod( 'typography', "${key}_line_height", 'default' ) ) ?
+			terminal_get_fm_theme_mod( 'typography', "${key}_line_height", 'default' ) : false;
+		}
+
+		/**
 		 * Helper font stylesheet.
 		 *
 		 * @param string $key String.
@@ -61,7 +72,7 @@ class Customizer {
 		 */
 		function terminal_customizer_font_stylesheet( $key ) {
 			$font = terminal_get_fm_theme_mod( 'typography', "${key}_font", 'none' );
-			if ( empty( $font['stylesheet'] || 'default' === $font['stylesheet'] ) ) {
+			if ( ! isset( $font['stylesheet'] ) || 'default' === $font['stylesheet'] ) {
 				return false;
 			}
 			return $font['stylesheet'];
@@ -75,7 +86,7 @@ class Customizer {
 		 */
 		function terminal_customizer_font_family( $key ) {
 			$font = terminal_get_fm_theme_mod( 'typography', "${key}_font", 'none' );
-			if ( empty( $font['family'] || 'default' === $font['family'] ) ) {
+			if ( ! isset( $font['family'] ) || 'default' === $font['family'] ) {
 				return 'none';
 			}
 			return $font['family'];
@@ -127,17 +138,19 @@ class Customizer {
 		$google_stylesheets = array();
 		$font_data = array(
 			'targets' => array(
-				'.terminal-share-button-font' => 'share',
-				'.terminal-utility-font' => 'utility',
-				'.terminal-headline-font, .terminal-headline-font a' => 'headline',
-				'.terminal-sidebar-header-font' => 'sidebar_header',
-				'.terminal-sidebar-body-font' => 'sidebar_body',
-				'.terminal-index-meta-font' => 'index_meta',
-				'.terminal-single-meta-font' => 'single_meta',
 				'.terminal-body-font' => 'body',
-				'.terminal-cta-tagline-font' => 'tagline',
 				'.terminal-cta-button-font' => 'cta_button',
+				'.terminal-cta-tagline-font' => 'cta_tagline',
+				'.terminal-nav-font' => 'nav',
+				'.terminal-headline-featured-font, .terminal-headline-featured-font a' => 'head_featured',
+				'.terminal-headline-font, .terminal-headline-font a' => 'headline',
+				'.terminal-index-meta-font' => 'index_meta',
 				'.terminal-loop-header-font' => 'loop_header',
+				'.terminal-share-button-font' => 'share',
+				'.terminal-sidebar-body-font' => 'sidebar_body',
+				'.terminal-sidebar-header-font' => 'sidebar_header',
+				'.terminal-single-meta-font' => 'single_meta',
+				'.terminal-utility-font' => 'utility',
 			),
 		);
 		echo '<style type="text/css">';
@@ -145,6 +158,7 @@ class Customizer {
 			$styles = array(
 				'font-size' => terminal_customizer_font_size( $value ),
 				'text-transform' => terminal_customizer_text_transform( $value ),
+				'line-height' => terminal_customizer_line_height( $value ),
 				'font-style' => terminal_customizer_font_style( $value ),
 				'font-weight' => terminal_customizer_weight( $value ),
 				'color' => terminal_customizer_color( $value ),
@@ -177,15 +191,6 @@ class Customizer {
 			echo ' } ';
 		}
 		?>
-
-			a {
-				color: <?php echo esc_attr( get_theme_mod( 'link_default_color_setting', '#333' ) ); ?>;
-			}
-
-			svg {
-				fill: <?php echo esc_attr( get_theme_mod( 'link_default_color_setting', '#333' ) ); ?>;
-			}
-
 			#nav-bar, #nav-bar-inside-more {
 				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?> !important;
 			}
@@ -334,15 +339,6 @@ class Customizer {
 				'transport'         => 'postMessage',
 			)
 		);
-		$wp_customize->add_setting(
-			'link_default_color_setting',
-			array(
-				'default'           => '#333',
-				'type'              => 'theme_mod',
-				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'refresh',
-			)
-		);
 		$wp_customize->add_setting( 'content_stories_header', array(
 			'capability'        => 'edit_theme_options',
 			'default'           => __( 'Latest Stories', 'terminal' ),
@@ -392,16 +388,6 @@ class Customizer {
 				'footer_accent_color_setting',
 				array(
 					'label'   => __( 'Footer accent color' ),
-					'section' => 'colors',
-				)
-			)
-		);
-		$wp_customize->add_control(
-			new \WP_Customize_Color_Control(
-				$wp_customize,
-				'link_default_color_setting',
-				array(
-					'label'   => __( 'Default link color' ),
 					'section' => 'colors',
 				)
 			)

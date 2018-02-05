@@ -49,7 +49,6 @@ if (window.AdLayersAPI &&
         10,
         500,
         ([thisSlotName, thisTag, thisTarget]) => {
-          console.log(thisSlotName, thisTag, thisTarget);
           jQuery(thisTarget).after(thisTag);
           (new AdLayersAPI()).lazyLoadAd({ slotName: thisSlotName, format: terminal.inlineAds.unit });
         },
