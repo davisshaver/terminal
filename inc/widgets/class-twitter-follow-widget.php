@@ -36,27 +36,12 @@ if ( class_exists( '\FM_Widget' ) ) {
 				return;
 			}
 			$cta = ! empty( $instance['call_to_action'] ) ? $instance['call_to_action'] : __( 'Follow us on Twitter', 'terminal' );
-			$icon = $this->buffer_template();
 			printf(
-				'<div id="%s" class="terminal-follow terminal-twitter terminal-twitter-sidebar terminal-share-button-font"><div class="terminal-custom-sidebar-interior"><a href="%s" target="_blank">%s %s</a></div></div>',
+				'<div id="%s" class="terminal-follow terminal-twitter terminal-twitter-sidebar terminal-share-button-font"><div class="terminal-custom-sidebar-interior"><a href="%s" target="_blank">%s</a></div></div>',
 				esc_attr( 'terminal-twitter-widget-sidebar' ),
 				esc_attr( "https://twitter.com/$twitter_handle" ),
-				$icon,
 				esc_html( $cta )
 			);
-		}
-
-		/**
-		 * Buffer template.
-		 *
-		 * @return string Buffered markup.
-		 */
-		public function buffer_template() {
-			ob_start();
-			get_template_part( 'partials/svg/twitter.svg' );	
-			$var = ob_get_contents();
-			ob_end_clean();
-			return $var;
 		}
 
 		/**
