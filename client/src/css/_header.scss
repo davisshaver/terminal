@@ -175,12 +175,8 @@
 		}
 
 		img {
-			width: 50px;
+			width: 25px;
 			height: 100%;
-
-			@media(max-width: 869px) {
-				width: 25px;
-			}
 		}
 
 		div {
