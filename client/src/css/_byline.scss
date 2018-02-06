@@ -2,10 +2,10 @@
 	display: flex;
 	flex-wrap: nowrap;
 	min-height: 30px;
-	padding: 30px 40px;
+	padding: 0 40px;
 
 	@media (max-width: 869px) {
-		padding: 30px;
+		padding: 0 30px;
 	}
 
 	box-sizing: border-box;

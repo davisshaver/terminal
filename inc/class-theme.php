@@ -41,7 +41,7 @@ class Theme {
 		);
 		add_theme_support( 'custom-header', $custom_header_args );
 		add_image_size( 'terminal-primary-thumbnail', 1600, 850, true );
-		add_image_size( 'terminal-thumbnail', 500, 500, false );
+		add_image_size( 'terminal-thumbnail', 500, 500, true );
 		add_image_size( 'terminal-widget-featured', 1400, 1000, true );
 
 		$custom_background_args = array(
