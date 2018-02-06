@@ -45,6 +45,7 @@
 	}
 
 	.category-widget {
+
 		.post-widget {
 			display: flex;
 			&.post-widget-featured {
@@ -59,13 +60,28 @@
 			box-sizing: border-box;
 		}
 		.story-text {
-			padding: 0 30px 30px 30px;
+			padding: 0 30px calc(30px - 1rem) 30px;
 		}
 
 		.image {
 			flex-shrink: 0;
 		}
+		.post-widget-loop {
+			margin: 0 0 30px 30px;
+		}
+		.post-widget-loop .image {
+			background-position: 50%;
+			background-size: cover;
+			background-repeat: no-repeat;
+			flex-basis: 100px;
 
+			a {
+				width: 100%;
+				height: 0;
+				display: block;
+				padding-top: 150%;
+			}	
+		}
 		.post-widget-featured {
 			.image {
 				margin: 0;
@@ -150,7 +166,19 @@
 	
 		.hero-secondary-widget {
 			flex-basis: 48%;
+			.image {
+				background-position: 50%;
+				background-size: cover;
+				background-repeat: no-repeat;
+				flex-basis: 100px;
 	
+				a {
+					width: 100%;
+					height: 0;
+					display: block;
+					padding-top: 100%;
+				}
+			}
 			a {
 				text-align: left !important;
 			}

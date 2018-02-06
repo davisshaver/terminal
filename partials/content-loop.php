@@ -24,11 +24,10 @@ endif;
 	<div class="post-flex-box">
 	<?php
 	if ( has_post_thumbnail() ) :
+		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-thumbnail' );
 	?>
-		<div class="image">
-			<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-				<?php the_post_thumbnail( 'terminal-primary-thumbnail', array( 'title' => get_the_title() ) ); ?>
-			</a>
+		<div class="image" style="background-image: url('<?php echo esc_url( $thumb['0'] ); ?>')">
+			<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"></a>
 		</div>
 	<?php
 	endif;
