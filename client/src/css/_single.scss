@@ -30,19 +30,11 @@
 	h1 {
 		hyphens: none;
 		margin: 0;
-		padding: 0 40px 20px 40px;
-
-		@media (max-width: 869px) {
-			padding: 0 30px 20px 30px;
-		}
+		padding: 0 30px 20px 30px;
 	}
 
 	#breadcrumbs {
-		padding: 30px 40px 20px 40px;
-
-		@media (max-width: 869px) {
-			padding: 30px 30px 20px 30px;
-		}
+		padding: 30px 30px 20px 30px;
 
 		margin: 0;
 	}
