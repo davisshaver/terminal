@@ -55,7 +55,9 @@ body {
 	max-width: 100vw;
 	display: block;
 	box-sizing: border-box;
-
+	.author-and-date {
+		justify-content: space-between;
+	}
 	.dfp-ad {
 		margin-bottom: 10px;
 	}
@@ -66,16 +68,10 @@ body {
 }
 
 .loop-header {
+	max-width: 100vw;
 	display: block;
-	padding: 10px 10px 10px 70px;
-	user-select: none;
-	max-width: 100%;
-	margin: 0 10px 10px -50px;
-
-	@media (max-width: 869px) {
-		margin: 0 0 10px 0;
-		padding: 10px;
-	}
+	padding: 30px;
+	margin: 10px;
 }
 
 #author {

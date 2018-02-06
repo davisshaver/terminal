@@ -16,18 +16,12 @@
 }
 
 .terminal-twitter-sidebar, .terminal-facebook-sidebar {
-	margin: 0 20px 10px 20px;
-	@media(max-width: 728px) {
-		margin: 0 0 10px 0;
-	}
+	margin: 10px;
 }
 .sidebar-section, .featured-section {
 	box-sizing: border-box;
 	border-radius: 3px;
-	margin: 0 20px 10px 20px;
-	@media(max-width: 728px) {
-		margin: 0 0 10px 0;
-	}
+	margin: 10px;
 
 	&.widget_ad_layers_ad_widget {
 		padding: 0;
