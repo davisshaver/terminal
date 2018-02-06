@@ -1,5 +1,8 @@
 body {
 	background-color: #fff;
+	&.single {
+		margin-bottom: 28px;
+	}
 }
 
 #container {
