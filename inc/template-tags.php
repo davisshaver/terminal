@@ -118,6 +118,17 @@ function terminal_print_author_bio_header() {
 		esc_html__( 'About the Author', 'terminal' )
 	);
 }
+
+/**
+ * Template function to print a comments header.
+ */
+function terminal_print_comments_header() {
+	printf(
+		'<h2 id="comments-header" class="loop-header terminal-loop-header-font">%s</h2>',
+		esc_html__( 'Comments', 'terminal' )
+	);
+}
+
 /**
  * Template function to print a recirc header.
  */
