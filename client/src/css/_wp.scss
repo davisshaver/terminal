@@ -5,44 +5,6 @@
 $m_small: 5px;
 $m_big: 20px;
 
-.alignnone {
-    margin:$m_big 0 $m_big 0;
-}
-.aligncenter, div.aligncenter {
-    display:block;
-    margin:$m_small auto $m_small auto;
-}
-.alignright {
-    float:right;
-    margin:$m_big 0 $m_big $m_big;
-}
-.alignleft {
-    float:left;
-    margin:$m_big $m_big $m_big 0;
-}
-.aligncenter {
-    display:block;
-    margin: $m_big auto $m_big auto;
-}
-a {
-    img.alignright {
-        float:right;
-        margin:$m_big 0 $m_big $m_big;
-    }
-    img.alignnone {
-        margin:$m_big 0 $m_big 0;
-    }
-    img.alignleft {
-        float:left;
-        margin:$m_big $m_big $m_big 0;
-    }
-    img.aligncenter {
-        display:block;
-        margin-left:auto;
-        margin-right:auto;
-    }
-}
-
 .wp-caption {
     background:#fff;
     border:1px solid #f0f0f0;

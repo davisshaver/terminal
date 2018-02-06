@@ -135,10 +135,12 @@
 		width: 100%;
 	}
 
-	.story-text {
-		padding: 0 30px;
-	}
 	.hero-widget {
+
+		h2 {
+			padding: 30px;
+			margin: 0;
+		}
 		a {
 			display: block;
 			height: 100%;

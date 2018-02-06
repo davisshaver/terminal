@@ -61,7 +61,9 @@ body {
 }
 
 twitterwidget {
-	width: inherit !important;
+	margin: auto;
+	min-width: unset !important;
+	padding: 30px;
 }
 
 
