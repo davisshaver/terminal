@@ -82,6 +82,12 @@ body {
 	}
 }
 
+body.author {
+	#author {
+		margin: 30px auto;
+	}
+}
+
 #author {
 	display: flex;
 	box-sizing: border-box;
