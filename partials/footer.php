@@ -31,6 +31,7 @@ $footer_data = terminal_get_footer_data( array(
 				'theme_location' => 'footer',
 				'menu_id'        => 'menu-footer',
 				'menu_class'     => 'link-gray',
+				'depth'          => 1,
 			) );
 			?>
 			<div id="copyright">

@@ -35,10 +35,19 @@
 
 #footer ul {
 	list-style: none;
+	padding: 0;
+	flex-direction: row;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 #footer li {
-	display: inline-block;
+
+	@media(max-width: 400px) {
+		display: block;
+		margin-bottom: 10px;
+	}
 }
 
 #ppc-logo {
@@ -59,7 +68,11 @@
 	padding: 10px 0;
 	text-align: center;
 
-	#footer-icons, #menu-footer, #copyright {
+	#menu-footer {
+		margin: 20px;
+	}
+
+	#footer-icons, #copyright {
 		margin: 20px 0;
 		width: 100%;
 	}
@@ -67,13 +80,6 @@
 	#ppc-logo {
 		margin: 40px 0 40px 0;
 		width: 100%;
-	}
-
-	#menu-footer {
-		margin: 20px 0;
-		padding: 20px 0;
-		display: flex;
-		justify-content: space-evenly;
 	}
 }
 
