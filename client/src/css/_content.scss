@@ -45,7 +45,9 @@ body {
 	flex-basis: 700px;
 	order: 1;
 	margin: 0 auto;
-
+	@media (max-height: 400px) {
+		max-width: 500px;
+	}
 	.dfp-ad {
 		text-align: center;
 	}
@@ -84,6 +86,8 @@ body {
 	align-items: center;
 	
 	@media (max-width: 400px) {
+		max-width: 300px;
+    margin: auto;
 		flex-direction: column;
 		.bio {
 			padding: 30px 0 0 0 !important;

@@ -9,7 +9,7 @@ a {
 	}
 }
 
-div.link-gray-lighter a, a.link-gray-lighter {
+div.link-gray-lighter a, a.link-gray-lighter, p.link-gray-lighter a {
 	text-decoration: none;
 	color: #999 !important;
 
@@ -20,7 +20,7 @@ div.link-gray-lighter a, a.link-gray-lighter {
 	}
 }
 
-div.link-gray a, a.link-gray {
+div.link-gray a, p.link-gray a, a.link-gray {
 	text-decoration: none;
 	color: #222 !important;
 

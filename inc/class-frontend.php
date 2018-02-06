@@ -30,10 +30,23 @@ class Frontend {
 			add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
 			add_filter( 'simple_local_avatar', [ $this, 'hack_for_ssl' ] );
 			add_action( 'wp_head', [ $this, 'maybe_print_app_meta' ] );
+			add_filter( 'wpseo_breadcrumb_single_link', [ $this, 'adjust_single_breadcrumb' ] );
 		}
 		$this->disable_emojis();
 	}
 
+	/**
+	 * Don't let Yoast duplicate title.
+	 *
+	 * @param string $link_output Current link output.
+	 * @return string filtered output
+	 */
+	public function adjust_single_breadcrumb( $link_output ) {
+		if ( strpos( $link_output, 'breadcrumb_last' ) !== false ) {
+			$link_output = '';
+		}
+		return $link_output;
+	}
 	/**
 	 * Maybe print iOS install bug.
 	 */

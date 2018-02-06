@@ -112,6 +112,15 @@ function terminal_print_featured_image_caption() {
 /**
  * Template function to print a recirc header.
  */
+function terminal_print_author_bio_header() {
+	printf(
+		'<h3 id="author-bio-header" class="loop-header terminal-loop-header-font">%s</h2>',
+		esc_html__( 'About the Author', 'terminal' )
+	);
+}
+/**
+ * Template function to print a recirc header.
+ */
 function terminal_print_recirc_header() {
 	printf(
 		'<h2 id="recirc-header" class="loop-header terminal-loop-header-font">%s</h2><a name="recirc"></a>',

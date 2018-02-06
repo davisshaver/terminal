@@ -12,6 +12,7 @@ $byline_data = terminal_get_byline_options( array(
 $default_gravatar = ! empty( $byline_data['default_gravatar'] ) ?
 	intval( $byline_data['default_gravatar'] ) :
 	false;
+terminal_print_author_bio_header();
 ?>
 <div id="author">
 	<div class="image">

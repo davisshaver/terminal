@@ -30,6 +30,7 @@ $footer_data = terminal_get_footer_data( array(
 			wp_nav_menu( array(
 				'theme_location' => 'footer',
 				'menu_id'        => 'menu-footer',
+				'menu_class'     => 'link-gray',
 			) );
 			?>
 			<div id="copyright">
