@@ -31,7 +31,7 @@ if ( is_page() ) {
 		<h1 class="terminal-headline-featured-font"><?php the_title(); ?></h1>
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="image">
-				<?php the_post_thumbnail( 'terminal-primary-thumbnail' ); ?>
+				<?php the_post_thumbnail( 'terminal-featured' ); ?>
 			</div>
 		<?php
 		terminal_print_featured_image_caption();

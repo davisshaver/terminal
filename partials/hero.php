@@ -18,7 +18,7 @@
 	?>
 		<div class="image">
 			<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-				<?php the_post_thumbnail( 'terminal-widget-featured', array( 'title' => get_the_title() ) ); ?>
+				<?php the_post_thumbnail( 'terminal-featured', array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
 		<div class="story-text terminal-sidebar-body-font">
