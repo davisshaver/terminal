@@ -68,7 +68,12 @@ $desktop_optional_mobile_override_flag = ! empty( $header_data['mobile_header_im
 					);
 					?>
 						<a title="<?php esc_attr_e( 'Home', 'terminal' ); ?>" href="<?php echo esc_url( home_url() ); ?>">
-							<img id="logo-image" src="<?php header_image(); ?>" draggable="false" alt="<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>" />
+							<img id="logo-image" src="<?php header_image(); ?>" draggable="false" alt="<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>" style="<?php
+							printf(
+								'max-height:%s;',
+								esc_attr( $header_data['desktop_max_height'] )
+							);
+							?>"/>
 						</a>
 					</div>
 					<?php
@@ -82,7 +87,17 @@ $desktop_optional_mobile_override_flag = ! empty( $header_data['mobile_header_im
 							'<div id="logo-mobile" style="max-height: %s">',
 							esc_attr( $header_data['mobile_max_height'] )
 						);
-						echo wp_get_attachment_image( $header_data['mobile_header_image_override'], 'full' );
+						echo wp_get_attachment_image(
+							$header_data['mobile_header_image_override'],
+							'full',
+							false,
+							array(
+								'style' => sprintf(
+									'max-width: %s;',
+									esc_attr( $header_data['mobile_max_height'] )
+								),
+							)
+						);
 						echo '</div>';
 						echo '</a>';
 					}
