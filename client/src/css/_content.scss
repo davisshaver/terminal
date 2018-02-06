@@ -72,6 +72,9 @@ body {
 	display: block;
 	padding: 15px 30px;
 	margin: 10px;
+	@media (max-width: 400px) {
+		margin: 0;
+	}
 }
 
 #author {
