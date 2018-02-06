@@ -128,7 +128,7 @@ endif;
 			if ( 'relative' === $format ) {
 				$time = terminal_time_ago();
 			} else {
-				$time = get_the_time( 'F jS, Y' );
+				$time = get_the_time( 'n/j/y g:i a' );
 			}
 			$archive_year  = get_the_time( 'Y' );
 			$archive_month = get_the_time( 'm' );
