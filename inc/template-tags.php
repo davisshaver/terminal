@@ -102,9 +102,9 @@ function terminal_print_featured_image_caption() {
 	$meta = apply_filters( 'terminal_featured_meta', $meta );
 	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
 		printf(
-			'<div class="featured-meta"><div class="featured-credit terminal-single-caption-font">%s</div><div class="featured-caption terminal-single-credit-font">%s</div></div>',
-			esc_html( $meta['credit'] ),
-			wp_kses_post( $meta['caption'] )
+			'<div class="featured-meta terminal-sidebar-body-font"><div class="featured-caption text-gray">%s</div><div class="featured-credit text-gray-lighter">%s</div></div>',
+			wp_kses_post( $meta['caption'] ),
+			esc_html( $meta['credit'] )
 		);
 	}
 }
@@ -205,12 +205,12 @@ function terminal_print_facebook_count_for_post() {
 function terminal_print_avatar( $size = 32, $default_author = false ) {
 	$default = null;
 	if ( is_int( $default_author ) ) {
-		$image = wp_get_attachment_image_src( $default_author, array( $size, $size ) );
+		$image = wp_get_attachment_image_src( $default_author, 'terminal-thumbnail' );
 		if ( ! empty( $image ) ) {
 			$default = $image[0];
 		}
 	}
-	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), $size, $default, false, array( 'scheme' => 'https' ) ) );
+	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), 'terminal-thumbnail', $default, false, array( 'scheme' => 'https' ) ) );
 }
 
 /**

@@ -47,6 +47,7 @@ class Frontend {
 		}
 		return $link_output;
 	}
+
 	/**
 	 * Maybe print iOS install bug.
 	 */
