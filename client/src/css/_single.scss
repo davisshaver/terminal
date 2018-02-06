@@ -1,5 +1,9 @@
 .post, .page {
 	margin: 0 10px 10px 10px;
+
+	@media (max-width: 400px) {
+		margin: 0 0 10px 0;
+	}
 }
 
 #single {

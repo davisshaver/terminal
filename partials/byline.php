@@ -37,9 +37,9 @@ $avatar_size = intval(
 
 $avatar_size_class = "flex-basis-$avatar_size";
 
-$hide_byline_on_mobile = ! empty( $template_data['hide_byline_on_mobile'] ) ?
-	true :
-	false;
+$hide_byline_on_mobile = ! empty( $template_data['hide_byline_on_mobile'] ) && ! is_singular() ?
+	'1' :
+	'0';
 
 $format = ! empty( $byline_data['time_ago_format'] ) ?
 	strval( $byline_data['time_ago_format'] ) :
