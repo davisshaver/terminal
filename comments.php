@@ -13,6 +13,7 @@ if ( is_active_sidebar( 'above-comments' ) ) {
 	dynamic_sidebar( 'above-comments' );
 	echo '</div>';
 }
+terminal_print_comments_header();
 ?>
 
 <iframe
