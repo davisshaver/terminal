@@ -77,7 +77,7 @@ body {
 #author {
 	display: flex;
 	box-sizing: border-box;
-	margin: 10px;
+	padding: 30px;
 	align-items: center;
 
 	.bio {
@@ -99,4 +99,9 @@ body {
 			height: auto;
 		}
 	}
+}
+
+#facebook-comments {
+	padding: 0 30px;
+	width: calc(100% - 60px) !important;
 }
