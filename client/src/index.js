@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let slotNum = 1;
     jQuery(document.body).on('post-load', () => {
       dataLayer.push({
-        page: slotNum,
+        terminal: {
+          infinitePage: slotNum,
+        },
         event: 'infiniteView',
       });
       const slotName = `${terminal.inlineAds.unit}_${slotNum}`;
