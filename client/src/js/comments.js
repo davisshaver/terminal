@@ -3,14 +3,13 @@
 export function setupComments() {
   const comments = document
     .getElementById('facebook-comments');
-  if (!comments) {
-    return;
+  if (comments) {
+    const height = comments
+      .contentWindow
+      .document.body.scrollHeight;
+    document.getElementById('facebook-comments').height =
+      height + 100;
   }
-  const height = comments
-    .contentWindow
-    .document.body.scrollHeight;
-  document.getElementById('facebook-comments').height =
-    height + 100;
 }
 
 export default {
