@@ -22,7 +22,6 @@ class Frontend {
 			remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 			remove_action( 'wp_head', 'feed_links', 2 );
 			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
-			add_action( 'wp_footer', [ $this, 'disable_wp_embed' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'disable_unipress_styles' ], 100 );
 			add_action( 'wp_print_scripts', [ $this, 'disable_unipress_scripts' ], 100 );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
@@ -99,13 +98,6 @@ class Frontend {
 	}
 
 	/**
-	 * Disable WP Embed script.
-	 */
-	public function disable_wp_embed() {
-		wp_dequeue_script( 'wp-embed' );
-	}
-
-	/**
 	 * Disable emojis for native.
 	 */
 	public function disable_emojis() {
@@ -136,10 +128,20 @@ class Frontend {
 			wp_enqueue_script( 'broadstreet', 'https://cdn.broadstreetads.com/init-2.min.js', array(), TERMINAL_VERSION, true );
 		}
 		if ( is_singular() ) {
-			wp_enqueue_script( TERMINAL_APP . '-single', get_template_directory_uri() . '/client/build/single.bundle.js', array(), TERMINAL_VERSION, true );
+			wp_enqueue_script( TERMINAL_APP . '-single', get_template_directory_uri() . '/client/build/single.bundle.js', array(), TERMINAL_VERSION, false );
 		} else {
-			wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.bundle.js', array(), TERMINAL_VERSION, true );
+			wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.bundle.js', array(), TERMINAL_VERSION, false );
 		}
+		wp_deregister_style( 'ad-layers' );
+		wp_deregister_style( 'ad-layers-dfp' );
+		wp_deregister_script( 'wp-mediaelement' );
+		wp_deregister_script( 'mediaelement-core' );
+		wp_deregister_script( 'mediaelement-migrate' );
+		wp_dequeue_style( 'wp-mediaelement' );
+		wp_deregister_style( 'tiled-gallery' );
+		wp_deregister_style( 'noticons' );
+		wp_dequeue_script( 'devicepx' );
+		wp_deregister_script( 'wp-embed' );
 	}
 
 	/**
