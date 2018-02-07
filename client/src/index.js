@@ -5,35 +5,33 @@ import './index.scss';
 import { setupMenu } from './js/menu';
 
 document.addEventListener('DOMContentLoaded', () => {
-  setupMenu();
-});
 
-function exponentialBackoff(toTry, maxTries = 5, delay, callback) {
-  const result = toTry();
-  let max = maxTries || 10;
-  if (result) {
-    callback(result);
-  } else if (max > 0) {
-    setTimeout(() => {
-      max -= 1;
-      exponentialBackoff(toTry, max, delay * 2, callback);
-    }, delay);
-  } else {
-    console.log('we give up');
+  function exponentialBackoff(toTry, maxTries = 5, delay, callback) {
+    const result = toTry();
+    let max = maxTries || 10;
+    if (result) {
+      callback(result);
+    } else if (max > 0) {
+      setTimeout(() => {
+        max -= 1;
+        exponentialBackoff(toTry, max, delay * 2, callback);
+      }, delay);
+    } else {
+      console.log('we give up');
+    }
   }
-}
 
-if (window.AdLayersAPI &&
-  window.adLayersDFP &&
-  window.jQuery &&
-  window.terminal &&
-  window.terminal.inlineAds &&
-  window.terminal.inlineAds.enabled &&
-  window.terminal.inlineAds.unit
-) {
-  let slotNum = 1;
-  jQuery(document.body).on('post-load', () => {
-    setTimeout(() => {
+  setupMenu();
+  if (window.AdLayersAPI &&
+    window.adLayersDFP &&
+    window.jQuery &&
+    window.terminal &&
+    window.terminal.inlineAds &&
+    window.terminal.inlineAds.enabled &&
+    window.terminal.inlineAds.unit
+  ) {
+    let slotNum = 1;
+    jQuery(document.body).on('post-load', () => {
       const slotName = `${terminal.inlineAds.unit}_${slotNum}`;
       const infiniteTarget = `#infinite-view-${slotNum}`;
       const adTag = jQuery('<div />')
@@ -54,6 +52,7 @@ if (window.AdLayersAPI &&
         },
       );
       slotNum += 1;
-    }, 500);
-  });
-}
+    });
+  }
+
+});
