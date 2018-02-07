@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* global jQuery, AdLayersAPI, adLayersDFP, terminal */
+/* global jQuery, AdLayersAPI, adLayersDFP, terminal, dataLayer */
 
 import './index.scss';
 import { setupMenu } from './js/menu';
@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ) {
     let slotNum = 1;
     jQuery(document.body).on('post-load', () => {
+      dataLayer.push({
+        page: slotNum,
+        event: 'infiniteView',
+      });
       const slotName = `${terminal.inlineAds.unit}_${slotNum}`;
       const infiniteTarget = `#infinite-view-${slotNum}`;
       const adTag = jQuery('<div />')
