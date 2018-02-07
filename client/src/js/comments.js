@@ -9,6 +9,8 @@ export function setupComments() {
       .document.body.scrollHeight;
     document.getElementById('facebook-comments').height =
       height + 100;
+  } else {
+    console.log('No comments');
   }
 }
 
