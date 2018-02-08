@@ -46,7 +46,7 @@ $format = ! empty( $byline_data['time_ago_format'] ) ?
 	'relative';
 
 $default_gravatar = ! empty( $byline_data['default_gravatar'] ) ?
-	intval( $byline_data['default_gravatar'] ):
+	intval( $byline_data['default_gravatar'] ) :
 	false;
 
 $hide_avatar = boolval(

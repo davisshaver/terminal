@@ -214,6 +214,20 @@ function terminal_print_facebook_count_for_post() {
  * @param int|bool $default_author Opt default author.
  */
 function terminal_print_avatar( $size = 32, $default_author = false ) {
+	$author_id = get_the_author_meta( 'ID' );
+	$data = Terminal\Data::instance();
+	$terminal_headshot = $data->get_terminal_headshot( $author_id );
+	if ( ! empty( $terminal_headshot ) ) {
+		echo wp_get_attachment_image( $terminal_headshot, 'terminal-thumbnail', false, array( 'scheme' => 'https' ) );
+		return;
+	}
+	$local_avatar = $data->get_local_avatar_headshot( $author_id );
+	if ( ! empty( $local_avatar ) ) {
+		return printf(
+			'<img src="%s" class="avatar avatar-full photo" />',
+			esc_url( $local_avatar['full'] )
+		);
+	}
 	$default = null;
 	if ( is_int( $default_author ) ) {
 		$image = wp_get_attachment_image_src( $default_author, 'terminal-thumbnail' );
@@ -221,7 +235,12 @@ function terminal_print_avatar( $size = 32, $default_author = false ) {
 			$default = $image[0];
 		}
 	}
-	echo wp_kses_post( get_avatar( get_the_author_meta( 'ID' ), 'terminal-thumbnail', $default, false, array( 'scheme' => 'https' ) ) );
+	if ( ! empty( $default ) ) {
+		return printf(
+			'<img src="%s" class="avatar avatar-full photo" />',
+			esc_url( $default )
+		);
+	}
 }
 
 /**

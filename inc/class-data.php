@@ -89,6 +89,26 @@ class Data {
 	}
 
 	/**
+	 * Get local avatar.
+	 *
+	 * @param int $author_id Author ID.
+	 * @return int|null Headshot ID or empty.
+	 */
+	public function get_local_avatar_headshot( $author_id ) {
+		return get_user_meta( $author_id, 'simple_local_avatar', true );
+	}
+
+	/**
+	 * Get headshot.
+	 *
+	 * @param int $author_id Author ID.
+	 * @return int|null Headshot ID or empty.
+	 */
+	public function get_terminal_headshot( $author_id ) {
+		return get_user_meta( $author_id, 'terminal_author_fields_terminal_author_image', true );
+	}
+
+	/**
 	 * Are inline stream ads enabled?
 	 *
 	 * @return boolean Has inline ads
