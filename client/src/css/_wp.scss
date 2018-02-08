@@ -5,38 +5,6 @@
 $m_small: 5px;
 $m_big: 20px;
 
-.wp-caption {
-    background:#fff;
-    border:1px solid #f0f0f0;
-    max-width:96%; /* Image does not overflow the content area */
-    padding:5px 3px 10px;
-    text-align:center;
-
-    &.alignnone {
-        margin:$m_small $m_big $m_big 0;
-    }
-    &.alignleft {
-        margin:$m_small $m_big $m_big 0;
-    }
-    &.alignright {
-        margin:$m_small 0 $m_big $m_big;
-    }
-    img {
-        border:0 none;
-        height:auto;
-        margin:0;
-        max-width:98.5%;
-        padding:0;
-        width:auto;
-    }
-    p.wp-caption-text {
-        font-size:11px;
-        line-height:17px;
-        margin:0;
-        padding:0 4px 5px;
-    }
-}
-
 /* Text meant only for screen readers. */
 .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px);
