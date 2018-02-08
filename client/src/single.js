@@ -3,7 +3,7 @@ import './single.scss';
 import { setupMenu } from './js/menu';
 import { setupComments } from './js/comments';
 
-document.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   setupMenu();
   setupComments();
 });
