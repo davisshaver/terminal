@@ -16,11 +16,9 @@ article.post, article.page {
 		padding: 2px 0 2px 10px;
 
 		.featured-caption {
-			p:first-of-type {
-				margin: 0;
-				padding: 0;
+			p {
+				margin: 0 10px 0 0;
 			}
-			margin-bottom: 10px;
 		}
 		.featured-credit {
 
