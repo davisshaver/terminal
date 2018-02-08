@@ -61,17 +61,18 @@ article.post, article.page {
 				min-width: calc(100% + 60px);
 			}
 			img:not(.size-full) {
-				margin: 0 30px 30px 30px;
+				margin: 0 auto 30px auto;
 				&.alignnone, &.aligncenter {
-					min-width: calc(50% - 60px);
+					max-width: 50%;
+					display: block;
 				}
 				&.alignleft {
 					float: left;
-					min-width: calc(50% - 30px);
+					max-width: 50%;
 				}
 				&.alignright {
 					float: right;
-					min-width: calc(50% - 30px);
+					max-width: 50%;
 				}
 			}
 
@@ -135,6 +136,7 @@ article.post, article.page {
 	.image img {
 		width: 100%;
 		box-sizing: border-box;
+		clear: both;
 	}
 }
 
