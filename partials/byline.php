@@ -109,7 +109,7 @@ endif;
 		<?php
 		if ( ! $hide_author ) :
 		?>
-			<div class="author">
+			<div class="author text-gray-lighter">
 				<?php
 				if ( ! $hide_by ) {
 					esc_html_e( 'By ', 'terminal' );
