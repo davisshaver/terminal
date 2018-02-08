@@ -142,6 +142,7 @@
 			height: 100%;
 			text-align: center;
 			width: 100%;
+			hyphens: none;
 		}
 
 		img {
@@ -171,6 +172,7 @@
 			}
 			a {
 				text-align: left !important;
+				hyphens: none;
 			}
 		}
 	}
