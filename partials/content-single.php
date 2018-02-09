@@ -43,7 +43,9 @@ if ( is_page() ) {
 		endif;
 		?>
 		<div class="story-text terminal-body-font">
-			<?php the_content( '<p>Read the rest of this entry &raquo;</p>' ); ?>
+			<?php
+			the_content( '<p>Read the rest of this entry &raquo;</p>' );
+			?>
 			<?php wp_link_pages(); ?> 
 		</div>
 		<?php

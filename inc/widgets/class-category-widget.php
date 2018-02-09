@@ -39,6 +39,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				'cat'                 => $instance['category'],
 				'posts_per_page'      => $instance['number'],
 				'ignore_sticky_posts' => true,
+				'post__not_in'        => is_single() ? array( get_the_ID() ) : array(),
 			) );
 			if ( $cat_query->have_posts() ) :
 				// phpcs:ignore

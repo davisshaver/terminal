@@ -37,6 +37,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 			$cat_query = new \WP_Query( array(
 				'posts_per_page'      => 1,
 				'ignore_sticky_posts' => true,
+				'post__not_in'        => is_single() ? array( get_the_ID() ) : array(),
 				'tax_query' => array(
 					array(
 						'taxonomy' => 'terminal-placement',
