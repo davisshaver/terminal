@@ -150,7 +150,7 @@ class Customizer {
 				'.terminal-sidebar-body-font' => 'sidebar_body',
 				'.terminal-sidebar-header-font' => 'sidebar_header',
 				'.terminal-single-meta-font' => 'single_meta',
-				'.terminal-utility-font' => 'utility',
+				'body, .terminal-utility-font' => 'utility',
 			),
 		);
 		echo '<style type="text/css">';
