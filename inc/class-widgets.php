@@ -32,6 +32,7 @@ class Widgets {
 			if ( terminal_has_broadstreet_enabled() ) {
 				require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
 			}
+			require_once __DIR__ . '/widgets/class-author-widget.php';
 			require_once __DIR__ . '/widgets/class-category-widget.php';
 			require_once __DIR__ . '/widgets/class-hero-widget.php';
 			require_once __DIR__ . '/widgets/class-hero-secondary-widget.php';
