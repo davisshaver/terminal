@@ -416,3 +416,35 @@ function terminal_get_layout_data( $default = array() ) {
 	$data = Terminal\Data::instance();
 	return $data->get_prepared_layout_data( $default );
 }
+
+function terminal_get_users_by_role( $role ) {
+	$wp_user_search = new WP_User_Query( array( 'role' => $role ) );
+	$users       = $wp_user_search->get_results();
+	return $users;
+}
+
+function terminal_authors( $user_roles = array( 'author', 'editor', 'administrator' ), $show_fullname = true ) {
+	$users = array();
+	echo '<ul>';
+	foreach ( $user_roles as $role ) {
+		$users = array_merge( $users, terminal_get_users_by_role( $role ) );
+	}
+	$users_with_posts = array();
+	foreach ( $users as $user ) {
+		$post_count = count_user_posts( $user->ID, 'post' );
+		if ( $post_count ) {
+			$users_with_posts[ $user->user_login ] = sprintf(
+				'<li><a href="%s">%s (%s)</a></li>',
+				get_author_posts_url( $user->ID ),
+				$user->display_name,
+				$post_count
+			);
+		}
+	}
+	ksort( $users_with_posts );
+	// now we can spit the output out.
+	foreach ( $users_with_posts as $user ) {
+		echo $user;
+	}
+	echo '</ul>';
+}

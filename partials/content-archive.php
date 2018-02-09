@@ -45,20 +45,25 @@ if ( is_page() ) {
 		<div class="story-text terminal-body-font">
 			<?php the_content( '<p>Read the rest of this entry &raquo;</p>' ); ?>
 			<?php wp_link_pages(); ?> 
-			<div class="archive-months">
-					<h2><?php esc_html_e( 'Post Archives', 'terminal' ); ?></h2>
-					<ul>
-						<?php
-						$args = array(
-							'type'            => 'monthly',
-							'format'          => 'html',
-							'show_post_count' => true,
-						);
-						wp_get_archives( $args );
-						?>
-					</ul>
+			<div style="display: flex;">
+				<div class="archive-months" style="float: left; width: calc(50% - 15px); margin-right: 15px;">
+						<h2><?php esc_html_e( 'Post Archives', 'terminal' ); ?></h2>
+						<ul>
+							<?php
+							$args = array(
+								'type'            => 'monthly',
+								'format'          => 'html',
+								'show_post_count' => true,
+							);
+							wp_get_archives( $args );
+							?>
+						</ul>
+				</div>
+				<div class="archive-authors" style="float: right; width: calc(50% - 15px); margin-left: 15px;">
+					<h2><?php esc_html_e( 'Author Archives', 'terminal' ); ?></h2>
+					<?php terminal_authors(); ?>
+				</div>
 			</div>
-		</div>
 		<?php
 		if ( 'bottom' === $single_data['single_meta_position'] ) :
 			get_template_part( 'partials/byline', get_post_type( $post ) );
