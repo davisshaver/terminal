@@ -130,6 +130,16 @@ function terminal_print_comments_header() {
 }
 
 /**
+ * Template function to print an after article header.
+ */
+function terminal_print_after_article_header() {
+	printf(
+		'<h2 id="after-article-header" class="loop-header terminal-loop-header-font">%s</h2>',
+		esc_html__( 'More Options to Share', 'terminal' )
+	);
+}
+
+/**
  * Template function to print a recirc header.
  */
 function terminal_print_recirc_header() {

@@ -90,6 +90,7 @@ class Theme {
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 		add_filter( 'unipress_push_taxonomies_post_types', [ $this, 'remove_unipress_buggy_tax' ] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
+		add_filter('essb_is_theme_integrated', '__return_true');
 	}
 
 	/**
@@ -147,6 +148,15 @@ class Theme {
 			'before_widget' => '<div id="%1$s" class="footer-section %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<div class="footer-header">',
+			'after_title'   => '</div>',
+		) );
+		register_sidebar( array(
+			'name'          => __( 'After Article ', 'terminal' ),
+			'id'            => 'after-article',
+			'description'   => __( 'After Article', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="after-article-section %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="after-article-header">',
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(

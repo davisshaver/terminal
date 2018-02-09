@@ -54,6 +54,12 @@ if ( is_page() ) {
 	</div>
 	<?php
 	get_template_part( 'partials/share' );
+	if ( is_active_sidebar( 'after-article' ) ) {
+		echo '<div id="after-article">';
+		terminal_print_after_article_header();
+		dynamic_sidebar( 'after-article' );
+		echo '</div>';
+	}
 	if ( ! is_page() && empty( $single_data['hide_bio_on_single'] ) ) :
 		get_template_part( 'partials/author-snippet' );
 	endif;
