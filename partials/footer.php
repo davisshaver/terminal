@@ -23,7 +23,7 @@ $footer_data = terminal_get_footer_data( array(
 		<div id="footer-spread">
 			<div id="footer-icons">
 				<a href="<?php echo esc_url( bloginfo( 'rss2_url' ) ); ?>">
-					<img height="18" width="18" src="<?php echo esc_url( get_template_directory_uri() ); ?>/client/static/images/rss.png" alt="<?php esc_attr_e( 'RSS logo', 'terminal' ); ?>" />
+					<img class="lazyload" height="18" width="18" data-src="<?php echo esc_url( get_template_directory_uri() ); ?>/client/static/images/rss.png" alt="<?php esc_attr_e( 'RSS logo', 'terminal' ); ?>" />
 				</a>
 			</div>
 			<?php
@@ -46,7 +46,7 @@ $footer_data = terminal_get_footer_data( array(
 			</div>
 			<div id="ppc-logo">
 				<a href="https://phillypublishing.com" title="<?php esc_attr_e( 'Powered by Philadelphia Publishing Company' ); ?>">
-					<img draggable="false" src="<?php echo esc_url( get_template_directory_uri() ); ?>/client/static/images/ppc.png" alt="<?php esc_attr_e( 'Powered by Philadelphia Publishing Company logo' ); ?>" />
+					<img class="lazyload" draggable="false" data-src="<?php echo esc_url( get_template_directory_uri() ); ?>/client/static/images/ppc.png" alt="<?php esc_attr_e( 'Powered by Philadelphia Publishing Company logo' ); ?>" />
 				</a>
 			</div>
 		</div>
