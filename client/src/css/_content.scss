@@ -1,7 +1,7 @@
 body {
 	background-color: #fff;
 	&.single {
-		margin-bottom: 28px;
+		margin-bottom: 38px;
 
 		@supports(position:sticky) { 
 			margin-bottom: 0;
