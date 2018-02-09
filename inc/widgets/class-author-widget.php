@@ -38,18 +38,22 @@ if ( class_exists( '\FM_Widget' ) ) {
 				'author'              => get_the_author_meta( 'ID' ),
 				'posts_per_page'      => 3,
 				'ignore_sticky_posts' => true,
+				'post__not_in'        => array( get_the_ID() ),
 			) );
 			if ( $author_query->have_posts() ) :
 				// phpcs:ignore
 				echo $args['before_widget'];
-				if ( ! empty( $widget_title ) && empty( $instance['disable_header'] ) ) {
-					// phpcs:ignore
-					echo $args['before_title'] . $widget_title . $args['after_title'];
-				}
+				printf(
+					'%s %s %s %s',
+					$args['before_title'],
+					esc_html( __( 'More by ', 'terminal' ) ),
+					get_the_author_meta( 'first_name' ),
+					$args['after_title']
+				);
 				echo '<div class="category-widget">';
-				while ( $cat_query->have_posts() ) :
-					$cat_query->the_post();
-					if ( 0 === $cat_query->current_post ) {
+				while ( $author_query->have_posts() ) :
+					$author_query->the_post();
+					if ( 0 === $author_query->current_post ) {
 						get_template_part( 'partials/post-widget-featured' );
 					} else {
 						get_template_part( 'partials/post-widget' );
