@@ -30,10 +30,21 @@ class Frontend {
 			add_filter( 'simple_local_avatar', [ $this, 'hack_for_ssl' ] );
 			add_action( 'wp_head', [ $this, 'maybe_print_app_meta' ] );
 			add_filter( 'wpseo_breadcrumb_single_link', [ $this, 'adjust_single_breadcrumb' ] );
+			add_filter( 'jetpack_implode_frontend_css', '__return_false' );
+			add_action( 'wp_head', [ $this, 'remove_jetpack_crap' ], 130 );
 		}
 		$this->disable_emojis();
 	}
 
+	/**
+	 * Remove Jetpack crap.
+	 */
+	public function remove_jetpack_crap() {
+		wp_dequeue_style( 'wpcom-notes-admin-bar' );
+		wp_deregister_script( 'wpcom-notes-common' );
+		wp_deregister_script( 'wpcom-notes-admin-bar' );
+		wp_deregister_style( 'noticons' );
+	}
 	/**
 	 * Don't let Yoast duplicate title.
 	 *
@@ -139,9 +150,11 @@ class Frontend {
 		wp_deregister_script( 'mediaelement-migrate' );
 		wp_dequeue_style( 'wp-mediaelement' );
 		wp_deregister_style( 'tiled-gallery' );
-		wp_deregister_style( 'noticons' );
+		wp_deregister_style( 'wp-parsely-style' );
 		wp_dequeue_script( 'devicepx' );
 		wp_deregister_script( 'wp-embed' );
+		wp_deregister_style( 'the-neverending-homepage' );
+		wp_deregister_style( 'tiled-gallery' );
 	}
 
 	/**
