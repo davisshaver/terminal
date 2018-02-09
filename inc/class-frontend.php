@@ -43,6 +43,7 @@ class Frontend {
 		wp_dequeue_style( 'wpcom-notes-admin-bar' );
 		wp_deregister_script( 'wpcom-notes-common' );
 		wp_deregister_script( 'wpcom-notes-admin-bar' );
+		wp_deregister_style( 'tiled-gallery' );
 		wp_deregister_style( 'noticons' );
 	}
 	/**
@@ -149,12 +150,12 @@ class Frontend {
 		wp_deregister_script( 'mediaelement-core' );
 		wp_deregister_script( 'mediaelement-migrate' );
 		wp_dequeue_style( 'wp-mediaelement' );
-		wp_deregister_style( 'tiled-gallery' );
 		wp_deregister_style( 'wp-parsely-style' );
 		wp_dequeue_script( 'devicepx' );
 		wp_deregister_script( 'wp-embed' );
 		wp_deregister_style( 'the-neverending-homepage' );
 		wp_deregister_style( 'tiled-gallery' );
+		wp_deregister_script( 'tiled-gallery' );
 	}
 
 	/**
