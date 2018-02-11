@@ -16,11 +16,9 @@
 	}
 	terminal_print_comments_header();
 
-	if ( ! function_exists( 'coral_talk_comments_template' ) ) {
-		return;
+	if ( function_exists( 'coral_talk_comments_template' ) ) {
+		coral_talk_comments_template();
 	}
-
-	coral_talk_comments_template();
 
 	terminal_print_facebook_comments_header();
 	?>
