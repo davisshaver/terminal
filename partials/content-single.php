@@ -38,6 +38,11 @@ if ( is_page() ) {
 		endif;
 		?>
 		<?php
+		if ( is_active_sidebar( 'before-article' ) ) {
+			echo '<div id="before-article">';
+			dynamic_sidebar( 'before-article' );
+			echo '</div>';
+		}
 		if ( 'middle' === $single_data['single_meta_position'] ) :
 			get_template_part( 'partials/byline', get_post_type( $post ) );
 		endif;

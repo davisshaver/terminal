@@ -151,6 +151,15 @@ class Theme {
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(
+			'name'          => __( 'Before Article ', 'terminal' ),
+			'id'            => 'before-article',
+			'description'   => __( 'After Article', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="before-article-section %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="before-article-header">',
+			'after_title'   => '</div>',
+		) );
+		register_sidebar( array(
 			'name'          => __( 'After Article ', 'terminal' ),
 			'id'            => 'after-article',
 			'description'   => __( 'After Article', 'terminal' ),
