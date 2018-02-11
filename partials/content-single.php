@@ -71,7 +71,7 @@ if ( is_page() ) {
 	$default = ! post_password_required() && comments_open( get_the_ID() );
 	$terminal_comments_open = apply_filters( 'terminal_comments_open', $default );
 	if ( ! is_page() && $terminal_comments_open ) :
-		comments_template();
+		get_template_part( 'comments' );
 	endif;
 	?>
 </article>

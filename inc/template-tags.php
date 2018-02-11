@@ -122,6 +122,20 @@ function terminal_print_author_bio_header() {
 /**
  * Template function to print a comments header.
  */
+function terminal_print_facebook_comments_header() {
+	ob_start();
+	get_template_part( 'partials/svg/down.svg' );
+	$down = ob_get_contents();
+	ob_end_clean();
+	printf(
+		'<h2 id="facebook-comments-header" class="loop-header terminal-loop-header-font">%s %s</h2>',
+		esc_html__( 'Facebook Comments', 'terminal' ),
+		$down
+	);
+}
+/**
+ * Template function to print a comments header.
+ */
 function terminal_print_comments_header() {
 	printf(
 		'<h2 id="comments-header" class="loop-header terminal-loop-header-font">%s</h2>',
