@@ -144,12 +144,6 @@ article.post, article.page {
 
 #comments-sidebar {
 	padding: 30px 0;
-	.dfp-ad::before {
-		content: 'Ad';
-		margin: 15px;
-		text-decoration: underline;
-		display: block;
-	}
 }
 
 #recirc-header {
@@ -166,11 +160,14 @@ article.post, article.page {
 		box-sizing: border-box;
 	}
 }
+
 .after-article-section > .textwidget > .essb-shortcode {
 	margin: 30px;
+}
+.before-article-section > .textwidget > .essb-shortcode ,	.after-article-section > .textwidget > .essb-shortcode {
 
-	.essb_width_columns_2 li {
-		width: 48%;
+	.essb_width_columns_3 li {
+		width: 31%;
 		padding: 1% !important;
 	}
 }
