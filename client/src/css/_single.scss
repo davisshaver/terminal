@@ -144,6 +144,12 @@ article.post, article.page {
 
 #comments-sidebar {
 	padding: 30px 0;
+	.dfp-ad::before {
+		content: 'Ad';
+		margin: 15px;
+		text-decoration: underline;
+		display: block;
+	}
 }
 
 #recirc-header {
