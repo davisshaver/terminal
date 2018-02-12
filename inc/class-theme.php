@@ -44,6 +44,7 @@ class Theme {
 		add_image_size( 'terminal-thumbnail', 500, 500, true );
 		add_image_size( 'terminal-thumbnail-small', 100, 100, true );
 		add_image_size( 'terminal-featured', 1404, 740, false );
+		add_filter( 'image_size_names_choose', [ $this, 'filter_image_size_names_choose' ] );
 
 		$custom_background_args = array(
 			'default-color' => '#f4f4f4',
@@ -90,7 +91,7 @@ class Theme {
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 		add_filter( 'unipress_push_taxonomies_post_types', [ $this, 'remove_unipress_buggy_tax' ] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
-		add_filter('essb_is_theme_integrated', '__return_true');
+		add_filter( 'essb_is_theme_integrated', '__return_true' );
 	}
 
 	/**
@@ -153,7 +154,7 @@ class Theme {
 		register_sidebar( array(
 			'name'          => __( 'Before Article ', 'terminal' ),
 			'id'            => 'before-article',
-			'description'   => __( 'After Article', 'terminal' ),
+			'description'   => __( 'Before Article', 'terminal' ),
 			'before_widget' => '<div id="%1$s" class="before-article-section %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<div class="before-article-header">',
@@ -223,6 +224,18 @@ class Theme {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			remove_menu_page( 'tools.php' );
 		}
+	}
+
+	/**
+	 * Filter image sizes shown.
+	 *
+	 * @param array $sizes Existing sizes.
+	 * @return array Filtered sizes.
+	 */
+	public function filter_image_size_names_choose( $sizes ) {
+		unset( $sizes['thumbnail'] );
+		unset( $sizes['large'] );
+		return $sizes;
 	}
 }
 
