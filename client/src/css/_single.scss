@@ -165,12 +165,19 @@ article.post, article.page {
 	margin: 30px;
 }
 .before-article-section > .textwidget > .essb-shortcode ,	.after-article-section > .textwidget > .essb-shortcode {
-
 	.essb_links.essb_width_flex ul {
 		justify-content: center;
+		flex-wrap: wrap;
 		li {
 			max-width: 250px;
+			flex-basis: 50px;
+			flex-grow: 1;
+			flex-shrink: 1;
 		}
+	}
+	.essb_width_columns_3 li {
+		width: 31%;
+		padding: 1% !important;
 	}
 }
 
