@@ -179,6 +179,8 @@ article.post, article.page {
 		flex-wrap: wrap;
 		li {
 			flex-basis: 20%;
+			flex-grow: 1;
+			flex-shrink: 1;
 			@media (max-width: 1000px) {
 				flex-basis: 25%;
 			}
