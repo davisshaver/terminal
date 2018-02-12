@@ -19,6 +19,7 @@
 	width: 1080px;
 
 	@supports(position:sticky) {
+		clear: both;
 		margin: 0 !important;
 		width: auto;
 	}
