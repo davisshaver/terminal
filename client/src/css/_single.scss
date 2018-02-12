@@ -152,13 +152,6 @@ article.post, article.page {
 
 .before-article-section > .textwidget > .essb-shortcode { 
 	margin: 30px 30px 0 30px;
-	.essb_links.essb_width_flex li a {
-		width: 95%;
-		white-space: nowrap!important;
-		margin: 2.5%;
-		text-align: center;
-		box-sizing: border-box;
-	}
 }
 
 .after-article-section > .textwidget > .essb-shortcode {
@@ -169,12 +162,20 @@ article.post, article.page {
 		justify-content: center;
 		flex-wrap: wrap;
 		li {
-			flex-basis: 50%;
+			flex-basis: 20%;
+			flex-grow: 1;
 			flex-shrink: 1;
+			max-width: 300px;
+			text-align: center;
+
+			a {
+				margin: 2.5%;
+				width: 95%;
+			}
 		}
 	}
-	.essb_width_columns_3 li {
-		width: 31%;
+	.essb_width_columns_2 li {
+		width: 48%;
 		padding: 1% !important;
 	}
 }
