@@ -166,12 +166,15 @@ article.post, article.page {
 }
 .before-article-section > .textwidget > .essb-shortcode ,	.after-article-section > .textwidget > .essb-shortcode {
 
-	.essb_width_columns_3 li {
-		width: 31%;
-		padding: 1% !important;
+	.essb_links.essb_width_flex ul {
+		justify-content: center;
+		li {
+			max-width: 250px;
+		}
 	}
 }
 
 .essb_links {
 	margin: 0;
 }
+
