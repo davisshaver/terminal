@@ -207,6 +207,9 @@ article.post, article.page {
 			&.essb_totalcount_item {
 				color: #999 !important;
 			}
+			.essb_link_sharebtn span.essb_network_name.essb_noname::before {
+				content: 'Share';
+			}
 		}
 	}
 	.essb_width_columns_2 li {
