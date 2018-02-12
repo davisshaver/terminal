@@ -171,6 +171,15 @@ article.post, article.page {
 			a {
 				width: calc(100% - 30px);
 			}
+			&.essb_link_sharebtn a {
+				color: #999 !important;
+				border: 2px solid #999;
+				background-color: #fff !important;
+				&:hover {
+					color: #fff !important;
+					background-color: #999 !important;
+				}
+			}
 		}
 	}
 	.essb_width_columns_2 li {
@@ -182,4 +191,3 @@ article.post, article.page {
 .essb_links {
 	margin: 0;
 }
-
