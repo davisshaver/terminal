@@ -135,7 +135,7 @@ endif;
 			$archive_day   = get_the_time( 'd' );
 			?>
 			<div>
-				<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>"  class="link-gray-lighter">
+				<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>" class="link-gray-lighter">
 					<abbr class="date link-gray-lighter" title="<?php the_time( 'l, F j, Y \a\t g:ia' ); ?>"><?php echo esc_html( $time ); ?></abbr>
 				</a>
 			</div>
