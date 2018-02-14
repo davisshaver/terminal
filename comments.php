@@ -14,9 +14,9 @@
 		dynamic_sidebar( 'above-comments' );
 		echo '</div>';
 	}
-	terminal_print_comments_header();
 
 	if ( function_exists( 'coral_talk_comments_template' ) ) {
+		terminal_print_comments_header();
 		coral_talk_comments_template();
 	}
 
