@@ -127,10 +127,10 @@ $desktop_optional_mobile_override_flag = ! empty( $header_data['mobile_header_im
 						if ( ! empty( $header_data['cta_link'] ) ) {
 							printf( '<a href="%s">', esc_url( $header_data['cta_link'] ) );
 						}
-						$image = wp_get_attachment_image_src( $header_data['cta_icon'], 'thumbnail' );
+						$image = wp_get_attachment_image_src( $header_data['cta_icon'], 'terminal-uncut-thumbnail-small' );
 						if ( ! empty( $image ) ) {
 							printf(
-								'<img src="%s" />',
+								'<img class="terminal-cta-image" src="%s" />',
 								esc_url( $image[0] )
 							);
 						}

@@ -61,18 +61,18 @@ article.post, article.page {
 			img:not(.size-full) {
 				margin: 0 auto 30px auto;
 				&.alignnone, &.aligncenter {
-					max-width: 50%;
+					max-width: calc(50% - 30px);
 					display: block;
 				}
 				&.alignleft {
 					float: left;
 					margin-right: 30px;
-					max-width: 50%;
+					max-width: calc(50% - 30px);
 				}
 				&.alignright {
 					float: right;
 					margin-left: 30px;
-					max-width: 50%;
+					max-width: calc(50% - 30px);
 				}
 				@media (max-width: 400px) {
 					float: none !important;
