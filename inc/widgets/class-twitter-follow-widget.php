@@ -39,7 +39,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 			printf(
 				'<div id="%s" class="terminal-follow terminal-twitter terminal-twitter-sidebar terminal-share-button-font"><div class="terminal-custom-sidebar-interior"><a href="%s" target="_blank">%s</a></div></div>',
 				esc_attr( 'terminal-twitter-widget-sidebar' ),
-				esc_attr( "https://twitter.com/$twitter_handle" ),
+				esc_url( "https://twitter.com/$twitter_handle" ),
 				esc_html( $cta )
 			);
 		}

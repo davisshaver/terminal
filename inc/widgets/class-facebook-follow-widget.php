@@ -39,7 +39,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 			printf(
 				'<div id="%s" class="terminal-follow terminal-facebook terminal-facebook-sidebar terminal-share-button-font"><div class="terminal-custom-sidebar-interior"><a href="%s" target="_blank">%s</a></div></div>',
 				esc_attr( 'terminal-facebook-widget-sidebar' ),
-				esc_attr( "https://facebook.com/$facebook_handle" ),
+				esc_url( "https://facebook.com/$facebook_handle" ),
 				esc_html( $cta )
 			);
 		}

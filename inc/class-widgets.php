@@ -38,6 +38,8 @@ class Widgets {
 			require_once __DIR__ . '/widgets/class-hero-secondary-widget.php';
 			require_once __DIR__ . '/widgets/class-twitter-follow-widget.php';
 			require_once __DIR__ . '/widgets/class-facebook-follow-widget.php';
+			require_once __DIR__ . '/widgets/class-instagram-follow-widget.php';
+			require_once __DIR__ . '/widgets/class-snapchat-follow-widget.php';
 		}
 	}
 }

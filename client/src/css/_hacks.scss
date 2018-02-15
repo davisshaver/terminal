@@ -69,18 +69,36 @@ twitterwidget {
 
 
 .terminal-twitter {
-	background-color: #55acee !important;
+	background-color: rgb(85,172,238);
 
 	&:hover {
-		background-color: #147bc9!important
+		background-color: rgba(85,172,238, .8);
+	}
+}
+
+.terminal-instagram {
+	background-color: rgb(18,86,136);
+
+	&:hover {
+		background-color: rgba(18,86,136, .8);
+	}
+}
+
+.terminal-snapchat {
+	background-color: rgb(255,252,0);
+	&.terminal-follow a, &.terminal-follow a:hover {
+		color: #000 !important;
+	}
+	&:hover {
+		background-color: rgba(255,252,0, .5);
 	}
 }
 
 .terminal-facebook {
-	background-color: #3b5998 !important;
+	background-color: rgb(59,89,152);
 
 	&:hover {
-		background-color: #1e2e4f !important;
+		background-color: rgba(59,89,152, .8);
 	}
 }
 
