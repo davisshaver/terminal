@@ -295,16 +295,7 @@ function terminal_print_data_layer() {
 		var terminal =
 		<?php
 			echo wp_json_encode( array(
-				// @todo Move these to a setting.
-				'debugMode' => WP_DEBUG,
-				'clientProfiles' => array(
-					// OS Main.
-					'UA-10930536-1',
-					// OS site + app.
-					'UA-10930536-4',
-					// SC.com and OS combined.
-					'UA-1249139-15',
-				),
+				'debugMode' => getenv( 'WP_DEBUG' ),
 				'inlineAds' => array(
 					'enabled' => esc_attr( $data->has_inline_ads() ),
 					'unit'    => esc_attr( $data->get_inline_ads_tag() ),

@@ -15,7 +15,15 @@ $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 	false;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-terminal-post-id="<?php the_ID(); ?>">
+<div 
+	id="post-<?php the_ID(); ?>"
+	<?php post_class( 'terminal-post-tracking' ); ?>
+	data-terminal-post-id="<?php the_ID(); ?>"
+	data-terminal-has-image="<?php has_post_thumbnail(); ?>"
+	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
+	data-terminal-title="<?php the_title_attribute(); ?>"
+	data-terminal-view="loop"
+>
 <?php
 if ( 'top' === $loop_data['loop_meta_position'] ) :
 	get_template_part( 'partials/byline', get_post_type( $post ) );
