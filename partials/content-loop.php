@@ -15,7 +15,7 @@ $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 	false;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-terminal-post-id="<?php the_ID(); ?>">
 <?php
 if ( 'top' === $loop_data['loop_meta_position'] ) :
 	get_template_part( 'partials/byline', get_post_type( $post ) );
@@ -27,14 +27,14 @@ endif;
 		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-thumbnail' );
 	?>
 		<div class="image lazyload" data-bg="<?php echo esc_url( $thumb['0'] ); ?>">
-			<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"></a>
+			<a href="<?php the_permalink(); ?>" rel="bookmark" class="terminal-tracking" title="<?php the_title_attribute(); ?>" data-terminal-post-id="<?php the_ID(); ?>"></a>
 		</div>
 	<?php
 	endif;
 	?>
 		<div class="post-row">
 			<h3 class="headline terminal-headline-font">
-				<a href="<?php the_permalink(); ?>" class="link-gray">
+				<a href="<?php the_permalink(); ?>" class="terminal-tracking link-gray" data-terminal-post-id="<?php the_ID(); ?>">
 					<?php the_title(); ?>
 				</a>
 			</h3>
