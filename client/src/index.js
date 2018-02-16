@@ -32,12 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ) {
     let slotNum = 1;
     jQuery(document.body).on('post-load', () => {
-      dataLayer.push({
-        terminal: {
-          infinitePage: slotNum,
-        },
-        event: 'infiniteView',
-      });
       const slotName = `${terminal.inlineAds.unit}_${slotNum}`;
       const infiniteTarget = `#infinite-view-${slotNum}`;
       const adTag = jQuery('<div />')

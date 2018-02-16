@@ -35,14 +35,34 @@ endif;
 		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-thumbnail' );
 	?>
 		<div class="image lazyload" data-bg="<?php echo esc_url( $thumb['0'] ); ?>">
-			<a href="<?php the_permalink(); ?>" rel="bookmark" class="terminal-tracking" title="<?php the_title_attribute(); ?>" data-terminal-post-id="<?php the_ID(); ?>"></a>
+			<a
+				id="post-image-link-<?php the_ID(); ?>"
+				href="<?php the_permalink(); ?>"
+				rel="bookmark"
+				class="terminal-tracking"
+				title="<?php the_title_attribute(); ?>"
+				data-terminal-post-id="<?php the_ID(); ?>"
+				data-terminal-has-image="<?php has_post_thumbnail(); ?>"
+				data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
+				data-terminal-title="<?php the_title_attribute(); ?>"
+				data-terminal-view="loop image"
+			></a>
 		</div>
 	<?php
 	endif;
 	?>
 		<div class="post-row">
 			<h3 class="headline terminal-headline-font">
-				<a href="<?php the_permalink(); ?>" class="terminal-tracking link-gray" data-terminal-post-id="<?php the_ID(); ?>">
+				<a 
+					id="post-headline-link-<?php the_ID(); ?>"
+					href="<?php the_permalink(); ?>" 
+					class="terminal-tracking link-gray" 
+					data-terminal-post-id="<?php the_ID(); ?>"
+					data-terminal-has-image="<?php has_post_thumbnail(); ?>"
+					data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
+					data-terminal-title="<?php the_title_attribute(); ?>"
+					data-terminal-view="loop headline"
+				>
 					<?php the_title(); ?>
 				</a>
 			</h3>
