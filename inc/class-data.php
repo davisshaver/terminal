@@ -89,23 +89,33 @@ class Data {
 	}
 
 	/**
+	 * Get post categories.
+	 */
+	private function get_post_categories() {
+		$post_categories = wp_get_post_categories( get_the_ID() );
+		$cats = array();
+		foreach ( $post_categories as $c ) {
+			$cat = get_category( $c );
+			$cats[] = array(
+				'name' => $cat->name,
+				'slug' => $cat->slug,
+			);
+		}
+		return $cats;
+	}
+
+	/**
 	 * Get single data layer.
 	 */
 	public function get_single_data_layer() {
 		if ( ! is_singular() ) {
 			return array();
 		}
-		if ( class_exists( 'WPSEO_Primary_Term' ) ) {
-			$primary = new \WPSEO_Primary_Term( 'category', get_the_ID() );
-			$primary_cat = $primary->get_primary_term();
-			$primary_cat_name = get_category( $primary_cat )->name;
-		} else {
-			$primary_cat_name = '';
-		}
+
 		return array(
-			'author_name' => get_the_author_meta( 'user_nicename' ),
+			'author_name' => get_the_author(),
 			'author_id' => get_the_author_meta( 'ID' ),
-			'post_primary_category' => $primary_cat_name,
+			'post_categories' => $this->get_post_categories(),
 			'post_has_thumbnail' => has_post_thumbnail(),
 			'post_title' => get_the_title(),
 			'post_id' => get_the_ID(),
