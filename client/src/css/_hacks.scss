@@ -27,8 +27,8 @@ input, select, textarea, button {
 }
 
 h1, h2, h3, h4, h5, h6, p, a {
-	-webkit-hyphens: auto;
-	hyphens: auto;
+	-webkit-hyphens: none;
+	hyphens: none;
   text-overflow: ellipsis;
 }
 
