@@ -297,9 +297,10 @@ function terminal_print_data_layer() {
 			echo wp_json_encode( array(
 				'debugMode' => getenv( 'WP_DEBUG' ),
 				'inlineAds' => array(
-					'enabled' => esc_attr( $data->has_inline_ads() ),
-					'unit'    => esc_attr( $data->get_inline_ads_tag() ),
+					'enabled' => $data->has_inline_ads(),
+					'unit'    => $data->get_inline_ads_tag(),
 				),
+				'single'    => $data->get_single_data_layer(),
 			) );
 		?>
 		;
