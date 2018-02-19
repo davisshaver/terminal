@@ -1,7 +1,7 @@
 article.post, article.page {
 	margin: 0 10px 10px 10px;
 
-	@media (max-width: 400px) {
+	@media (max-width: 420px) {
 		margin: 0 0 10px 0;
 	}
 }
@@ -79,7 +79,7 @@ article.post, article.page {
 					margin-left: 30px;
 					max-width: calc(50% - 30px);
 				}
-				@media (max-width: 400px) {
+				@media (max-width: 420px) {
 					float: none !important;
 					margin: 0 0 20px 0 !important;
 					height: auto;
@@ -136,7 +136,7 @@ article.post, article.page {
 					margin-left: 30px;
 					min-width: calc(50% - 30px);
 				}
-				@media (max-width: 400px) {
+				@media (max-width: 420px) {
 					float: none;
 					margin: 0 0 30px 0;
 					height: auto;
@@ -188,7 +188,7 @@ article.post, article.page {
 			@media (max-width: 800px) {
 				flex-basis: 33%;
 			}
-			@media (max-width: 400px) {
+			@media (max-width: 420px) {
 				flex-basis: 50%;
 			}
 			text-align: center;

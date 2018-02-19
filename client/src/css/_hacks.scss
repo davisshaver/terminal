@@ -53,7 +53,7 @@ body {
 	margin: 0;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
 	body {
 		.mobile-hide-1 {
 			display: none !important;
@@ -63,6 +63,7 @@ body {
 
 twitterwidget {
 	margin: auto;
+	width: unset !important;
 	min-width: unset !important;
 	padding: 30px;
 }

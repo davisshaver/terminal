@@ -52,7 +52,7 @@ body {
 	flex-basis: 700px;
 	order: 1;
 	margin: 0 auto;
-	@media (max-height: 400px) {
+	@media (max-height: 420px) {
 		max-width: 500px;
 	}
 	.dfp-ad {
@@ -81,7 +81,7 @@ body {
 	display: block;
 	padding: 15px 30px;
 	margin: 10px;
-	@media (max-width: 400px) {
+	@media (max-width: 420px) {
 		margin: 0 0 10px 0;
 	}
 }
@@ -100,7 +100,7 @@ body.author {
 	max-width: 600px;
 	margin: auto;
 
-	@media (max-width: 400px) {
+	@media (max-width: 420px) {
 		max-width: 300px;
 		flex-direction: column;
 		.bio {

@@ -11,12 +11,12 @@
 	.post-flex-box {
 		display: flex;
 		align-items: center;
-		@media (max-width: 400px) {
+		@media (max-width: 420px) {
 			flex-direction: column;
 		}
 	}
 
-	@media (max-width: 400px) {
+	@media (max-width: 420px) {
 		.post-row {
 			flex: 1 1 auto !important;
 			min-width: 100%;
@@ -74,12 +74,12 @@
 			display: block;
 			padding-top: 130%;
 
-			@media (max-width: 400px) {
+			@media (max-width: 420px) {
 				padding-top: 50%;
 			}
 		}
 
-		@media (max-width: 400px) {
+		@media (max-width: 420px) {
 			flex-basis: 100%;
 			text-align: center;
 			width: 100%;
