@@ -143,7 +143,7 @@ endif;
 		endif;
 		if ( ! $hide_category ) :
 		?>
-			<div class="category link-gray-lighter text-gray-lighter"><?php the_category( ', ' ); ?></div>
+			<div class="category link-gray-lighter text-gray-lighter"><?php the_category( ' ◦ ' ); ?></div>
 		<?php
 		endif;
 		if (
