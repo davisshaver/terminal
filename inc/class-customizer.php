@@ -303,6 +303,10 @@ class Customizer {
 				text-align: center;
 				margin-bottom: 2px;
 			}
+			.amp-wp-byline amp-img {
+				border: none;
+				border-radius: unset;
+			}
 		<?php
 		}
 		if ( ! $amp ) {

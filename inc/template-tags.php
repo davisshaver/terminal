@@ -266,7 +266,7 @@ function terminal_print_avatar_amp( $author_id, $default_author = false ) {
 	}
 	if ( ! empty( $default ) ) {
 		return printf(
-			'<amp-img src="%s" width="24" height="24" layout="fixed" style="border: none; border-radius: unset;"></amp-img>',
+			'<amp-img src="%s" width="24" height="24" layout="fixed"></amp-img>',
 			esc_url( $default )
 		);
 	}

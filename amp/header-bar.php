@@ -14,7 +14,7 @@ $width = absint( $header->width );
 $height = absint( $header->height );
 ?>
 <header id="header" class="amp-wp-header terminal-amp-header">
-	<div class="terminal-amp-ad" ?>">
+	<div class="terminal-amp-ad">
 		<amp-ad width=320 height=50
 			type="doubleclick"
 			data-slot="/4144372/OS_Leaderboard_top">
