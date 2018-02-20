@@ -21,7 +21,7 @@ class Customizer {
 		add_action( 'customize_preview_init', [ $this, 'enqueue_customize_scripts' ] );
 		add_filter( 'site_icon_meta_tags', [ $this, 'site_icon_meta_tags' ] );
 		add_action( 'wp_head', [ $this, 'customizer_custom_css' ] );
-		add_action( 'amp_post_template_css', [ $this, 'customizer_custom_css' ] );
+		add_action( 'amp_post_template_css', [ $this, 'customizer_custom_css_amp' ] );
 
 		// Helllllo Fieldmanager!
 		// require_once __DIR__ . '/widgets/class-broadstreet-widget.php' // @todo add this back.
@@ -38,6 +38,15 @@ class Customizer {
 
 	/**
 	 * Prints CSS from customizer.
+	 */
+	public function customizer_custom_css_amp() {
+		$this->customizer_custom_css( true );
+	}
+
+	/**
+	 * Prints CSS from customizer.
+	 *
+	 * @param bool $amp Whether to print AMP tags.
 	 */
 	public function customizer_custom_css( $amp = false ) {
 		if ( ! function_exists( 'terminal_get_fm_theme_mod' ) ) {
@@ -195,7 +204,7 @@ class Customizer {
 		}
 		?>
 			#nav-bar, #nav-bar-inside-more {
-				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?> !important;
+				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?>;
 			}
 
 			#header {
@@ -261,6 +270,34 @@ class Customizer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 		<?php
+		if ( $amp ) {
+			?>
+			.terminal-amp-ad {
+				height: 50px;
+				padding: 5px 0;
+				text-align: center;
+				background-color: <?php echo esc_attr( get_theme_mod( 'header_ad_background_color_setting', 'inherit' ) ); ?>
+			}
+
+			.terminal-amp-header {
+				padding-top: 2px;
+			}
+
+			.terminal-amp-header-image {
+				width: 50%;
+			}
+
+			.terminal-amp-ad {
+				text-align: center;
+				margin-bottom: 2px;
+			}
+
+			.terminal-amp-footer-ad {
+				text-align: center;
+				margin-bottom: 2px;
+			}
+		<?php
+		}
 		if ( ! $amp ) {
 			echo '</style>';
 		}

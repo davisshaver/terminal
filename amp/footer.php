@@ -20,7 +20,7 @@
 		<a href="#top" class="back-to-top"><?php esc_html_e( 'Back to top', 'amp' ); ?></a>
 	</div>
 </footer>
-<div style="text-align: center; margin-bottom: 2px;">
+<div class="terminal-amp-footer-ad">
 	<amp-ad width=320 height=50
 		type="doubleclick"
 		data-slot="/4144372/OS_leaderboard_Bottom">
