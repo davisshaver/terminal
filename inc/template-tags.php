@@ -246,14 +246,14 @@ function terminal_print_avatar_amp( $author_id, $default_author = false ) {
 			return;
 		}
 		return printf(
-			'<amp-img src="%s" width="24" height="24" layout="fixed"></amp-img>',
+			'<amp-img src="%s" width="24" height="24" layout="fixed" style="border: none; border-radius: unset;"></amp-img>',
 			esc_url( $image_src[0] )
 		);
 	}
 	$local_avatar = $data->get_local_avatar_headshot( $author_id );
 	if ( ! empty( $local_avatar ) ) {
 		return printf(
-			'<amp-img src="%s" width="24" height="24" layout="fixed"></amp-img>',
+			'<amp-img src="%s" width="24" height="24" layout="fixed" style="border: none; border-radius: unset;"></amp-img>',
 			esc_url( $local_avatar['full'] )
 		);
 	}
@@ -266,7 +266,7 @@ function terminal_print_avatar_amp( $author_id, $default_author = false ) {
 	}
 	if ( ! empty( $default ) ) {
 		return printf(
-			'<amp-img src="%s" width="24" height="24" layout="fixed"></amp-img>',
+			'<amp-img src="%s" width="24" height="24" layout="fixed" style="border: none; border-radius: unset;"></amp-img>',
 			esc_url( $default )
 		);
 	}

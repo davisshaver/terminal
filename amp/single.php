@@ -18,16 +18,16 @@ $this->load_parts( array( 'html-start' ) );
 
 <article class="amp-wp-article">
 	<header class="amp-wp-article-header">
-		<h1 class="amp-wp-title"><?php echo esc_html( $this->get( 'post_title' ) ); ?></h1>
+		<h1 class="amp-wp-title terminal-headline-featured-font"><?php echo esc_html( $this->get( 'post_title' ) ); ?></h1>
 		<?php $this->load_parts( apply_filters( 'amp_post_article_header_meta', array( 'meta-author', 'meta-time' ) ) ); ?>
 	</header>
 
 	<?php $this->load_parts( array( 'featured-image' ) ); ?>
 
-	<div class="amp-wp-article-content">
+	<div class="amp-wp-article-content terminal-body-font">
 		<?php echo $this->get( 'post_amp_content' ); // WPCS: XSS ok. Handled in AMP_Content::transform(). ?>
 	</div>
-	<div style="text-align: center;">
+	<div style="text-align: center; ">
 		<amp-ad width=300 height=250
 			type="doubleclick"
 			data-slot="/4144372/OS_ROS_instory">

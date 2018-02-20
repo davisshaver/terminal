@@ -21,6 +21,7 @@ class Customizer {
 		add_action( 'customize_preview_init', [ $this, 'enqueue_customize_scripts' ] );
 		add_filter( 'site_icon_meta_tags', [ $this, 'site_icon_meta_tags' ] );
 		add_action( 'wp_head', [ $this, 'customizer_custom_css' ] );
+		add_action( 'amp_post_template_css', [ $this, 'customizer_custom_css' ] );
 
 		// Helllllo Fieldmanager!
 		// require_once __DIR__ . '/widgets/class-broadstreet-widget.php' // @todo add this back.
@@ -38,7 +39,7 @@ class Customizer {
 	/**
 	 * Prints CSS from customizer.
 	 */
-	public function customizer_custom_css() {
+	public function customizer_custom_css( $amp = false ) {
 		if ( ! function_exists( 'terminal_get_fm_theme_mod' ) ) {
 			return;
 		}
@@ -153,7 +154,9 @@ class Customizer {
 				'body, .terminal-utility-font' => 'utility',
 			),
 		);
-		echo '<style type="text/css">';
+		if ( ! $amp ) {
+			echo '<style type="text/css">';
+		}
 		foreach ( $font_data['targets'] as $key => $value ) {
 			$styles = array(
 				'font-size' => terminal_customizer_font_size( $value ),
@@ -257,8 +260,10 @@ class Customizer {
 			#header-leaderboard {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
-		</style>
 		<?php
+		if ( ! $amp ) {
+			echo '</style>';
+		}
 		if ( ! empty( $google_stylesheets ) ) {
 			foreach ( $google_stylesheets as $google_stylesheet ) {
 				printf(
