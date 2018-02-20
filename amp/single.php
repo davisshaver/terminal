@@ -27,7 +27,7 @@ $this->load_parts( array( 'html-start' ) );
 	<div class="amp-wp-article-content terminal-body-font">
 		<?php echo $this->get( 'post_amp_content' ); // WPCS: XSS ok. Handled in AMP_Content::transform(). ?>
 	</div>
-	<div class="terminal-amp-ad">
+	<div class="terminal-amp-ad-center">
 		<amp-ad width=300 height=250
 			type="doubleclick"
 			data-slot="/4144372/OS_ROS_instory">
