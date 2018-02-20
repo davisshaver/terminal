@@ -7,6 +7,12 @@
 
 ?>
 <header id="top" class="amp-wp-header">
+	<div style="text-align: center;">
+		<amp-ad width=320 height=50
+			type="doubleclick"
+			data-slot="/4144372/OS_Leaderboard_top">
+		</amp-ad>
+	</div>
 	<div>
 		<a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
 			<?php $site_icon_url = $this->get( 'site_icon_url' ); ?>
