@@ -20,7 +20,7 @@ $height = absint( $header->height );
 			data-slot="/4144372/OS_Leaderboard_top">
 		</amp-ad>
 	</div>
-	<div style="width: 50%">
+	<div style="width: 50%; max-width: 400px;">
 		<a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
 		<amp-img src="<?php header_image(); ?>" layout="responsive" width="<?php echo esc_attr( $width ); ?>" height="<?php echo esc_attr( $height ); ?>"></amp-img>
 		</a>
