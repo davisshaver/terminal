@@ -23,6 +23,7 @@ class Customizer {
 		add_action( 'wp_head', [ $this, 'customizer_custom_css' ] );
 		add_action( 'amp_post_template_css', [ $this, 'customizer_custom_css_amp' ] );
 		add_filter( 'amp_post_template_data', function( $data ) {
+			unset( $data['font_urls']['merriweather'] );
 			$data['amp_component_scripts'] = array_merge(
 				$data['amp_component_scripts'],
 				array(
@@ -30,7 +31,16 @@ class Customizer {
 				)
 			);
 			return $data;
-		} );	
+		} );
+		add_filter( 'amp_post_template_data', function( $data ) {
+			$data['amp_component_scripts'] = array_merge(
+				$data['amp_component_scripts'],
+				array(
+					'amp-ad' => 'https://cdn.ampproject.org/v0/amp-ad-latest.js',
+				)
+			);
+			return $data;
+		} );
 		// Helllllo Fieldmanager!
 		// require_once __DIR__ . '/widgets/class-broadstreet-widget.php' // @todo add this back.
 		if ( defined( 'FM_BETA_CUSTOMIZE_VERSION' ) ) {
@@ -295,7 +305,7 @@ class Customizer {
 				width: 50%;
 			}
 
-			.terminal-amp-ad {
+			.terminal-amp-ad-center {
 				text-align: center;
 			}
 

@@ -11,9 +11,8 @@
  * @var AMP_Post_Template $this
  */
 ?>
-<footer class="amp-wp-footer">
+<footer class="amp-wp-footer terminal-utility-font">
 	<div>
-		<h2><?php echo esc_html( wptexturize( $this->get( 'blog_name' ) ) ); ?></h2>
 		<p>
 			<?php esc_html_e( 'Powered by ', 'terminal' ); ?><a href="https://phillypublishing.com" title="<?php esc_attr_e( 'Powered by Philadelphia Publishing Company', 'terminal' ); ?>"><?php esc_html_e( 'Philadelphia Publishing Company', 'terminal' ); ?></a>
 		</p>
