@@ -14,7 +14,7 @@ namespace Terminal;
  */
 if ( version_compare( strtok( $GLOBALS['wp_version'], '-' ), '4.9', '<' ) ) {
 	require get_template_directory() . '/inc/warnings.php';
-	return
+	return;
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {
