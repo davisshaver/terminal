@@ -234,6 +234,47 @@ function terminal_print_facebook_count_for_post() {
 /**
  * Template function to print author avatar.
  *
+ * @param int      $author_id Author id.
+ * @param int|bool $default_author Opt default author.
+ */
+function terminal_print_avatar_amp( $author_id, $default_author = false ) {
+	$data = Terminal\Data::instance();
+	$terminal_headshot = $data->get_terminal_headshot( $author_id );
+	if ( ! empty( $terminal_headshot ) ) {
+		$image_src = wp_get_attachment_image_src( $terminal_headshot, 'terminal-thumbnail', false, array( 'scheme' => 'https' ) );
+		if ( empty( $image_src ) ) {
+			return;
+		}
+		return printf(
+			'<amp-img src="%s" width="24" height="24" layout="fixed"></amp-img>',
+			esc_url( $image_src[0] )
+		);
+	}
+	$local_avatar = $data->get_local_avatar_headshot( $author_id );
+	if ( ! empty( $local_avatar ) ) {
+		return printf(
+			'<amp-img src="%s" width="24" height="24" layout="fixed"></amp-img>',
+			esc_url( $local_avatar['full'] )
+		);
+	}
+	$default = null;
+	if ( is_int( $default_author ) ) {
+		$image = wp_get_attachment_image_src( $default_author, 'terminal-thumbnail' );
+		if ( ! empty( $image ) ) {
+			$default = $image[0];
+		}
+	}
+	if ( ! empty( $default ) ) {
+		return printf(
+			'<amp-img src="%s" width="24" height="24" layout="fixed"></amp-img>',
+			esc_url( $default )
+		);
+	}
+}
+
+/**
+ * Template function to print author avatar.
+ *
  * @param int      $size Size.
  * @param int|bool $default_author Opt default author.
  */
