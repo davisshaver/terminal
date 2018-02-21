@@ -101,11 +101,25 @@ function terminal_print_featured_image_caption() {
 	$meta = $data->get_post_featured_meta();
 	$meta = apply_filters( 'terminal_featured_meta', $meta );
 	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
-		printf(
-			'<div class="featured-meta terminal-sidebar-body-font"><div class="featured-caption text-gray">%s</div><div class="featured-credit text-gray-lighter">%s</div></div>',
-			wp_kses_post( $meta['caption'] ),
-			esc_html( $meta['credit'] )
-		);
+		echo '<div class="featured-meta terminal-sidebar-body-font">';
+		if ( ! empty( $meta['caption'] ) ) {
+			printf(
+				'<div class="featured-caption text-gray">%s</div>',
+				wp_kses_post( $meta['caption'] )
+			);
+		}
+		if ( ! empty( $meta['credit'] ) ) {
+			ob_start();
+			get_template_part( 'partials/svg/camera.svg' );
+			$camera = ob_get_contents();
+			ob_end_clean();
+			printf(
+				'<div class="featured-credit text-gray-lighter">%s %s</div>',
+				$camera,
+				esc_html( $meta['credit'] )
+			);
+		}
+		echo '</div>';
 	}
 }
 
