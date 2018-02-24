@@ -336,10 +336,7 @@ class Customizer {
 			div#ppc-logo {
 				text-align: center;
 			}
-			.featured-caption p {
-				margin: 0 10px 10px 0;
-				color: #ccc;
-			}
+
 			.featured-credit svg {
 				width: 1rem !important;
 				height: 1rem !important;
@@ -352,6 +349,7 @@ class Customizer {
 			.featured-meta {
 				margin: 10px auto;
 				max-width: 600px;
+				color: #999;
 			}
 		<?php
 		}
