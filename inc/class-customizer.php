@@ -336,6 +336,22 @@ class Customizer {
 			div#ppc-logo {
 				text-align: center;
 			}
+			.featured-caption p {
+				margin: 0 10px 10px 0
+			}
+			.featured-credit svg {
+				width: 1rem !important;
+				height: 1rem !important;
+				fill: #ccc !important;
+				top: 0.125rem !important;
+				margin-right: 0.25rem;
+				position: relative !important;
+			}
+
+			.featured-meta {
+				margin: 10px auto;
+				max-width: 600px;
+			}
 		<?php
 		}
 		if ( ! $amp ) {
