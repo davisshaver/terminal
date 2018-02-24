@@ -344,26 +344,39 @@ function terminal_has_broadstreet_enabled() {
  * Print data layer.
  */
 function terminal_print_data_layer() {
+	printf(
+		'<script type="text/javascript">var terminal = %s; dataLayer = [{ terminal }];</script>',
+		terminal_print_data_layer_json( false )
+	);
+}
+
+/**
+ * Print unified JSON for data layers.
+ */
+function  terminal_print_data_layer_json( $echo = true ) {
 	$data = Terminal\Data::instance();
-	?>
-	<script type="text/javascript">
-		var terminal =
-		<?php
-			echo wp_json_encode( array(
-				'debugMode' => getenv( 'WP_DEBUG' ),
-				'inlineAds' => array(
-					'enabled' => $data->has_inline_ads(),
-					'unit'    => $data->get_inline_ads_tag(),
-				),
-				'single'    => $data->get_single_data_layer(),
-			) );
-		?>
-		;
-		dataLayer = [{
-			terminal
-		}];
-	</script>
-<?php
+	$data_layer = wp_json_encode( array(
+		'debugMode' => getenv( 'WP_DEBUG' ),
+			'inlineAds' => array(
+				'enabled' => $data->has_inline_ads(),
+				'unit'    => $data->get_inline_ads_tag(),
+			),
+			'single'    => $data->get_single_data_layer(),
+	) );
+	if ( ! $echo ) {
+		return $data_layer;
+	}
+	echo $data_layer;
+}
+
+/**
+ * Print data layer for AMP.
+ */
+function terminal_print_data_layer_amp() {
+	printf(
+		'<script type="application/json">{ "vars": %s }</script>',
+		terminal_print_data_layer_json( false )
+	);
 }
 
 /**
