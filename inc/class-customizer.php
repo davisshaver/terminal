@@ -317,6 +317,25 @@ class Customizer {
 				border: none;
 				border-radius: unset;
 			}
+			.amp-wp-byline amp-img {
+				border: none;
+				border-radius: unset;
+			}
+
+			.terminal-amp-footer-ad {
+				background-color: <?php echo esc_attr( get_theme_mod( 'footer_ad_background_color_setting', 'inherit' ) ); ?>;
+			}
+
+			.amp-wp-footer {
+				background-color: <?php echo esc_attr( get_theme_mod( 'footer_background_color_setting', '#9DC1FD' ) ); ?>;
+				<?php if ( ! empty( get_theme_mod( 'footer_accent_color_setting', '#9DC1FD' ) ) ) : ?>
+					border-bottom: 2px solid <?php echo esc_attr( get_theme_mod( 'footer_accent_color_setting', 'inherit' ) ); ?>
+				<?php endif; ?>
+			}
+
+			div#ppc-logo {
+				text-align: center;
+			}
 		<?php
 		}
 		if ( ! $amp ) {
