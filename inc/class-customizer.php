@@ -337,7 +337,8 @@ class Customizer {
 				text-align: center;
 			}
 			.featured-caption p {
-				margin: 0 10px 10px 0
+				margin: 0 10px 10px 0;
+				color: #ccc;
 			}
 			.featured-credit svg {
 				width: 1rem !important;
