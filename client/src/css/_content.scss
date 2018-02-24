@@ -96,7 +96,9 @@ body.author {
 	@media (max-width: 420px) {
 		max-width: 300px;
 		flex-direction: column;
+
 		.bio {
+			padding: 30px 0;
 		}
 	}
 
