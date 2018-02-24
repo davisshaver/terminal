@@ -21,6 +21,8 @@
 		<?php $this->load_parts( array( 'style' ) ); ?>
 		<?php do_action( 'amp_post_template_css', $this ); ?>
 	</style>
+	<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 </head>
 
 <body class="<?php echo esc_attr( $this->get( 'body_class' ) ); ?>">
+	<amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-WSHC4JR&gtm.url=SOURCE_URL" data-credentials="include"></amp-analytics>
