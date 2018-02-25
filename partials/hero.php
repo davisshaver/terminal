@@ -7,7 +7,15 @@
 
 ?>
 
-<div class="hero-widget">
+<div 
+	id="post-<?php the_ID(); ?>"
+	class="hero-widget"
+	data-terminal-post-id="<?php the_ID(); ?>"
+	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
+	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
+	data-terminal-title="<?php the_title_attribute(); ?>"
+	data-terminal-view="featured-hero"
+>
 	<h2 class="terminal-headline-featured-font">
 		<a href="<?php the_permalink(); ?>" class="link-gray">
 			<?php the_title(); ?>

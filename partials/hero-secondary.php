@@ -6,8 +6,15 @@
  */
 
 ?>
-
-<div class="hero-secondary-widget">
+<div 
+	id="post-<?php the_ID(); ?>"
+	class="hero-secondary-widget"
+	data-terminal-post-id="<?php the_ID(); ?>"
+	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
+	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
+	data-terminal-title="<?php the_title_attribute(); ?>"
+	data-terminal-view="featured-hero-secondary"
+>
 	<?php
 	if ( has_post_thumbnail() ) :
 		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-thumbnail' );
