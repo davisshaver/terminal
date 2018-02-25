@@ -7,7 +7,7 @@
 
 ?>
 <div 
-	id="post-<?php the_ID(); ?>"
+	id="hero-secondary-post-<?php the_ID(); ?>"
 	class="terminal-post-tracking hero-secondary-widget"
 	data-terminal-post-id="<?php the_ID(); ?>"
 	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
