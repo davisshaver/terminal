@@ -117,7 +117,7 @@ class Data {
 			'author_id' => get_the_author_meta( 'ID' ),
 			'post_categories' => $this->get_post_categories(),
 			'post_has_thumbnail' => has_post_thumbnail(),
-			'post_title' => get_the_title(),
+			'post_title' => the_title_attribute( array( 'echo' => false ) ),
 			'post_id' => get_the_ID(),
 		);
 	}
