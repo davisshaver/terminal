@@ -8,7 +8,12 @@
 ?>
 <div 
 	id="hero-secondary-post-<?php the_ID(); ?>"
-	class="terminal-post-tracking hero-secondary-widget"
+	<?php
+	printf(
+		'class="%s hero-secondary-widget',
+		! is_singular() ? 'terminal-post-tracking' : ''
+	);
+	?>
 	data-terminal-post-id="<?php the_ID(); ?>"
 	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
 	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"

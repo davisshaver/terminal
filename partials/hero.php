@@ -9,7 +9,12 @@
 
 <div 
 	id="hero-post-<?php the_ID(); ?>"
-	class="terminal-post-tracking hero-widget"
+	<?php
+	printf(
+		'class="%s hero-widget',
+		! is_singular() ? 'terminal-post-tracking' : ''
+	);
+	?>
 	data-terminal-post-id="<?php the_ID(); ?>"
 	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
 	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
