@@ -18,7 +18,7 @@
 	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
 	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
 	data-terminal-title="<?php the_title_attribute(); ?>"
-	data-terminal-view="featured-hero-secondary"
+	data-terminal-view="hero-secondary"
 >
 	<?php
 	if ( has_post_thumbnail() ) :
