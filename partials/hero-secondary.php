@@ -25,13 +25,27 @@
 		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-thumbnail' );
 	?>
 		<div class="image" style="background-image: url('<?php echo esc_url( $thumb['0'] ); ?>')">
-			<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"></a>
+		<?php
+			printf(
+				'<a href="%s" class="%s bookmark" title="%s"></a>',
+				get_the_permalink(),
+				! is_singular() ? 'terminal-tracking' : '',
+				the_title_attribute( array( 'echo' => false ) )
+			);
+		?>
 		</div>
 	<?php
 	endif;
 	?>
 	<h2 class="terminal-headline-font">
-		<a href="<?php the_permalink(); ?>" class="link-gray">
+	<?php
+			printf(
+				'<a href="%s" class="%s link-gray" title="%s">',
+				get_the_permalink(),
+				! is_singular() ? 'terminal-tracking' : '',
+				the_title_attribute( array( 'echo' => false ) )
+			);
+		?>
 			<?php the_title(); ?>
 		</a>
 	</h2>

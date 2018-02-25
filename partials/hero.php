@@ -22,7 +22,14 @@
 	data-terminal-view="featured-hero"
 >
 	<h2 class="terminal-headline-featured-font">
-		<a href="<?php the_permalink(); ?>" class="link-gray">
+		<?php
+			printf(
+				'<a href="%s" class="%s link-gray" title="%s">',
+				get_the_permalink(),
+				! is_singular() ? 'terminal-tracking' : '',
+				the_title_attribute( array( 'echo' => false ) )
+			);
+		?>
 			<?php the_title(); ?>
 		</a>
 	</h2>
@@ -30,7 +37,14 @@
 	if ( has_post_thumbnail() ) :
 	?>
 		<div class="image">
-			<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+		<?php
+			printf(
+				'<a href="%s" class="%s bookmark" title="%s">',
+				get_the_permalink(),
+				! is_singular() ? 'terminal-tracking' : '',
+				the_title_attribute( array( 'echo' => false ) )
+			);
+		?>
 				<?php the_post_thumbnail( 'terminal-featured', array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
