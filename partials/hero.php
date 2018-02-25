@@ -11,7 +11,7 @@
 	id="hero-post-<?php the_ID(); ?>"
 	<?php
 	printf(
-		'class="%s hero-widget',
+		'class="%s hero-widget"',
 		! is_singular() ? 'terminal-post-tracking' : ''
 	);
 	?>

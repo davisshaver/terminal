@@ -10,7 +10,7 @@
 	id="hero-secondary-post-<?php the_ID(); ?>"
 	<?php
 	printf(
-		'class="%s hero-secondary-widget',
+		'class="%s hero-secondary-widget"',
 		! is_singular() ? 'terminal-post-tracking' : ''
 	);
 	?>
