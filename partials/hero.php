@@ -24,9 +24,12 @@
 	<h2 class="terminal-headline-featured-font">
 		<?php
 			printf(
-				'<a href="%s" class="%s link-gray" title="%s">',
+				'<a id="hero-title-%s" href="%s" class="%s link-gray" title="%s" data-terminal-post-id="%s" data-terminal-view="hero title" data-terminal-title="%s">',
+				get_the_ID(),
 				get_the_permalink(),
 				! is_singular() ? 'terminal-tracking' : '',
+				the_title_attribute( array( 'echo' => false ) ),
+				get_the_ID(),
 				the_title_attribute( array( 'echo' => false ) )
 			);
 		?>
@@ -39,9 +42,12 @@
 		<div class="image">
 		<?php
 			printf(
-				'<a href="%s" class="%s bookmark" title="%s">',
+				'<a  id="hero-image-%s" href="%s" class="%s bookmark" title="%s" data-terminal-post-id="%s" data-terminal-view="hero image" data-terminal-title="%s">',
+				get_the_ID(),
 				get_the_permalink(),
 				! is_singular() ? 'terminal-tracking' : '',
+				the_title_attribute( array( 'echo' => false ) ),
+				get_the_ID(),
 				the_title_attribute( array( 'echo' => false ) )
 			);
 		?>

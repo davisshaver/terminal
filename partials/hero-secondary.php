@@ -27,9 +27,12 @@
 		<div class="image" style="background-image: url('<?php echo esc_url( $thumb['0'] ); ?>')">
 		<?php
 			printf(
-				'<a href="%s" class="%s bookmark" title="%s"></a>',
+				'<a id="hero-secondary-image-%s" href="%s" class="%s bookmark" title="%s" data-terminal-post-id="%s" data-terminal-view="hero-secondary image" data-terminal-title="%s"></a>',
+				get_the_ID(),
 				get_the_permalink(),
 				! is_singular() ? 'terminal-tracking' : '',
+				the_title_attribute( array( 'echo' => false ) ),
+				get_the_ID(),
 				the_title_attribute( array( 'echo' => false ) )
 			);
 		?>
@@ -38,11 +41,14 @@
 	endif;
 	?>
 	<h2 class="terminal-headline-font">
-	<?php
+		<?php
 			printf(
-				'<a href="%s" class="%s link-gray" title="%s">',
+				'<a id="hero-secondary-title-%s" href="%s" class="%s link-gray" title="%s" data-terminal-post-id="%s" data-terminal-view="hero-secondary title" data-terminal-title="%s">',
+				get_the_ID(),
 				get_the_permalink(),
 				! is_singular() ? 'terminal-tracking' : '',
+				the_title_attribute( array( 'echo' => false ) ),
+				get_the_ID(),
 				the_title_attribute( array( 'echo' => false ) )
 			);
 		?>
