@@ -8,7 +8,7 @@
 ?>
 <div 
 	id="post-<?php the_ID(); ?>"
-	class="hero-secondary-widget"
+	class="terminal-post-tracking hero-secondary-widget"
 	data-terminal-post-id="<?php the_ID(); ?>"
 	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
 	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
