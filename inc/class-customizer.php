@@ -338,12 +338,12 @@ class Customizer {
 			}
 
 			.featured-credit svg {
-				width: 1rem !important;
-				height: 1rem !important;
-				fill: #ccc !important;
-				top: 0.125rem !important;
+				width: 1rem;
+				height: 1rem;
+				fill: #ccc;
+				top: 0.125rem;
 				margin-right: 0.25rem;
-				position: relative !important;
+				position: relative;
 			}
 
 			.featured-meta {
