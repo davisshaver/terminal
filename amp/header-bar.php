@@ -23,7 +23,6 @@ $height = absint( $header->height );
 			data-ad-slot="7383568527"
 			layout="fixed"
 		>
-			<div overflow></div>
 		</amp-ad>
 	</div>
 	<div class="terminal-amp-header-image">
