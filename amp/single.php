@@ -29,8 +29,14 @@ $this->load_parts( array( 'html-start' ) );
 	</div>
 	<div class="terminal-amp-ad-center">
 		<amp-ad width=300 height=250
-			type="doubleclick"
-			data-slot="/4144372/OS_ROS_instory">
+			type="sovrn"
+			data-width="300"
+			data-height="250"
+			data-u="onwardstate1"
+			data-iid="13409367"
+			data-aid="260271"
+			data-tf="true"
+			data-z="546814">
 		</amp-ad>
 	</div>
 	<footer class="amp-wp-article-footer">

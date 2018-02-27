@@ -14,8 +14,15 @@
 <footer class="amp-wp-footer terminal-utility-font">
 	<div class="terminal-amp-footer-ad">
 		<amp-ad width=320 height=50
-			type="doubleclick"
-			data-slot="/4144372/OS_leaderboard_Bottom">
+			type="sovrn"
+			data-width="320"
+			data-height="50"
+			data-u="onwardstate1"
+			data-iid="13409367"
+			data-aid="260271"
+			data-tf="true"
+			data-z="554505"
+		>
 		</amp-ad>
 	</div>
 	<div id="copyright">

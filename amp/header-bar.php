@@ -16,8 +16,15 @@ $height = absint( $header->height );
 <header id="header" class="amp-wp-header terminal-amp-header">
 	<div class="terminal-amp-ad">
 		<amp-ad width=320 height=50
-			type="doubleclick"
-			data-slot="/4144372/OS_Leaderboard_top">
+			type="sovrn"
+			data-width="320"
+			data-height="50"
+			data-u="onwardstate1"
+			data-iid="13409367"
+			data-aid="260271"
+			data-tf="true"
+			data-z="554504"
+		>
 		</amp-ad>
 	</div>
 	<div class="terminal-amp-header-image">
