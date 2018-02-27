@@ -28,15 +28,14 @@ $this->load_parts( array( 'html-start' ) );
 		<?php echo $this->get( 'post_amp_content' ); // WPCS: XSS ok. Handled in AMP_Content::transform(). ?>
 	</div>
 	<div class="terminal-amp-ad-center">
-		<amp-ad width=300 height=250
-			type="sovrn"
-			data-width="300"
-			data-height="250"
-			data-u="onwardstate1"
-			data-iid="13409367"
-			data-aid="260271"
-			data-tf="true"
-			data-z="546814">
+		<amp-ad width="100vw" height=320
+			type="adsense"
+			data-ad-client="ca-pub-0809625376938310"
+			data-ad-slot="9598668323"
+			data-auto-format="rspv"
+			data-full-width
+		>
+			<div overflow></div>
 		</amp-ad>
 	</div>
 	<footer class="amp-wp-article-footer">
