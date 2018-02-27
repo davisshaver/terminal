@@ -21,7 +21,6 @@
 			data-ad-slot="1249883947"
 			layout="fixed"
 		>
-			<div overflow></div>
 		</amp-ad>
 	</div>
 	<div id="copyright">

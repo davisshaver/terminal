@@ -36,7 +36,6 @@ $this->load_parts( array( 'html-start' ) );
 			data-ad-slot="9598668323"
 			layout="fixed"
 		>
-			<div overflow></div>
 		</amp-ad>
 	</div>
 	<footer class="amp-wp-article-footer">
