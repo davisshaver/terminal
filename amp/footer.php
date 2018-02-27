@@ -13,12 +13,13 @@
 ?>
 <footer class="amp-wp-footer terminal-utility-font">
 	<div class="terminal-amp-footer-ad">
-		<amp-ad width="100vw" height=320
+		<amp-ad
+			width=320
+			height=50
 			type="adsense"
 			data-ad-client="ca-pub-0809625376938310"
 			data-ad-slot="1249883947"
-			data-auto-format="rspv"
-			data-full-width
+			layout="fixed"
 		>
 			<div overflow></div>
 		</amp-ad>
