@@ -20,14 +20,19 @@
 		coral_talk_comments_template();
 	}
 
-	terminal_print_facebook_comments_header();
+	$facebook_comments = getenv( 'TERMINAL_ENABLE_FACEBOOK_COMMENTS' );
+	if ( $facebook_comments ) {
+		terminal_print_facebook_comments_header();
+		?>
+		<iframe
+			id="facebook-comments"
+			src="https://www.facebook.com/plugins/comments.php?href=<?php echo esc_url_raw( get_the_permalink() ); ?>"
+			scrolling="no"
+			frameborder="0"
+			style="border:none; overflow:hidden; width:100%;"
+			allowTransparency="true"
+		></iframe>
+	<?php
+	}
 	?>
-	<iframe
-		id="facebook-comments"
-		src="https://www.facebook.com/plugins/comments.php?href=<?php echo esc_url_raw( get_the_permalink() ); ?>"
-		scrolling="no"
-		frameborder="0"
-		style="border:none; overflow:hidden; width:100%;"
-		allowTransparency="true"
-	></iframe>
 </div>
