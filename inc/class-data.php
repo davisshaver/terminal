@@ -26,6 +26,20 @@ class Data {
 	 * Setup actions.
 	 */
 	public function setup() {
+		add_action( 'pre_amp_render_post', [ $this, 'author_data_in_amp' ] );
+	}
+
+	/**
+	 * Add author data to amp.
+	 *
+	 * See https://github.com/Automattic/amp-wp/issues/981
+	 */
+	public function author_data_in_amp() {
+		global $authordata;
+		if ( ! isset ($authordata ) ) {
+				$post = get_post( $post_id );
+				$authordata = get_userdata( $post->post_author );
+		}
 	}
 
 	/**
