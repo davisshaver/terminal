@@ -44,5 +44,22 @@ require_once __DIR__ . '/inc/class-menu.php';
 require_once __DIR__ . '/inc/class-permalinks.php';
 require_once __DIR__ . '/inc/class-settings.php';
 
+// Features
+if ( getenv( 'TERMINAL_ENABLE_LINK_POST_TYPE' ) ) {
+
+}
+
+if ( getenv( 'TERMINAL_ENABLE_BOOK_POST_TYPE' ) ) {
+
+}
+
+if ( getenv( 'TERMINAL_ENABLE_PHOTO_POST_TYPE' ) ) {
+
+}
+
+if ( getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE' ) ) {
+
+}
+
 // Define template tags last. They may need classes.
 require_once __DIR__ . '/inc/template-tags.php';
