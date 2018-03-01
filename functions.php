@@ -46,19 +46,19 @@ require_once __DIR__ . '/inc/class-settings.php';
 
 // Features
 if ( getenv( 'TERMINAL_ENABLE_LINK_POST_TYPE' ) ) {
-
+	require_once __DIR__ . '/inc/post-types/class-links.php';
 }
 
 if ( getenv( 'TERMINAL_ENABLE_BOOK_POST_TYPE' ) ) {
-
+	require_once __DIR__ . '/inc/post-types/class-books.php';
 }
 
 if ( getenv( 'TERMINAL_ENABLE_PHOTO_POST_TYPE' ) ) {
-
+	require_once __DIR__ . '/inc/post-types/class-photos.php';
 }
 
 if ( getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE' ) ) {
-
+	require_once __DIR__ . '/inc/post-types/class-community.php';
 }
 
 // Define template tags last. They may need classes.
