@@ -101,10 +101,10 @@ function terminal_print_featured_image_caption() {
 	$meta = $data->get_post_featured_meta();
 	$meta = apply_filters( 'terminal_featured_meta', $meta );
 	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
-		echo '<div class="featured-meta terminal-sidebar-body-font">';
+		echo '<div class="terminal-featured-meta terminal-sidebar-body-font">';
 		if ( ! empty( $meta['caption'] ) ) {
 			printf(
-				'<div class="featured-caption text-gray">%s</div>',
+				'<div class="terminal-featured-caption">%s</div>',
 				wp_kses_post( $meta['caption'] )
 			);
 		}
@@ -114,7 +114,7 @@ function terminal_print_featured_image_caption() {
 			$camera = ob_get_contents();
 			ob_end_clean();
 			printf(
-				'<div class="featured-credit text-gray-lighter">%s %s</div>',
+				'<div class="terminal-featured-credit">%s %s</div>',
 				$camera,
 				esc_html( $meta['credit'] )
 			);
@@ -128,7 +128,7 @@ function terminal_print_featured_image_caption() {
  */
 function terminal_print_author_bio_header() {
 	printf(
-		'<h3 id="author-bio-header" class="loop-header terminal-loop-header-font">%s</h2>',
+		'<h3 class="terminal-author-header terminal-header terminal-header-font">%s</h2>',
 		esc_html__( 'About the Author', 'terminal' )
 	);
 }
@@ -136,23 +136,9 @@ function terminal_print_author_bio_header() {
 /**
  * Template function to print a comments header.
  */
-function terminal_print_facebook_comments_header() {
-	ob_start();
-	get_template_part( 'partials/svg/down.svg' );
-	$down = ob_get_contents();
-	ob_end_clean();
-	printf(
-		'<h2 id="facebook-comments-header" class="loop-header terminal-loop-header-font">%s %s</h2>',
-		esc_html__( 'Facebook Comments', 'terminal' ),
-		$down
-	);
-}
-/**
- * Template function to print a comments header.
- */
 function terminal_print_comments_header() {
 	printf(
-		'<h2 id="comments-header" class="loop-header terminal-loop-header-font">%s</h2>',
+		'<h2 class="terminal-comments-header terminal-header terminal-header-font">%s</h2>',
 		esc_html__( 'Comments', 'terminal' )
 	);
 }
@@ -162,7 +148,7 @@ function terminal_print_comments_header() {
  */
 function terminal_print_after_article_header() {
 	printf(
-		'<h2 id="after-article-header" class="loop-header terminal-loop-header-font">%s</h2>',
+		'<h2 class="terminal-after-article-header terminal-header terminal-header-font">%s</h2>',
 		esc_html__( 'More Options to Share', 'terminal' )
 	);
 }
@@ -172,7 +158,7 @@ function terminal_print_after_article_header() {
  */
 function terminal_print_recirc_header() {
 	printf(
-		'<h2 id="recirc-header" class="loop-header terminal-loop-header-font">%s</h2><a name="recirc"></a>',
+		'<h2 class="terminal-header terminal-header-font">%s</h2>',
 		esc_html__( 'Other stories', 'terminal' )
 	);
 }
@@ -188,25 +174,25 @@ function terminal_print_index_header() {
 				return;
 			}
 			printf(
-				'<h2 id="index-header" class="loop-header terminal-loop-header-font">%s</h2><a name="latest"></a>',
+				'<div class="terminal-header terminal-header-font"><h2>%s</h2></div>',
 				esc_html( $theme_mod )
 			);
 		} else {
 			printf(
-				'<h2 class="loop-header terminal-loop-header-font">%s</h2>',
+			'<div class="terminal-header terminal-header-font"><h2>%s</h2></div>',
 				esc_html( __( 'Archival Stories', 'terminal' ) )
 			);
 		}
 	} elseif ( is_search() ) {
 		$search_query = get_search_query();
 		printf(
-			'<h2 class="loop-header terminal-loop-header-font">%s "%s"</h2>',
+			'<div class="terminal-header terminal-header-font"><h2>%s</h2></div>',
 			esc_html( 'Search results for', 'terminal' ),
 			esc_html( $search_query )
 		);
 	} else {
 		printf(
-			'<h2 class="loop-header terminal-loop-header-font">%s</h2>',
+			'<div class="terminal-header terminal-header-font"><h2>%s</h2></div>',
 			esc_html( strip_tags( get_the_archive_title() ) )
 		);
 	}
@@ -329,15 +315,6 @@ function terminal_print_avatar( $size = 32, $default_author = false ) {
  */
 function terminal_has_ads_enabled() {
 	return true;
-}
-
-/**
- * Boolean helper for whether Broadstreet ads are enabled.
- *
- * @return boolean
- */
-function terminal_has_broadstreet_enabled() {
-	return false;
 }
 
 /**
@@ -469,9 +446,11 @@ function terminal_print_stories_loop() {
 		while ( have_posts() ) :
 			$count++;
 			the_post();
-			get_template_part( 'partials/content-loop', get_post_type( $post ) );
-			if ( is_home() && ! is_paged() && $has_inline_ads && 0 === $count % 7 && ! empty( $inline_ads_unit ) ) {
+			get_template_part( 'partials/content-loop', terminal_get_post_type( $post ) );
+			if ( is_home() && ! isset( $_GET[ 'infinity' ] ) && $has_inline_ads && 0 === $count % 7 && ! empty( $inline_ads_unit ) ) {
+				echo '<div class="terminal-sidebar-section">';
 				do_action( 'ad_layers_render_ad_unit', $inline_ads_unit );
+				echo '</div>';
 			}
 		endwhile;
 	else :
@@ -531,4 +510,47 @@ function terminal_authors( $user_roles = array( 'author', 'editor', 'administrat
 		echo $user;
 	}
 	echo '</ul>';
+}
+
+/**
+ * Get terminal post type.
+ *
+ * @param object $post
+ * @return string post type mapping
+ */
+function terminal_get_post_type( $post = false ) {
+	$post_types = array(
+		'post' => 'post',
+	);
+	if ( getenv( 'TERMINAL_ENABLE_LINK_POST_TYPE' ) ) {
+		$links = Terminal\Links::instance();
+		$post_types['link'] = $links->get_link_post_type();
+	}
+	if ( getenv( 'TERMINAL_ENABLE_BOOK_POST_TYPE' ) ) {
+		$books = Terminal\Books::instance();
+		$post_types['book'] = $books->get_book_post_type();
+	}
+	if ( getenv( 'TERMINAL_ENABLE_PHOTO_POST_TYPE' ) ) {
+		$photos = Terminal\Photos::instance();
+		$post_types['photo'] = $photos->get_photo_post_type();
+	}
+	if ( getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE' ) ) {
+		$community = Terminal\Community::instance();
+		$post_types['community'] = $community->get_community_post_type();
+	}
+	$post_types = array_flip(
+		array_filter(
+			$post_types,
+			'boolval'
+		)
+	);
+	return $post_types[ $post->post_type ];
+}
+
+/**
+ * Return the photo photographer.
+ */
+function terminal_the_photo_photographer() {
+	$photos = Terminal\Photos::instance();
+	return $photos->get_photographer();
 }

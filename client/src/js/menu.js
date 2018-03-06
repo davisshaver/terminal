@@ -8,13 +8,13 @@ export function setupMenu() {
   const svgLink = document.querySelector('#nav-bar-inside-more-link > svg');
 
   function toggleOpen(element) {
-    element.classList.toggle('open');
+    element.classList.toggle('terminal-flipped');
   }
   function toggleFixed(element) {
-    element.classList.toggle('fixed');
+    element.classList.toggle('terminal-fixed');
   }
   function toggleHidden(element) {
-    element.classList.toggle('hidden');
+    element.classList.toggle('terminal-hidden');
   }
   function addClickListener(element) {
     element.addEventListener(

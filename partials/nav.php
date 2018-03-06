@@ -15,42 +15,38 @@ $down = ob_get_contents();
 ob_end_clean();
 ?>
 
-<div id="nav-bar" class="terminal-utility-font">
-	<div id="nav-bar-inside">
-		<?php
-		$nav_menu = wp_nav_menu( array(
-			'theme_location' => 'header',
-			'depth'          => 1,
-			'echo'           => false,
-			'menu_id'        => 'menu-header-nav',
-		) );
-		if ( has_nav_menu( 'header-more' ) ) {
-			$more = sprintf(
-				'<li id="nav-bar-inside-more-link-container" class="hidden"><a id="nav-bar-inside-more-link" href="#">%s %s</a></li></ul>',
-				esc_html( 'More', 'terminal' ),
-				$down
-			);
-			$nav_menu = str_replace( '</ul>', $more, $nav_menu );
+<div class="terminal-nav-bar terminal-utility-font">
+	<?php
+	$nav_menu = wp_nav_menu( array(
+		'theme_location' => 'terminal-header',
+		'depth'          => 1,
+		'echo'           => false,
+		'menu_id'        => 'terminal-nav-bar-header',
+	) );
+	if ( has_nav_menu( 'terminal-header-inside' ) ) {
+		$more = sprintf(
+			'<li class="terminal-hidden-no-js"><a class="terminal-nav-bar-inside-more-link" href="#">%s %s</a></li></ul>',
+			esc_html( 'More', 'terminal' ),
+			$down
+		);
+		$nav_menu = str_replace( '</ul>', $more, $nav_menu );
+	}
+	echo $nav_menu;
+	if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
+		echo '<div class="terminal-nav-bar-inside-more terminal-hidden">';
+		if ( has_nav_menu( 'terminal-header-more' ) ) {
+			wp_nav_menu( array(
+				'theme_location' => 'terminal-header-more',
+				'depth'          => 1,
+			) );
 		}
-		echo $nav_menu;
-		if ( has_nav_menu( 'header-more' ) || has_nav_menu( 'header-more-meta' ) ) {
-			echo '<div id="nav-bar-inside-more" class="hidden">';
-			if ( has_nav_menu( 'header-more' ) ) {
-				wp_nav_menu( array(
-					'theme_location' => 'header-more',
-					'depth'          => 1,
-					'menu_id'        => 'menu-header-inside',
-				) );
-			}
-			if ( has_nav_menu( 'header-more-meta' ) ) {
-				wp_nav_menu( array(
-					'theme_location' => 'header-more-meta',
-					'depth'          => 1,
-					'menu_id'        => 'menu-header-inside-meta',
-				) );
-			}
-			echo '</div>';
+		if ( has_nav_menu( 'terminal-header-more-meta' ) ) {
+			wp_nav_menu( array(
+				'theme_location' => 'terminal-header-more-meta',
+				'depth'          => 1,
+			) );
 		}
-		?>
-	</div>
+		echo '</div>';
+	}
+	?>
 </div>

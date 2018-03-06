@@ -1,107 +1,43 @@
-#footer {
-	user-select: none;
-	width: 100%;
-
-	&.fixed {
-		display: block !important;
-	}
+.terminal-footer-icons, .terminal-ppc-logo, .terminal-copyright {
+  padding: 30px;
+  text-align: center;
 }
 
-#footer-inside {
-	margin: 0 auto;
+.terminal-menu-footer ul {
+  max-width: $max_width;
+	width: calc(100% - 60px);
+  margin: 0 auto;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-padding-start: 0;
+  justify-content: space-between;
+	@media (max-width: 869px) {
+		margin: 0 30px;
+  }
+  li {
+    display: flex;
+    padding: 30px;
+  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-#footer-leaderboard {
-	text-align: center;
-	overflow: hidden;
 
-	.dfp-ad {
-		padding: 30px 0 30px 0;
-
-		@media(min-width: 729px) {
-			height: 90px;
-			width: 728px;
-		}
-		@media(max-width: 728px) {
-			height: 50px;
-			width: 320px;
-		}
-	}
-}
-
-#footer-leaderboard div {
-	margin: 0 auto;
-}
-
-#footer ul {
-	list-style: none;
-	padding: 0;
-	flex-direction: row;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-
-#footer li {
-	flex-basis: 25%;
-	height: 50px;
-	display: block;
-	margin-bottom: 10px;
-
-	@media(max-width: 1100px) {
-		flex-basis: 33%;
-	}
-
-	@media(max-width: 869px) {
-		flex-basis: 50%;
-	}
-
-	@media(max-width: 420px) {
-		flex-basis: 100%;
-	}
-}
-
-#ppc-logo {
-	text-align: center;
-
-	img {
-		height: auto;
-		user-select: none;
-		margin: 10px 0;
-		width: 25px;
-	}
-}
-
-#footer-spread {
-	display: block;
-	max-width: 1100px;
-	margin: auto;
-	padding: 10px 0;
-	text-align: center;
-
-	#menu-footer {
-		margin: 20px;
-	}
-
-	#footer-icons, #copyright {
-		margin: 20px 0;
-		width: 100%;
-	}
-
-	#ppc-logo {
-		margin: 40px 0 40px 0;
-		width: 100%;
-	}
-}
-
-body.infinite-scroll {
-	#footer {
+.infinite-scroll {
+	.terminal-pagination {
 		display: none;
 	}
 }
+.terminal-pagination {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+}
 
-body.infinity-end {
-	#footer {
-		display: block !important;
-	}
+.terminal-pagination a  {
+	justify-content: center;
+	flex-grow: 1;
+	display: flex;
+	max-width: 1100px;
 }

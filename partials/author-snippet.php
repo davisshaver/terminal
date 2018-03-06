@@ -14,13 +14,13 @@ $default_gravatar = ! empty( $byline_data['default_gravatar'] ) ?
 	false;
 terminal_print_author_bio_header();
 ?>
-<div id="author">
-	<div class="image">
+<div class="terminal-author-snippet">
+	<div class="terminal-author-image">
 		<?php terminal_print_avatar( 150, $default_gravatar ); ?>
 	</div>
-	<div class="bio terminal-single-meta-font">
+	<div class="terminal-author-bio terminal-single-meta-font">
 		<h4>
-			<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>" class="link-gray"><?php the_author(); ?>
+			<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ); ?>"><?php the_author(); ?>
 			</a>
 		</h4>
 		<?php the_author_meta( 'description' ); ?>

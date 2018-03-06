@@ -29,17 +29,11 @@ class Widgets {
 			terminal_has_ads_enabled() &&
 			class_exists( '\FM_Widget' )
 		) {
-			if ( terminal_has_broadstreet_enabled() ) {
-				require_once __DIR__ . '/widgets/class-broadstreet-widget.php';
-			}
 			require_once __DIR__ . '/widgets/class-author-widget.php';
+			require_once __DIR__ . '/widgets/class-cta-widget.php';
 			require_once __DIR__ . '/widgets/class-category-widget.php';
 			require_once __DIR__ . '/widgets/class-hero-widget.php';
 			require_once __DIR__ . '/widgets/class-hero-secondary-widget.php';
-			require_once __DIR__ . '/widgets/class-twitter-follow-widget.php';
-			require_once __DIR__ . '/widgets/class-facebook-follow-widget.php';
-			require_once __DIR__ . '/widgets/class-instagram-follow-widget.php';
-			require_once __DIR__ . '/widgets/class-snapchat-follow-widget.php';
 		}
 	}
 }

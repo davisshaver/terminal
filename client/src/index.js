@@ -1,5 +1,5 @@
 /* eslint-env browser */
-/* global jQuery, AdLayersAPI, adLayersDFP, terminal, dataLayer */
+/* global jQuery, AdLayersAPI, adLayersDFP, terminal */
 
 import './index.scss';
 import { setupMenu } from './js/menu';
@@ -33,10 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let slotNum = 1;
     jQuery(document.body).on('post-load', () => {
       const slotName = `${terminal.inlineAds.unit}_${slotNum}`;
-      const infiniteTarget = `#infinite-view-${slotNum}`;
+      const infiniteTarget = `.infinite-loader:nth-of-type(${slotNum})`;
       const adTag = jQuery('<div />')
         .attr('id', adLayersDFP.adUnitPrefix + slotName)
-        .attr('class', 'dfp-ad');
+        .attr('class', 'dfp-ad terminal-sidebar-section');
       exponentialBackoff(
         (thisSlotName = `${slotName}`, thisTag = adTag, thisTarget = infiniteTarget) => {
           if (jQuery(thisTarget).length !== 0) {

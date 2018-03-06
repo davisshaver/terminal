@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   wp.customize('loop_header_background_color_setting', (value) => {
     value.bind((newval) => {
-      const elements = document.querySelectorAll('.loop-header');
+      const elements = document.querySelectorAll('.terminal-header');
       [].forEach.call(elements, (element) => {
         if (!newval) {
           element.style['background-color'] = 'unset'; // eslint-disable-line no-param-reassign

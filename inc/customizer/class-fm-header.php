@@ -32,7 +32,7 @@ class FM_Header {
 			return;
 		}
 		$wp_customize->selective_refresh->add_partial( 'header_partial', array(
-			'selector'        => '#header',
+			'selector'        => '.terminal-header',
 			'settings'        => array( 'terminal_header_options' ),
 			'render_callback' => array( $this, 'get_basic_partial' ),
 		) );
@@ -67,72 +67,18 @@ class FM_Header {
 			array(
 				'name'     => 'terminal_header_options',
 				'children' => array(
+					'signup_show_on_desktop'          => new \Fieldmanager_Checkbox( 'Show Signup on Desktop' ),
+					'signup_show_on_mobile'           => new \Fieldmanager_Checkbox( 'Show Signup on Mobile' ),
+					'signup_button'                   => new \Fieldmanager_Textfield( 'Signup Button' ),
+					'signup_icon'                     => new \Fieldmanager_Media( 'Signup Icon' ),
+					'signup_link'                     => new \Fieldmanager_Link( 'Signup Link' ),
 					'cta_show_on_desktop'          => new \Fieldmanager_Checkbox( 'Show CTA on Desktop' ),
 					'cta_show_on_mobile'           => new \Fieldmanager_Checkbox( 'Show CTA on Mobile' ),
 					'cta_tagline'                  => new \Fieldmanager_TextArea( 'CTA Tagline' ),
 					'cta_button'                   => new \Fieldmanager_Textfield( 'CTA Button' ),
 					'cta_icon'                     => new \Fieldmanager_Media( 'CTA Icon' ),
 					'cta_link'                     => new \Fieldmanager_Link( 'CTA Link' ),
-					'desktop_alignment'            => new \Fieldmanager_Select( 'Desktop Alignment', array(
-						'options' => array(
-							'center',
-							'left',
-							'right',
-						),
-					) ),
-					'desktop_width'                => new \Fieldmanager_Select( 'Desktop Width', array(
-						'options' => array(
-							'50%',
-							'60%',
-							'70%',
-							'90%',
-							'100%',
-						),
-					) ),
-					'desktop_max_height'           => new \Fieldmanager_Select( 'Desktop Max-Height', array(
-						'options' => array(
-							'50px',
-							'75px',
-							'100px',
-							'125px',
-							'150px',
-							'175px',
-							'200px',
-							'300px',
-							'400px',
-							'500px',
-							'600px',
-						),
-					) ),
-					'desktop_background_accent'    => new \Fieldmanager_Colorpicker( 'Desktop Background Accent' ),
 					'mobile_header_image_override' => new \Fieldmanager_Media( 'Mobile Header Image Override' ),
-					'mobile_alignment'             => new \Fieldmanager_Select( 'Mobile Alignment', array(
-						'options' => array(
-							'center',
-							'left',
-							'right',
-						),
-					) ),
-					'mobile_width'                 => new \Fieldmanager_Select( 'Mobile Width', array(
-						'options' => array(
-							'60%',
-							'70%',
-							'90%',
-							'100%',
-						),
-					) ),
-					'mobile_max_height'            => new \Fieldmanager_Select( 'Mobile Max-Height', array(
-						'options' => array(
-							'35px',
-							'50px',
-							'100px',
-							'200px',
-							'300px',
-							'400px',
-							'500px',
-							'600px',
-						),
-					) ),
 				),
 			)
 		);

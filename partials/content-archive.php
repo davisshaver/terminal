@@ -75,9 +75,6 @@ if ( is_page() ) {
 	if ( ! is_page() && empty( $single_data['hide_bio_on_single'] ) ) :
 		get_template_part( 'partials/author-snippet' );
 	endif;
-	?>
-	<a name="respond"></a>
-	<?php
 	$default = ! post_password_required() && comments_open( get_the_ID() );
 	$terminal_comments_open = apply_filters( 'terminal_comments_open', $default );
 	if ( ! is_page() && $terminal_comments_open ) :

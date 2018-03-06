@@ -33,6 +33,13 @@ class Community {
 	}
 
 	/**
+	 * Get book post type.
+	 */
+	public function get_community_post_type() {
+		return $this->community_post_type;
+	}
+
+	/**
 	 * Register community fields.
 	 */
 	public function register_community_fields() {

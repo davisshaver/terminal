@@ -35,6 +35,13 @@ class Links {
 	}
 
 	/**
+	 * Get link post type.
+	 */
+	public function get_link_post_type() {
+		return $this->link_post_type;
+	}
+
+	/**
 	 * Forward link post type to linked site.
 	 * @param string  $permalink The post's permalink.
 	 * @param WP_Post $post      The post in question.

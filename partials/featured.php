@@ -5,11 +5,9 @@
  * @package Terminal
  */
 
-if ( ! is_active_sidebar( 'featured' ) ) {
+if ( ! is_active_sidebar( 'terminal-featured' ) ) {
 	return;
 }
 
-echo '<div id="featured">';
-dynamic_sidebar( 'featured' );
-echo '</div>';
+dynamic_sidebar( 'terminal-featured' );
 

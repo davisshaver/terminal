@@ -40,8 +40,10 @@ class Theme {
 			'width'          => 455,
 		);
 		add_theme_support( 'custom-header', $custom_header_args );
-		add_image_size( 'terminal-uncut-thumbnail-small', 100, 100, false );
+		add_image_size( 'terminal-uncut-thumbnail-small', 50, 50, false );
+		add_image_size( 'terminal-uncut-thumbnail-logo', 100, 100, false );
 		add_image_size( 'terminal-uncut-thumbnail', 500, 500, false );
+		add_image_size( 'terminal-uncut-thumbnail-large', 775, 500, false );
 		add_image_size( 'terminal-primary-thumbnail', 702, 370, true );
 		add_image_size( 'terminal-thumbnail', 500, 500, true );
 		add_image_size( 'terminal-thumbnail-small', 100, 100, true );
@@ -67,10 +69,10 @@ class Theme {
 			'caption',
 		) );
 		add_theme_support( 'infinite-scroll', array(
-			'container'      => 'stories',
+			'container'      => 'terminal-container',
 			'render'         => 'terminal_print_stories_loop',
 			'footer'         => false,
-			'footer_widgets' => 'sidebar',
+			'wrapper'        => false,
 		) );
 		register_taxonomy(
 			'terminal-placement',
@@ -128,74 +130,75 @@ class Theme {
 	public function register_sidebars() {
 		register_sidebar( array(
 			'name'          => __( 'Primary Sidebar', 'terminal' ),
-			'id'            => 'primary-sidebar',
+			'id'            => 'terminal-primary-sidebar',
 			'description'   => __( 'Homepage sidebar.', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="sidebar-section terminal-sidebar-body-font %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-sidebar-section terminal-sidebar-body-font %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="sidebar-header terminal-sidebar-header-font">',
+			'before_title'  => '<div class="terminal-sidebar-header terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
+
 		register_sidebar( array(
 			'name'          => __( 'Header ', 'terminal' ),
-			'id'            => 'header',
+			'id'            => 'terminal-header',
 			'description'   => __( 'Header', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="header-section %2$s">',
+			'before_widget' => '<div id="%1$s" class=terminal-header-section %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="header-header">',
+			'before_title'  => '<div class="terminal-header-header">',
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(
 			'name'          => __( 'Footer ', 'terminal' ),
-			'id'            => 'footer',
+			'id'            => 'terminal-footer',
 			'description'   => __( 'Footer', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="footer-section %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-footer-section %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="footer-header">',
+			'before_title'  => '<div class="terminal-footer-header">',
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(
 			'name'          => __( 'Before Article ', 'terminal' ),
-			'id'            => 'before-article',
+			'id'            => 'terminal-before-article',
 			'description'   => __( 'Before Article', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="before-article-section %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-before-article-section %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="before-article-header">',
+			'before_title'  => '<div class="terminal-before-article-header">',
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(
 			'name'          => __( 'After Article ', 'terminal' ),
-			'id'            => 'after-article',
+			'id'            => 'terminal-after-article',
 			'description'   => __( 'After Article', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="after-article-section %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-after-article-section %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="after-article-header">',
+			'before_title'  => '<div class="terminal-after-article-header">',
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(
 			'name'          => __( 'Above Comments ', 'terminal' ),
-			'id'            => 'above-comments',
+			'id'            => 'terminal-above-comments',
 			'description'   => __( 'Above Comments', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="comments-section %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-comments-section %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="comments-header">',
+			'before_title'  => '<div class="terminal-comments-header">',
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(
 			'name'          => __( 'Featured ', 'terminal' ),
-			'id'            => 'featured',
+			'id'            => 'terminal-featured',
 			'description'   => __( 'Featured', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="featured-section %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-featured-section %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="featured-header terminal-sidebar-header-font">',
+			'before_title'  => '<div class="terminal-featured-header terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(
 			'name'          => __( 'Recirculation ', 'terminal' ),
-			'id'            => 'recirc',
+			'id'            => 'terminal-recirc',
 			'description'   => __( 'Recirculation', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="featured-section %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-recirc-section %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="featured-header terminal-sidebar-header-font">',
+			'before_title'  => '<div class="terminal-recirc-header terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
 	}

@@ -1,44 +1,3 @@
-a {
-	text-decoration: none;
-	color: #0f65ef;
-
-	&:hover {
-    color: #093c8f;
-    text-decoration: none;
-    transition: color .15s ease 0s;
-	}
-}
-
-div.link-gray-lighter a, ul.link-gray-lighter a, a.link-gray-lighter, p.link-gray-lighter a {
-	text-decoration: none;
-	color: #999 !important;
-
-	&:hover {
-    color: #222 !important;
-    text-decoration: none;
-    transition: color .15s ease 0s;
-	}
-}
-
-div.link-gray a, ul.link-gray a, p.link-gray a, a.link-gray {
-	text-decoration: none;
-	color: #222 !important;
-
-	&:hover {
-    color: #0f65ef !important;
-    text-decoration: none;
-    transition: color .15s ease 0s;
-	}
-}
-
-.text-gray-lighter {
-  color: #999 ! important;
-}
-
-.text-gray {
-  color: #222 ! important;
-}
-
 .terminal-headline-featured-font {
   font-size: 32px;
   line-height: 1.2;
@@ -51,12 +10,30 @@ div.link-gray a, ul.link-gray a, p.link-gray a, a.link-gray {
 
 .terminal-body-font {
   font-size: 20px;
+
   p, ul, ol {
     line-height: 1.4;
   }
 }
 
-.terminal-cta-tagline-font, .terminal-nav-font, .terminal-index-meta-font, .terminal-loop-header-font, .terminal-share-button-font, .terminal-sidebar-body-font, .terminal-sidebar-header-font, .terminal-single-meta-font, .terminal-utility-font {
+.terminal-cta-tagline-font,
+.terminal-nav-font,
+.terminal-index-meta-font,
+.terminal-header-font,
+.terminal-share-button-font,
+.terminal-sidebar-body-font,
+.terminal-sidebar-header-font,
+.terminal-single-meta-font,
+.terminal-utility-font {
   font-size: 16px;
 }
 
+.terminal-sidebar-header-font {
+	font-size: initial;
+	text-transform: initial;
+}
+
+.terminal-featured-header-font {
+	font-size: initial;
+	text-transform: initial;
+}

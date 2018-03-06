@@ -1,0 +1,33 @@
+.terminal-stream-item {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+	margin: 0 auto 15px auto;
+  width: calc(100% - 60px);
+
+  .terminal-stream-image {
+    flex-basis: 33%;
+    flex-grow: 1;
+    align-items: center;
+    display: grid;
+    
+    @media (max-width: 400px) {
+      flex-basis: 100%;
+    }
+  }
+  .terminal-stream-text {
+    box-sizing: border-box;
+    display: flex;
+    margin: 30px;
+    flex-grow: 1;
+    flex-basis: calc(66% - 60px);
+    flex-direction: column;
+
+    .terminal-stream-story-text {
+      margin: 15px 0;
+    }
+    .terminal-stream-headline {
+      margin: 0;
+    }
+  }
+}

@@ -28,6 +28,13 @@ class Books {
 	}
 
 	/**
+	 * Get book post type.
+	 */
+	public function get_book_post_type() {
+		return $this->book_post_type;
+	}
+
+	/**
 	 * Include community post type.
 	 *
 	 * @param object $query Query
@@ -55,10 +62,10 @@ class Books {
 			'singular_name'       	=> __( 'Books', 'terminal' ),
 			'menu_name'           	=> __( 'Books', 'terminal' ),
 			'all_items'           	=> __( 'All Books', 'terminal' ),
-			'view_item'           	=> __( 'View Books', 'terminal' ),
-			'add_new_item'        	=> __( 'Add New Books', 'terminal' ),
+			'view_item'           	=> __( 'View Book', 'terminal' ),
+			'add_new_item'        	=> __( 'Add New Book', 'terminal' ),
 			'add_new'             	=> __( 'Add New', 'terminal' ),
-			'edit_item'           	=> __( 'Edit Books', 'terminal' ),
+			'edit_item'           	=> __( 'Edit Book', 'terminal' ),
 			'update_item'         	=> __( 'Update Books', 'terminal' ),
 			'search_items'        	=> __( 'Search Books', 'terminal' ),
 			'not_found'           	=> __( 'Not found', 'terminal' ),

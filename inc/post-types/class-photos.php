@@ -33,6 +33,27 @@ class Photos {
 	}
 
 	/**
+	 * Get photo post type.
+	 */
+	public function get_photo_post_type() {
+		return $this->photo_post_type;
+	}
+
+	/**
+	 * Get photo post type.
+	 */
+	public function get_photographer( $attribute = 'display_name' ) {
+		$photographer = get_post_meta( get_the_ID(), $this->photo_post_type_photo_key, true );
+		if ( ! empty( $photographer ) ) {
+			$photographer = get_userdata( $photographer );
+			if ( $photographer ) {
+				return $photographer->$attribute;
+			}
+		}
+		return get_the_author_meta( $attribute );
+	}
+
+	/**
 	 * Register community fields.
 	 */
 	public function register_photo_fields() {
@@ -73,11 +94,11 @@ class Photos {
 			'singular_name'       	=> __( 'Photos', 'terminal' ),
 			'menu_name'           	=> __( 'Photos', 'terminal' ),
 			'all_items'           	=> __( 'All Photos', 'terminal' ),
-			'view_item'           	=> __( 'View Photos', 'terminal' ),
-			'add_new_item'        	=> __( 'Add New Photos', 'terminal' ),
+			'view_item'           	=> __( 'View Photo', 'terminal' ),
+			'add_new_item'        	=> __( 'Add New Photo', 'terminal' ),
 			'add_new'             	=> __( 'Add New', 'terminal' ),
-			'edit_item'           	=> __( 'Edit Photos', 'terminal' ),
-			'update_item'         	=> __( 'Update Photos', 'terminal' ),
+			'edit_item'           	=> __( 'Edit Photo', 'terminal' ),
+			'update_item'         	=> __( 'Update Photo', 'terminal' ),
 			'search_items'        	=> __( 'Search Photos', 'terminal' ),
 			'not_found'           	=> __( 'Not found', 'terminal' ),
 			'not_found_in_trash'  	=> __( 'Not found in Trash', 'terminal' ),

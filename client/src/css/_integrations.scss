@@ -1,0 +1,113 @@
+// Infinite loader
+.infinite-loader {
+	color: #000;
+	display: block;
+	height: 28px;
+	text-indent: -9999px;
+}
+#infinite-handle span {
+	background: #333;
+	border-radius: 1px;
+	color: #eee;
+	cursor: pointer;
+	font-size: 13px;
+	padding: 6px 16px;
+}
+
+body.infinite-scroll {
+	.terminal-footer {
+		display: none;
+	}
+}
+.infinite-wrap {
+	display: block;
+	width: 100%;
+}
+body.infinity-end {
+	#footer {
+		display: block !important;
+	}
+}
+// Easy Social Share
+.terminal-before-article-section > .textwidget > .essb-shortcode { 
+	margin: 30px 30px 0 30px;
+}
+
+.terminal-after-article-section > .textwidget > .essb-shortcode {
+	margin: 30px;
+}
+
+.terminal-before-article-section > .textwidget > .essb-shortcode ,
+.after-article-section > .textwidget > .essb-shortcode {
+	.essb_links.essb_width_flex ul {
+		justify-content: center;
+		flex-wrap: wrap;
+		li {
+			flex-basis: 20%;
+			flex-grow: 1;
+			flex-shrink: 1;
+			@media (max-width: 1000px) {
+				flex-basis: 25%;
+			}
+			@media (max-width: 800px) {
+				flex-basis: 33%;
+			}
+			@media (max-width: 420px) {
+				flex-basis: 50%;
+			}
+			text-align: center;
+
+			a {
+				width: calc(100% - 15px);
+			}
+			&.essb_link_sharebtn a {
+				color: #999 !important;
+				border: 2px solid #999;
+				background-color: #fff !important;
+				&:hover {
+					color: #fff !important;
+					background-color: #999 !important;
+				}
+			}
+			&.essb_totalcount_item {
+				color: #999 !important;
+			}
+			&.essb_link_sharebtn span.essb_network_name.essb_noname::before {
+				content: 'Share';
+			}
+		}
+	}
+	.essb_width_columns_2 li {
+		width: 48%;
+		padding: 1% !important;
+	}
+}
+
+.essb_links {
+	margin: 0;
+}
+
+// Gravity form
+div.gform_wrapper {
+	margin: 0 30px 20px 30px;
+}
+
+// Ad Layers
+.widget_ad_layers_ad_widget {
+	padding: 0;
+	border: none;
+	text-align: center;
+	margin: 0 auto;
+	background-color: initial;
+	box-shadow: none;
+	border-radius: unset;
+}
+
+.dfp-ad {
+	margin: 0 auto 15px auto;
+	text-align: center;
+	overflow: hidden;
+	iframe {
+		background-color: #fff;
+	}
+}

@@ -22,7 +22,7 @@
 >
 	<?php
 	if ( has_post_thumbnail() ) :
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-thumbnail' );
+		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail' );
 	?>
 		<div class="image" style="background-image: url('<?php echo esc_url( $thumb['0'] ); ?>')">
 		<?php

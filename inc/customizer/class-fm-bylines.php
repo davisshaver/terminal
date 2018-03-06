@@ -39,14 +39,12 @@ class FM_Bylines {
 					'loop_hide_author'     => new \Fieldmanager_Checkbox( 'Loop - Disable Author' ),
 					'loop_hide_category'   => new \Fieldmanager_Checkbox( 'Loop - Disable Categories' ),
 					'loop_hide_comments'   => new \Fieldmanager_Checkbox( 'Loop - Disable Comments' ),
-					'loop_hide_edit'       => new \Fieldmanager_Checkbox( 'Loop - Disable Edit Button for Editors' ),
 					'single_hide_avatar'   => new \Fieldmanager_Checkbox( 'Single - Disable Avatar' ),
 					'single_avatar_size'   => new \Fieldmanager_Select( 'Single - Avatar Size', array( 'options' => array( 25, 30, 40, 50, 60, 75, 100 ) ) ),
 					'single_hide_date'     => new \Fieldmanager_Checkbox( 'Single - Disable Publish Date' ),
 					'single_hide_author'   => new \Fieldmanager_Checkbox( 'Single - Disable Author' ),
 					'single_hide_category' => new \Fieldmanager_Checkbox( 'Single - Disable Categories' ),
 					'single_hide_comments' => new \Fieldmanager_Checkbox( 'Single - Disable Comments' ),
-					'single_hide_edit'     => new \Fieldmanager_Checkbox( 'Single - Disable Edit Button for Editors' ),
 				),
 			)
 		);

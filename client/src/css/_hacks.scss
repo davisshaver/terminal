@@ -1,4 +1,3 @@
-// Disable ugly blue highlight on inputs.
 input:focus,
 select:focus,
 textarea:focus,
@@ -6,24 +5,8 @@ button:focus {
 	outline: none;
 }
 
-// No images outside their containers. This isn't the wild west.
-img {
-	max-width: 100%;
-	height: auto;
-}
-
 strong, b {
 	font-weight: 700;
-}
-
-// Don't inherit font family for font
-input, select, textarea, button {
-	font-family: inherit;
-}
-
-.dfp-ad {
-	margin: auto;
-	overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6, p, a {
@@ -32,105 +15,13 @@ h1, h2, h3, h4, h5, h6, p, a {
   text-overflow: ellipsis;
 }
 
-.dfp-ad iframe {
-	background-color: #fff;
-}
-
 .post.sticky .headline::before {
 	content: '📌';
 	user-select: none;
 }
 
-img {
-	user-select: none;
-	-moz-user-select: none;
-	-webkit-user-drag: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-}
-
-body {
-	margin: 0;
-}
-
-@media (max-width: 420px) {
-	body {
-		.mobile-hide-1 {
-			display: none !important;
-		}
-	}
-}
-
 twitterwidget {
 	margin: auto;
-	width: unset !important;
-	min-width: unset !important;
-	padding: 30px;
-}
-
-
-.terminal-twitter {
-	background-color: rgb(85,172,238);
-
-	&:hover {
-		background-color: rgba(85,172,238, .8);
-	}
-}
-
-.terminal-instagram {
-	background-color: rgb(18,86,136);
-
-	&:hover {
-		background-color: rgba(18,86,136, .8);
-	}
-}
-
-.terminal-snapchat {
-	background-color: rgb(255,252,0);
-	&.terminal-follow a, &.terminal-follow a:hover {
-		color: #000 !important;
-	}
-	&:hover {
-		background-color: rgba(255,252,0, .5);
-	}
-}
-
-.terminal-facebook {
-	background-color: rgb(59,89,152);
-
-	&:hover {
-		background-color: rgba(59,89,152, .8);
-	}
-}
-
-.terminal-follow {
-	text-align: center;
-	box-sizing: border-box;
-	margin: 0 10px 10px 10px;
-	box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1);
-	border: 1px solid rgba(0,0,0,.1);
-	padding: 5px 8px 8px;
-	a {
-		color: #fff;
-		display: block;
-		height: 100%;
-		width: 100%;
-		text-decoration: none;
-
-		&:hover {
-			color: #fff !important;
-			text-decoration: none !important;
-		}
-	}
-
-	svg {
-		width: 1rem!important;
-		height: 1rem!important;
-		fill: #fff!important;
-		top: 0.125rem!important;
-		margin-right: 0.5rem;
-		position: relative !important;
-	}
 }
 
 .circle, .circle img {

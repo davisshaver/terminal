@@ -14,38 +14,31 @@
 
 get_header(); ?>
 
-<div id="container">
-	<div id="body">
-		<div class="content">
-			<?php
-			if ( is_home() && ! is_paged() ) {
-				get_template_part( 'partials/featured' );
-			}
-			terminal_print_index_header();
-			if ( is_author() ) {
-				get_template_part( 'partials/author' );
-			}
-			?>
-			<div id="stories">
-				<?php terminal_print_stories_loop(); ?>
-			</div>
-		</div>
-		<?php
-			get_template_part( 'partials/sidebar' );
-		?>
-	</div>
+<div id="terminal-container" class="terminal-container">
+	<?php
+	if ( is_home() && ! is_paged() ) {
+		get_template_part( 'partials/featured' );
+	}
+	terminal_print_index_header();
+	if ( is_author() ) {
+		echo '<div class="terminal-author-single">';
+		get_template_part( 'partials/author' );
+		echo '</div>';
+	}
+	?>
+	<?php terminal_print_stories_loop(); ?>
 	<?php if ( ! empty( get_previous_posts_link() ) || ! empty( get_next_posts_link() ) ) : ?>
-		<div class="index-navigation">
-			<div class="index-navigation-links">
-				<?php if ( ! empty( get_previous_posts_link() ) ) : ?>
-					<div class="alignleft"><?php previous_posts_link( '<span class="nav_button">&laquo; Previous</span>' ); ?></div>
-				<?php endif; ?>
-				<?php if ( ! empty( get_next_posts_link() ) ) : ?>
-					<div class="alignright"><?php next_posts_link( '<span class="nav_button">Next &raquo;</span>', '' ); ?></div>
-					<?php endif; ?>
-			</div>
-			<div style="clear: both;"></div>
+		<div class="terminal-pagination">
+			<?php if ( ! empty( get_previous_posts_link() ) ) : ?>
+				<div><?php previous_posts_link( '&laquo; Previous' ); ?></div>
+			<?php endif; ?>
+			<?php if ( ! empty( get_next_posts_link() ) ) : ?>
+				<div><?php next_posts_link( 'Next &raquo;', '' ); ?></div>
+			<?php endif; ?>
 		</div>
 	<?php endif; ?>
+	<?php
+		get_template_part( 'partials/sidebar' );
+	?>
 </div>
 <?php get_footer(); ?>

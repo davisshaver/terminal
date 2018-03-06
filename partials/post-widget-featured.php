@@ -7,11 +7,11 @@
 
 ?>
 
-<div class="post-widget post-widget-featured">
+<div class="terminal-post-widget terminal-post-widget-featured">
 	<?php
 	if ( has_post_thumbnail() ) :
 	?>
-		<div class="image">
+		<div class="terminal-image">
 			<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 				<?php the_post_thumbnail( 'terminal-primary-thumbnail', array( 'title' => get_the_title() ) ); ?>
 			</a>
@@ -19,16 +19,14 @@
 	<?php
 	endif;
 	?>
-	<div class="post-row">
-		<h4 class="terminal-headline-font">
-			<a href="<?php the_permalink(); ?>" class="link-gray">
-				<?php the_title(); ?>
-			</a>
-		</h4>
-		<div class="terminal-sidebar-body-font story-text text-gray-lighter">
-			<?php
-				the_excerpt();
-			?>
-		</div>
+	<h4 class="terminal-headline-font">
+		<a href="<?php the_permalink(); ?>">
+			<?php the_title(); ?>
+		</a>
+	</h4>
+	<div class="terminal-story-text terminal-sidebar-body-font">
+		<?php
+			the_excerpt();
+		?>
 	</div>
 </div>

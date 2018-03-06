@@ -47,7 +47,6 @@ class Customizer {
 			require_once __DIR__ . '/customizer/class-fm-ads.php';
 			require_once __DIR__ . '/customizer/class-fm-bylines.php';
 			require_once __DIR__ . '/customizer/class-fm-layout.php';
-			require_once __DIR__ . '/customizer/class-fm-sidebar.php';
 			require_once __DIR__ . '/customizer/class-fm-fonts.php';
 			require_once __DIR__ . '/customizer/class-fm-header.php';
 			require_once __DIR__ . '/customizer/class-fm-footer.php';
@@ -173,7 +172,7 @@ class Customizer {
 				'.terminal-headline-featured-font, .terminal-headline-featured-font a' => 'head_featured',
 				'.terminal-headline-font, .terminal-headline-font a' => 'headline',
 				'.terminal-index-meta-font' => 'index_meta',
-				'.terminal-loop-header-font' => 'loop_header',
+				'.terminal-header-font' => 'loop_header',
 				'.terminal-share-button-font' => 'share',
 				'.terminal-sidebar-body-font' => 'sidebar_body',
 				'.terminal-sidebar-header-font' => 'sidebar_header',
@@ -221,22 +220,33 @@ class Customizer {
 			echo ' } ';
 		}
 		?>
-			#nav-bar, #nav-bar-inside-more {
+			.terminal-nav-bar, .terminal-nav-bar-inside-more {
 				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?>;
 			}
-
-			#header {
+			
+			<?php
+			$header_accent = get_theme_mod( 'header_accent_color_setting', false );
+			if ( ! empty( $header_accent ) ) {
+				printf(
+					'body { border-top: 10px solid %s; } .terminal-signup { background-color: %s; } @media (max-width: 800px) { body { border-top: 30px solid %s; } } ',
+					esc_attr( get_theme_mod( 'header_accent_color_setting', null ) ),
+					esc_attr( get_theme_mod( 'header_accent_color_setting', null ) ),
+					esc_attr( get_theme_mod( 'header_accent_color_setting', null ) )
+				);
+			}
+			?>
+			.terminal-header-container {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_background_color_setting', '#9DC1FD' ) ); ?>;
 			}
 
-			#footer {
+			.terminal-footer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_background_color_setting', '#9DC1FD' ) ); ?>;
 				<?php if ( ! empty( get_theme_mod( 'footer_accent_color_setting', '#9DC1FD' ) ) ) : ?>
 					border-bottom: 2px solid <?php echo esc_attr( get_theme_mod( 'footer_accent_color_setting', 'inherit' ) ); ?>
 				<?php endif; ?>
 			}
 
-			.post, .page {
+			.terminal-stream-item, .terminal-single-item, .terminal-author-single {
 				<?php
 				$post_page_background = get_theme_mod( 'post_page_background_color_setting', false );
 				if ( ! empty( $post_page_background ) ) {
@@ -246,7 +256,7 @@ class Customizer {
 				?>
 			}
 
-			.loop-header {
+			.terminal-header {
 				<?php
 				$loop_header_background_color = get_theme_mod( 'loop_header_background_color_setting', false );
 				if ( ! empty( $loop_header_background_color ) ) {
@@ -256,11 +266,11 @@ class Customizer {
 				?>
 			}
 
-			#footer-leaderboard {
+			.terminal-footer-leaderboard {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 
-			.featured-section {
+			.terminal-featured-section {
 				<?php
 				$featured_section = get_theme_mod( 'featured_section_background_color_setting', false );
 				if ( ! empty( $featured_section ) ) {
@@ -270,7 +280,7 @@ class Customizer {
 				?>
 			}
 
-			.sidebar-section {
+			.terminal-sidebar-section {
 				<?php
 				$sidebar_section = get_theme_mod( 'sidebar_section_background_color_setting', false );
 				if ( ! empty( $sidebar_section ) ) {
@@ -280,11 +290,11 @@ class Customizer {
 				?>
 			}
 
-			.topbar {
+			.terminal-topbar {
 				background-color: <?php echo esc_attr( get_theme_mod( 'byline_background_color_setting', 'inherit' ) ); ?>;
 			}
 
-			#header-leaderboard {
+			.terminal-header-leaderboard {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 		<?php
@@ -333,11 +343,11 @@ class Customizer {
 				<?php endif; ?>
 			}
 
-			div#ppc-logo {
+			div.terminal-ppc-logo {
 				text-align: center;
 			}
 
-			.featured-credit svg {
+			.terminal-featured-credit svg {
 				width: 1rem;
 				height: 1rem;
 				fill: #ccc;
@@ -346,7 +356,7 @@ class Customizer {
 				position: relative;
 			}
 
-			.featured-meta {
+			.terminal-featured-meta {
 				margin: 10px auto;
 				max-width: 600px;
 				color: #999;
@@ -467,6 +477,24 @@ class Customizer {
 				'footer_background_color_setting',
 				array(
 					'label'   => __( 'Footer background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'header_accent_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'header_accent_color_setting',
+				array(
+					'label'   => __( 'Header accent color' ),
 					'section' => 'colors',
 				)
 			)
