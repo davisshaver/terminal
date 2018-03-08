@@ -48,7 +48,6 @@ if ( class_exists( '\FM_Widget' ) ) {
 					// phpcs:ignore
 					echo $args['before_title'] . $widget_title . $args['after_title'];
 				}
-				echo '<div class="category-widget">';
 				while ( $cat_query->have_posts() ) :
 					$cat_query->the_post();
 					if ( ! empty( $instance['first_featured'] ) && 0 === $cat_query->current_post ) {
@@ -57,7 +56,6 @@ if ( class_exists( '\FM_Widget' ) ) {
 						get_template_part( 'partials/post-widget' );
 					}
 				endwhile;
-				echo '</div>';
 				// phpcs:ignore
 				echo $args['after_widget'];
 			endif;

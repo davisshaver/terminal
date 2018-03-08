@@ -7,7 +7,7 @@
 
 ?>
 
-<div class="terminal-post-widget">
+<div class="terminal-post-widget terminal-card-text">
 	<?php
 	if ( has_post_thumbnail() ) :
 		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail-small' );
@@ -18,7 +18,7 @@
 	<?php
 	endif;
 	?>
-	<h4 class="terminal-headline-font terminal-story-text">
+	<h4 class="terminal-headline-font">
 		<a href="<?php the_permalink(); ?>" class="link-gray">
 			<?php the_title(); ?>
 		</a>

@@ -7,7 +7,7 @@
 
 ?>
 
-<div class="terminal-post-widget terminal-post-widget-featured">
+<div class="terminal-post-widget terminal-card-text terminal-post-widget-featured">
 	<?php
 	if ( has_post_thumbnail() ) :
 	?>
@@ -24,7 +24,7 @@
 			<?php the_title(); ?>
 		</a>
 	</h4>
-	<div class="terminal-story-text terminal-sidebar-body-font">
+	<div class="terminal-sidebar-body-font">
 		<?php
 			the_excerpt();
 		?>

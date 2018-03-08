@@ -50,7 +50,6 @@ if ( class_exists( '\FM_Widget' ) ) {
 					get_the_author_meta( 'first_name' ),
 					$args['after_title']
 				);
-				echo '<div class="category-widget">';
 				while ( $author_query->have_posts() ) :
 					$author_query->the_post();
 					if ( 0 === $author_query->current_post ) {
@@ -59,7 +58,6 @@ if ( class_exists( '\FM_Widget' ) ) {
 						get_template_part( 'partials/post-widget' );
 					}
 				endwhile;
-				echo '</div>';
 				// phpcs:ignore
 				echo $args['after_widget'];
 			endif;
