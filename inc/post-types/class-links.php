@@ -120,7 +120,7 @@ class Links {
 			'label'               => __( 'link', 'terminal' ),
 			'description'         => __( 'Links', 'terminal' ),
 			'labels'              => $link_labels,
-			'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
 			'hierarchical'        => false,
 			'public'              => false,
 			'show_ui'             => true,

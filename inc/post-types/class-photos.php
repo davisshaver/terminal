@@ -107,7 +107,7 @@ class Photos {
 			'label'               => __( 'photo', 'terminal' ),
 			'description'         => __( 'Photos', 'terminal' ),
 			'labels'              => $photo_labels,
-			'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'revisions' ),
+			'supports'            => array( 'title', 'author', 'thumbnail', 'revisions' ),
 			'hierarchical'        => false,
 			'public'              => false,
 			'show_ui'             => true,
