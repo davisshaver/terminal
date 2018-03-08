@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const infiniteTarget = `.infinite-loader:nth-of-type(${slotNum})`;
       const adTag = jQuery('<div />')
         .attr('id', adLayersDFP.adUnitPrefix + slotName)
-        .attr('class', 'dfp-ad terminal-sidebar-section');
+        .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center dfp-ad');
       exponentialBackoff(
         (thisSlotName = `${slotName}`, thisTag = adTag, thisTarget = infiniteTarget) => {
           if (jQuery(thisTarget).length !== 0) {

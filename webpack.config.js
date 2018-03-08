@@ -9,7 +9,6 @@ const extractSass = new ExtractTextPlugin({
 module.exports = {
   entry: {
     index: './client/src/index.js',
-    single: './client/src/single.js',
     customizerPreview: './client/src/customizer-preview.js',
   },
   output: {

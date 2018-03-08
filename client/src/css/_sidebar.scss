@@ -1,14 +1,12 @@
 
-.terminal-sidebar-section {
+.terminal-sidebar-header {
+	position: relative;
+	padding: 10px 30px;
+	height: 40px;
+	width: 100%;
+	background: #f2f2f2;
+}
+
+.textwidget {
 	padding: 30px;
-	@media (max-width: 869px) {
-		margin: 0 15px 15px 15px;
-	}
-	max-width: 600px;
-	margin: 0 auto 15px auto;
-	width: calc(100% - 60px);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
 }

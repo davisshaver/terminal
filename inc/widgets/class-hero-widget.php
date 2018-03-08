@@ -48,13 +48,11 @@ if ( class_exists( '\FM_Widget' ) ) {
 			) );
 			if ( $cat_query->have_posts() ) :
 				// phpcs:ignore
-				echo $args['before_widget'];
 				while ( $cat_query->have_posts() ) :
 					$cat_query->the_post();
 					get_template_part( 'partials/hero' );
 				endwhile;
 				// phpcs:ignore
-				echo $args['after_widget'];
 			endif;
 			wp_reset_postdata();
 		}

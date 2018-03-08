@@ -24,8 +24,9 @@ svg.terminal-svg {
 
 .terminal-container {
 	display: flex;
+	justify-content: center;
 	min-height: 100vh;
-	margin: 15px 0;
+	margin: 15px auto;
 	flex-wrap: wrap;
 }
 .terminal-content {

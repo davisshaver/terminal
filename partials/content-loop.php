@@ -17,7 +17,7 @@ $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 
 <div 
 	id="post-<?php the_ID(); ?>"
-	<?php post_class( array( 'terminal-post-tracking', 'terminal-stream-item' ) ); ?>
+	<?php post_class( array( 'terminal-post-tracking', 'terminal-card', 'terminal-post-card', 'terminal-card-single' ) ); ?>
 	data-terminal-post-id="<?php the_ID(); ?>"
 	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
 	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
@@ -36,7 +36,7 @@ if ( has_post_thumbnail() ) :
 		id="post-image-link-<?php the_ID(); ?>"
 		href="<?php the_permalink(); ?>"
 		rel="bookmark"
-		class="terminal-tracking terminal-stream-image"
+		class="terminal-tracking terminal-card-image"
 		title="<?php the_title_attribute(); ?>"
 		data-terminal-post-id="link-<?php the_ID(); ?>"
 		data-terminal-has-image="<?php has_post_thumbnail(); ?>"
@@ -71,9 +71,9 @@ endif;
 			get_template_part( 'partials/byline', get_post_type( $post ) );
 		endif;
 		printf(
-			'<div class="terminal-stream-story-text terminal-body-font %s">%s</div>',
+			'<div class="terminal-card-text terminal-body-font %s">%s</div>',
 			$hide_excerpt_on_mobile ? "terminal-mobile-hide" : '',
-			get_the_excerpt()
+			wp_kses_post( wpautop( get_the_excerpt() ) )
 		);
 		if ( 'bottom' === $loop_data['loop_meta_position'] ) :
 			get_template_part( 'partials/byline', get_post_type( $post ) );

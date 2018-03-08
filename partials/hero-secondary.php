@@ -10,7 +10,7 @@
 	id="hero-secondary-post-<?php the_ID(); ?>"
 	<?php
 	printf(
-		'class="%s hero-secondary-widget"',
+		'class="%s terminal-hero-secondary-widget "',
 		! is_singular() ? 'terminal-post-tracking' : ''
 	);
 	?>
@@ -22,42 +22,22 @@
 >
 	<?php
 	if ( has_post_thumbnail() ) :
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail' );
+		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail-large' );
 	?>
-		<div class="image" style="background-image: url('<?php echo esc_url( $thumb['0'] ); ?>')">
 		<?php
 			printf(
-				'<a id="hero-secondary-image-%s" href="%s" class="%s bookmark" title="%s" data-terminal-post-id="%s" data-terminal-view="hero-secondary image" data-terminal-title="%s"></a>',
+				'<a id="terminal-secondary-hero-image-%s" href="%s" class="terminal-secondary-hero-image terminal-headline-font terminal-alignment-center %s bookmark" title="%s" data-terminal-post-id="%s" data-terminal-view="hero image" data-terminal-title="%s" style="background: linear-gradient( rgba(239, 239, 239, 0.8), rgba(239, 239, 239, 0.8) ), url(%s) center center / cover no-repeat;">',
 				get_the_ID(),
 				get_the_permalink(),
 				! is_singular() ? 'terminal-tracking' : '',
 				the_title_attribute( array( 'echo' => false ) ),
 				get_the_ID(),
-				the_title_attribute( array( 'echo' => false ) )
+				the_title_attribute( array( 'echo' => false ) ),
+				esc_url( $thumb['0'] )
 			);
-		?>
-		</div>
+			the_title(); ?>
+		</a>
 	<?php
 	endif;
 	?>
-	<h2 class="terminal-headline-font">
-		<?php
-			printf(
-				'<a id="hero-secondary-title-%s" href="%s" class="%s link-gray" title="%s" data-terminal-post-id="%s" data-terminal-view="hero-secondary title" data-terminal-title="%s">',
-				get_the_ID(),
-				get_the_permalink(),
-				! is_singular() ? 'terminal-tracking' : '',
-				the_title_attribute( array( 'echo' => false ) ),
-				get_the_ID(),
-				the_title_attribute( array( 'echo' => false ) )
-			);
-		?>
-			<?php the_title(); ?>
-		</a>
-	</h2>
-	<div class="story-text terminal-sidebar-body-font mobile-hide-1">
-		<?php
-			the_excerpt();
-		?>
-	</div>
 </div>

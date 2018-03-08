@@ -132,7 +132,7 @@ class Theme {
 			'name'          => __( 'Primary Sidebar', 'terminal' ),
 			'id'            => 'terminal-primary-sidebar',
 			'description'   => __( 'Homepage sidebar.', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="terminal-sidebar-section terminal-sidebar-body-font %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-sidebar-card terminal-card terminal-card-single terminal-sidebar-body-font %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<div class="terminal-sidebar-header terminal-sidebar-header-font">',
 			'after_title'   => '</div>',

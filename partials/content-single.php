@@ -15,7 +15,7 @@ if ( is_page() ) {
 }
 printf(
 	'<article class="%s" id="terminal-post-%s">',
-	implode( get_post_class( 'terminal-single-item' ), ' ' ),
+	implode( get_post_class( array( 'terminal-card', 'terminal-post-card', 'terminal-card-full' ) ), ' ' ),
 	get_the_ID()
 );
 if ( 'top' === $single_data['single_meta_position'] ) :
@@ -34,7 +34,7 @@ printf(
 	get_the_title()
 );
 if ( has_post_thumbnail() ) :
-	echo '<div class="terminal-featured-image">';
+	echo '<div class="terminal-card-image">';
 	the_post_thumbnail( 'terminal-uncut-thumbnail-large' );
 	echo '</div>';
 	terminal_print_featured_image_caption();
@@ -46,7 +46,7 @@ if ( 'middle' === $single_data['single_meta_position'] ) :
 	get_template_part( 'partials/byline', get_post_type( $post ) );
 endif;
 printf(
-	'<div class="terminal-story-text terminal-body-font">%s',
+	'<div class="terminal-card-text terminal-body-font">%s',
 	apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) )
 );
 wp_link_pages();

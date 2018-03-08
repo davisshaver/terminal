@@ -15,7 +15,7 @@
 	
 	.terminal-header-container {
 	.terminal-logos {
-		max-width: $max_width;
+		max-width: 1200px;
 		width: calc(100% - 60px);
 		margin: 0 auto;
 		@media (max-width: 869px) {
@@ -24,7 +24,7 @@
 		width: calc(100% - 60px);
     align-items: center;
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: row nowrap;
     padding-top: 5px;
 		justify-content: space-around;
 
@@ -101,12 +101,11 @@
 	width: 100%;
 	margin: 0 auto 15px auto;
 	@media (max-width: 869px) {
-		margin: 0 15px 15px 15px;
+		margin: 0 30 15px 30;
 	}
 }
 
 .terminal-header h2 {
-	max-width: $max_width;
 	margin: auto;
 	width: calc(100% - 60px);
 	padding: 15px 0;
@@ -114,6 +113,5 @@
 
 h1.terminal-header, h2.terminal-header, h3.terminal-header, h4.terminal-header, h5.terminal-header, h6.terminal-header {
 	padding: 30px;
-	width: calc(100% + 60px);
-	margin: 0 -30px 15px -30px;
+	margin: 0 0 15px 0;
 }

@@ -246,11 +246,10 @@ class Customizer {
 				<?php endif; ?>
 			}
 
-			.terminal-stream-item, .terminal-single-item, .terminal-author-single {
+			.terminal-post-card {
 				<?php
 				$post_page_background = get_theme_mod( 'post_page_background_color_setting', false );
 				if ( ! empty( $post_page_background ) ) {
-					echo 'box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1); border: 1px solid rgba(0,0,0,.1);';
 					printf( 'background-color: %s;', esc_attr( $post_page_background ) );
 				}
 				?>
@@ -260,7 +259,6 @@ class Customizer {
 				<?php
 				$loop_header_background_color = get_theme_mod( 'loop_header_background_color_setting', false );
 				if ( ! empty( $loop_header_background_color ) ) {
-					echo 'box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1);';
 					printf( 'background-color: %s;', esc_attr( $loop_header_background_color ) );
 				}
 				?>
@@ -270,21 +268,19 @@ class Customizer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 
-			.terminal-featured-section {
+			.terminal-card-featured {
 				<?php
 				$featured_section = get_theme_mod( 'featured_section_background_color_setting', false );
 				if ( ! empty( $featured_section ) ) {
-					echo 'box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1); border: 1px solid rgba(0, 0, 0, 0.1); ';
 					printf( 'background-color: %s;', esc_attr( $featured_section ) );
 				}
 				?>
 			}
 
-			.terminal-sidebar-section {
+			.terminal-sidebar-card {
 				<?php
 				$sidebar_section = get_theme_mod( 'sidebar_section_background_color_setting', false );
 				if ( ! empty( $sidebar_section ) ) {
-					echo 'box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1); border: 1px solid rgba(0, 0, 0, 0.1); ';
 					printf( 'background-color: %s;', esc_attr( $sidebar_section ) );
 				}
 				?>

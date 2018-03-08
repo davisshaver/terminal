@@ -32,8 +32,19 @@ class Frontend {
 			add_filter( 'wpseo_breadcrumb_single_link', [ $this, 'adjust_single_breadcrumb' ] );
 			add_filter( 'jetpack_implode_frontend_css', '__return_false' );
 			add_action( 'wp_head', [ $this, 'remove_jetpack_crap' ], 130 );
+			add_filter( 'option_coral_talk_container_classes', [ $this, 'filter_talk_classes' ] );
 		}
 		$this->disable_emojis();
+	}
+
+	/**
+	 * Filter talk classes.
+	 *
+	 * @param $classes string existing classes.
+	 * @return string Filtered classes.
+	 */
+	public function filter_talk_classes( $classes ) {
+		return $classes . ' terminal-comments';
 	}
 
 	/**
@@ -136,11 +147,7 @@ class Frontend {
 	 * Enqueue scripts.
 	 */
 	public function enqueue_scripts() {
-		if ( is_singular() ) {
-			wp_enqueue_script( TERMINAL_APP . '-single', get_template_directory_uri() . '/client/build/single.bundle.js', array(), TERMINAL_VERSION, false );
-		} else {
-			wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.bundle.js', array(), TERMINAL_VERSION, false );
-		}
+		wp_enqueue_script( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.bundle.js', array(), TERMINAL_VERSION, false );
 		wp_deregister_style( 'ad-layers' );
 		wp_deregister_style( 'ad-layers-dfp' );
 		wp_deregister_script( 'wp-mediaelement' );
@@ -159,11 +166,7 @@ class Frontend {
 	 * Enqueue styles.
 	 */
 	public function enqueue_styles() {
-		if ( is_singular() ) {
-			wp_enqueue_style( TERMINAL_APP . '-single', get_template_directory_uri() . '/client/build/single.css', array(), TERMINAL_VERSION );
-		} else {
-			wp_enqueue_style( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.css', array(), TERMINAL_VERSION );
-		}
+		wp_enqueue_style( TERMINAL_APP, get_template_directory_uri() . '/client/build/index.css', array(), TERMINAL_VERSION );
 	}
 }
 

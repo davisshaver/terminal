@@ -1,8 +1,19 @@
 // Infinite loader
 .infinite-loader {
 	color: #000;
-	display: block;
 	height: 28px;
+	@media (min-width: 800px) {
+    max-width: 400px;
+  }
+  @media (min-width: 800px) {
+    max-width: 0 0 15px 0;
+  }
+	margin: 15px;
+  width: calc(100% - 60px);
+  @media (min-width: 1000px) {
+    width: calc(100% - 90px);
+  }
+	display: flex;
 	text-indent: -9999px;
 }
 #infinite-handle span {
@@ -104,9 +115,10 @@ div.gform_wrapper {
 }
 
 .dfp-ad {
-	margin: 0 auto 15px auto;
 	text-align: center;
 	overflow: hidden;
+	display: flex;
+	align-items: center;
 	iframe {
 		background-color: #fff;
 	}

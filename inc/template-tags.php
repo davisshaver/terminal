@@ -448,7 +448,7 @@ function terminal_print_stories_loop() {
 			the_post();
 			get_template_part( 'partials/content-loop', terminal_get_post_type( $post ) );
 			if ( is_home() && ! isset( $_GET[ 'infinity' ] ) && $has_inline_ads && 0 === $count % 7 && ! empty( $inline_ads_unit ) ) {
-				echo '<div class="terminal-sidebar-section">';
+				echo '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center">';
 				do_action( 'ad_layers_render_ad_unit', $inline_ads_unit );
 				echo '</div>';
 			}

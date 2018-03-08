@@ -48,13 +48,13 @@ if ( class_exists( '\FM_Widget' ) ) {
 			) );
 			if ( $cat_query->have_posts() ) :
 				// phpcs:ignore
-				echo $args['before_widget'];
+				echo '<div class="terminal-card terminal-card-double">';
 				while ( $cat_query->have_posts() ) :
 					$cat_query->the_post();
 					get_template_part( 'partials/hero-secondary' );
 				endwhile;
 				// phpcs:ignore
-				echo $args['after_widget'];
+				echo '</div>';
 			endif;
 			wp_reset_postdata();
 		}

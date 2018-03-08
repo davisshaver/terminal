@@ -11,7 +11,7 @@
 	id="terminal-hero-post-<?php the_ID(); ?>"
 	<?php
 	printf(
-		'class="%s hero-widget"',
+		'class="%s terminal-hero-widget terminal-card terminal-card-featured terminal-card-triple terminal-alignment-center"',
 		! is_singular() ? 'terminal-post-tracking' : ''
 	);
 	?>
@@ -39,7 +39,7 @@
 	<?php
 	if ( has_post_thumbnail() ) :
 	?>
-		<div class="terminal-image">
+		<div class="terminal-card-image">
 		<?php
 			printf(
 				'<a id="terminal-hero-image-%s" href="%s" class="%s bookmark" title="%s" data-terminal-post-id="%s" data-terminal-view="hero image" data-terminal-title="%s">',
@@ -51,10 +51,10 @@
 				the_title_attribute( array( 'echo' => false ) )
 			);
 		?>
-				<?php the_post_thumbnail( 'terminal-featured', array( 'title' => get_the_title() ) ); ?>
+				<?php the_post_thumbnail( 'terminal-uncut-thumbnail-large', array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
-		<div class="terminal-story-text terminal-sidebar-body-font">
+		<div class="terminal-card-text terminal-sidebar-body-font">
 			<?php
 				the_excerpt();
 			?>

@@ -1,13 +1,7 @@
-img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-}
-
 .terminal-small-logo img {
   height: 25px;
   width: 25px;
-} c
+}
 
  .wp-post-image {
 	user-select: none;
@@ -15,4 +9,9 @@ img {
 	-webkit-user-drag: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
+}
+
+.terminal-image {
+	width: 100%;
+	height: auto;
 }
