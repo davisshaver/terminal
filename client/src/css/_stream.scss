@@ -8,7 +8,7 @@
   @media (max-width: 450px) {
     margin: 0 0 15px 0;
   }
-  h2:nth-of-type(1) {
+  h1:nth-of-type(1), h2:nth-of-type(1) {
     margin-bottom: 15px;
   }
   .terminal-featured-meta, h1, h2, h3 {
@@ -19,11 +19,13 @@
     margin: 15px auto;
     width: calc(100% - 60px);
   }
-  
+
   box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
   .terminal-card-image {
     flex-basis: 100%;
+    max-width: 1400px;
+    margin: auto;
     flex-grow: 1;
     img {
       height: auto;
