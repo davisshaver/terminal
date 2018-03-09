@@ -14,7 +14,7 @@ $default_gravatar = ! empty( $byline_data['default_gravatar'] ) ?
 	false;
 ?>
 <div class="terminal-author">
-	<div class="terminal-author-image">
+	<div class="terminal-image">
 		<?php terminal_print_avatar( 150, $default_gravatar ); ?>
 	</div>
 	<div class="terminal-author-bio terminal-single-meta-font">

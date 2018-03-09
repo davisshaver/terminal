@@ -1,17 +1,20 @@
 /* eslint-env browser */
 
 export function setupMenu() {
-  const moreLink = document.getElementById('nav-bar-inside-more-link-container');
-  const moreNav = document.getElementById('nav-bar-inside-more');
-  const container = document.getElementById('container');
-  const footer = document.getElementById('footer');
-  const svgLink = document.querySelector('#nav-bar-inside-more-link > svg');
-
+  const moreLinkContainer = document.querySelector('.terminal-nav-bar-inside-more-link');
+  const moreLink = document.querySelector('.terminal-nav-bar-inside-more-link a');
+  const moreNav = document.querySelector('.terminal-nav-bar-inside-more');
+  const container = document.querySelector('.terminal-container');
+  const footer = document.querySelector('.terminal-footer');
+  const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   function toggleOpen(element) {
     element.classList.toggle('terminal-flipped');
   }
-  function toggleFixed(element) {
-    element.classList.toggle('terminal-fixed');
+  function toggleShow(element) {
+    element.classList.toggle('terminal-show');
+  }
+  function toggleHiddenNoJS(element) {
+    element.classList.toggle('terminal-hidden-no-js');
   }
   function toggleHidden(element) {
     element.classList.toggle('terminal-hidden');
@@ -25,12 +28,12 @@ export function setupMenu() {
         toggleOpen(svgLink);
         toggleHidden(moreNav);
         toggleHidden(container);
-        toggleFixed(footer);
+        toggleShow(footer);
       },
     );
   }
   if (moreLink) {
-    toggleHidden(moreLink);
+    toggleHiddenNoJS(moreLinkContainer);
     addClickListener(moreLink);
   }
 }

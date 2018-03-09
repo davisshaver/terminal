@@ -16,9 +16,7 @@ a {
 svg.terminal-svg {
 	width: 1rem !important;
 	height: 1rem !important;
-	margin-right: 0.8rem;
 	position: relative !important;
-	margin-top: .2rem;
 	transition: transform .15s ease-out;
 }
 
@@ -35,19 +33,24 @@ svg.terminal-svg {
 
 .terminal-author-snippet {
 	display: flex;
+	max-width: $max_content_width;
 	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: center;
 	width: 100%;
-	margin-bottom: 15px;
-}
-
-.terminal-author-image {
-	max-width: 25vw;
-	@media (max-width: 420px) {
-		max-width: 50vw;
+	margin: 0 auto 15px auto;
+	.terminal-card-text, img {
+    display: flex;
+    flex: 1 1 250px;
+    flex-wrap: wrap;
+		max-width: calc(50% - 60px);
+		width: 100%;
+		margin: 0 0 15px 0;
+    height: auto;
+		@media (max-width: 560px) {
+			max-width: 100%;
+		}
 	}
-	height: auto;
 }
 .terminal-author {
 	display: flex;
@@ -57,4 +60,18 @@ svg.terminal-svg {
 }
 .terminal-comments-container {
 	width: 100%;
+}
+
+.terminal-header, h1.terminal-header, h2.terminal-header, h3.terminal-header, h4.terminal-header, h5.terminal-header, h6.terminal-header {
+	padding: 30px;
+	margin: 0 0 15px 0;
+	width: 100%;
+	h1, h2, h3, h4, h5, h6 {
+		margin: 15px 0;
+	}
+
+	&.terminal-header-no-background {
+		background-color: unset;
+		margin-bottom: 0;
+	}
 }

@@ -5,7 +5,7 @@
  * @package Terminal
  */
 
-if ( ! has_nav_menu( 'header' ) ) {
+if ( ! has_nav_menu( 'terminal-header' ) ) {
 	return;
 }
 
@@ -23,9 +23,9 @@ ob_end_clean();
 		'echo'           => false,
 		'menu_id'        => 'terminal-nav-bar-header',
 	) );
-	if ( has_nav_menu( 'terminal-header-inside' ) ) {
+	if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
 		$more = sprintf(
-			'<li class="terminal-hidden-no-js"><a class="terminal-nav-bar-inside-more-link" href="#">%s %s</a></li></ul>',
+			'<li class="terminal-nav-bar-inside-more-link terminal-hidden-no-js"><a href="#">%s %s</a></li></ul>',
 			esc_html( 'More', 'terminal' ),
 			$down
 		);
@@ -35,16 +35,26 @@ ob_end_clean();
 	if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
 		echo '<div class="terminal-nav-bar-inside-more terminal-hidden">';
 		if ( has_nav_menu( 'terminal-header-more' ) ) {
+			printf(
+				'<h2>%s</h2>',
+				__( 'Topics', 'terminal' )
+			);
 			wp_nav_menu( array(
 				'theme_location' => 'terminal-header-more',
 				'depth'          => 1,
-			) );
+				'menu_id'        => 'terminal-nav-bar-header-more',
+				) );
 		}
 		if ( has_nav_menu( 'terminal-header-more-meta' ) ) {
+			printf(
+				'<h2>%s</h2>',
+				__( 'Meta', 'terminal' )
+			);
 			wp_nav_menu( array(
 				'theme_location' => 'terminal-header-more-meta',
 				'depth'          => 1,
-			) );
+				'menu_id'        => 'terminal-nav-bar-header-more-meta',
+				) );
 		}
 		echo '</div>';
 	}

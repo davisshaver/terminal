@@ -22,9 +22,11 @@ class FM_Featured_Image_Credit {
 	}
 
 	/**
-	 * Register featured image credit.
+	 * Register featured image credit for post type.
+	 *
+	 * @param $post_type string Post type.
 	 */
-	public function register_featured_image_credit() {
+	public function register_featured_image_for_post_type( $post_type ) {
 		$fm = new \Fieldmanager_Group( array(
 			'name'           => 'terminal_featured_meta',
 			'serialize_data' => false,
@@ -40,7 +42,14 @@ class FM_Featured_Image_Credit {
 				) ),
 			),
 		) );
-		$fm->add_meta_box( 'Featured Image', 'post' );
+		$fm->add_meta_box( 'Featured Image', $post_type );
+	}
+
+	/**
+	 * Register featured image credit.
+	 */
+	public function register_featured_image_credit() {
+		$this->register_featured_image_for_post_type( 'post' );
 	}
 }
 

@@ -46,9 +46,16 @@ if ( class_exists( '\FM_Widget' ) ) {
 					),
 				),
 			) );
+			$label = get_term_meta( $instance['category'], 'terminal_placement_options_label', true );
 			if ( $cat_query->have_posts() ) :
 				// phpcs:ignore
 				echo '<div class="terminal-card terminal-card-double">';
+				if ( ! empty( $label ) ) {
+					printf(
+					'	<div class="terminal-breadcrumbs">&Darr; %s</div>',
+						esc_html( $label )
+					);	
+				}
 				while ( $cat_query->have_posts() ) :
 					$cat_query->the_post();
 					get_template_part( 'partials/hero-secondary' );

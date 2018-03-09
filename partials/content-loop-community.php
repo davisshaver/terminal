@@ -5,11 +5,19 @@
  * @package Terminal
  */
 
+$loop_data = terminal_get_layout_data( array(
+	'loop_meta_position'     => 'middle',
+	'hide_excerpt_on_mobile' => false,
+) );
+
+$hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
+	true :
+	false;
 ?>
 
 <div 
-	id="photo-<?php the_ID(); ?>"
-	<?php post_class( array( 'terminal-post-tracking', 'terminal-card', 'terminal-post-card', 'terminal-card-double' ) ); ?>
+	id="post-<?php the_ID(); ?>"
+	<?php post_class( array( 'terminal-post-tracking', 'terminal-card', 'terminal-post-card', 'terminal-card-single' ) ); ?>
 	data-terminal-post-id="<?php the_ID(); ?>"
 	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
 	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
@@ -19,8 +27,12 @@
 <?php
 printf(
   '<div class="terminal-card-title">%s</div>',
-    esc_html( __( 'Featured Photography', 'terminal' ) )
+    esc_html( __( 'Reader-Submitted Post', 'terminal' ) )
 );
+if ( 'top' === $loop_data['loop_meta_position'] ) :
+	get_template_part( 'partials/byline', get_post_type( $post ) );
+endif;
+
 if ( has_post_thumbnail() ) :
 	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail-large' );
 ?>
@@ -58,8 +70,18 @@ endif;
 				<?php the_title(); ?>
 			</a>
 		</h1>
-		<p class="terminal-credit">
-			<?php terminal_print_photo_caption(); ?>
-		</p>
-	</div>
-</div>
+		<?php
+		if ( 'middle' === $loop_data['loop_meta_position'] ) :
+			get_template_part( 'partials/byline', get_post_type( $post ) );
+		endif;
+		printf(
+			'<div class="terminal-card-text terminal-body-font %s">%s</div>',
+			$hide_excerpt_on_mobile ? "terminal-mobile-hide" : '',
+			wp_kses_post( wpautop( get_the_excerpt() ) )
+		);
+		if ( 'bottom' === $loop_data['loop_meta_position'] ) :
+			get_template_part( 'partials/byline', get_post_type( $post ) );
+		endif;
+		echo '</div>';
+	echo '</div>';
+?>

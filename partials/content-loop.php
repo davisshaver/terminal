@@ -25,6 +25,12 @@ $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 	data-terminal-view="loop"
 >
 <?php
+if ( is_sticky() ) {
+	printf(
+		'<div class="terminal-card-title">🔗 %s</div>',
+			esc_html( __( '📌 Sticky Post', 'terminal' ) )
+	);
+}
 if ( 'top' === $loop_data['loop_meta_position'] ) :
 	get_template_part( 'partials/byline', get_post_type( $post ) );
 endif;
@@ -52,7 +58,7 @@ if ( has_post_thumbnail() ) :
 endif;
 ?>
 	<div class="terminal-card-text">
-		<h3 class="terminal-headline-font terminal-stream-headline">
+		<h1 class="terminal-headline-font terminal-stream-headline">
 			<a 
 				id="post-headline-link-<?php the_ID(); ?>"
 				href="<?php the_permalink(); ?>" 
@@ -65,7 +71,7 @@ endif;
 			>
 				<?php the_title(); ?>
 			</a>
-		</h3>
+		</h1>
 		<?php
 		if ( 'middle' === $loop_data['loop_meta_position'] ) :
 			get_template_part( 'partials/byline', get_post_type( $post ) );

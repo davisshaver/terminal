@@ -13,7 +13,7 @@
 		}
 	}
 	
-	.terminal-header-container {
+.terminal-header-container {
 	.terminal-logos {
 		max-width: 1200px;
 		width: calc(100% - 60px);
@@ -87,31 +87,6 @@
 	}
 
 	p {
-		line-height: 45px;
-		margin: 0 15px 0 0;
-		width: calc(100% - 120px);
-		@media (max-width: 869px) {
-			margin: 0;
-			flex-basis: 100%;
-		}
+		margin: 15px;
 	}
-}
-
-.terminal-header {
-	width: 100%;
-	margin: 0 auto 15px auto;
-	@media (max-width: 869px) {
-		margin: 0 30 15px 30;
-	}
-}
-
-.terminal-header h2 {
-	margin: auto;
-	width: calc(100% - 60px);
-	padding: 15px 0;
-}
-
-h1.terminal-header, h2.terminal-header, h3.terminal-header, h4.terminal-header, h5.terminal-header, h6.terminal-header {
-	padding: 30px;
-	margin: 0 0 15px 0;
 }

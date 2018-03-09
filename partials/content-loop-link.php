@@ -16,7 +16,12 @@
 	data-terminal-title="<?php the_title_attribute(); ?>"
 	data-terminal-view="loop"
 >
+
 <?php
+printf(
+'<div class="terminal-card-title">🔗 %s</div>',
+  esc_html( __( 'Staff Link', 'terminal' ) )
+);	
 if ( has_post_thumbnail() ) :
 	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail-large' );
 ?>
@@ -40,7 +45,7 @@ if ( has_post_thumbnail() ) :
 endif;
 ?>
 	<div class="terminal-card-text">
-		<h3 class="terminal-headline-font terminal-stream-headline">
+		<h1 class="terminal-headline-font terminal-stream-headline">
 			<a 
 				id="post-headline-link-<?php the_ID(); ?>"
 				href="<?php the_permalink(); ?>" 
@@ -53,7 +58,7 @@ endif;
 			>
 				<?php the_title(); ?>
 			</a>
-    </h3>
+    </h1>
     <div class="terminal-body-font">
       <?php echo wp_kses_post( wpautop( get_the_excerpt() ) ); ?>
     </div>

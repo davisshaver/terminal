@@ -114,7 +114,7 @@ function terminal_print_featured_image_caption() {
 			$camera = ob_get_contents();
 			ob_end_clean();
 			printf(
-				'<div class="terminal-featured-credit">%s %s</div>',
+				'<div class="terminal-credit">%s %s</div>',
 				$camera,
 				esc_html( $meta['credit'] )
 			);
@@ -123,12 +123,32 @@ function terminal_print_featured_image_caption() {
 	}
 }
 
+
+/**
+ * Template function to print featured image credit (if available).
+ */
+function terminal_print_photo_caption() {
+	$instance = Terminal\Photos::instance();
+	$photographer = $instance->get_photographer();
+	if ( ! empty( $photographer ) ) {
+		ob_start();
+		get_template_part( 'partials/svg/camera.svg' );
+		$camera = ob_get_contents();
+		ob_end_clean();
+		printf(
+			'<span>%s %s</span>',
+			$camera,
+			esc_html( $photographer )
+		);
+	}
+}
+
 /**
  * Template function to print a recirc header.
  */
 function terminal_print_author_bio_header() {
 	printf(
-		'<h3 class="terminal-author-header terminal-header terminal-header-font">%s</h2>',
+		'<h2 class="terminal-header terminal-header-font">%s</h2>',
 		esc_html__( 'About the Author', 'terminal' )
 	);
 }

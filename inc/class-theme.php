@@ -56,11 +56,11 @@ class Theme {
 		add_theme_support( 'custom-background', $custom_background_args );
 
 		register_nav_menus( array(
-			'header'      => esc_html__( 'Header Menu', 'terminal' ),
-			'header-more' => esc_html__( 'Header More Menu - Content', 'terminal' ),
-			'header-more-meta' => esc_html__( 'Header More Menu - Meta', 'terminal' ),
-			'footer-more' => esc_html__( 'Footer More Menu', 'terminal' ),
-			'footer'      => esc_html__( 'Footer Menu', 'terminal' ),
+			'terminal-header'      => esc_html__( 'Header Menu', 'terminal' ),
+			'terminal-header-more' => esc_html__( 'Header More Menu - Content', 'terminal' ),
+			'terminal-header-more-meta' => esc_html__( 'Header More Menu - Meta', 'terminal' ),
+			'terminal-footer-more' => esc_html__( 'Footer More Menu', 'terminal' ),
+			'terminal-footer'      => esc_html__( 'Footer Menu', 'terminal' ),
 		) );
 
 		add_theme_support( 'html5', array(
@@ -134,7 +134,7 @@ class Theme {
 			'description'   => __( 'Homepage sidebar.', 'terminal' ),
 			'before_widget' => '<div id="%1$s" class="terminal-sidebar-card terminal-card terminal-card-single terminal-sidebar-body-font %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="terminal-sidebar-header terminal-sidebar-header-font">',
+			'before_title'  => '<div class="terminal-card-title terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
 

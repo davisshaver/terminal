@@ -21,7 +21,7 @@
 	data-terminal-title="<?php the_title_attribute(); ?>"
 	data-terminal-view="hero"
 >
-	<h2 class="terminal-headline-featured-font">
+	<h1 class="terminal-headline-featured-font">
 		<?php
 			printf(
 				'<a id="hero-title-%s" href="%s" class="%s" title="%s" data-terminal-post-id="%s" data-terminal-view="hero title" data-terminal-title="%s">',
@@ -35,7 +35,7 @@
 		?>
 			<?php the_title(); ?>
 		</a>
-	</h2>
+	</h1>
 	<?php
 	if ( has_post_thumbnail() ) :
 	?>

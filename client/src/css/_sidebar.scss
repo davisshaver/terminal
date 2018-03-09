@@ -1,14 +1,8 @@
-
-.terminal-sidebar-header {
-	position: relative;
-	padding: 10px 30px;
-	height: 40px;
-	width: 100%;
-	background: #f2f2f2;
-}
-
 .textwidget {
 	padding: 30px;
+	display: flex;
+	flex: 1 1 100%;
+	align-items: center;
 }
 
 .terminal-post-widget {

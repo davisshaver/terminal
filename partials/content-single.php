@@ -30,7 +30,7 @@ if ( function_exists( 'yoast_breadcrumb' ) ) {
 	echo '</div>';
 }
 printf(
-	'<h1 class="terminal-headline-featured-font">%s</h1>',
+	'<h1 class="terminal-header terminal-header-no-background terminal-headline-featured-font">%s</h1>',
 	get_the_title()
 );
 if ( has_post_thumbnail() ) :
