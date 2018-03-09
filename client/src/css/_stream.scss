@@ -60,7 +60,7 @@
 			list-style-type: disc;
     }
     iframe, p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote {
-      margin: 0 auto 30px auto;
+      margin: 0 auto 15px auto;
       height: auto;
       max-width: calc(100% - 60px);
     }
@@ -148,6 +148,9 @@
       margin-right: 0.25rem;
       position: relative !important;
     }
+  }
+  .terminal-featured-caption p {
+    margin: 0 15px 0 0;
   }
 }
 
