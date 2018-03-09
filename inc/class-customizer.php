@@ -246,7 +246,7 @@ class Customizer {
 				<?php endif; ?>
 			}
 
-		.terminal-post-card, .terminal-featured-section {
+		.terminal-post-card, .terminal-featured-section, .terminal-author {
 				<?php
 				$post_page_background = get_theme_mod( 'post_page_background_color_setting', false );
 				if ( ! empty( $post_page_background ) ) {

@@ -21,8 +21,8 @@ get_header(); ?>
 	}
 	terminal_print_index_header();
 	if ( is_author() ) {
-		echo '<div class="terminal-author-single">';
-		get_template_part( 'partials/author' );
+		echo '<div class="terminal-card terminal-card-single terminal-post-card">';
+		get_template_part( 'partials/author-snippet' );
 		echo '</div>';
 	}
 	?>
