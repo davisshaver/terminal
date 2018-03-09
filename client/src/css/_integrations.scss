@@ -106,14 +106,16 @@ div.gform_wrapper {
 // Ad Layers
 .widget_ad_layers_ad_widget {
 	padding: 0;
-	border: none;
 	text-align: center;
-	margin: 0 auto;
+	margin: 0 15px 15px 15px;
 	background-color: initial;
-	box-shadow: none;
-	border-radius: unset;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
-
+.essb-shortcode {
+	margin: 0 auto;
+}
 .dfp-ad {
 	text-align: center;
 	overflow: hidden;
