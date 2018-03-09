@@ -67,11 +67,11 @@ svg.terminal-svg {
 	margin: 0 0 15px 0;
 	width: 100%;
 	h1, h2, h3, h4, h5, h6 {
-		margin: 15px 0;
+		margin: 0;
 	}
 
 	&.terminal-header-no-background {
 		background-color: unset;
-		margin-bottom: 0;
+		margin: 15px 0;
 	}
 }
