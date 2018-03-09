@@ -187,7 +187,7 @@ class Theme {
 			'name'          => __( 'Featured ', 'terminal' ),
 			'id'            => 'terminal-featured',
 			'description'   => __( 'Featured', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="terminal-featured-section %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-featured-section terminal-card terminal-card-single %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<div class="terminal-featured-header terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
