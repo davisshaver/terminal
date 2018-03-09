@@ -27,7 +27,7 @@ $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 >
 <?php
 printf(
-  '<div class="terminal-card-title">%s</div>',
+  '<div class="terminal-card-title terminal-no-select">%s</div>',
     esc_html( __( 'Reader-Submitted Post', 'terminal' ) )
 );
 if ( 'top' === $loop_data['loop_meta_position'] ) :

@@ -134,7 +134,7 @@ class Theme {
 			'description'   => __( 'Homepage sidebar.', 'terminal' ),
 			'before_widget' => '<div id="%1$s" class="terminal-sidebar-card terminal-card terminal-card-single terminal-sidebar-body-font %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="terminal-card-title terminal-sidebar-header-font">',
+			'before_title'  => '<div class="terminal-card-title terminal-no-select terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
 

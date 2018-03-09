@@ -29,7 +29,7 @@ $terminal_no_photo_class = ! has_post_thumbnail() ? 'terminal-no-photo' : '';
 <?php
 if ( is_sticky() ) {
 	printf(
-		'<div class="terminal-card-title">🔗 %s</div>',
+		'<div class="terminal-card-title terminal-no-select">🔗 %s</div>',
 			esc_html( __( '📌 Sticky Post', 'terminal' ) )
 	);
 }

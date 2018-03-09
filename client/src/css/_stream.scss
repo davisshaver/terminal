@@ -54,7 +54,8 @@
   .terminal-card-text {
     max-width: $max_content_width;
     margin: 0 auto 0 auto;  
-    width: 100%;  
+    width: 100%;
+    height: 100%;
     ul {
 			list-style-type: disc;
     }
@@ -170,6 +171,16 @@
   background: #f2f2f2;
   line-height: 20px;
 }
+
+.terminal-card-title-meta {
+	position: relative;
+	padding: 10px 30px;
+	width: 100%;
+  height: 40px;
+  background: #e2e2e2;
+  line-height: 20px;
+}
+
 .terminal-card-triple {
   .terminal-breadcrumbs {
     position: absolute;
