@@ -64,7 +64,7 @@ endif;
 			<a 
 				id="post-headline-link-<?php the_ID(); ?>"
 				href="<?php the_permalink(); ?>" 
-				class="terminal-tracking link-gray" 
+				class="terminal-tracking terminal-link-gray" 
 				data-terminal-post-id="<?php the_ID(); ?>"
 				data-terminal-has-image="<?php has_post_thumbnail(); ?>"
 				data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
@@ -79,7 +79,7 @@ endif;
 			get_template_part( 'partials/byline', get_post_type( $post ) );
 		endif;
 		printf(
-			'<div class="terminal-card-text terminal-body-font %s">%s</div>',
+			'<div class="terminal-card-text terminal-text-gray terminal-body-font %s">%s</div>',
 			$hide_excerpt_on_mobile ? "terminal-mobile-hide" : '',
 			wp_kses_post( wpautop( get_the_excerpt() ) )
 		);

@@ -83,7 +83,7 @@ $hide_by = boolval(
 
 $byline_style = is_singular() ? 'terminal-single-meta-font' : 'terminal-index-meta-font';
 printf(
-	'<div class="terminal-byline %s %s">',
+	'<div class="terminal-byline terminal-text-gray-light %s %s">',
 	esc_attr( $byline_style ),
 	$hide_byline_on_mobile ? esc_attr( 'terminal-mobile-hide' ) : ''
 );
@@ -104,7 +104,7 @@ if ( ! $hide_author ) :
 			
 		}
 		printf(
-			'<span>%s <a href="%s">',
+			'<span>%s <a class="terminal-link-gray-light" href="%s">',
 			! $hide_by ? esc_html( 'By ', 'terminal' ) : '',
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) )
 		);
@@ -125,7 +125,7 @@ if ( ! $hide_date ) :
 	$archive_day   = get_the_time( 'd' );
 	?>
 	<div class="terminal-date">
-		<a href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>">
+		<a class="terminal-link-gray-light" href="<?php echo esc_url( get_day_link( $archive_year, $archive_month, $archive_day ) ); ?>">
 			<abbr class="terminal-date" title="<?php the_time( 'l, F j, Y \a\t g:ia' ); ?>"><?php echo esc_html( $time ); ?></abbr>
 		</a>
 	</div>
@@ -133,7 +133,7 @@ if ( ! $hide_date ) :
 endif;
 if ( ! $hide_category ) :
 ?>
-	<div class="terminal-category"><?php the_category( ' ◦ ' ); ?></div>
+	<div class="terminal-category terminal-link-gray-light"><?php the_category( ' ◦ ' ); ?></div>
 <?php
 endif;
 if (

@@ -13,6 +13,35 @@ a {
 	}
 }
 
+a.terminal-link-gray, .terminal-link-gray a {
+	text-decoration: none;
+	color: #222;
+
+	&:hover {
+    color: #0f65ef;
+    text-decoration: none;
+    transition: color .15s ease 0s;
+	}
+}
+
+a.terminal-link-gray-light, .terminal-link-gray-light a {
+	text-decoration: none;
+	color: #666;
+
+	&:hover {
+    color: #093c8f;
+    text-decoration: none;
+    transition: color .15s ease 0s;
+	}
+}
+
+.terminal-text-gray-light {
+	color: #999;
+}
+.terminal-text-gray {
+	color: #666;
+}
+
 svg.terminal-svg {
 	width: 1rem !important;
 	height: 1rem !important;
@@ -72,6 +101,6 @@ svg.terminal-svg {
 
 	&.terminal-header-no-background {
 		background-color: unset;
-		margin: 15px 0;
+		margin: 0;
 	}
 }

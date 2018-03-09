@@ -61,7 +61,7 @@ endif;
 			<a 
 				id="post-headline-link-<?php the_ID(); ?>"
 				href="<?php the_permalink(); ?>" 
-				class="terminal-tracking link-gray" 
+				class="terminal-tracking terminal-link-gray" 
 				data-terminal-post-id="<?php the_ID(); ?>"
 				data-terminal-has-image="<?php has_post_thumbnail(); ?>"
 				data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"

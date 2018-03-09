@@ -24,7 +24,7 @@
 	<h1 class="terminal-headline-featured-font">
 		<?php
 			printf(
-				'<a id="hero-title-%s" href="%s" class="%s" title="%s" data-terminal-post-id="%s" data-terminal-view="hero title" data-terminal-title="%s">',
+				'<a id="hero-title-%s" href="%s" class="terminal-link-gray %s" title="%s" data-terminal-post-id="%s" data-terminal-view="hero title" data-terminal-title="%s">',
 				get_the_ID(),
 				get_the_permalink(),
 				! is_singular() ? 'terminal-tracking' : '',

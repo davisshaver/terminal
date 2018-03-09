@@ -26,7 +26,7 @@
 	?>
 		<?php
 			printf(
-				'<a id="terminal-secondary-hero-image-%s" href="%s" class="terminal-secondary-hero-image terminal-headline-font terminal-alignment-center %s bookmark" title="%s" data-terminal-post-id="%s" data-terminal-view="hero image" data-terminal-title="%s" style="background: linear-gradient( rgba(239, 239, 239, 0.8), rgba(239, 239, 239, 0.8) ), url(%s) center center / cover no-repeat;">',
+				'<a id="terminal-secondary-hero-image-%s" href="%s" class="terminal-secondary-hero-image terminal-headline-font terminal-link-gray terminal-alignment-center %s bookmark" title="%s" data-terminal-post-id="%s" data-terminal-view="hero image" data-terminal-title="%s" style="background: linear-gradient( rgba(239, 239, 239, 0.8), rgba(239, 239, 239, 0.8) ), url(%s) center center / cover no-repeat;">',
 				get_the_ID(),
 				get_the_permalink(),
 				! is_singular() ? 'terminal-tracking' : '',
