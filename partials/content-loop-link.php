@@ -21,7 +21,7 @@ $terminal_no_photo_class = ! has_post_thumbnail() ? 'terminal-no-photo' : '';
 <?php
 printf(
 '<div class="terminal-card-title">🔗 %s</div>',
-  esc_html( __( 'Staff Link', 'terminal' ) )
+  esc_html( __( 'Staff-Selected Link', 'terminal' ) )
 );	
 if ( has_post_thumbnail() ) :
 	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail-large' );

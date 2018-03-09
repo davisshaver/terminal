@@ -22,7 +22,7 @@ class Links {
 	 */
 	public function setup() {
 		if ( getenv( 'TERMINAL_LINK_POST_TYPE' ) ) {
-			$this->link_post_type =  getenv( 'TERMINAL_LINK_POST_TYPE' );
+			$this->link_post_type = getenv( 'TERMINAL_LINK_POST_TYPE' );
 		}
 		if ( getenv( 'TERMINAL_LINK_POST_TYPE_LINK_KEY' ) ) {
 			$this->link_post_type_link_key = getenv( 'TERMINAL_LINK_POST_TYPE_LINK_KEY' );
