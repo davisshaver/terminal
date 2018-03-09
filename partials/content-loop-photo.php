@@ -19,7 +19,7 @@ $terminal_no_photo_class = ! has_post_thumbnail() ? 'terminal-no-photo' : '';
 <?php
 printf(
   '<div class="terminal-card-title terminal-no-select">%s</div>',
-    esc_html( __( 'Featured Photography', 'terminal' ) )
+    esc_html( __( 'Featured Photo', 'terminal' ) )
 );
 if ( has_post_thumbnail() ) :
 	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail-large' );

@@ -21,7 +21,7 @@ $terminal_no_photo_class = ! has_post_thumbnail() ? 'terminal-no-photo' : '';
 <?php
 printf(
 '<div class="terminal-card-title terminal-no-select">🔗 %s</div>',
-  esc_html( __( 'Staff-Selected External Link', 'terminal' ) )
+  esc_html( __( 'External Link', 'terminal' ) )
 );
 $host = parse_url( get_the_permalink(), PHP_URL_HOST );
 $path = parse_url( get_the_permalink(), PHP_URL_PATH );

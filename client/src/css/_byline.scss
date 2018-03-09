@@ -1,6 +1,6 @@
 .terminal-byline {
 	display: flex;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	align-items: baseline;
 	box-sizing: border-box;
 	justify-content: space-around;
@@ -8,6 +8,8 @@
 
 	div {
 		margin-right: 15px;
+		display: flex;
+		flex: 1 1;
 	}
 	a:hover {
 		text-decoration: underline;
