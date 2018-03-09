@@ -206,7 +206,7 @@ function terminal_print_index_header() {
 	} elseif ( is_search() ) {
 		$search_query = get_search_query();
 		printf(
-			'<div class="terminal-header terminal-header-font"><h2>%s</h2></div>',
+			'<div class="terminal-header terminal-header-font"><h2>%s %s</h2></div>',
 			esc_html( 'Search results for', 'terminal' ),
 			esc_html( $search_query )
 		);
