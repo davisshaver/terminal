@@ -9,6 +9,7 @@ $loop_data = terminal_get_layout_data( array(
 	'loop_meta_position'     => 'middle',
 	'hide_excerpt_on_mobile' => false,
 ) );
+$terminal_no_photo_class = ! has_post_thumbnail() ? 'terminal-no-photo' : '';
 
 $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 	true :
@@ -17,7 +18,7 @@ $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 
 <div 
 	id="post-<?php the_ID(); ?>"
-	<?php post_class( array( 'terminal-post-tracking', 'terminal-card', 'terminal-post-card', 'terminal-card-single' ) ); ?>
+	<?php post_class( array( 'terminal-post-tracking', 'terminal-card', 'terminal-post-card', 'terminal-card-single', esc_html( $terminal_no_photo_class ) ) ); ?>
 	data-terminal-post-id="<?php the_ID(); ?>"
 	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
 	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"

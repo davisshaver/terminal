@@ -8,11 +8,14 @@
   @media (max-width: 450px) {
     margin: 0 0 15px 0;
   }
-  h1.terminal-stream-headline {
-    margin-top: 15px !important;
+  &.terminal-no-photo {
+    h1.terminal-stream-headline {
+      margin-top: 15px !important;
+    }
   }
   .terminal-featured-meta, .terminal-byline {
     margin: 0 auto 15px auto;
+    max-width: $max_content_width;
     width: calc(100% - 60px);
   }
   form.search-form {
@@ -39,8 +42,8 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   .terminal-card-image {
     flex-basis: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: $max_content_width;
+    margin: 0 auto 15px auto;
     flex-grow: 1;
     img {
       height: auto;
