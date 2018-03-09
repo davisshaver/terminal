@@ -115,6 +115,7 @@
 				width: 100%;
 			}
 			img:not(.size-full) {
+        height: auto;
         width: 50%;
         margin: auto;
 				&.alignleft {
