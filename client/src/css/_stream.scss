@@ -100,9 +100,9 @@
 			}
 		}
 		figure.wp-caption {
-			background:#f2f2f2;
-      max-width: unset !important;
-      margin: 0 0 15px 0;
+      background: #f2f2f2;
+      display: inline-block;
+      margin: 0 auto 15px auto;
 			img.size-full {
 				&.alignright {
           margin: 0 0 15px 15px;
@@ -116,7 +116,6 @@
 			}
 			img:not(.size-full) {
         height: auto;
-        width: 50%;
         margin: auto;
 				&.alignleft {
 					float: left;
@@ -125,7 +124,6 @@
 				&.alignright {
 					float: right;
           margin: 0 0 15px 30px;
-          width: 50%;
 				}
 				@media (max-width: 420px) {
 					float: none;
