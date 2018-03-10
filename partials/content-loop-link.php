@@ -68,8 +68,11 @@ endif;
 				<?php the_title(); ?>
 			</a>
     </h1>
-    <div class="terminal-body-font">
-      <?php echo wp_kses_post( wpautop( get_the_excerpt() ) ); ?>
-    </div>
+		<?php
+		printf(
+			'<div class="terminal-body-font">%s</div>',
+			apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) )
+		);
+		?>
 	</div>
 </div>
