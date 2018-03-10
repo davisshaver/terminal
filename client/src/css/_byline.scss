@@ -5,6 +5,7 @@
 	box-sizing: border-box;
 	justify-content: space-around;
 	margin: 0 30px 15px 30px;
+	align-items: center;
 
 	div {
 		margin-right: 15px;
@@ -15,8 +16,9 @@
 		text-decoration: underline;
 	}
 	
-	.terminal-avatar {
-		display: flex;
+	.avatar {
+		height: auto;
+		width: 100%;
 	}
 
 	.terminal-author-and-date {

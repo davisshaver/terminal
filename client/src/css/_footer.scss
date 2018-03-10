@@ -19,6 +19,8 @@
   li {
     display: flex;
     padding: 30px;
+    flex: 1 1 25%;
+    justify-content: center;
   }
   display: flex;
   flex-direction: row;

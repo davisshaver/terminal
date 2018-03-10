@@ -303,7 +303,7 @@ function terminal_print_avatar( $size = 32, $default_author = false ) {
 	$data = Terminal\Data::instance();
 	$terminal_headshot = $data->get_terminal_headshot( $author_id );
 	if ( ! empty( $terminal_headshot ) ) {
-		echo wp_get_attachment_image( $terminal_headshot, 'terminal-thumbnail', false, array( 'scheme' => 'https' ) );
+		echo wp_get_attachment_image( $terminal_headshot, 'terminal-thumbnail', false, array( 'scheme' => 'https', 'class' => 'avatar avatar-full photo' ) );
 		return;
 	}
 	$local_avatar = $data->get_local_avatar_headshot( $author_id );

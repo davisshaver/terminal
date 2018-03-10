@@ -133,7 +133,7 @@ if ( ! $hide_date ) :
 endif;
 if ( ! $hide_category ) :
 ?>
-	<div class="terminal-category terminal-link-gray-light"><?php the_category( ' ◦ ' ); ?></div>
+	<div class="terminal-category terminal-link-gray-light"><?php the_category( ' · ' ); ?></div>
 <?php
 endif;
 if (
@@ -141,7 +141,7 @@ if (
 	apply_filters( 'terminal_comments_open', ( ! post_password_required() && comments_open( get_the_ID() ) ) )
 ) :
 ?>
-	<div class="terminal-number-of-comments"><a href="<?php comments_link(); ?>"><strong>Comments</strong></a><span class="share-number">&nbsp;<?php terminal_print_comment_count_for_post(); ?></span></div>
+	<div class="terminal-number-of-comments"><a class="terminal-link-gray-light" href="<?php comments_link(); ?>">Comments</a><span class="share-number">&nbsp;<?php terminal_print_comment_count_for_post(); ?></span></div>
 <?php
 endif;
 ?>

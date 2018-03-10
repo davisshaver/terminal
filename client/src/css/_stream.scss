@@ -188,6 +188,7 @@
   .terminal-breadcrumbs {
     position: absolute;
   }
+  height: auto;
   flex: 0 1 960px;
 }
 
@@ -195,6 +196,7 @@
   .terminal-breadcrumbs {
     position: absolute;
   }
+  height: auto;
   max-width: 700px;
   @media (max-width: 640px) {
     flex: 1 1 640px;

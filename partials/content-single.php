@@ -22,12 +22,10 @@ if ( 'top' === $single_data['single_meta_position'] ) :
 	get_template_part( 'partials/byline', get_post_type( $post ) );
 endif;
 if ( function_exists( 'yoast_breadcrumb' ) ) {
-	echo '<div class="terminal-breadcrumbs terminal-single-meta-font">';
 	yoast_breadcrumb(
-		'',
-		''
+		'<div class="terminal-breadcrumbs terminal-single-meta-font">',
+		'</div>'
 	);
-	echo '</div>';
 }
 printf(
 	'<h1 class="terminal-header terminal-header-no-background terminal-headline-featured-font">%s</h1>',
