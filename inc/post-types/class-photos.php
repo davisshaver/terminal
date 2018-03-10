@@ -44,11 +44,13 @@ class Photos {
 	 */
 	public function get_photographer( $attribute = 'display_name' ) {
 		$photographer = get_post_meta( get_the_ID(), $this->photo_post_type_photo_key, true );
-		if ( ! empty( $photographer ) ) {
+		if ( ! empty( $photographer ) && is_int( $photographer ) ) {
 			$photographer = get_userdata( $photographer );
 			if ( $photographer ) {
 				return $photographer->$attribute;
 			}
+		} else if ( ! empty( $photographer ) && is_string( $photographer ) ) {
+			return $photographer;
 		}
 		return get_the_author_meta( $attribute );
 	}
