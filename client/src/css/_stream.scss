@@ -18,7 +18,6 @@
   }
   .terminal-featured-meta, .terminal-byline, .terminal-headline {
     flex: 1 1 100%;
-    width: calc(100% - 60px);
     margin: 0 auto 15px auto;
   }
   form.search-form {
@@ -56,6 +55,10 @@
 
   .terminal-limit-max-content-width {
     max-width: $max_content_width;
+  }
+
+  .terminal-limit-max-content-width-add-margin {
+    max-width: calc(#{$max_content_width} - 60px);
   }
   .terminal-card-text {
     margin: 0 auto 0 auto;
