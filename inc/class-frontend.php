@@ -21,6 +21,7 @@ class Frontend {
 			remove_action( 'wp_head', 'wp_generator' );
 			remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
+			add_filter( 'feed_links_show_comments_feed', '__return_false' );
 			add_action( 'wp_enqueue_scripts', [ $this, 'disable_unipress_styles' ], 100 );
 			add_action( 'wp_print_scripts', [ $this, 'disable_unipress_scripts' ], 100 );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
