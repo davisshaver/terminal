@@ -14,7 +14,7 @@ $default_gravatar = ! empty( $byline_data['default_gravatar'] ) ?
 	false;
 terminal_print_author_bio_header();
 ?>
-<div class="terminal-author-snippet">
+<div class="terminal-author-snippet terminal-limit-max-content-width">
 	<?php terminal_print_avatar( 150, $default_gravatar ); ?>
 	<div class="terminal-card-text terminal-single-meta-font">
 		<h2>

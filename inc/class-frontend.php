@@ -44,7 +44,7 @@ class Frontend {
 	 * @return string Filtered classes.
 	 */
 	public function filter_talk_classes( $classes ) {
-		return $classes . ' terminal-comments';
+		return $classes . ' terminal-comments terminal-limit-max-content-width';
 	}
 
 	/**

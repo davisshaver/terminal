@@ -32,7 +32,7 @@ printf(
 	get_the_title()
 );
 if ( has_post_thumbnail() ) :
-	echo '<div class="terminal-card-image">';
+	echo '<div class="terminal-card-image terminal-limit-max-content-width">';
 	the_post_thumbnail( 'terminal-uncut-thumbnail-large' );
 	echo '</div>';
 	terminal_print_featured_image_caption();
@@ -44,7 +44,7 @@ if ( 'middle' === $single_data['single_meta_position'] ) :
 	get_template_part( 'partials/byline', get_post_type( $post ) );
 endif;
 printf(
-	'<div class="terminal-card-text terminal-body-font">%s',
+	'<div class="terminal-card-text terminal-body-font terminal-limit-max-content-width">%s',
 	apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) )
 );
 wp_link_pages();

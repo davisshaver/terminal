@@ -101,7 +101,7 @@ function terminal_print_featured_image_caption() {
 	$meta = $data->get_post_featured_meta();
 	$meta = apply_filters( 'terminal_featured_meta', $meta );
 	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
-		echo '<div class="terminal-featured-meta terminal-sidebar-body-font terminal-text-gray-light">';
+		echo '<div class="terminal-featured-meta terminal-sidebar-body-font terminal-limit-max-content-width terminal-text-gray-light">';
 		if ( ! empty( $meta['caption'] ) ) {
 			printf(
 				'<div class="terminal-featured-caption">%s</div>',
