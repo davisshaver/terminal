@@ -75,7 +75,7 @@ class Books {
 			'label'               => __( 'photo', 'terminal' ),
 			'description'         => __( 'Books', 'terminal' ),
 			'labels'              => $book_labels,
-			'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'revisions' ),
+			'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions' ),
 			'hierarchical'        => false,
 			'public'              => false,
 			'show_ui'             => true,
