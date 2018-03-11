@@ -37,7 +37,7 @@ ob_end_clean();
 		if ( has_nav_menu( 'terminal-header-more' ) ) {
 			printf(
 				'<h2>%s</h2>',
-				__( 'Topics', 'terminal' )
+				terminal_get_nav_menu_title( 'terminal-header-more' )
 			);
 			wp_nav_menu( array(
 				'theme_location' => 'terminal-header-more',
@@ -48,7 +48,7 @@ ob_end_clean();
 		if ( has_nav_menu( 'terminal-header-more-meta' ) ) {
 			printf(
 				'<h2>%s</h2>',
-				__( 'Meta', 'terminal' )
+				terminal_get_nav_menu_title( 'terminal-header-more-meta' )
 			);
 			wp_nav_menu( array(
 				'theme_location' => 'terminal-header-more-meta',

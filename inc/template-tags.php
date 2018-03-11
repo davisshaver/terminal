@@ -574,3 +574,15 @@ function terminal_the_photo_photographer() {
 	$photos = Terminal\Photos::instance();
 	return $photos->get_photographer();
 }
+
+/**
+ * Return the name of the category.
+ */
+function terminal_get_nav_menu_title( $slug ) {
+	$locations = get_nav_menu_locations();
+	if ( ! isset( $locations[ $slug ] ) ) {
+		return false;
+	}
+	$menu_obj = get_term( $locations[$slug], 'nav_menu' );
+	return $menu_obj->name;
+}

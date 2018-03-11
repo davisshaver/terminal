@@ -45,7 +45,6 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   .terminal-card-image {
     flex-basis: 100%;
-    max-width: $max_content_width;
     margin: 0 auto 15px auto;
     flex-grow: 1;
     img {
@@ -64,7 +63,6 @@
     iframe, p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote {
       margin: 0 auto 15px auto;
       height: auto;
-      max-width: $max_content_width;
       width: calc(100% - 60px);
     }
     p > iframe {
@@ -165,6 +163,8 @@
 }
 
 .terminal-card-full {
+  margin: 0 auto;
+  max-width: $max_content_width;
   flex: 1 1 100%;
 }
 
