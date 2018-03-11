@@ -58,7 +58,7 @@ endif;
 				<?php the_title(); ?>
 			</a>
 		</h1>
-		<p class="terminal-credit">
+		<p class="terminal-credit terminal-text-gray">
 			<?php terminal_print_photo_caption(); ?>
 		</p>
 	</div>

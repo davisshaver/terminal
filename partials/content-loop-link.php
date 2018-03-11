@@ -70,7 +70,7 @@ endif;
     </h1>
 		<?php
 		printf(
-			'<div class="terminal-body-font">%s</div>',
+			'<div class="terminal-body-font terminal-text-gray">%s</div>',
 			apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) )
 		);
 		?>

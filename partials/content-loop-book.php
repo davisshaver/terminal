@@ -61,12 +61,9 @@ if ( has_post_thumbnail() ) :
 <?php
 endif;
 ?>
-	<div class="terminal-card-text">
+	<div class="terminal-card-text terminal-text-gray terminal-body-font">
 		<?php
-		printf(
-			'<div class="terminal-body-font">%s</div>',
-			wp_kses_post( wpautop( get_the_excerpt() ) )
-		);
+		echo wp_kses_post( wpautop( get_the_excerpt() ) );
 		?>
 	</div>
 </div>

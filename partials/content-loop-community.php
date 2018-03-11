@@ -76,7 +76,7 @@ endif;
 			get_template_part( 'partials/byline', get_post_type( $post ) );
 		endif;
 		printf(
-			'<div class="terminal-card-text terminal-body-font %s">%s</div>',
+			'<div class="terminal-card-text terminal-body-font terminal-text-gray %s">%s</div>',
 			$hide_excerpt_on_mobile ? "terminal-mobile-hide" : '',
 			wp_kses_post( wpautop( get_the_excerpt() ) )
 		);
