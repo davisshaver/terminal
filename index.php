@@ -28,12 +28,12 @@ get_header(); ?>
 	?>
 	<?php terminal_print_stories_loop(); ?>
 	<?php if ( ! empty( get_previous_posts_link() ) || ! empty( get_next_posts_link() ) ) : ?>
-		<div class="terminal-pagination">
+		<div class="terminal-pagination terminal-card terminal-card-full">
 			<?php if ( ! empty( get_previous_posts_link() ) ) : ?>
-				<div><?php previous_posts_link( '&laquo; Previous' ); ?></div>
+				<?php previous_posts_link( '&laquo; Previous' ); ?>
 			<?php endif; ?>
 			<?php if ( ! empty( get_next_posts_link() ) ) : ?>
-				<div><?php next_posts_link( 'Next &raquo;', '' ); ?></div>
+				<?php next_posts_link( 'Next &raquo;', '' ); ?>
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>
