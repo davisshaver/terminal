@@ -59,6 +59,9 @@
   }
   .terminal-card-text {
     margin: 0 auto 0 auto;
+    &.terminal-card-text-top-margin {
+      margin: 15px auto 0 auto;
+    }
     width: 100%;
     height: 100%;
     ul {

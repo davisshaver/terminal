@@ -31,14 +31,37 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
+			if ( empty( $instance['status'] ) ) {
+				return;
+			}
 			$upcoming_query = new \WP_Query( array(
 				'posts_per_page'      => 5,
 				'ignore_sticky_posts' => true,
+				'post_status'         => $instance['status']
 			) );
+			if ( empty( $instance['title'] ) ) {
+				$title = __( 'Upcoming Posts', 'terminal' );
+			} else {
+				$title = $instance['title'];
+			}
 			if ( $upcoming_query->have_posts() ) :
 				// phpcs:ignore
 				echo $args['before_widget'];
-
+				printf(
+					'%s %s %s',
+					$args['before_title'],
+					$title,
+					$args['after_title']
+				);
+				echo '<div class="terminal-card-text terminal-card-text-top-margin">';
+				while ( $upcoming_query->have_posts() ) :
+					$upcoming_query->the_post();
+					printf(
+						'<h4>%s</h4>',
+						get_the_title()
+					);
+				endwhile;
+				echo '</div>';
 				echo $args['after_widget'];
 			endif;
 			wp_reset_postdata();
