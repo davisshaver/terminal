@@ -25,7 +25,7 @@ if ( has_post_thumbnail() ) :
 	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail-large' );
 ?>
 	<a
-		id="post-image-link-<?php the_ID(); ?>"
+		id="photo-image-link-<?php the_ID(); ?>"
 		href="<?php the_permalink(); ?>"
 		rel="bookmark"
 		class="terminal-tracking terminal-card-image"
@@ -46,7 +46,7 @@ endif;
 	<div class="terminal-card-text">
 		<h1 class="terminal-headline-font terminal-stream-headline">
 			<a 
-				id="post-headline-link-<?php the_ID(); ?>"
+				id="photo-headline-link-<?php the_ID(); ?>"
 				href="<?php the_permalink(); ?>" 
 				class="terminal-tracking terminal-link-gray" 
 				data-terminal-post-id="<?php the_ID(); ?>"

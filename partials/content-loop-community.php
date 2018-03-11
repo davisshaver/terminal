@@ -16,8 +16,8 @@ $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 	false;
 ?>
 
-<div 
-	id="post-<?php the_ID(); ?>"
+<div
+	id="community-<?php the_ID(); ?>"
 	<?php post_class( array( 'terminal-post-tracking', 'terminal-card', 'terminal-post-card', 'terminal-card-single', esc_html( $terminal_no_photo_class ) ) ); ?>
 	data-terminal-post-id="<?php the_ID(); ?>"
 	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
@@ -38,7 +38,7 @@ if ( has_post_thumbnail() ) :
 	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail-large' );
 ?>
 	<a
-		id="post-image-link-<?php the_ID(); ?>"
+		id="community-image-link-<?php the_ID(); ?>"
 		href="<?php the_permalink(); ?>"
 		rel="bookmark"
 		class="terminal-tracking terminal-card-image"
@@ -59,7 +59,7 @@ endif;
 	<div class="terminal-card-text">
 		<h1 class="terminal-headline-font terminal-stream-headline">
 			<a 
-				id="post-headline-link-<?php the_ID(); ?>"
+				id="community-headline-link-<?php the_ID(); ?>"
 				href="<?php the_permalink(); ?>" 
 				class="terminal-tracking terminal-link-gray" 
 				data-terminal-post-id="<?php the_ID(); ?>"
