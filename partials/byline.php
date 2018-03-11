@@ -83,7 +83,7 @@ $hide_by = boolval(
 
 $byline_style = is_singular() ? 'terminal-single-meta-font' : 'terminal-index-meta-font';
 printf(
-	'<div class="terminal-byline terminal-text-gray-light terminal-limit-max-content-width-add-margin %s %s">',
+	'<div class="terminal-limit-max-content-width-add-margin %s %s"><div class="terminal-byline terminal-text-gray-light">',
 	esc_attr( $byline_style ),
 	$hide_byline_on_mobile ? esc_attr( 'terminal-mobile-hide' ) : ''
 );
@@ -145,4 +145,5 @@ if (
 <?php
 endif;
 ?>
+</div>
 </div>
