@@ -16,22 +16,26 @@ ob_end_clean();
 ?>
 
 <div class="terminal-nav-bar terminal-utility-font">
+	<div class="terminal-nav-bar-header-container">
+		<?php
+		$nav_menu = wp_nav_menu( array(
+			'theme_location' => 'terminal-header',
+			'depth'          => 1,
+			'echo'           => false,
+			'menu_id'        => 'terminal-nav-bar-header',
+		) );
+		if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
+			$more = sprintf(
+				'<li class="terminal-nav-bar-inside-more-link terminal-hidden-no-js"><a href="#">%s %s</a></li></ul>',
+				esc_html( 'More', 'terminal' ),
+				$down
+			);
+			$nav_menu = str_replace( '</ul>', $more, $nav_menu );
+		}
+		echo $nav_menu;
+	?>
+	</div>
 	<?php
-	$nav_menu = wp_nav_menu( array(
-		'theme_location' => 'terminal-header',
-		'depth'          => 1,
-		'echo'           => false,
-		'menu_id'        => 'terminal-nav-bar-header',
-	) );
-	if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
-		$more = sprintf(
-			'<li class="terminal-nav-bar-inside-more-link terminal-hidden-no-js"><a href="#">%s %s</a></li></ul>',
-			esc_html( 'More', 'terminal' ),
-			$down
-		);
-		$nav_menu = str_replace( '</ul>', $more, $nav_menu );
-	}
-	echo $nav_menu;
 	if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
 		echo '<div class="terminal-nav-bar-inside-more terminal-hidden">';
 		if ( has_nav_menu( 'terminal-header-more' ) ) {
