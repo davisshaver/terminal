@@ -15,18 +15,13 @@
 	
 .terminal-header-container {
 	.terminal-logos {
-		max-width: 1200px;
-		width: calc(100% - 60px);
-		margin: 0 auto;
-		@media (max-width: 869px) {
-			margin: 0 30px;
-		}
-		width: calc(100% - 60px);
+    max-width: calc(#{$max_content_width} - 60px);
+    width: calc(100% - 60px);
+    margin: auto;
     align-items: center;
 		display: flex;
-		flex-flow: row nowrap;
-    padding-top: 5px;
-		justify-content: space-around;
+		flex-flow: wrap;
+		justify-content: center;
 
 		.terminal-logo {
 			flex-basis: 50%;
@@ -39,12 +34,13 @@
 		flex-basis: 50%;
 		flex-grow: 1;
 		flex-wrap: wrap;
-		padding: 15px;
-		justify-content: flex-end;
+		padding: 5px;
+		justify-content: center;
 		display: none;
 		.terminal-cta-image {
-			padding: 10px;
-			flex-shrink: 1;
+			margin: 5px;
+			height: 25px;
+			width: auto;
 		}
 		.terminal-cta-tagline p {
 			margin: 0;

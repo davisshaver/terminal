@@ -21,7 +21,7 @@
 	#terminal-nav-bar-header-more-meta {
     flex-wrap: wrap;
     margin: auto;
-    padding: 15px;
+    padding: 5px;
     flex: 1 1 100%;
     display: flex;
     justify-content: left;
@@ -37,7 +37,7 @@
 	#terminal-nav-bar-header-more {
     flex-wrap: wrap;
 		margin: auto;
-    padding: 15px;
+    padding: 5px;
     flex: 1 1 100%;
     display: flex;
     justify-content: left;
@@ -53,10 +53,10 @@
 	#terminal-nav-bar-header {
     flex-wrap: nowrap;
     margin: 0;
-    padding: 15px;
+    padding: 5px;
     flex: 1 1 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     a {
       color: #fff;
     }
@@ -106,7 +106,7 @@
 	.terminal-menu-header-nav, .terminal-menu-header-inside, .terminal-menu-header-inside-meta {
 		display: flex;
 		margin: 0;
-		justify-content: space-around;
+		justify-content: space-between;
 
 		li {
 
@@ -130,5 +130,10 @@
 		max-width: calc(#{$max_content_width} - 60px);
     width: calc(100% - 60px);
     margin: 20px auto 0 auto;
+	}
+	.terminal-nav-bar-header-container {
+		max-width: calc(#{$max_content_width} - 60px);
+    width: calc(100% - 60px);
+    margin: 0 auto;
 	}
 }
