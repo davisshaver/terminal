@@ -85,7 +85,7 @@ class Links {
 	 * @return object Filtered query
 	 */
 	public function include_link_post_type_in_rss( $query ) {
-		if ( ( ! is_singular() && ! is_admin() ) && $query->is_main_query() ) {
+		if ( ( ! is_singular() && ! is_admin() ) && $query->is_main_query() && ! is_post_type_archive() ) {
 			$existing_post_types = $query->get( 'post_type' );
 			if ( is_array( $existing_post_types ) && ! empty( $existing_post_types ) ) {
 				$query->set( 'post_type', array_merge( $existing_post_types, array( $this->link_post_type ) ) );
