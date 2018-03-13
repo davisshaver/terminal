@@ -49,11 +49,11 @@ class Data {
 	 * @return array Data.
 	 */
 	public function get_prepared_layout_data( $default = array() ) {
-		$layout_options = get_option( 'terminal_layout_options', $default );
+		$layout_options = get_option( 'terminal_layout_options', array() );
 		if ( empty( $layout_options ) ) {
 			return $default;
 		}
-		return $layout_options;
+		return array_merge( $default, $layout_options );
 	}
 
 	/**
@@ -63,11 +63,11 @@ class Data {
 	 * @return array Data.
 	 */
 	public function get_prepared_byline_data( $default = array() ) {
-		$byline_option = get_option( 'terminal_byline_options', $default );
+		$byline_option = get_option( 'terminal_byline_options', array() );
 		if ( empty( $byline_option ) ) {
 			return $default;
 		}
-		return $byline_option;
+		return array_merge( $default, $byline_option );
 	}
 
 	/**
@@ -77,7 +77,11 @@ class Data {
 	 * @return array Prepared data.
 	 */
 	public function get_prepared_sidebar_data( $default = array() ) {
-		return get_option( 'terminal_sidebar_options', $default );
+		$sidebar_options = get_option( 'terminal_sidebar_options', array() );
+		if ( empty( $sidebar_options ) ) {
+			return $default;
+		}
+		return array_merge( $default, $sidebar_options );
 	}
 
 	/**
@@ -181,7 +185,11 @@ class Data {
 	 * @return array Prepared data.
 	 */
 	public function get_prepared_footer_data( $default = array() ) {
-		return get_option( 'terminal_footer_options', $default );
+		$footer_options = get_option( 'terminal_footer_options', array() );
+		if ( empty( $footer_options ) ) {
+			return $default;
+		}
+		return array_merge( $default, $footer_options );
 	}
 
 	/**
@@ -191,7 +199,11 @@ class Data {
 	 * @return array Prepared data.
 	 */
 	public function get_prepared_header_data( $default = array() ) {
-		return get_option( 'terminal_header_options', $default );
+		$header_options = get_option( 'terminal_header_options', array() );
+		if ( empty( $header_options ) ) {
+			return $default;
+		}
+		return array_merge( $default, $header_options );
 	}
 
 	/**

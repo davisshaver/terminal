@@ -13,18 +13,20 @@ $byline_data = terminal_get_byline_options( array(
 	'default_gravatar'     => null,
 	'time_ago_format'      => 'relative',
 	'hide_by'              => false,
-	'loop_hide_avatar'     => false,
+	'loop_hide_avatar'     => true,
 	'loop_avatar_size'     => 25,
 	'loop_hide_date'       => false,
 	'loop_hide_author'     => false,
 	'loop_hide_category'   => false,
-	'loop_hide_comments'   => false,
+	'loop_hide_comments'   => true,
+	'loop_hide_edit'       => true,
 	'single_hide_avatar'   => false,
 	'single_avatar_size'   => 25,
 	'single_hide_date'     => false,
 	'single_hide_author'   => false,
 	'single_hide_category' => false,
-	'single_hide_comments' => false,
+	'single_hide_comments' => true,
+	'single_hide_edit'     => true,
 ) );
 
 $avatar_size = intval(
