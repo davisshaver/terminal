@@ -207,7 +207,8 @@
     position: absolute;
   }
   height: auto;
-  flex: 0 1 960px;
+  max-width: 960px;
+  flex: 1 1 640px;
 }
 
 .terminal-card-double {
