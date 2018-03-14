@@ -63,20 +63,21 @@ svg.terminal-svg {
 .terminal-author-snippet, .terminal-author {
 	display: flex;
 	max-width: $max_content_width;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: center;
 	width: 100%;
 	margin: 0 auto 15px auto;
 	.terminal-card-text, img {
     display: flex;
-    flex: 1 1 250px;
+    flex: 0 1 50%;
     flex-wrap: wrap;
 		max-width: calc(50% - 60px);
 		width: 100%;
 		margin: 0 0 15px 0;
     height: auto;
 		@media (max-width: 560px) {
+			flex: 1 1 100%;
 			max-width: 100%;
 		}
 	}
