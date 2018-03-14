@@ -34,11 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
     jQuery(document.body).on('post-load', () => {
       const slotName = `${terminal.inlineAds.unit}_${slotNum}`;
       const infiniteTarget = `.infinite-loader:nth-of-type(${slotNum})`;
+      const adTagContainer = jQuery('<div />')
+        .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center');
       const adTag = jQuery('<div />')
         .attr('id', adLayersDFP.adUnitPrefix + slotName)
-        .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center dfp-ad');
+        .attr('class', 'dfp-ad');
+      adTagContainer.append(adTag);
       exponentialBackoff(
-        (thisSlotName = `${slotName}`, thisTag = adTag, thisTarget = infiniteTarget) => {
+        (thisSlotName = `${slotName}`, thisTag = adTagContainer, thisTarget = infiniteTarget) => {
           if (jQuery(thisTarget).length !== 0) {
             return [thisSlotName, thisTag, thisTarget];
           }
