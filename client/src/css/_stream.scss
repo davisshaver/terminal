@@ -208,16 +208,25 @@
 }
 
 .terminal-card-triple {
+  .terminal-breadcrumbs {
+    position: absolute;
+  }
   height: auto;
   flex: 0 1 1350px;
 }
 
 .terminal-card-double {
+  .terminal-breadcrumbs {
+    position: absolute;
+  }
   height: auto;
   flex: 0 1 660px;
 }
 
 .terminal-card-single, .terminal-sidebar-card.widget_ad_layers_ad_widget {
+  .terminal-breadcrumbs {
+    position: absolute;
+  }
   height: auto;
   max-width: 660px;
   flex: 1 1 330px;
