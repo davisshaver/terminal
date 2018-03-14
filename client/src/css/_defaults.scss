@@ -55,6 +55,7 @@ svg.terminal-svg {
 	min-height: 100vh;
 	margin: 15px auto;
 	flex-wrap: wrap;
+	max-width: $max_container_width;
 }
 .terminal-content {
 	flex-basis: 75%;
