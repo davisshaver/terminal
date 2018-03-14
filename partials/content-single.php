@@ -19,7 +19,9 @@ printf(
 	get_the_ID()
 );
 if ( 'top' === $single_data['single_meta_position'] ) :
-	get_template_part( 'partials/byline', get_post_type( $post ) );
+	terminal_print_template_part( 'byline', array(
+		'post_type' => $post_type
+	) );
 endif;
 if ( function_exists( 'yoast_breadcrumb' ) ) {
 	yoast_breadcrumb(
@@ -41,7 +43,9 @@ if ( is_active_sidebar( 'terminal-before-article' ) ) {
 	dynamic_sidebar( 'terminal-before-article' );
 }
 if ( 'middle' === $single_data['single_meta_position'] ) :
-	get_template_part( 'partials/byline', get_post_type( $post ) );
+	terminal_print_template_part( 'byline', array(
+		'post_type' => $post_type
+	) );
 endif;
 printf(
 	'<div class="terminal-card-text terminal-body-font terminal-limit-max-content-width">%s',
@@ -50,7 +54,9 @@ printf(
 wp_link_pages();
 echo '</div>';
 if ( 'bottom' === $single_data['single_meta_position'] ) :
-	get_template_part( 'partials/byline', get_post_type( $post ) );
+	terminal_print_template_part( 'byline', array(
+		'post_type' => $post_type
+	) );
 endif;
 if ( is_active_sidebar( 'terminal-after-article' ) ) {
 	terminal_print_after_article_header();

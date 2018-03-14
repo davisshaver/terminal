@@ -26,7 +26,22 @@ get_header(); ?>
 		echo '</div>';
 	}
 	?>
-	<?php terminal_print_stories_loop(); ?>
+	<?php
+		terminal_print_template_part(
+			'sidebar',
+			array(
+				'sidebar' => 'terminal-stream-start'
+			)
+		);
+		terminal_print_stories_loop();
+		terminal_print_stories_loop();
+			terminal_print_template_part(
+				'sidebar',
+				array(
+					'sidebar' => 'terminal-primary-sidebar'
+				)
+			);
+	?>
 	<?php if ( ! empty( get_previous_posts_link() ) || ! empty( get_next_posts_link() ) ) : ?>
 		<div class="terminal-pagination terminal-card terminal-card-full">
 			<?php if ( ! empty( get_previous_posts_link() ) ) : ?>
@@ -37,8 +52,5 @@ get_header(); ?>
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>
-	<?php
-		get_template_part( 'partials/sidebar' );
-	?>
 </div>
 <?php get_footer(); ?>

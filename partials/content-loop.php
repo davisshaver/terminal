@@ -15,77 +15,140 @@ $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 	false;
 
 $terminal_no_photo_class = ! has_post_thumbnail() ? 'terminal-no-photo' : '';
-?>
-
-<div 
-	id="post-<?php the_ID(); ?>"
-	<?php post_class( array( 'terminal-post-tracking', 'terminal-card', 'terminal-post-card', 'terminal-card-single', esc_html( $terminal_no_photo_class ) ) ); ?>
-	data-terminal-post-id="<?php the_ID(); ?>"
-	data-terminal-has-image="<?php echo has_post_thumbnail(); ?>"
-	data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
-	data-terminal-title="<?php the_title_attribute(); ?>"
-	data-terminal-view="loop"
->
-<?php
-if ( is_sticky() ) {
-	printf(
-		'<div class="terminal-card-title terminal-no-select">🔗 %s</div>',
-			esc_html( __( '📌 Sticky Post', 'terminal' ) )
-	);
+$terminal_card_title = false;
+$terminal_card_title_meta = false;
+$terminal_card_size = 'terminal-card-single';
+if ( 'link' === $post_type ) {
+	$terminal_card_title = __( '🔗 External Link', 'terminal' );
+	$host = parse_url( get_the_permalink(), PHP_URL_HOST );
+	$path = parse_url( get_the_permalink(), PHP_URL_PATH );
+	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $host . $path;
+} elseif ( 'book' === $post_type ) {
+	$terminal_card_title = __( '📖  Book Review', 'terminal' );
+} elseif ( 'community' === $post_type ) {
+	$terminal_card_title = __( 'Reader-Submitted Post', 'terminal' );
+} elseif ( 'photo' === $post_type ) {
+	$terminal_card_title = __( 'Featured Photo', 'terminal' );
 }
-if ( 'top' === $loop_data['loop_meta_position'] ) :
-	get_template_part( 'partials/byline', get_post_type( $post ) );
-endif;
+$post_id = get_the_ID();
+$post_has_thumbnail = has_post_thumbnail();
+$post_author_nice_name = get_the_author_meta( 'user_nicename' );
+$post_title_attribute = the_title_attribute( array( 'echo' => false ) );
+$post_link = get_the_permalink();
 
-if ( has_post_thumbnail() ) :
-	$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'terminal-uncut-thumbnail-large' );
-?>
-	<a
-		id="post-image-link-<?php the_ID(); ?>"
-		href="<?php the_permalink(); ?>"
-		rel="bookmark"
-		class="terminal-tracking terminal-card-image"
-		title="<?php the_title_attribute(); ?>"
-		data-terminal-post-id="link-<?php the_ID(); ?>"
-		data-terminal-has-image="<?php has_post_thumbnail(); ?>"
-		data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
-		data-terminal-title="<?php the_title_attribute(); ?>"
-		data-terminal-view="loop image"
-	>
-	<?php
+printf(
+  '<div
+    id="%s"
+    class="%s"
+    data-terminal-post-id="%s"
+    data-terminal-post-type="%s"
+    data-terminal-has-image="%s"
+    data-terminal-author="%s"
+    data-terminal-photographer="%s"
+    data-terminal-title="%s"
+    data-terminal-view="loop"
+  >',
+  esc_attr( $post_type . '-' . $post_id ),
+  esc_attr( implode( ' ', get_post_class(
+    array(
+      'terminal-post-tracking',
+      'terminal-card',
+      'terminal-post-card',
+      $terminal_card_size,
+      esc_html( $terminal_no_photo_class )
+  ) ) ) ),
+	esc_attr( $post_id ),
+	esc_attr( $post_type ),
+  esc_attr( $post_has_thumbnail ),
+  esc_attr( $post_author_nice_name ),
+  esc_attr( __return_false() ),
+  esc_attr( $post_title_attribute )
+);
+	if ( ! empty( $terminal_card_title ) ) {
+		printf(
+			'<div class="terminal-card-title terminal-no-select">%s</div>',
+				esc_html( $terminal_card_title )
+		);
+	}
+	if ( ! empty( $terminal_card_title_meta ) ) {
+		printf(
+			'<div class="terminal-card-title-meta terminal-no-select">%s</div>',
+				esc_html( $terminal_card_title_meta )
+		);
+	}
+	if ( 'top' === $loop_data['loop_meta_position'] ) :
+		terminal_print_template_part( 'byline', array(
+			'post_type' => $post_type
+		) );
+	endif;
+	if ( has_post_thumbnail() ) {
+		$thumb = wp_get_attachment_image_src(
+			get_post_thumbnail_id( $post_id ),
+			'terminal-uncut-thumbnail-large'
+		);
+		printf(
+			'<a
+				href="%s"
+				rel="bookmark"
+				class="terminal-tracking terminal-card-image"
+				title="%s"
+				data-terminal-post-id="%s"
+				data-terminal-post-type="%s"
+				data-terminal-has-image="%s"
+				data-terminal-author="%s"
+				data-terminal-title="%s"
+				data-terminal-view="loop-image"
+			>',
+			esc_attr( $post_link ),
+			esc_attr( $post_title_attribute ),
+			esc_attr( $post_id ),
+			esc_attr( $post_type ),
+			esc_attr( $post_has_thumbnail ),
+			esc_attr( $post_author_nice_name ),
+			esc_attr( $post_title_attribute )
+		);
 		the_post_thumbnail( 'terminal-uncut-thumbnail' );
-	?>
-	</a>
-<?php
-endif;
-?>
-	<div class="terminal-card-text">
-		<h1 class="terminal-headline-font terminal-stream-headline">
-			<a 
-				id="post-headline-link-<?php the_ID(); ?>"
-				href="<?php the_permalink(); ?>" 
-				class="terminal-tracking terminal-link-gray" 
-				data-terminal-post-id="<?php the_ID(); ?>"
-				data-terminal-has-image="<?php has_post_thumbnail(); ?>"
-				data-terminal-author="<?php esc_attr( the_author_meta( 'user_nicename' ) ); ?>"
-				data-terminal-title="<?php the_title_attribute(); ?>"
-				data-terminal-view="loop headline"
-			>
-				<?php the_title(); ?>
-			</a>
-		</h1>
-		<?php
+		echo '</a>';
+	}
+	echo '<div class="terminal-card-text">';
+		if ( 'photo' === $post_type ) {
+			echo '<p class="terminal-credit terminal-text-gray">';
+			terminal_print_photo_caption();
+			echo '</p>';
+		}
+		printf(
+			'<h1 class="terminal-headline-font terminal-stream-headline"><a
+				id="%s"
+				href="%s"
+				class="terminal-tracking terminal-link-gray"
+				data-terminal-post-id="%s"
+				data-terminal-has-image="%s"
+				data-terminal-author="%s"
+				data-terminal-title="%s"
+				data-terminal-view="loop-headline">%s</a></h1>',
+			esc_attr( $post_type . '-headline-link-' . $post_id ),
+			esc_attr( $post_link ),
+			esc_attr( $post_id ),
+			esc_attr( $post_has_thumbnail ),
+			esc_attr( $post_author_nice_name ),
+			esc_attr( $post_title_attribute ),
+			esc_html( get_the_title() )
+		);
 		if ( 'middle' === $loop_data['loop_meta_position'] ) :
-			get_template_part( 'partials/byline', get_post_type( $post ) );
+			terminal_print_template_part( 'byline', array(
+				'post_type' => $post_type
+			) );
 		endif;
 		printf(
 			'<div class="terminal-card-text terminal-text-gray terminal-body-font %s">%s</div>',
-			$hide_excerpt_on_mobile ? "terminal-mobile-hide" : '',
+			$hide_excerpt_on_mobile ? 'terminal-mobile-hide' : '',
 			wp_kses_post( wpautop( get_the_excerpt() ) )
 		);
 		if ( 'bottom' === $loop_data['loop_meta_position'] ) :
-			get_template_part( 'partials/byline', get_post_type( $post ) );
+			terminal_print_template_part( 'byline', array(
+				'post_type' => $post_type
+			) );
 		endif;
-		echo '</div>';
 	echo '</div>';
+echo '</div>';
 ?>

@@ -129,15 +129,23 @@ class Theme {
 	 */
 	public function register_sidebars() {
 		register_sidebar( array(
-			'name'          => __( 'Primary Sidebar', 'terminal' ),
+			'name'          => __( 'First page stream, end', 'terminal' ),
 			'id'            => 'terminal-primary-sidebar',
-			'description'   => __( 'Homepage sidebar.', 'terminal' ),
+			'description'   => __( 'Goes after the first set of posts in the stream.', 'terminal' ),
 			'before_widget' => '<div id="%1$s" class="terminal-sidebar-card terminal-card terminal-card-single terminal-sidebar-body-font %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<div class="terminal-card-title terminal-no-select terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
-
+		register_sidebar( array(
+			'name'          => __( 'First page stream, start', 'terminal' ),
+			'id'            => 'terminal-stream-start',
+			'description'   => __( 'Goes before the first set of posts in the stream.', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="terminal-sidebar-card terminal-card terminal-card-single terminal-sidebar-body-font %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="terminal-card-title terminal-no-select terminal-sidebar-header-font">',
+			'after_title'   => '</div>',
+		) );
 		register_sidebar( array(
 			'name'          => __( 'Header ', 'terminal' ),
 			'id'            => 'terminal-header',

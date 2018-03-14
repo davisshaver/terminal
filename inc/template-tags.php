@@ -456,22 +456,12 @@ function terminal_get_footer_data( $default = array() ) {
  */
 function terminal_print_stories_loop() {
 	global $post;
-
-	$count = 0;
-
-	$data            = Terminal\Data::instance();
-	$has_inline_ads  = $data->has_inline_ads();
-	$inline_ads_unit = $data->get_inline_ads_tag();
 	if ( have_posts() ) :
 		while ( have_posts() ) :
-			$count++;
 			the_post();
-			get_template_part( 'partials/content-loop', terminal_get_post_type( $post ) );
-			if ( is_home() && ! isset( $_GET[ 'infinity' ] ) && $has_inline_ads && 0 === $count % 7 && ! empty( $inline_ads_unit ) ) {
-				echo '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center">';
-				do_action( 'ad_layers_render_ad_unit', $inline_ads_unit );
-				echo '</div>';
-			}
+			terminal_print_template_part( 'content-loop', array(
+				'post_type' => terminal_get_post_type( $post )
+			) );
 		endwhile;
 	else :
 		esc_html_e( 'No posts founds', 'terminal' );
@@ -586,3 +576,38 @@ function terminal_get_nav_menu_title( $slug ) {
 	$menu_obj = get_term( $locations[$slug], 'nav_menu' );
 	return $menu_obj->name;
 }
+
+/**
+* Get a rendered template part
+*
+* @param string $template
+* @param array $vars
+* @return string
+*/
+function terminal_get_template_part( $template, $vars = array() ) {
+ $full_path = get_template_directory() . '/partials/' . sanitize_file_name( $template ) . '.php';
+ if ( ! file_exists( $full_path ) ) {
+	 return '';
+ }
+ ob_start();
+ // @codingStandardsIgnoreStart
+ if ( ! empty( $vars ) ) {
+	 extract( $vars );
+ }
+ // @codingStandardsIgnoreEnd
+ include $full_path;
+ return ob_get_clean();
+}
+
+
+/**
+* Print a rendered template part
+*
+* @param string $template
+* @param array $vars
+* @return string
+*/
+function terminal_print_template_part( $template, $vars = array() ) {
+	echo terminal_get_template_part( $template, $vars );
+ }
+ 

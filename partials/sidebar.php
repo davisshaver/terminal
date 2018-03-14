@@ -5,8 +5,8 @@
  * @package Terminal
  */
 
-if ( ! is_active_sidebar( 'terminal-primary-sidebar' ) ) {
+ if ( empty( $sidebar ) || ! is_active_sidebar( $sidebar ) ) {
 	return;
 }
 
-dynamic_sidebar( 'terminal-primary-sidebar' );
+dynamic_sidebar( $sidebar );

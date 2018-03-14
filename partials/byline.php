@@ -98,7 +98,7 @@ if ( ! $hide_avatar ) :
 	</div>
 <?php
 endif;
-if ( ! $hide_author ) :
+if ( ! $hide_author && 'photo' !== $post_type ) :
 ?>
 	<div class="terminal-author">
 		<?php
