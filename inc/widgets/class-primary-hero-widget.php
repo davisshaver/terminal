@@ -17,7 +17,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 */
 		public function __construct() {
 			parent::__construct(
-				'terminal-hero-widget',
+				'terminal-primary-hero-widget',
 				__( 'Primary Hero Post', 'terminal' )
 			);
 		}
