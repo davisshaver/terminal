@@ -105,12 +105,18 @@
 				&.alignright {
 					float: right;
           margin: 0 0 0 15px;
-				}
+        }
+        &.aligncenter {
+          @media (min-width: 420px) {
+            margin-left: 37.5%;
+          }
+        }
 				@media (max-width: 420px) {
 					float: none;
           margin: 0 auto 0 auto;
 					height: auto;
-					max-width: 100%;
+          max-width: 100%;
+          width: 100%;
 				}
 			}
 		}
