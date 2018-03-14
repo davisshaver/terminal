@@ -1,18 +1,28 @@
+.terminal-signup {
+	text-align: right;
+	padding: 5px;
+	border-radius: 0px 0px 3px 3px;
+	right: 0;
+	top: 10px;
+	position: absolute;
+	display: none;
+	a {
+		color: #fff;
+	}
+	@media (max-width: 800px) {
+		margin-top: -30px;
+	}
+}
+
+body.admin-bar {
 	.terminal-signup {
-		text-align: right;
-    padding: 5px;
-    border-radius: 0px 0px 3px 3px;
-		right: 0;
-		position: absolute;
-    display: inline-block;
-		a {
-			color: #fff;
-		}
-		@media (max-width: 800px) {
-			margin-top: -30px;
+		top: 42px;
+		@media screen and (max-width: 782px) {
+			top: 46px;
+			margin-top: 0px;
 		}
 	}
-	
+}
 .terminal-header-container {
 	.terminal-logos {
     max-width: calc(#{$max_content_width} - 60px);
