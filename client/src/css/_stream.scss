@@ -1,6 +1,9 @@
 .terminal-card {
   overflow: hidden;
   height: auto;
+  .terminal-breadcrumbs {
+    position: absolute;
+  }
   &.terminal-featured-section {
     height: auto;
   }
@@ -206,33 +209,19 @@
 }
 
 .terminal-card-triple {
-  .terminal-breadcrumbs {
-    position: absolute;
-  }
   height: auto;
-  max-width: 960px;
-  flex: 1 1 640px;
+  flex: 0 1 960px;
 }
 
 .terminal-card-double {
-  .terminal-breadcrumbs {
-    position: absolute;
-  }
   height: auto;
-  max-width: 700px;
-  @media (max-width: 640px) {
-    flex: 1 1 640px;
-  }
-  flex: 0 1 640px;
+  flex: 0 1 630px;
 }
 
 .terminal-card-single, .terminal-sidebar-card.widget_ad_layers_ad_widget {
-  .terminal-breadcrumbs {
-    position: absolute;
-  }
   height: auto;
-  max-width: 640px;
-  flex: 1 1 320px;
+  max-width: 630px;
+  flex: 1 1 300px;
 }
 
 .terminal-hero-secondary-widget {

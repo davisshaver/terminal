@@ -11,7 +11,7 @@
 	id="terminal-hero-post-<?php the_ID(); ?>"
 	<?php
 	printf(
-		'class="%s terminal-hero-widget terminal-card terminal-card-featured terminal-card-double terminal-alignment-center"',
+		'class="%s terminal-hero-widget terminal-card terminal-card-featured terminal-card-triple terminal-alignment-center"',
 		! is_singular() ? 'terminal-post-tracking' : ''
 	);
 	?>
