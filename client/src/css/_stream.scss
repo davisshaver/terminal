@@ -1,9 +1,7 @@
 .terminal-card {
   overflow: hidden;
   height: auto;
-  .terminal-breadcrumbs {
-    position: absolute;
-  }
+
   &.terminal-featured-section {
     height: auto;
   }
@@ -180,6 +178,7 @@
 
 .terminal-breadcrumbs {
   position: relative;
+  width: fit-content;
   padding: 10px 30px;
   height: 40px;
   background: #f2f2f2;
