@@ -114,7 +114,7 @@ function terminal_print_featured_image_caption() {
 			$camera = ob_get_contents();
 			ob_end_clean();
 			printf(
-				'<div class="terminal-credit">%s %s</div>',
+				'<div class="terminal-credit terminal-limit-max-content-width-add-margin">%s %s</div>',
 				$camera,
 				esc_html( $meta['credit'] )
 			);
