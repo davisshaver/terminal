@@ -18,7 +18,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'terminal-hero-secondary-widget',
-				__( 'Hero (Secondary Double)', 'terminal' )
+				__( 'Hero (Secondary)', 'terminal' )
 			);
 		}
 
@@ -34,8 +34,13 @@ if ( class_exists( '\FM_Widget' ) ) {
 			if ( empty( $instance['category'] ) || ! is_int( $instance['category'] ) ) {
 				return;
 			}
+			if (! is_int( $instance['number'] )) {
+				$number = 2;
+			} else {
+				$number=  $instance['number'];
+			}
 			$cat_query = new \WP_Query( array(
-				'posts_per_page'      => 2,
+				'posts_per_page'      => $number,
 				'ignore_sticky_posts' => true,
 				'post__not_in'        => is_single() ? array( get_the_ID() ) : array(),
 				'tax_query' => array(
@@ -82,6 +87,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				'number'         => new \Fieldmanager_Select( 'Number to show', array(
 					'default_value' => 2,
 					'options'       => array(
+						1,
 						2,
 						3,
 						4,
