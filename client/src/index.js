@@ -6,17 +6,19 @@ import { setupMenu } from './js/menu';
 
 function scaleAd(ID) {
   const adDiv = jQuery(ID);
-  const adIframe = adDiv.children();
-  const adFrameContainer = adIframe.closest('.terminal-card ');
+  const adIframe = adDiv.children().find('iframe');
+  const adFrameContainer = adIframe
+    .parent()
+    .closest('.terminal-card ');
   const scale = Math.min(
     adFrameContainer.innerWidth() / adIframe.innerWidth(),
     adFrameContainer.innerHeight() / adIframe.innerHeight(),
   );
   if (scale > 1) {
-    console.log(adDiv.attr('id'), scale);
     adDiv.css('transform', `scale(${scale})`);
   }
 }
+
 function maybeScaleAd(ID) {
   const adDiv = jQuery(ID);
   const adIframe = adDiv.children();
@@ -31,13 +33,14 @@ function maybeScaleAd(ID) {
     scaleAd(ID);
   }
 }
+
 function scaleAllAds() {
-  jQuery('.dfp-ad')
+  jQuery('div[id^="div-gpt-ad"]')
     .each((index, item) => {
-      console.log(item);
-      scaleAd(`#${item.getAttribute('id')}`);
+      maybeScaleAd(`#${item.getAttribute('id')}`);
     });
 }
+
 document.addEventListener('DOMContentLoaded', () => {
   function exponentialBackoff(toTry, maxTries = 5, delay, callback) {
     const result = toTry();
