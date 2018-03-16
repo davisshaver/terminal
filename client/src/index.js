@@ -13,6 +13,7 @@ function scaleAd(ID) {
     adFrameContainer.innerHeight() / adIframe.innerHeight(),
   );
   if (scale > 1) {
+    console.log(adDiv.attr('id'), scale);
     adDiv.css('transform', `scale(${scale})`);
   }
 }
@@ -33,6 +34,7 @@ function maybeScaleAd(ID) {
 function scaleAllAds() {
   jQuery('.dfp-ad')
     .each((index, item) => {
+      console.log(item);
       scaleAd(`#${item.getAttribute('id')}`);
     });
 }
