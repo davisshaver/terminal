@@ -4,33 +4,39 @@
 import './index.scss';
 import { setupMenu } from './js/menu';
 
-document.addEventListener('DOMContentLoaded', () => {
-  function scaleAd(ID) {
-    const adDiv = jQuery(ID);
-    const adIframe = adDiv.children();
-    const adFrameContainer = adIframe.closest('.terminal-card ');
-    const scale = Math.min(
-      adFrameContainer.innerWidth() / adIframe.innerWidth(),
-      adFrameContainer.innerHeight() / adIframe.innerHeight(),
+function scaleAd(ID) {
+  const adDiv = jQuery(ID);
+  const adIframe = adDiv.children();
+  const adFrameContainer = adIframe.closest('.terminal-card ');
+  const scale = Math.min(
+    adFrameContainer.innerWidth() / adIframe.innerWidth(),
+    adFrameContainer.innerHeight() / adIframe.innerHeight(),
+  );
+  if (scale > 1) {
+    adDiv.css('transform', `scale(${scale})`);
+  }
+}
+function maybeScaleAd(ID) {
+  const adDiv = jQuery(ID);
+  const adIframe = adDiv.children();
+  if (!adIframe) {
+    setTimeout(
+      () => {
+        maybeScaleAd(ID);
+      },
+      500,
     );
-    if (scale > 1) {
-      adDiv.css('transform', `scale(${scale})`);
-    }
+  } else {
+    scaleAd(ID);
   }
-  function maybeScaleAd(ID) {
-    const adDiv = jQuery(ID);
-    const adIframe = adDiv.children();
-    if (!adIframe) {
-      setTimeout(
-        () => {
-          maybeScaleAd(ID);
-        },
-        500,
-      );
-    } else {
-      scaleAd(ID);
-    }
-  }
+}
+function scaleAllAds() {
+  jQuery('.dfp-ad')
+    .each((index, item) => {
+      scaleAd(`#${item.getAttribute('id')}`);
+    });
+}
+document.addEventListener('DOMContentLoaded', () => {
   function exponentialBackoff(toTry, maxTries = 5, delay, callback) {
     const result = toTry();
     let max = maxTries || 10;
@@ -45,17 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('we give up');
     }
   }
-  function scaleAllAds() {
-    jQuery('.dfp-ad')
-      .each((index, item) => {
-        scaleAd(`#${item.getAttribute('id')}`);
-      });
-  }
+
   setupMenu();
   setTimeout(scaleAllAds, 500);
-  document.addEventListener('resize', () => {
-    scaleAllAds();
-  });
   if (window.AdLayersAPI &&
     window.adLayersDFP &&
     window.jQuery &&
@@ -90,11 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
               slotName: thisSlotName,
               format: terminal.inlineAds.unit,
             });
-            maybeScaleAd(`#${adLayersDFP.adUnitPrefix}${slotName}`);
+          maybeScaleAd(`#${adLayersDFP.adUnitPrefix}${slotName}`);
         },
       );
       slotNum += 1;
     });
   }
-
+  window.addEventListener('resize', () => {
+    scaleAllAds();
+  });
 });
