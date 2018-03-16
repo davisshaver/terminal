@@ -10,11 +10,12 @@ function scaleAd(ID) {
   const adFrameContainer = adIframe
     .parent()
     .closest('.terminal-card ');
-  const scale = Math.min(
-    adFrameContainer.innerWidth() / adIframe.innerWidth(),
-    adFrameContainer.innerHeight() / adIframe.innerHeight(),
-  );
-  if (scale > 1) {
+  const widthRatio = adFrameContainer.innerWidth() / adIframe.innerWidth();
+  const heightRatio = adFrameContainer.innerHeight() / adIframe.innerHeight();
+  const scale = Math.min(heightRatio, widthRatio);
+  if ((adIframe.innerHeight() * widthRatio) <= adFrameContainer.innerHeight() && scale > 1) {
+    adDiv.css('transform', `scale(${scale})`);
+  } else if ((adIframe.innerWidth() * heightRatio) <= adFrameContainer.innerWidth()) {
     adDiv.css('transform', `scale(${scale})`);
   }
 }
@@ -72,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const slotName = `${terminal.inlineAds.unit}_${slotNum}`;
       const infiniteTarget = `.infinite-loader:nth-of-type(${slotNum})`;
       const adTagContainer = jQuery('<div />')
+        .attr('id', `ad_layers_${slotName}`)
         .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center');
       const adTag = jQuery('<div />')
         .attr('id', adLayersDFP.adUnitPrefix + slotName)

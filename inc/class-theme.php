@@ -73,6 +73,7 @@ class Theme {
 			'render'         => 'terminal_print_stories_loop',
 			'footer'         => false,
 			'wrapper'        => false,
+			'posts_per_page' => 6,
 		) );
 		register_taxonomy(
 			'terminal-placement',
