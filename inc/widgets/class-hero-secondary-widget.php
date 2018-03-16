@@ -34,10 +34,10 @@ if ( class_exists( '\FM_Widget' ) ) {
 			if ( empty( $instance['category'] ) || ! is_int( $instance['category'] ) ) {
 				return;
 			}
-			if (! is_int( $instance['number'] )) {
+			if (! isset( $instance['number'] ) || ! ( is_numeric( $instance['number'] ) && is_int( (int) $instance['number'] ) ) ) {
 				$number = 2;
 			} else {
-				$number=  $instance['number'];
+				$number = $instance['number'];
 			}
 			$cat_query = new \WP_Query( array(
 				'posts_per_page'      => $number,
@@ -54,7 +54,10 @@ if ( class_exists( '\FM_Widget' ) ) {
 			$label = get_term_meta( $instance['category'], 'terminal_placement_options_label', true );
 			if ( $cat_query->have_posts() ) :
 				// phpcs:ignore
-				echo '<div class="terminal-card terminal-card-single">';
+				printf(
+					'<div class="terminal-card terminal-card-single terminal-hero-secondary-card-%s">',
+					esc_attr( $number )
+				);
 				if ( ! empty( $label ) ) {
 					printf(
 					'	<div class="terminal-breadcrumbs">&Darr; %s</div>',
