@@ -18,7 +18,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'terminal-hero-secondary-widget',
-				__( 'Hero (Secondary)', 'terminal' )
+				__( 'Hero (Secondary Double)', 'terminal' )
 			);
 		}
 
@@ -78,6 +78,15 @@ if ( class_exists( '\FM_Widget' ) ) {
 					'datasource' => new \Fieldmanager_Datasource_Term( array(
 						'taxonomy' => 'terminal-placement',
 					) ),
+				) ),
+				'number'         => new \Fieldmanager_Select( 'Number to show', array(
+					'default_value' => 2,
+					'options'       => array(
+						2,
+						3,
+						4,
+						5,
+					),
 				) ),
 			];
 		}
