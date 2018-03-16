@@ -15,7 +15,7 @@ function scaleAd(ID) {
   const scale = Math.min(heightRatio, widthRatio);
   if ((adIframe.innerHeight() * widthRatio) <= adFrameContainer.innerHeight() && scale > 1) {
     adDiv.css('transform', `scale(${scale})`);
-  } else if ((adIframe.innerWidth() * heightRatio) <= adFrameContainer.innerWidth()) {
+  } else if ((adIframe.innerWidth() * heightRatio) <= adFrameContainer.innerWidth() && scale > 1) {
     adDiv.css('transform', `scale(${scale})`);
   }
 }
