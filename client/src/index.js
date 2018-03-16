@@ -97,4 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => {
     scaleAllAds();
   });
+  jQuery(document.body).on('lazyloaded', () => {
+    scaleAllAds();
+  });
 });
