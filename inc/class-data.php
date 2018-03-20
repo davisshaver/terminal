@@ -36,7 +36,14 @@ class Data {
 				$thumbnail_ID = get_post_thumbnail_id( $post->ID );
 				$thumbnail = wp_get_attachment_image_src( $thumbnail_ID,  'terminal-uncut-thumbnail' );
 				if ( is_array( $thumbnail ) ) {
-					echo '<media:content medium="image" url="' . esc_url( $thumbnail[0] )
+					$path = parse_url( $thumbnail[0], PHP_URL_PATH );
+					if ( false !== strpos( $path, '%' ) ) {
+						$src = $thumbnail[0];
+					} else {
+						$encoded_path = array_map ( 'urlencode', explode( '/', $path ) );
+						$src = str_replace( $path, implode( '/', $encoded_path), $thumbnail[0] );
+					}
+					echo '<media:content medium="image" url="' . esc_url( $src )
 						. '" width="' . esc_attr( $thumbnail[1] ) . '" height="' . esc_attr( $thumbnail[2] ) . '" />';
 				}
 			}
