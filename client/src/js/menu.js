@@ -6,6 +6,7 @@ export function setupMenu() {
   const moreNav = document.querySelector('.terminal-nav-bar-inside-more');
   const container = document.querySelector('.terminal-container');
   const footer = document.querySelector('.terminal-footer');
+  const header = document.querySelector('.terminal-header-container');
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   function toggleOpen(element) {
     element.classList.toggle('terminal-flipped');
@@ -28,6 +29,7 @@ export function setupMenu() {
         toggleOpen(svgLink);
         toggleHidden(moreNav);
         toggleHidden(container);
+        toggleHidden(header);
         toggleShow(footer);
       },
     );

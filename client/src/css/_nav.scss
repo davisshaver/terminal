@@ -1,15 +1,17 @@
 .terminal-nav-bar {
 	box-sizing: border-box;
+	position: sticky;
+	z-index: 1;
+	top: 0;
 	h2 {
 		padding: 0 15px;
 		color: #fff;
 	}
 	svg {
 		fill: #fff;
-		transform: rotate(180deg);
 		margin-bottom: -0.2em;
 		&.terminal-flipped {
-			transform: rotate(0deg);
+			transform: rotate(90deg);
 		}
 	}
 
@@ -131,8 +133,10 @@
     margin: 20px auto 0 auto;
 	}
 	.terminal-nav-bar-header-container {
-		max-width: calc(#{$max_content_width} - 60px);
-    width: calc(100% - 60px);
-    margin: 0 auto;
+		max-width: $max_content_width;
+		margin: 0 15px;
+		@media screen and (min-width: #{$max_content_width}) {
+			margin: 0 auto;
+		}
 	}
 }
