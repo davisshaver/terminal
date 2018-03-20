@@ -2,17 +2,9 @@
 .infinite-loader {
 	color: #000;
 	height: 28px;
-	@media (min-width: 800px) {
-		max-width: 400px;
-	}
-	@media (min-width: 800px) {
-		max-width: 0 0 15px 0;
-	}
+	flex: 1 1 330px;
+	padding: 15p;
 	margin: 15px;
-	width: calc(100% - 60px);
-	@media (min-width: 1000px) {
-		width: calc(100% - 90px);
-	}
 	display: flex;
 	text-indent: -9999px;
 }
