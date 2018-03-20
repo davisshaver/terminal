@@ -1,33 +1,24 @@
 <?php
 /**
- * Template name: Outlet archive
+ * Single template file
  *
  * @package Terminal
  */
 
 get_header(); ?>
-<div id="container">
-	<div id="body">
-		<div class="content">
-		<?php
-		if ( have_posts() ) :
-			while ( have_posts() ) :
-				the_post();
-				get_template_part( 'partials/content-archive', get_post_type( $post ) );
-				?>
-				<?php
-			endwhile;
-		else :
-		?>
-			<p><?php esc_html_e( 'Sorry, no posts matched your criteria.', 'terminal' ); ?></p>
-		<?php
-		endif;
-		get_template_part( 'partials/recirc' );
-		?>
-		</div>
-		<?php
-			get_template_part( 'partials/sidebar' );
-		?>
-	</div>
+
+<div class="terminal-container">
+<?php
+if ( have_posts() ) :
+	while ( have_posts() ) :
+		the_post();
+		get_template_part( 'partials/content-archive', get_post_type( $post ) );
+	endwhile;
+endif;
+terminal_print_template_part(
+	'main-sidebar'
+);
+get_template_part( 'partials/recirc' );
+?>
 </div>
 <?php get_footer(); ?>
