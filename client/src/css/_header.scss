@@ -18,19 +18,25 @@
 	overflow: visible;
 	max-width: 1150px;
 	position: absolute;
-	top: 0;
+	top: 10px;
 	z-index: 2;
 	pointer-events: none;
 	display: none;
+	@media (max-width: 800px) {
+		top: 0;
+	}
 }
 body.admin-bar {
 	.terminal-nav-bar {
-
+		top: 32px;
+		@media (max-width: 800px) {
+			top: 0;
+		}
 	}
 	.terminal-signup-container {
 		top: 42px;
 		@media (max-width: 800px) {
-			top: 46px;
+			top: 47px;
 		}
 	}
 }
