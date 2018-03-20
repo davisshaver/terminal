@@ -36,8 +36,8 @@ class Data {
 				$thumbnail_ID = get_post_thumbnail_id( $post->ID );
 				$thumbnail = wp_get_attachment_image_src( $thumbnail_ID,  'terminal-uncut-thumbnail' );
 				if ( is_array( $thumbnail ) ) {
-					echo '<media:content medium="image" url="' . $thumbnail[0]
-						. '" width="' . $thumbnail[1] . '" height="' . $thumbnail[2] . '" />';
+					echo '<media:content medium="image" url="' . esc_url( $thumbnail[0] )
+						. '" width="' . esc_attr( $thumbnail[1] ) . '" height="' . esc_attr( $thumbnail[2] ) . '" />';
 				}
 			}
 		});
