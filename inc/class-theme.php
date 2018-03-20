@@ -130,10 +130,10 @@ class Theme {
 	 */
 	public function register_sidebars() {
 		register_sidebar( array(
-			'name'          => __( 'First page stream, end', 'terminal' ),
+			'name'          => __( 'Primary sidebar', 'terminal' ),
 			'id'            => 'terminal-primary-sidebar',
-			'description'   => __( 'Goes after the first set of posts in the stream.', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="terminal-sidebar-card terminal-card terminal-card-single terminal-sidebar-body-font %2$s">',
+			'description'   => __( 'Goes to the right of main or featured content.', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="terminal-sidebar-card terminal-card terminal-card-single terminal-utility-font %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<div class="terminal-card-title terminal-no-select terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
@@ -142,6 +142,15 @@ class Theme {
 			'name'          => __( 'First page stream, start', 'terminal' ),
 			'id'            => 'terminal-stream-start',
 			'description'   => __( 'Goes before the first set of posts in the stream.', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="terminal-sidebar-card terminal-card terminal-card-single terminal-sidebar-body-font %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="terminal-card-title terminal-no-select terminal-sidebar-header-font">',
+			'after_title'   => '</div>',
+		) );
+		register_sidebar( array(
+			'name'          => __( 'First page stream, end', 'terminal' ),
+			'id'            => 'terminal-stream-end',
+			'description'   => __( 'Goes after the first set of posts in the stream.', 'terminal' ),
 			'before_widget' => '<div id="%1$s" class="terminal-sidebar-card terminal-card terminal-card-single terminal-sidebar-body-font %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<div class="terminal-card-title terminal-no-select terminal-sidebar-header-font">',
@@ -193,7 +202,7 @@ class Theme {
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(
-			'name'          => __( 'Featured ', 'terminal' ),
+			'name'          => __( 'Featured', 'terminal' ),
 			'id'            => 'terminal-featured',
 			'description'   => __( 'Featured', 'terminal' ),
 			'before_widget' => '<div id="%1$s" class="terminal-featured-section terminal-card terminal-card-single %2$s">',

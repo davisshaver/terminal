@@ -9,3 +9,26 @@
 .terminal-post-widget {
 	width: 100%;
 }
+
+.terminal-top-container {
+	display: flex;
+	height: 100%;
+	margin: 0 auto;
+	flex-wrap: wrap;
+}
+.terminal-hero-container {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	flex-wrap: wrap;
+	flex: 1 1 330px;
+}
+.terminal-primary-sidebar {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	flex-wrap: wrap;
+	height: 100%;
+	flex: 0 1 385px;
+	min-width: 350px;
+}

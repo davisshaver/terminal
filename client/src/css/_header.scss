@@ -1,21 +1,29 @@
 .terminal-signup {
-	text-align: right;
 	padding: 5px;
 	border-radius: 0px 0px 3px 3px;
-	right: 0;
-	top: 10px;
-	position: absolute;
-	display: none;
+	display: flex;
+	margin-right: 15px;
+	flex: 0 0 auto;
 	a {
 		color: #fff;
 	}
+}
+.terminal-signup-container {
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	justify-content: flex-end;
+	right: 0;
+	top: 10px;
+	max-width: $max_container_width;
+	position: absolute;
+	display: none;
 	@media (max-width: 800px) {
 		margin-top: -10px;
 	}
 }
-
 body.admin-bar {
-	.terminal-signup {
+	.terminal-signup-container {
 		top: 42px;
 		@media screen and (max-width: 782px) {
 			top: 46px;
@@ -99,5 +107,5 @@ body.admin-bar {
 }
 
 .terminal-header-section .dfp-ad {
-	margin: 5px auto;
+	padding: 5px !important;
 }

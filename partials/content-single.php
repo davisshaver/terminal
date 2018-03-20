@@ -15,7 +15,7 @@ if ( is_page() ) {
 }
 printf(
 	'<article class="%s" id="terminal-post-%s">',
-	implode( get_post_class( array( 'terminal-card', 'terminal-post-card', 'terminal-card-full' ) ), ' ' ),
+	implode( get_post_class( array( 'terminal-card', 'terminal-post-card', 'terminal-card-double' ) ), ' ' ),
 	get_the_ID()
 );
 if ( 'top' === $single_data['single_meta_position'] ) :
@@ -34,10 +34,9 @@ printf(
 	get_the_title()
 );
 if ( has_post_thumbnail() ) :
-	echo '<div class="terminal-card-image terminal-limit-max-content-width">';
+	echo '<div class="terminal-card-image">';
 	the_post_thumbnail( 'terminal-uncut-thumbnail-large' );
 	echo '</div>';
-	terminal_print_featured_image_caption();
 endif;
 if ( is_active_sidebar( 'terminal-before-article' ) ) {
 	dynamic_sidebar( 'terminal-before-article' );

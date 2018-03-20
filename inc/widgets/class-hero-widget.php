@@ -50,7 +50,12 @@ if ( class_exists( '\FM_Widget' ) ) {
 				// phpcs:ignore
 				while ( $cat_query->have_posts() ) :
 					$cat_query->the_post();
-					get_template_part( 'partials/hero' );
+					terminal_print_template_part(
+						'hero',
+						array(
+							'size' => isset( $instance['size'] ) ? $instance['size'] : 'double',
+						)
+					);
 				endwhile;
 				// phpcs:ignore
 			endif;
@@ -69,6 +74,13 @@ if ( class_exists( '\FM_Widget' ) ) {
 					'datasource' => new \Fieldmanager_Datasource_Term( array(
 						'taxonomy' => 'terminal-placement',
 					) ),
+				) ),
+				'size'         => new \Fieldmanager_Select( 'Size', array(
+					'default_value' => 'double',
+					'options'       => array(
+						'single',
+						'double',
+					),
 				) ),
 			];
 		}

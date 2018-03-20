@@ -32,10 +32,8 @@ class Widgets {
 			require_once __DIR__ . '/widgets/class-author-widget.php';
 			require_once __DIR__ . '/widgets/class-cta-widget.php';
 			require_once __DIR__ . '/widgets/class-category-widget.php';
+			// require_once __DIR__ . '/widgets/class-placement-widget.php';
 			require_once __DIR__ . '/widgets/class-hero-widget.php';
-			require_once __DIR__ . '/widgets/class-primary-hero-widget.php';
-			require_once __DIR__ . '/widgets/class-hero-secondary-widget.php';
-			require_once __DIR__ . '/widgets/class-upcoming-widget.php';
 		}
 	}
 }

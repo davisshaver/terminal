@@ -23,7 +23,7 @@ $desktop_optional_mobile_override_flag = ! empty( $header_data['mobile_header_im
 
 if ( ! empty( $header_data['signup_show_on_desktop'] ) || ! empty( $header_data['signup_show_on_desktop'] ) ) {
 	printf(
-		'<div class="terminal-signup %s %s"><a href="%s">%s %s</a></div>',
+		'<div class="terminal-signup-container %s %s"><div class="terminal-signup"><a href="%s">%s %s</a></div></div>',
 		! empty( $header_data['signup_show_on_desktop'] ) ? esc_attr( 'terminal-desktop-show' ) : '',
 		! empty( $header_data['signup_show_on_mobile'] ) ? esc_attr( 'terminal-mobile-show' ) : '',
 		! empty( $header_data['signup_link'] ) ? esc_url( $header_data['signup_link' ] ) : '',

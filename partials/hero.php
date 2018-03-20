@@ -4,15 +4,18 @@
  *
  * @package terminal
  */
-
+if ( empty( $size ) ) {
+	$size = 'double';
+}
 ?>
 
 <div 
 	id="terminal-hero-post-<?php the_ID(); ?>"
 	<?php
 	printf(
-		'class="%s terminal-hero-widget terminal-card terminal-card-featured terminal-card-double terminal-alignment-center"',
-		! is_singular() ? 'terminal-post-tracking' : ''
+		'class="%s terminal-hero-widget terminal-card terminal-card-featured terminal-card-%s terminal-alignment-center"',
+		! is_singular() ? 'terminal-post-tracking' : '',
+		esc_attr( $size )
 	);
 	?>
 	data-terminal-post-id="<?php the_ID(); ?>"
@@ -21,7 +24,7 @@
 	data-terminal-title="<?php the_title_attribute(); ?>"
 	data-terminal-view="hero"
 >
-	<h1 class="terminal-headline-featured-font">
+	<h1 class="terminal-headline-featured-font terminal-limit-max-content-width">
 		<?php
 			printf(
 				'<a id="hero-title-%s" href="%s" class="terminal-link-gray %s" title="%s" data-terminal-post-id="%s" data-terminal-view="hero title" data-terminal-title="%s">',
@@ -42,7 +45,7 @@
 		<div class="terminal-card-image">
 		<?php
 			printf(
-				'<a id="terminal-hero-image-%s" href="%s" class="%s bookmark" title="%s" data-terminal-post-id="%s" data-terminal-view="hero image" data-terminal-title="%s">',
+				'<a id="terminal-hero-image-%s" href="%s" class="terminal-limit-max-content-width %s bookmark" title="%s" data-terminal-post-id="%s" data-terminal-view="hero image" data-terminal-title="%s">',
 				get_the_ID(),
 				get_the_permalink(),
 				! is_singular() ? 'terminal-tracking' : '',
@@ -54,7 +57,7 @@
 				<?php the_post_thumbnail( 'terminal-uncut-thumbnail-large', array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
-		<div class="terminal-card-text terminal-sidebar-body-font">
+		<div class="terminal-limit-max-content-width terminal-card-text terminal-sidebar-body-font">
 			<?php
 				the_excerpt();
 			?>
