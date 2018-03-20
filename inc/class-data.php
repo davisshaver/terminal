@@ -34,7 +34,7 @@ class Data {
 			global $post;
 			if ( has_post_thumbnail( $post->ID ) ) {
 				$thumbnail_ID = get_post_thumbnail_id( $post->ID );
-				$thumbnail = wp_get_attachment_image_src( $thumbnail_ID,  'terminal-uncut-thumbnail' );
+				$thumbnail = wp_get_attachment_image_src( $thumbnail_ID, 'terminal-uncut-thumbnail-large' );
 				if ( is_array( $thumbnail ) ) {
 					$path = parse_url( $thumbnail[0], PHP_URL_PATH );
 					if ( false !== strpos( $path, '%' ) ) {
