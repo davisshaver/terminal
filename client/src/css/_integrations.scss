@@ -132,8 +132,7 @@ div.gform_wrapper {
 		max-width: calc( #{$max_container_width} - 30px ) !important;
 		width: calc( 100% - 30px) !important;
 }
-.essbfc-container {
-	bottom: 7.5px;
+
+..essbfc-container {
 	margin-bottom: 0 !important;
-	position: relative;
 }
