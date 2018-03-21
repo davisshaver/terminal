@@ -57,7 +57,7 @@ if ( empty( $size ) ) {
 				<?php the_post_thumbnail( 'terminal-uncut-thumbnail-large', array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
-		<div class="terminal-limit-max-content-width terminal-card-text terminal-body-font">
+		<div class="terminal-limit-max-content-width terminal-card-text terminal-body-font terminal-text-gray">
 			<?php
 				the_excerpt();
 			?>
