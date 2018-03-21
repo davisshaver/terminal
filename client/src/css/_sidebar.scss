@@ -35,3 +35,8 @@
 	flex: 0 1 385px;
 	min-width: 350px;
 }
+body.single {
+	.terminal-primary-sidebar {
+		height: 100%;
+	}
+}
