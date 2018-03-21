@@ -133,6 +133,10 @@
     width: calc(100% - 60px);
     margin: 20px auto 0 auto;
 	}
+	.terminal-nav-bar-inside-more-link {
+		padding: 5px;
+    margin: -5px;
+	}
 	.terminal-nav-bar-header-container {
 		max-width: #{$max_container_width - 30px};
 		margin: 0 auto;
