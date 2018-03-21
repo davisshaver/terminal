@@ -219,7 +219,6 @@
 .terminal-card-single, .terminal-sidebar-card.widget_ad_layers_ad_widget {
 	height: auto;
 	flex: 1 1 330px;
-	margin-top: auto;
 }
 
 .terminal-card-featured {
@@ -227,4 +226,7 @@
 		padding: 0 15px;
     margin: 5px auto;
 	}
+}
+.text_widget {
+	margin-top: auto;
 }
