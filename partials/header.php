@@ -41,7 +41,9 @@ get_template_part( 'partials/nav' );
 	<?php
 	echo '<div class="terminal-header-inside">';
 		if ( is_active_sidebar( 'terminal-header' ) ) {
+			echo '<div class="terminal-header-leaderboard">';
 			dynamic_sidebar( 'terminal-header' );
+			echo '</div>';
 		}
 		// Start logos
 		printf(
