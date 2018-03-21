@@ -25,7 +25,7 @@ if ( 'top' === $single_data['single_meta_position'] ) :
 endif;
 if ( function_exists( 'yoast_breadcrumb' ) ) {
 	yoast_breadcrumb(
-		'<div class="terminal-breadcrumbs terminal-single-meta-font">',
+		'<div class="terminal-breadcrumbs terminal-single-meta-font terminal-link-gray">',
 		'</div>'
 	);
 }
