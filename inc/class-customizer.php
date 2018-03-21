@@ -252,7 +252,7 @@ class Customizer {
 				<?php endif; ?>
 			}
 
-		.terminal-post-card, .terminal-featured-section, .terminal-author {
+		.terminal-post-card, .terminal-author {
 				<?php
 				$post_page_background = get_theme_mod( 'post_page_background_color_setting', false );
 				if ( ! empty( $post_page_background ) ) {
@@ -274,7 +274,7 @@ class Customizer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 
-			.terminal-card-featured {
+			.terminal-featured-section, .terminal-hero-container .terminal-hero-widget, .terminal-breakout-container .terminal-hero-widget {
 				<?php
 				$featured_section = get_theme_mod( 'featured_section_background_color_setting', false );
 				if ( ! empty( $featured_section ) ) {
