@@ -19,7 +19,7 @@
 	endif;
 	?>
 	<h4 class="terminal-headline-font">
-		<a href="<?php the_permalink(); ?>" class="link-gray">
+		<a href="<?php the_permalink(); ?>" class="terminal-link-gray-light">
 			<?php the_title(); ?>
 		</a>
 	</h4>
