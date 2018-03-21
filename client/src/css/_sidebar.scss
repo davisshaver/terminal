@@ -32,6 +32,9 @@
 	margin: 0 auto;
 	flex-wrap: wrap;
 	height: auto;
+	@media screen and (min-width: 500px) {
+		flex-grow: 1;
+	}
 	flex: 0 1 385px;
 	min-width: 350px;
 }
