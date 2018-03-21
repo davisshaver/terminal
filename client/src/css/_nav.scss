@@ -134,10 +134,7 @@
     margin: 20px auto 0 auto;
 	}
 	.terminal-nav-bar-header-container {
-		max-width: #{$max_content_width - 100};
+		max-width: #{$max_container_width - 30px};
 		margin: 0 auto;
-		@media screen and (max-width: #{$max_content_width + 200px}) {
-			margin: 0 15px;
-		}
 	}
 }
