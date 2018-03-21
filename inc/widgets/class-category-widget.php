@@ -43,7 +43,13 @@ if ( class_exists( '\FM_Widget' ) ) {
 			) );
 			if ( $cat_query->have_posts() ) :
 				// phpcs:ignore
-				echo $args['before_widget'];
+				$size = isset( $instance['size'] ) ? $instance['size'] : 'single';
+				$before_widget = str_replace(
+					'terminal-card-single',
+					'terminal-card-' . $size,
+					$args['before_widget']
+				);
+				echo $before_widget;
 				if ( ! empty( $widget_title ) && empty( $instance['disable_header'] ) ) {
 					// phpcs:ignore
 					echo $args['before_title'] . $widget_title . $args['after_title'];
@@ -85,8 +91,16 @@ if ( class_exists( '\FM_Widget' ) ) {
 				) ),
 				'category'       => new \Fieldmanager_Select( array(
 					'datasource' => new \Fieldmanager_Datasource_Term( array(
-						'taxonomy' => 'category',
+						'taxonomy' => array( 'category', 'terminal-placement' ),
 					) ),
+				) ),
+				'size'         => new \Fieldmanager_Select( 'Size', array(
+					'default_value' => 'single',
+					'options'       => array(
+						'single',
+						'double',
+						'triple',
+					),
 				) ),
 			];
 		}
