@@ -35,7 +35,6 @@ if ( ! empty( $header_data['signup_show_on_desktop'] ) || ! empty( $header_data[
 		! empty( $header_data['signup_button'] ) ? esc_attr( $header_data['signup_button'] ) : ''
 	);
 }
-get_template_part( 'partials/nav' );
 ?>
 <div class="terminal-header-container">
 	<?php
@@ -126,5 +125,6 @@ get_template_part( 'partials/nav' );
 		echo '</div>';
 	echo '</div>';
 echo '</div>';
+get_template_part( 'partials/nav' );
 ?>
 

@@ -29,7 +29,6 @@ export function setupMenu() {
         toggleOpen(svgLink);
         toggleHidden(moreNav);
         toggleHidden(container);
-        toggleHidden(header);
         toggleShow(footer);
       },
     );
