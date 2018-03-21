@@ -252,7 +252,7 @@ class Customizer {
 				<?php endif; ?>
 			}
 
-		.terminal-post-card, .terminal-author {
+		.terminal-post-card, .terminal-card, .terminal-author {
 				<?php
 				$post_page_background = get_theme_mod( 'post_page_background_color_setting', false );
 				if ( ! empty( $post_page_background ) ) {
