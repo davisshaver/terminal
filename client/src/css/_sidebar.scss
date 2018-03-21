@@ -41,8 +41,11 @@ body.single {
 	}
 }
 
-.terminal-featured-section .widget_text {
+.terminal-hero-section .widget_text {
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
+	.textwidget {
+		width: 100%;
+	}
 }

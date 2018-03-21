@@ -283,6 +283,15 @@ class Customizer {
 				?>
 			}
 
+			.terminal-primary-sidebar .terminal-sidebar-card {
+				<?php
+				$sidebar_section = get_theme_mod( 'sidebar_section_background_color_setting', false );
+				if ( ! empty( $sidebar_section ) ) {
+					printf( 'background-color: %s;', esc_attr( $sidebar_section ) );
+				}
+				?>
+			}
+
 			.terminal-sidebar-card {
 				<?php
 				$sidebar_section = get_theme_mod( 'sidebar_section_background_color_setting', false );
@@ -620,6 +629,25 @@ class Customizer {
 				'featured_section_background_color_setting',
 				array(
 					'label'   => __( 'Featured background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'sidebar_section_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+				'transport'         => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'sidebar_section_background_color_setting',
+				array(
+					'label'   => __( 'Sidebar section background color' ),
 					'section' => 'colors',
 				)
 			)
