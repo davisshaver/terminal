@@ -96,7 +96,7 @@ get_template_part( 'partials/nav' );
 						wp_kses_post( wpautop( $header_data['cta_tagline'] ) )
 					);
 				}
-				echo '<div class="terminal-cta-link terminal-cta-button-font">';
+				echo '<div class="terminal-cta-link">';
 					if ( ! empty( $header_data['cta_icon'] ) ) {
 						if ( ! empty( $header_data['cta_link'] ) ) {
 							printf( '<a href="%s">', esc_url( $header_data['cta_link'] ) );
@@ -114,7 +114,7 @@ get_template_part( 'partials/nav' );
 					}
 					if ( ! empty( $header_data['cta_button'] ) ) {
 						if ( ! empty( $header_data['cta_link'] ) ) {
-							printf( '<a href="%s" class="terminal-action">', esc_url( $header_data['cta_link'] ) );
+							printf( '<a href="%s" class="terminal-action terminal-cta-button-font">', esc_url( $header_data['cta_link'] ) );
 						}
 						echo esc_html( $header_data['cta_button'] );
 						if ( ! empty( $header_data['cta_link'] ) ) {
