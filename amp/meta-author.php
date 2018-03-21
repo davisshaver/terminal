@@ -10,11 +10,6 @@
 ?>
 <?php if ( $post_author ) : ?>
 	<div class="amp-wp-meta amp-wp-byline">
-		<?php
-		if ( function_exists( 'terminal_print_avatar_amp' ) ) :
-			terminal_print_avatar_amp( $post_author->ID, $default_gravatar );
-		endif;
-		?>
 		<span class="amp-wp-author author vcard"><?php echo esc_html( $post_author->display_name ); ?></span>
 	</div>
 <?php endif; ?>
