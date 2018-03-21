@@ -29,6 +29,13 @@ if ( 'link' === $post_type ) {
 	$terminal_card_title = __( 'Reader-Submitted Post', 'terminal' );
 } elseif ( 'photo' === $post_type ) {
 	$terminal_card_title = __( 'Featured Photo', 'terminal' );
+} elseif ( 'post' === $post_type && class_exists( 'WPSEO_Primary_Term' ) ) {
+	$wpseo_primary_term = new \WPSEO_Primary_Term( 'category', get_the_id() );
+	$wpseo_primary_term = $wpseo_primary_term->get_primary_term();
+	$term = get_term( $wpseo_primary_term );
+	if ( ! is_wp_error( $term ) ) { 
+		$terminal_card_title = $term->name;
+	}
 }
 $post_id = get_the_ID();
 $post_has_thumbnail = has_post_thumbnail();

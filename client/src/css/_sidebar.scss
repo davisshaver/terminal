@@ -4,6 +4,12 @@
 
 .terminal-post-widget {
 	width: 100%;
+	.terminal-image {
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
 }
 
 .terminal-top-container {
@@ -24,7 +30,12 @@
 	justify-content: center;
 	margin: 0 auto;
 	flex-wrap: wrap;
-	height: 100%;
+	height: auto;
 	flex: 0 1 385px;
 	min-width: 350px;
+}
+body.single {
+	.terminal-primary-sidebar {
+		height: 100%;
+	}
 }

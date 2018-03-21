@@ -207,7 +207,16 @@ class Theme {
 			'description'   => __( 'Featured', 'terminal' ),
 			'before_widget' => '<div id="%1$s" class="terminal-featured-section terminal-card terminal-card-single %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="terminal-featured-header terminal-sidebar-header-font">',
+			'before_title'  => '<div class="terminal-card-title terminal-card-title-featured terminal-no-select terminal-sidebar-header-font">',
+			'after_title'   => '</div>',
+		) );
+		register_sidebar( array(
+			'name'          => __( 'Breakout', 'terminal' ),
+			'id'            => 'terminal-breakout',
+			'description'   => __( 'Breakout', 'terminal' ),
+			'before_widget' => '<div id="%1$s" class="terminal-breakout-section terminal-card terminal-card-single %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="terminal-card-title terminal-card-title-breakout terminal-no-select terminal-sidebar-header-font">',
 			'after_title'   => '</div>',
 		) );
 		register_sidebar( array(

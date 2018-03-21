@@ -36,8 +36,8 @@ class Data {
 	 */
 	public function author_data_in_amp() {
 		global $authordata;
-		if ( ! isset ($authordata ) ) {
-				$post = get_post( $post_id );
+		if ( ! isset ( $authordata ) ) {
+				$post = get_post( get_the_ID() );
 				$authordata = get_userdata( $post->post_author );
 		}
 	}

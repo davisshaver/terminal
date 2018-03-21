@@ -162,6 +162,11 @@ class Customizer {
 			return ( 'default' !== terminal_get_fm_theme_mod( 'typography', "${key}_weight", 'default' ) ) ?
 			terminal_get_fm_theme_mod( 'typography', "${key}_weight", 'inherit' ) : false;
 		}
+	$header_data = terminal_get_header_data( array(
+		'signup_show_on_desktop'       => false,
+		'signup_show_on_mobile'        => false,
+	) );
+		
 		$google_stylesheets = array();
 		$font_data = array(
 			'targets' => array(
@@ -228,9 +233,10 @@ class Customizer {
 			$header_accent = get_theme_mod( 'header_accent_color_setting', false );
 			if ( ! empty( $header_accent ) ) {
 				printf(
-					'body { border-top: 10px solid %s; } .terminal-signup { background-color: %s; } @media (max-width: 800px) { body { border-top: 30px solid %s; } } ',
+					'body { border-top: 3px solid %s; } .terminal-signup { background-color: %s; } @media (max-width: 800px) { body { border-top: %s solid %s; } } ',
 					esc_attr( get_theme_mod( 'header_accent_color_setting', null ) ),
 					esc_attr( get_theme_mod( 'header_accent_color_setting', null ) ),
+					! empty( $header_data['signup_show_on_mobile'] ) ? '30px' : '3px',
 					esc_attr( get_theme_mod( 'header_accent_color_setting', null ) )
 				);
 			}
@@ -307,8 +313,11 @@ class Customizer {
 				padding-top: 2px;
 			}
 
-			.terminal-amp-header-image {
-				width: 50%;
+			.terminal-amp-header-image amp-img {
+				max-height: 200px;
+				width: 100%;
+				max-width: 400px;
+				margin: 0 auto;
 			}
 
 			.terminal-amp-ad-center {
@@ -332,13 +341,23 @@ class Customizer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 
+			svg {
+				width: auto;
+				max-width: 1em;
+				height: auto;
+				max-height: 1em;
+			}
+
 			.amp-wp-footer {
+				text-align: center;
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_background_color_setting', '#9DC1FD' ) ); ?>;
 				<?php if ( ! empty( get_theme_mod( 'footer_accent_color_setting', '#9DC1FD' ) ) ) : ?>
 					border-bottom: 2px solid <?php echo esc_attr( get_theme_mod( 'footer_accent_color_setting', 'inherit' ) ); ?>
 				<?php endif; ?>
 			}
-
+			.amp-wp-footer p {
+				width: 100%;
+			}
 			div.terminal-ppc-logo {
 				text-align: center;
 			}

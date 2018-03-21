@@ -1,5 +1,6 @@
 .terminal-nav-bar {
 	box-sizing: border-box;
+	position: -webkit-sticky;
 	position: sticky;
 	z-index: 1;
 	top: 0;
@@ -133,10 +134,10 @@
     margin: 20px auto 0 auto;
 	}
 	.terminal-nav-bar-header-container {
-		max-width: $max_content_width;
-		margin: 0 15px;
-		@media screen and (min-width: #{$max_container_width}) {
-			margin: 0 auto;
+		max-width: #{$max_content_width - 100};
+		margin: 0 auto;
+		@media screen and (max-width: #{$max_content_width + 200px}) {
+			margin: 0 15px;
 		}
 	}
 }

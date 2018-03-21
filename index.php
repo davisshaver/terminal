@@ -23,6 +23,7 @@ get_header(); ?>
 			'main-sidebar'
 		);
 		echo '</div>';
+		get_template_part( 'partials/breakout' );
 	} else {
 		terminal_print_template_part(
 			'sidebar',

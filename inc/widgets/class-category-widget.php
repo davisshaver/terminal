@@ -76,6 +76,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				'number'         => new \Fieldmanager_Select( 'Number to show', array(
 					'default_value' => 3,
 					'options'       => array(
+						1,
 						2,
 						3,
 						4,

@@ -80,6 +80,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 					'options'       => array(
 						'single',
 						'double',
+						'triple',
 					),
 				) ),
 			];
