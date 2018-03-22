@@ -118,12 +118,18 @@ svg.terminal-svg {
 	}
 }
 
-body.home {
-	.terminal-footer-leaderboard {
-		background-color: inherit;
-		margin: 0;
+body.home.infinite-scroll {
+	.terminal-footer {
+    display: flex;
+    margin-right: -100%;
+    padding-left: 100%;
+    padding-right: 100%;
+    margin-left: -100%;
 	}
-	.terminal-nav-bar-inside-more {
-		padding-bottom: 1px;
+	.terminal-footer-leaderboard {
+    margin-right: -100%;
+    padding-left: 100%;
+    padding-right: 100%;
+    margin-left: -100%;
 	}
 }

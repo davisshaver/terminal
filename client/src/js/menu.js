@@ -4,10 +4,11 @@ export function setupMenu() {
   const moreLinkContainer = document.querySelector('.terminal-nav-bar-inside-more-link');
   const moreLink = document.querySelector('.terminal-nav-bar-inside-more-link a');
   const moreNav = document.querySelector('.terminal-nav-bar-inside-more');
-  const container = document.querySelector('.terminal-container');
   const footer = document.querySelector('.terminal-footer');
   const share = document.querySelector('.essb_bottombar');
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
+  const header = document.querySelector('.terminal-header-container');
+
   function toggleOpen(element) {
     element.classList.toggle('terminal-flipped');
   }
@@ -28,7 +29,7 @@ export function setupMenu() {
         e.stopImmediatePropagation();
         toggleOpen(svgLink);
         toggleHidden(moreNav);
-        // toggleHidden(container);
+        toggleHidden(header);
         toggleHidden(share);
         toggleShow(footer);
       },

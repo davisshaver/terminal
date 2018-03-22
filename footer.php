@@ -7,7 +7,9 @@
  * @package Terminal
  */
 
-get_template_part( 'partials/footer' );
+if ( ! is_home() ) {
+	get_template_part( 'partials/footer' );
+}
 wp_footer();
 ?>
 	</body>
