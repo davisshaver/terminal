@@ -128,10 +128,12 @@
 		}
 	}
 	.terminal-nav-bar-inside-more {
-		position: relative;
-		max-width: calc(#{$max_content_width} - 60px);
+    position: relative;
+    max-width: calc(800px - 60px);
     width: calc(100% - 60px);
+    height: 100vh;
     margin: 20px auto 0 auto;
+    overflow: scroll;
 	}
 	.terminal-nav-bar-inside-more-link {
 		padding: 5px;
