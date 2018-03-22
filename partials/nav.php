@@ -66,15 +66,6 @@ ob_end_clean();
 				<img class="lazyload lazypreload" height="18" width="18" data-src="<?php echo esc_url( get_template_directory_uri() ); ?>/client/static/images/rss.png" alt="<?php esc_attr_e( 'RSS logo', 'terminal' ); ?>" />
 			</a>
 		</div>
-		<div class="terminal-menu-footer">
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'terminal-footer',
-				'menu_id'        => 'terminal-menu-footer',
-				'depth'          => 1,
-			) );
-			?>
-		</div>
 		<div class="terminal-copyright">
 			<p>&copy;&nbsp;
 			<?php

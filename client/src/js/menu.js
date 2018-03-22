@@ -7,6 +7,7 @@ export function setupMenu() {
   const footer = document.querySelector('.terminal-footer');
   const share = document.querySelector('.essb_bottombar');
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
+  const container = document.querySelector('.terminal-container');
 
   function toggleOpen(element) {
     element.classList.toggle('terminal-flipped');
