@@ -117,3 +117,13 @@ svg.terminal-svg {
 		margin: 0;
 	}
 }
+
+body.home {
+	.terminal-footer-leaderboard {
+		background-color: inherit;
+		margin: 0;
+	}
+	.terminal-nav-bar-inside-more {
+		padding-bottom: 1px;
+	}
+}

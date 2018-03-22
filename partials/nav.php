@@ -60,6 +60,17 @@ ob_end_clean();
 				'menu_id'        => 'terminal-nav-bar-header-more-meta',
 				) );
 		}
+		if ( is_home() && ! is_paged() ) {
+			?>
+			<div class="terminal-footer-leaderboard">
+				<?php
+				if ( is_active_sidebar( 'footer' ) ) {
+					dynamic_sidebar( 'footer' );
+				}
+				?>
+			</div>
+			<?php
+		}
 		echo '</div>';
 	}
 	?>

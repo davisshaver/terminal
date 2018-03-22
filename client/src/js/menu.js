@@ -28,7 +28,7 @@ export function setupMenu() {
         e.stopImmediatePropagation();
         toggleOpen(svgLink);
         toggleHidden(moreNav);
-        toggleHidden(container);
+        // toggleHidden(container);
         toggleHidden(share);
         toggleShow(footer);
       },
