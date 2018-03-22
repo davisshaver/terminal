@@ -30,8 +30,12 @@ export function setupMenu() {
         toggleOpen(svgLink);
         toggleHidden(moreNav);
         toggleHidden(header);
-        toggleHidden(share);
-        toggleShow(footer);
+        if (share) {
+          toggleHidden(share);
+        }
+        if (footer) {
+          toggleHidden(footer);
+        }
       },
     );
   }
