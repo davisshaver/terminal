@@ -124,7 +124,10 @@ body.home.infinite-scroll {
     margin-right: -100%;
     padding-left: 100%;
     padding-right: 100%;
-    margin-left: -100%;
+		margin-left: -100%;
+		.widget_ad_layers_ad_widget {
+			margin: 0;
+		}
 	}
 	.terminal-footer-leaderboard {
     margin-right: -100%;
