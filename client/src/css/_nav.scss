@@ -7,6 +7,7 @@
 	h2 {
 		padding: 0 15px;
 		color: #fff;
+		margin: auto;
 	}
 	svg {
 		fill: #fff;
@@ -131,7 +132,7 @@
     position: relative;
     max-width: calc(800px - 60px);
     width: calc(100% - 60px);
-    margin: 20px auto 0 auto;
+    margin: 0 auto;
     overflow: scroll;
 	}
 	.terminal-nav-bar-inside-more-link {
