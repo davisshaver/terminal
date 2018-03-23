@@ -7,7 +7,7 @@
  * @package Terminal
  */
 
-if ( ! is_home() ) {
+if ( ! is_home() && ! is_archive() ) {
 	get_template_part( 'partials/footer' );
 }
 wp_footer();

@@ -81,7 +81,7 @@ ob_end_clean();
 				) );
 		} ?>
 <?php
-		if ( is_home() ) {
+		if ( is_home() || is_archive() ) {
 			?>
 				<div class="terminal-footer-leaderboard">
 					<?php
