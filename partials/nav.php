@@ -36,6 +36,8 @@ ob_end_clean();
 				$hamburger
 			);
 			$nav_menu = str_replace( '<ul id="terminal-nav-bar-header" class="menu">', $more, $nav_menu );
+			$rotation = is_search() ? 'terminal-flipped' : '';
+			$search_icon = str_replace( 'terminal-svg', sprintf( 'terminal-svg %s', esc_attr( $rotation ) ), $search_icon );
 			$search = sprintf(
 				'<li class="terminal-nav-bar-inside-search-link terminal-hidden-no-js"><a href="#">%s</a></li></ul>',
 				$search_icon
