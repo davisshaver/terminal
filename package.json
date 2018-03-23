@@ -27,6 +27,7 @@
   "dependencies": {
     "babel-core": "^6.26.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "mark.js": "^8.11.1",
     "zepto-modules": "^1.0.1"
   }
 }
