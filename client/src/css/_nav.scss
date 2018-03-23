@@ -135,7 +135,7 @@
     margin: 0 auto;
     overflow: scroll;
 	}
-	.terminal-nav-bar-inside-more-link {
+	.terminal-nav-bar-inside-more-link a, .terminal-nav-bar-link a {
 		padding: 5px;
     margin: -5px;
 	}
@@ -145,5 +145,8 @@
 		@media screen and (max-width: 500px) {
 			margin: 0 15px;
 		}
+	}
+	.terminal-nav-bar-inside-search {
+		margin: 0 auto;
 	}
 }

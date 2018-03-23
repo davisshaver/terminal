@@ -31,15 +31,15 @@
 	justify-content: center;
 	margin: 0 auto;
 	flex-wrap: wrap;
-	height: auto;
+	height: 100%;
 	@media screen and (max-width: 500px) {
 		flex-grow: 1;
 	}
 	flex: 0 1 385px;
 	min-width: 350px;
 }
-body.single {
+body.home,  {
 	.terminal-primary-sidebar {
-		height: 100%;
+		height: auto;
 	}
 }

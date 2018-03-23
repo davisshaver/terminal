@@ -24,25 +24,12 @@ get_header(); ?>
 		);
 		echo '</div>';
 		get_template_part( 'partials/breakout' );
-	} else {
-		terminal_print_template_part(
-			'sidebar',
-			array(
-				'sidebar' => 'terminal-primary-sidebar'
-			)
-		);
-	}
-
-	?>
-	<?php
-	terminal_print_index_header();
-	if ( is_author() ) {
-		echo '<div class="terminal-card terminal-card-single terminal-post-card">';
-		get_template_part( 'partials/author-snippet' );
-		echo '</div>';
-	}
-	?>
-	<?php
+		terminal_print_index_header();
+		if ( is_author() ) {
+			echo '<div class="terminal-card terminal-card-single terminal-post-card">';
+			get_template_part( 'partials/author-snippet' );
+			echo '</div>';
+		}
 		terminal_print_template_part(
 			'sidebar',
 			array(
@@ -56,6 +43,35 @@ get_header(); ?>
 				'sidebar' => 'terminal-stream-end'
 			)
 		);
+	} else {
+		echo '<div class="terminal-top-container">';
+		echo '<div class="terminal-hero-container">';
+			terminal_print_index_header();
+			if ( is_author() ) {
+				echo '<div class="terminal-card terminal-card-double terminal-post-card">';
+				get_template_part( 'partials/author-snippet' );
+				echo '</div>';
+			}
+			terminal_print_template_part(
+				'sidebar',
+				array(
+					'sidebar' => 'terminal-stream-start'
+				)
+			);
+			terminal_print_stories_loop();
+			terminal_print_template_part(
+				'sidebar',
+				array(
+					'sidebar' => 'terminal-stream-end'
+				)
+			);
+		echo '</div>';
+		terminal_print_template_part(
+			'main-sidebar'
+		);
+	echo '</div>';
+	}
+
 	?>
 	<?php if ( ! empty( get_previous_posts_link() ) || ! empty( get_next_posts_link() ) ) : ?>
 		<div class="terminal-pagination terminal-card terminal-card-full">

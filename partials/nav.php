@@ -13,6 +13,11 @@ ob_start();
 get_template_part( 'partials/svg/hamburger.svg' );
 $hamburger = ob_get_contents();
 ob_end_clean();
+
+ob_start();
+get_template_part( 'partials/svg/search.svg' );
+$search_icon = ob_get_contents();
+ob_end_clean();
 ?>
 
 <div class="terminal-nav-bar terminal-utility-font">
@@ -31,9 +36,22 @@ ob_end_clean();
 				$hamburger
 			);
 			$nav_menu = str_replace( '<ul id="terminal-nav-bar-header" class="menu">', $more, $nav_menu );
+			$search = sprintf(
+				'<li class="terminal-nav-bar-inside-search-link terminal-hidden-no-js"><a href="#">%s</a></li></ul>',
+				$search_icon
+			);
+			$nav_menu = str_replace( '</ul>', $search, $nav_menu );
 		}
 		echo $nav_menu;
 	?>
+	</div>
+	<?php
+		printf(
+			'<div class="terminal-nav-bar-inside-search terminal-limit-max-content-width %s">',
+			! is_search() ? esc_attr( 'terminal-hidden' ) : null
+		);
+		get_search_form( true );
+		?>
 	</div>
 	<?php
 	if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {

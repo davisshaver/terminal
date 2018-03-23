@@ -18,33 +18,6 @@
 		flex: 1 1 100%;
 		margin: 0 auto 10px auto;
 	}
-	form.search-form {
-		display: flex;
-		margin: 0 auto;
-		padding: 10px 0;
-		width: calc(100% - 30px);
-		@media screen and (min-width: 500px) {
-			width: calc(100% - 60px);
-		}
-		.search-form-field {
-			display: flex;
-			width: 100%;
-			height: 30px;
-			margin: 0 auto;
-
-		}
-		label {
-			display: none;
-		}
-		.search-field {
-			width: 70%;
-			height: 30px;
-		}
-		.search-submit {
-			cursor: pointer;
-			width: 30%;
-		}
-	}
 	box-shadow: 0 1px 1px hsla( 0, 3%, 67%, 0.1);
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	.terminal-card-image {
