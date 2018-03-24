@@ -18,6 +18,11 @@ ob_start();
 get_template_part( 'partials/svg/search.svg' );
 $search_icon = ob_get_contents();
 ob_end_clean();
+
+ob_start();
+get_template_part( 'partials/svg/home.svg' );
+$home = ob_get_contents();
+ob_end_clean();
 ?>
 
 <div class="terminal-nav-bar terminal-utility-font">
@@ -31,9 +36,11 @@ ob_end_clean();
 		) );
 		if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
 			$more = sprintf(
-				'<ul id="terminal-nav-bar-header" class="menu"><li class="terminal-nav-bar-inside-more-link terminal-hidden-no-js"><a href="#">%s %s</a></li>',
+				'<ul id="terminal-nav-bar-header" class="menu"><li class="terminal-nav-bar-inside-more-link terminal-hidden-no-js"><a href="#">%s %s</a></li><li class="terminal-nav-bar-home"><a href="%s">%s</a></li>',
 				esc_html( '', 'terminal' ),
-				$hamburger
+				$hamburger,
+				esc_url( home_url() ),
+				$home
 			);
 			$nav_menu = str_replace( '<ul id="terminal-nav-bar-header" class="menu">', $more, $nav_menu );
 			$rotation = is_search() ? 'terminal-flipped' : '';
