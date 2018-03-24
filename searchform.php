@@ -12,6 +12,6 @@ $searchform_id = 'search-' . rand();
 	<div class="search-form-field">
 		<label for="<?php echo esc_attr( $searchform_id ); ?>"><?php echo esc_html_x( 'Search', 'label', 'terminal' ); ?></label>
 		<input id="<?php echo esc_attr( $searchform_id ); ?>" type="search" class="search-field" value="<?php the_search_query(); ?>" name="s" />
-		<input type="submit" class="search-submit" value="<?php echo esc_attr_x( 'Go', 'submit button', 'terminal' ); ?>" />
+		<input type="submit" class="search-submit" value="<?php echo esc_attr_x( 'Search', 'submit button', 'terminal' ); ?>" />
 	</div>
 </form>
