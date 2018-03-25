@@ -111,11 +111,21 @@ div.gform_wrapper {
 .essb-shortcode {
 	margin: 0 auto;
 }
-[id^=ad_layers] {
-	background-color: unset !important;
-	border: none;
-	box-shadow: none;
+body:not(.uncovered) {
+	[id^=ad_layers] {
+		background-color: unset !important;
+		border: none;
+		box-shadow: none;
+	}
 }
+body.uncovered{
+	.terminal-card.covered-target {
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}
+
 .dfp-ad {
 	text-align: center;
 	overflow: hidden;

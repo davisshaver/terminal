@@ -76,7 +76,6 @@ class FM_Footer {
 				'priority' => 52,
 				'title'    => __( 'Footer Options', 'terminal' ),
 			),
-			'setting_args' => array( 'transport' => 'postMessage' ),
 		), $fm );
 	}
 }

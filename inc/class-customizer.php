@@ -18,7 +18,6 @@ class Customizer {
 	 */
 	public function setup() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_action( 'customize_preview_init', [ $this, 'enqueue_customize_scripts' ] );
 		add_filter( 'site_icon_meta_tags', [ $this, 'site_icon_meta_tags' ] );
 		add_action( 'wp_head', [ $this, 'customizer_custom_css' ] );
 		add_action( 'amp_post_template_css', [ $this, 'customizer_custom_css_amp' ] );
@@ -173,7 +172,7 @@ class Customizer {
 				'.terminal-body-font' => 'body',
 				'.terminal-cta-button-font' => 'cta_button',
 				'.terminal-cta-tagline-font' => 'cta_tagline',
-				'.terminal-nav-font' => 'nav',
+				'.terminal-nav-font, .terminal-nav-font a	' => 'nav',
 				'.terminal-headline-featured-font, .terminal-headline-featured-font a' => 'head_featured',
 				'.terminal-headline-font, .terminal-headline-font a' => 'headline',
 				'.terminal-index-meta-font' => 'index_meta',
@@ -196,7 +195,6 @@ class Customizer {
 				'font-style' => terminal_customizer_font_style( $value ),
 				'font-weight' => terminal_customizer_weight( $value ),
 				'color' => terminal_customizer_color( $value ),
-				'fill' => terminal_customizer_color( $value ),
 			);
 			printf(
 				'%s { ',
@@ -223,13 +221,24 @@ class Customizer {
 				);
 			}
 			echo ' } ';
+			printf(
+				'%s svg { fill: %s; } ',
+				esc_js( $key),
+				esc_js( terminal_customizer_color( $value ) )
+			);
 		}
 		?>
 			.terminal-nav-bar, .terminal-nav-bar-inside-more {
 				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?>;
 			}
-			
-			<?php
+		<?php
+			$ad_nag = get_theme_mod( 'adblock_nag', 'inherit' );
+			if ( ! empty( $ad_nag ) && ! empty( $image_src = wp_get_attachment_image_src( $ad_nag, 'terminal-uncut-thumbnail', false, array( 'scheme' => 'https' ) ) ) ) {
+			?>
+			body.uncovered .terminal-card.covered-target {
+				background-image: url("<?php echo esc_attr( $image_src[0] ); ?>");
+			}
+
 			$header_accent = get_theme_mod( 'header_accent_color_setting', false );
 			if ( ! empty( $header_accent ) ) {
 				printf(
@@ -252,7 +261,7 @@ class Customizer {
 				<?php endif; ?>
 			}
 
-		.terminal-post-card, .terminal-card, .terminal-author {
+		.terminal-post-card, .terminal-card {
 				<?php
 				$post_page_background = get_theme_mod( 'post_page_background_color_setting', false );
 				if ( ! empty( $post_page_background ) ) {
@@ -301,12 +310,15 @@ class Customizer {
 				?>
 			}
 
-			.terminal-topbar {
+			.terminal-byline {
 				background-color: <?php echo esc_attr( get_theme_mod( 'byline_background_color_setting', 'inherit' ) ); ?>;
 			}
 
 			.terminal-header-leaderboard {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_ad_background_color_setting', 'inherit' ) ); ?>;
+			}
+			figure.wp-caption, .terminal-breadcrumbs, .terminal-card-title {
+				background-color: <?php echo esc_attr( get_theme_mod( 'card_title_background_color_setting', 'inherit' ) ); ?>;
 			}
 		<?php
 		if ( $amp ) {
@@ -415,13 +427,6 @@ class Customizer {
 	}
 
 	/**
-	 * Enqueue customize scripts.
-	 */
-	public function enqueue_customize_scripts() {
-		wp_enqueue_script( 'terminal-customize-preview', get_template_directory_uri() . '/client/build/customizerPreview.bundle.js', array(), TERMINAL_VERSION, true );
-	}
-
-	/**
 	 * HEX Color sanitization callback.
 	 *
 	 * - Sanitization: hex_color
@@ -458,7 +463,6 @@ class Customizer {
 				'default'           => '#9DC1FD',
 				'type'              => 'theme_mod',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
 			)
 		);
 		$wp_customize->add_setting(
@@ -467,7 +471,6 @@ class Customizer {
 				'default'           => '#9DC1FD',
 				'type'              => 'theme_mod',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
 			)
 		);
 		$wp_customize->add_setting( 'content_stories_header', array(
@@ -475,7 +478,6 @@ class Customizer {
 			'default'           => __( 'Latest Stories', 'terminal' ),
 			'type'              => 'theme_mod',
 			'sanitize_callback' => 'sanitize_text_field',
-			'transport'         => 'postMessage',
 		) );
 
 		$wp_customize->add_control( 'content_stories_header', array(
@@ -510,7 +512,6 @@ class Customizer {
 			array(
 				'type'              => 'theme_mod',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
 			)
 		);
 		$wp_customize->add_control(
@@ -528,7 +529,6 @@ class Customizer {
 			array(
 				'type'              => 'theme_mod',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
 			)
 		);
 		$wp_customize->add_control(
@@ -564,7 +564,6 @@ class Customizer {
 			array(
 				'type'              => 'theme_mod',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
 			)
 		);
 		$wp_customize->add_control(
@@ -582,7 +581,6 @@ class Customizer {
 			array(
 				'type'              => 'theme_mod',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
 			)
 		);
 
@@ -601,7 +599,6 @@ class Customizer {
 			array(
 				'type'              => 'theme_mod',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
 			)
 		);
 		$wp_customize->add_control(
@@ -619,7 +616,6 @@ class Customizer {
 			array(
 				'type'              => 'theme_mod',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
 			)
 		);
 
@@ -638,7 +634,6 @@ class Customizer {
 			array(
 				'type'              => 'theme_mod',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
 			)
 		);
 
@@ -652,6 +647,59 @@ class Customizer {
 				)
 			)
 		);
+		$wp_customize->add_setting(
+			'loop_header_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'loop_header_background_color_setting',
+				array(
+					'label'   => __( 'Loop header background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'post_page_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'post_page_background_color_setting',
+				array(
+					'label'   => __( 'Post/page background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'card_title_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'default' => '#f2f2f2',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'card_title_background_color_setting',
+				array(
+					'label'   => __( 'Card title/breadcrumbs/caption background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+
 		$wp_customize->add_setting(
 			'byline_background_color_setting',
 			array(
@@ -670,49 +718,6 @@ class Customizer {
 				)
 			)
 		);
-		$wp_customize->add_setting(
-			'loop_header_background_color_setting',
-			array(
-				'type'              => 'theme_mod',
-				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
-			)
-		);
-		$wp_customize->add_control(
-			new \WP_Customize_Color_Control(
-				$wp_customize,
-				'loop_header_background_color_setting',
-				array(
-					'label'   => __( 'Loop header background color' ),
-					'section' => 'colors',
-				)
-			)
-		);
-		$wp_customize->add_setting(
-			'post_page_background_color_setting',
-			array(
-				'type'              => 'theme_mod',
-				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
-				'transport'         => 'postMessage',
-			)
-		);
-		$wp_customize->add_control(
-			new \WP_Customize_Color_Control(
-				$wp_customize,
-				'post_page_background_color_setting',
-				array(
-					'label'   => __( 'Post/page background color' ),
-					'section' => 'colors',
-				)
-			)
-		);
-		/**
-		 * Opt some core fields into immediate update.
-		 */
-		$wp_customize->get_setting( 'blogname' )->transport            = 'postMessage';
-		$wp_customize->get_setting( 'header_image' )->transport        = 'postMessage';
-		$wp_customize->get_setting( 'header_image_data' )->transport   = 'postMessage';
-		$wp_customize->get_setting( 'header_image_data' )->transport   = 'postMessage';
 		$wp_customize->get_section( 'static_front_page' )->description = '';
 
 		/**

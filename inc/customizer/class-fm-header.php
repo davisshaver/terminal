@@ -87,7 +87,6 @@ class FM_Header {
 				'priority' => 51,
 				'title'    => __( 'Header Options', 'terminal' ),
 			),
-			'setting_args' => array( 'transport' => 'postMessage' ),
 		), $fm );
 	}
 }

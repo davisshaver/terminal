@@ -14,7 +14,7 @@
 			margin-top: 5px !important;
 		}
 	}
-	.terminal-featured-meta, .terminal-byline, .terminal-headline {
+	.terminal-featured-meta, .terminal-headline {
 		flex: 1 1 100%;
 		margin: 0 auto 10px auto;
 	}
@@ -101,7 +101,6 @@
 			}
 		}
 		figure.wp-caption {
-			background: #f2f2f2;
 			display: block;
 			width: unset !important;
 			margin: 0 auto 10px auto;
@@ -155,7 +154,6 @@
 	width: fit-content;
 	padding: 10px 30px;
 	height: 40px;
-	background: #f2f2f2;
 }
 
 .terminal-card-full {
@@ -168,7 +166,6 @@
 	padding: 10px 30px;
 	width: 100%;
 	height: 40px;
-	background: #f2f2f2;
 	line-height: 20px;
 }
 

@@ -97,6 +97,19 @@ class Theme {
 		add_filter( 'unipress_push_taxonomies_post_types', [ $this, 'remove_unipress_buggy_tax' ] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
+		add_filter( 'body_class', [ $this, 'add_uncovered' ] );
+	}
+
+	/**
+	 * Add uncovered.
+	 *
+	 * @param $classes array Existing classes.
+	 * @return array Filtered classes.
+
+	 */
+	public function add_uncovered( $classes ) {
+		array_push( $classes, 'uncovered' );
+		return $classes;
 	}
 
 	/**

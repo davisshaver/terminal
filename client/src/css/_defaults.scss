@@ -62,7 +62,7 @@ svg.terminal-svg {
 	flex-basis: 75%;
 }
 
-.terminal-author-snippet, .terminal-author {
+.terminal-author-snippet {
 	display: flex;
 	max-width: $max_content_width;
 	flex-wrap: wrap;
@@ -138,7 +138,6 @@ body.home, body.search, body.archive {
 		background-color: inherit;
 	}
 	.terminal-footer-icons, .terminal-ppc-logo, .terminal-copyright, .terminal-menu-footer ul a {
-		color: #fff;
 		margin-top: 15px;
 	}
 	.terminal-copyright p {

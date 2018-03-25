@@ -29,12 +29,56 @@ class Frontend {
 			add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
 			add_filter( 'simple_local_avatar', [ $this, 'hack_for_ssl' ] );
 			add_action( 'wp_head', [ $this, 'maybe_print_app_meta' ] );
+			add_filter( 'dynamic_sidebar_params', [ $this, 'filter_sidebar_params' ] );
 			add_filter( 'wpseo_breadcrumb_single_link', [ $this, 'adjust_single_breadcrumb' ] );
 			add_filter( 'jetpack_implode_frontend_css', '__return_false' );
 			add_action( 'wp_head', [ $this, 'remove_jetpack_crap' ], 130 );
 			add_filter( 'option_coral_talk_container_classes', [ $this, 'filter_talk_classes' ] );
 		}
 		$this->disable_emojis();
+	}
+
+	/**
+	 * Filter sidebar params.
+	 * @param array $params {
+	 *     @type array $args  {
+	 *         An array of widget display arguments.
+	 *
+	 *         @type string $name          Name of the sidebar the widget is assigned to.
+	 *         @type string $id            ID of the sidebar the widget is assigned to.
+	 *         @type string $description   The sidebar description.
+	 *         @type string $class         CSS class applied to the sidebar container.
+	 *         @type string $before_widget HTML markup to prepend to each widget in the sidebar.
+	 *         @type string $after_widget  HTML markup to append to each widget in the sidebar.
+	 *         @type string $before_title  HTML markup to prepend to the widget title when displayed.
+	 *         @type string $after_title   HTML markup to append to the widget title when displayed.
+	 *         @type string $widget_id     ID of the widget.
+	 *         @type string $widget_name   Name of the widget.
+	 *     }
+	 *     @type array $widget_args {
+	 *         An array of multi-widget arguments.
+	 *
+	 *         @type int $number Number increment used for multiples of the same widget.
+	 *     }
+	 * }
+	 * @return aray filtered params
+	 */
+	public function filter_sidebar_params( $params ) {
+		if ( ! empty( $params[0] ) && ! empty( $params[0]['id'] ) && in_array( $params[0]['id'], array(
+			'terminal-header',
+			'terminal-featured',
+			'terminal-primary-sidebar',
+			'terminal-stream-start',
+			'terminal-stream-end',
+			'terminal-footer'
+		) ) ) {
+			$new_params = $params;
+			if ( 0 !== strpos( $params[0]['before_widget'], 'widget_ad_layers_ad_widget' ) ){
+				$new_params[0]['before_widget'] = str_replace( 'widget_ad_layers_ad_widget', 'widget_ad_layers_ad_widget covered-target', $params[0]['before_widget'] );
+			}
+			return $new_params;
+		}
+		return $params;
 	}
 
 	/**

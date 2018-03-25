@@ -101,6 +101,23 @@ document.addEventListener('DOMContentLoaded', () => {
       slotNum += 1;
     });
   }
+  const body = document.querySelector('body');
+
+
+  function toggleUncovered(element) {
+    element.classList.toggle('uncovered');
+  }
+  const coveredUncovered = () => {
+    if (window.googletag.pubadsReady) {
+      toggleUncovered(body);
+    }
+  };
+  exponentialBackoff(
+    () => window.googletag.pubadsReady,
+    50,
+    50,
+    coveredUncovered,
+  );
   window.addEventListener('resize', () => {
     scaleAllAds();
   });

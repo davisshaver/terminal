@@ -25,8 +25,8 @@ $home = ob_get_contents();
 ob_end_clean();
 ?>
 
-<div class="terminal-nav-bar terminal-utility-font">
-	<div class="terminal-nav-bar-header-container">
+<div class="terminal-nav-bar">
+	<div class="terminal-nav-bar-header-container terminal-nav-font">
 		<?php
 		$nav_menu = wp_nav_menu( array(
 			'theme_location' => 'terminal-header',
@@ -64,7 +64,7 @@ ob_end_clean();
 	</div>
 	<?php
 		printf(
-			'<div class="terminal-nav-bar-inside-search terminal-limit-max-content-width %s">',
+			'<div class="terminal-nav-bar-inside-search terminal-nav-font terminal-limit-max-content-width %s">',
 			! is_search() ? esc_attr( 'terminal-hidden' ) : null
 		);
 		get_search_form( true );
@@ -72,7 +72,7 @@ ob_end_clean();
 	</div>
 	<?php
 	if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
-		echo '<div class="terminal-nav-bar-inside-more terminal-hidden">';
+		echo '<div class="terminal-nav-bar-inside-more terminal-nav-font terminal-hidden">';
 		if ( has_nav_menu( 'terminal-header-more' ) ) {
 			printf(
 				'<h2>%s</h2>',
