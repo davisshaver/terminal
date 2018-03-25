@@ -319,7 +319,7 @@ class Customizer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 			figure.wp-caption, .terminal-breadcrumbs, .terminal-card-title {
-				background-color: <?php echo esc_attr( get_theme_mod( 'card_title_background_color_setting', 'inherit' ) ); ?>;
+				background-color: <?php echo esc_attr( get_theme_mod( 'card_title_background_color_setting', '#f2f2f2' ) ); ?>;
 			}
 		<?php
 		if ( $amp ) {
@@ -686,7 +686,6 @@ class Customizer {
 			'card_title_background_color_setting',
 			array(
 				'type'              => 'theme_mod',
-				'default' => '#f2f2f2',
 				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
 			)
 		);
