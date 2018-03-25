@@ -232,8 +232,8 @@ class Customizer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?>;
 			}
 		<?php
-			$ad_nag = get_theme_mod( 'adblock_nag', 'inherit' );
-			if ( ! empty( $ad_nag ) && ! empty( $image_src = wp_get_attachment_image_src( $ad_nag, 'terminal-thumbnail', false, array( 'scheme' => 'https' ) ) ) ) {
+			$ad_options = get_option( 'terminal_ad_options', array( 'adblock_nag' => 0 ) );
+			if ( ! empty( $ad_options['adblock_nag'] ) && ! empty( $image_src = wp_get_attachment_image_src( $ad_options['adblock_nag'], 'terminal-thumbnail', false, array( 'scheme' => 'https' ) ) ) ) {
 			?>
 			body.uncovered .terminal-card.covered-target {
 				background-image: url("<?php echo esc_attr( $image_src[0] ); ?>");
