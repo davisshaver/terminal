@@ -111,12 +111,10 @@ div.gform_wrapper {
 .essb-shortcode {
 	margin: 0 auto;
 }
-body:not(.uncovered) {
-	[id^=ad_layers] {
-		background-color: unset !important;
-		border: none;
-		box-shadow: none;
-	}
+[id^=ad_layers] {
+	background-color: unset !important;
+	border: none;
+	box-shadow: none;
 }
 body.uncovered{
 	.terminal-card.covered-target {
