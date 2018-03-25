@@ -147,7 +147,7 @@ printf(
 			) );
 		endif;
 		printf(
-			'<div class="terminal-card-text terminal-text-gray terminal-body-font %s">%s</div>',
+			'<div class="terminal-card-text terminal-limit-max-content-width terminal-text-gray terminal-body-font %s">%s</div>',
 			$hide_excerpt_on_mobile ? 'terminal-mobile-hide' : '',
 			wp_kses_post( wpautop( get_the_excerpt() ) )
 		);

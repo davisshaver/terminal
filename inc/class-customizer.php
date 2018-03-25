@@ -233,12 +233,13 @@ class Customizer {
 			}
 		<?php
 			$ad_nag = get_theme_mod( 'adblock_nag', 'inherit' );
-			if ( ! empty( $ad_nag ) && ! empty( $image_src = wp_get_attachment_image_src( $ad_nag, 'terminal-uncut-thumbnail', false, array( 'scheme' => 'https' ) ) ) ) {
+			if ( ! empty( $ad_nag ) && ! empty( $image_src = wp_get_attachment_image_src( $ad_nag, 'terminal-thumbnail', false, array( 'scheme' => 'https' ) ) ) ) {
 			?>
 			body.uncovered .terminal-card.covered-target {
 				background-image: url("<?php echo esc_attr( $image_src[0] ); ?>");
 			}
-
+			<?php
+			}
 			$header_accent = get_theme_mod( 'header_accent_color_setting', false );
 			if ( ! empty( $header_accent ) ) {
 				printf(
