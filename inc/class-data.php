@@ -115,6 +115,8 @@ class Data {
 		if ( empty( $this->ad_data ) ) {
 			$this->ad_data = get_option( 'terminal_ad_options', array(
 				'ios_install' => null,
+				'inline_ads'  => false,
+				'inline_unit' => '',
 			) );
 		}
 		if ( ! $key ) {
