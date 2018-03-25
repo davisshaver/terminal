@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const infiniteTarget = `.infinite-loader:nth-of-type(${slotNum})`;
       const adTagContainer = jQuery('<div />')
         .attr('id', `ad_layers_${slotName}`)
-        .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center');
+        .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center covered-target');
       const adTag = jQuery('<div />')
         .attr('id', adLayersDFP.adUnitPrefix + slotName)
         .attr('class', 'dfp-ad');
