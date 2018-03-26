@@ -14,6 +14,18 @@ export function setupMenu() {
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   const searchLinkSVG = document.querySelector('.terminal-nav-bar-inside-search-link svg');
   const widget = document.querySelector('.widget_search');
+  const container = document.querySelector('.terminal-container');
+  function addEventListenerOnce(target, type, listener) {
+    target.addEventListener(type, function fn(event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      target.removeEventListener(type, fn);
+      listener(event);
+    });
+  }
+  function reveal(element) {
+    element.classList.remove('terminal-hidden');
+  }
   function toggleOpen(element) {
     element.classList.toggle('terminal-flipped');
   }
@@ -42,6 +54,7 @@ export function setupMenu() {
       },
     );
   }
+
   function addInputListener(inputContainer, resultsCallback) {
     const inputs = inputContainer.getElementsByTagName('input');
     const form = inputContainer.querySelector('form');
@@ -60,12 +73,49 @@ export function setupMenu() {
     toggleHiddenNoJS(moreLinkContainer);
     toggleHiddenNoJS(searchContainer);
     addClickListener(moreLink, [moreNav], svgLink);
-    addClickListener(searchLink, [moreSearch, searchTarget], searchLinkSVG);
+    addClickListener(searchLink, [moreSearch, searchTarget, container], searchLinkSVG);
     toggleHidden(widget);
+    const apikey = encodeURIComponent('onwardstate.com');
     if (!window.terminal.isSearch) {
       addInputListener(navSearch, (event, inputArgs) => {
-        const results = ['one', 'two'];
-        searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div>${results.map((result) => `${result}`)}`;
+        event.stopImmediatePropagation();
+        const query = encodeURIComponent(inputArgs[0].value);
+        let firstLink = '';
+        let nextLink = '';
+        function loadSearchURL(link) {
+          return fetch(link)
+            .then(response => response.json())
+            .then(({ data, links }) => {
+              if (links.first === firstLink && links.next !== nextLink) {
+                nextLink = links.next;
+                const values = Object.values(data);
+                let results = '';
+                if (values.length !== 0) {
+                  results = values.reduce((agg, datum) => {
+                    const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : null;
+                    return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font terminal-mobile-hide"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font">By ${datum.author}</div></div></div>`;
+                  }, '');
+                  const resultMore = document.querySelector('.terminal-results-more');
+                  reveal(resultMore);
+                  resultMore.addEventListener('click', () => {
+                    loadSearchURL(nextLink);
+                  });
+                } else {
+                  results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline">No results found.</h1></div></div>';
+                }
+                document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+              }
+            })
+            .catch(err => console.error(err));
+        }
+        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=12&page=1&q=${query}`;
+        if (firstLink !== maybeFirstLink) {
+          console.log('reset');
+          searchTarget.innerHTML = '';
+          searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>`;
+          firstLink = maybeFirstLink;
+          loadSearchURL(firstLink);
+        }
       });
     }
   }

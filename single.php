@@ -6,10 +6,10 @@
  */
 
 get_header(); ?>
-
-<div class="terminal-container">
 <div id="terminal-search" class="terminal-hidden">
 </div>
+<div class="terminal-container">
+
 <?php
 if ( have_posts() ) :
 	while ( have_posts() ) :

@@ -69,7 +69,7 @@ class Theme {
 			'caption',
 		) );
 		add_theme_support( 'infinite-scroll', array(
-			'container'      => 'terminal-container',
+			'container'      => 'terminal-content-container',
 			'render'         => 'terminal_print_stories_loop',
 			'footer'         => false,
 			'wrapper'        => false,
