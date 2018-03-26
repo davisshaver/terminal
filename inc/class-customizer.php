@@ -176,7 +176,7 @@ class Customizer {
 				'.terminal-headline-featured-font, .terminal-headline-featured-font a' => 'head_featured',
 				'.terminal-headline-font, .terminal-headline-font a' => 'headline',
 				'.terminal-index-meta-font' => 'index_meta',
-				'.terminal-header-font, .terminal-header-font a' => 'loop_header',
+				'.terminal-header-font, .terminal-header-font a, .terminal-header-font a:hover' => 'loop_header',
 				'.terminal-share-button-font' => 'share',
 				'.terminal-sidebar-body-font' => 'sidebar_body',
 				'.terminal-sidebar-header-font' => 'sidebar_header',
