@@ -8,6 +8,9 @@
 get_header(); ?>
 
 <div class="terminal-container">
+<div id="terminal-search">
+
+</div>
 <?php
 if ( have_posts() ) :
 	while ( have_posts() ) :
