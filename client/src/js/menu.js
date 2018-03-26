@@ -64,7 +64,8 @@ export function setupMenu() {
     toggleHidden(widget);
     if (!window.terminal.isSearch) {
       addInputListener(navSearch, (event, inputArgs) => {
-        searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div>`;
+        const results = ['one', 'two'];
+        searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div>${results.map((result) => `${result}`)}`;
       });
     }
   }
