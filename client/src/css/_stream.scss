@@ -48,7 +48,7 @@
 			list-style-type: disc;
 		}
 		p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote {
-			margin: 0 auto 10px auto;
+			margin: 0 auto 15px auto;
 			height: auto;
 			width: calc(100% - 60px);
 		}
@@ -103,7 +103,7 @@
 		figure.wp-caption {
 			display: block;
 			width: unset !important;
-			margin: 0 auto 10px auto;
+			margin: 0 auto 15px auto;
 			img.size-full {
 				margin: 0 auto 0 auto;
 				height: 100%;
@@ -128,13 +128,13 @@
 				}
 			}
 			figcaption.wp-caption-text, p.wp-caption-text {
-					padding: 15px 30px 10px 30px;
+					padding: 15px 30px 15px 30px;
 			}
 		}
 	}
 	.terminal-credit {
 		text-align: right;
-		margin-bottom: 10px;
+		margin-bottom: 15px;
 		svg {
 			width: 1rem !important;
 			height: 1rem !important;
@@ -157,7 +157,6 @@
 }
 
 .terminal-card-full {
-	margin: 0 auto 10px auto;
 	flex: 1 1 100%;
 }
 
