@@ -15,7 +15,7 @@
 get_header(); ?>
 
 <div id="terminal-container" class="terminal-container">
-	<div id="terminal-search">
+	<div id="terminal-search" class="terminal-hidden">
 
 	</div>
 	<?php

@@ -8,7 +8,7 @@
 get_header(); ?>
 
 <div class="terminal-container">
-<div id="terminal-search">
+<div id="terminal-search" class="terminal-hidden">
 </div>
 <?php
 if ( have_posts() ) :

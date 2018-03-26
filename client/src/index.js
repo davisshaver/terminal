@@ -3,7 +3,6 @@
 
 import './index.scss';
 import { setupMenu } from './js/menu';
-// // import { popular } from './js/popular';
 
 function scaleAd(ID) {
   const adDiv = jQuery(ID);
