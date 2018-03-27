@@ -26,6 +26,9 @@ export function setupMenu() {
   function reveal(element) {
     element.classList.remove('terminal-hidden');
   }
+  function hide(element) {
+    element.classList.add('terminal-hidden');
+  }
   function toggleOpen(element) {
     element.classList.toggle('terminal-flipped');
   }
@@ -89,22 +92,25 @@ export function setupMenu() {
               if (links.first === firstLink) {
                 const values = Object.values(data);
                 let results = '';
+                const resultMore = document.querySelector('.terminal-results-more');
                 if (values.length !== 0) {
                   results = values.reduce((agg, datum) => {
                     const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : '';
                     return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single terminal-card-no-grow"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
                   }, '');
                   if (links.next !== null) {
-                    const resultMore = document.querySelector('.terminal-results-more');
                     addEventListenerOnce(resultMore, 'click', () => {
                       loadSearchURL(links.next);
                     });
                     reveal(resultMore);
+                  } else {
+                    hide(resultMore);
                   }
                   document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                 } else {
                   results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline">No results found.</h1></div></div>';
                   document.querySelector('.terminal-results').innerHTML = results;
+                  hide(resultMore);
                 }
               }
             })
