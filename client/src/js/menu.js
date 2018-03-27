@@ -122,23 +122,21 @@ export function setupMenu() {
                     .attr('class', 'dfp-ad');
                   adTagContainer.append(adTag);
                   results = `${results} ${adTagContainer}`;
-                  document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                   (new AdLayersAPI())
                     .lazyLoadAd({
                       slotName,
                       format: terminal.inlineAds.unitSearch,
                     });
-                  if (links.next !== null) {
-                    addEventListenerOnce(resultMore, 'click', () => {
-                      loadSearchURL(links.next);
-                    });
-                    reveal(resultMore);
-                  } else {
-                    hide(resultMore);
-                  }
                   slotNum += 1;
+                }
+                document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+                if (links.next !== null) {
+                  addEventListenerOnce(resultMore, 'click', () => {
+                    loadSearchURL(links.next);
+                  });
+                  reveal(resultMore);
                 } else {
-                  document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+                  hide(resultMore);
                 }
               } else if (links.first === firstLink &&
                 links.first.includes(currentQuery) &&
