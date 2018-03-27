@@ -6,6 +6,7 @@ export function setupMenu() {
   const searchContainer = document.querySelector('.terminal-nav-bar-inside-search-link');
   const moreLink = document.querySelector('.terminal-nav-bar-inside-more-link a');
   const navSearch = document.querySelector('.terminal-nav-bar-inside-search');
+  const navSearchField = document.querySelector('.terminal-nav-bar-inside-search .search-field');
   const searchTarget = document.querySelector('#terminal-search');
   const searchLink = document.querySelector('.terminal-nav-bar-inside-search-link a');
   const moreNav = document.querySelector('.terminal-nav-bar-inside-more');
@@ -40,7 +41,7 @@ export function setupMenu() {
   function toggleHidden(element) {
     element.classList.toggle('terminal-hidden');
   }
-  function addClickListener(listen, targets, icon = false) {
+  function addClickListener(listen, targets, icon = false, focus = false) {
     listen.addEventListener(
       'click',
       (e) => {
@@ -55,6 +56,9 @@ export function setupMenu() {
         }
         if (footer) {
           toggleHidden(footer);
+        }
+        if (focus && focus.offsetParent !== null) {
+          focus.focus();
         }
       },
     );
@@ -82,7 +86,12 @@ export function setupMenu() {
     const apikey = window.terminal.parsely.apiKey;
     toggleHidden(widget);
     if (parsely && !window.terminal.isSearch) {
-      addClickListener(searchLink, [moreSearch, searchTarget, container], searchLinkSVG);
+      addClickListener(
+        searchLink,
+        [moreSearch, searchTarget, container],
+        searchLinkSVG,
+        navSearchField,
+      );
       let currentQuery = false;
       let slotNum = 1;
       addInputListener(navSearch, (event, inputArgs) => {
