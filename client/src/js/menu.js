@@ -73,13 +73,14 @@ export function setupMenu() {
     toggleHiddenNoJS(moreLinkContainer);
     toggleHiddenNoJS(searchContainer);
     addClickListener(moreLink, [moreNav], svgLink);
-    addClickListener(searchLink, [moreSearch, searchTarget, container], searchLinkSVG);
+    const parsely = window.terminal.parsely.enabled;
+    const apikey = window.terminal.parsely.apiKey;
     toggleHidden(widget);
-    const apikey = encodeURIComponent('onwardstate.com');
-    if (!window.terminal.isSearch) {
+    if (parsely && !window.terminal.isSearch) {
+      addClickListener(searchLink, [moreSearch, searchTarget, container], searchLinkSVG);
       addInputListener(navSearch, (event, inputArgs) => {
         event.stopImmediatePropagation();
-        const query = encodeURIComponent(inputArgs[0].value);
+        const query = encodeURIComponent(inputArgs[0].value.replace(' ', '+'));
         let firstLink = '';
         let nextLink = '';
         function loadSearchURL(link) {
@@ -92,14 +93,16 @@ export function setupMenu() {
                 let results = '';
                 if (values.length !== 0) {
                   results = values.reduce((agg, datum) => {
-                    const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : null;
-                    return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
+                    const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : '';
+                    return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single terminal-card-no-grow"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
                   }, '');
-                  const resultMore = document.querySelector('.terminal-results-more');
-                  reveal(resultMore);
-                  resultMore.addEventListener('click', () => {
-                    loadSearchURL(nextLink);
-                  });
+                  if (nextLink !== null) {
+                    const resultMore = document.querySelector('.terminal-results-more');
+                    resultMore.addEventListener('click', () => {
+                      loadSearchURL(nextLink);
+                    });
+                    reveal(resultMore);
+                  }
                   document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                 } else {
                   results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline">No results found.</h1></div></div>';
@@ -111,7 +114,6 @@ export function setupMenu() {
         }
         const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=12&page=1&q=${query}`;
         if (firstLink !== maybeFirstLink) {
-          console.log('reset');
           searchTarget.innerHTML = '';
           if (inputArgs[0].value !== '') {
             searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>`;
@@ -122,6 +124,8 @@ export function setupMenu() {
           loadSearchURL(firstLink);
         }
       });
+    } else {
+      addClickListener(searchLink, [moreSearch], searchLinkSVG);
     }
   }
 }

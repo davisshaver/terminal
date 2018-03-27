@@ -207,7 +207,7 @@ function terminal_print_index_header() {
 		$search_query = get_search_query();
 		printf(
 			'<div class="terminal-header terminal-header-font"><h2>%s %s</h2></div>',
-			esc_html( 'Legacy search results for', 'terminal' ),
+			esc_html( 'Search results for', 'terminal' ),
 			esc_html( $search_query )
 		);
 	} else {
@@ -360,6 +360,10 @@ function  terminal_print_data_layer_json( $echo = true ) {
 			),
 			'single'    => $data->get_single_data_layer(),
 			'isSearch'    => is_search(),
+			'parsely'     => array(
+				'enabled'     => (bool) getenv( 'TERMINAL_ENABLE_PARSELY_SEARCH' ),
+				'apiKey'      => getenv( 'TERMINAL_PARSELY_API_KEY' ),
+			),
 	) );
 	if ( ! $echo ) {
 		return $data_layer;
