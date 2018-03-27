@@ -122,15 +122,17 @@ export function setupMenu() {
                     .attr('class', 'dfp-ad');
                   adTagContainer.append(adTag);
                   results = `${results} ${adTagContainer}`;
+                  slotNum += 1;
+                  document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                   (new AdLayersAPI())
                     .lazyLoadAd({
                       slotName,
                       format: terminal.inlineAds.unitSearch,
                     });
-                  slotNum += 1;
+                } else {
+                  document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                 }
-                document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
-                if (links.next !== null) {
+                if (links.next !== null && values.length !== 0) {
                   addEventListenerOnce(resultMore, 'click', () => {
                     loadSearchURL(links.next);
                   });
@@ -138,10 +140,7 @@ export function setupMenu() {
                 } else {
                   hide(resultMore);
                 }
-              } else if (links.first === firstLink &&
-                links.first.includes(currentQuery) &&
-                values.length === 0
-              ) {
+              } else {
                 results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
                 document.querySelector('.terminal-results').innerHTML = results;
                 hide(resultMore);
