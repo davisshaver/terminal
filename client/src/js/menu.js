@@ -1,4 +1,5 @@
 /* eslint-env browser */
+/* global jQuery, AdLayersAPI, adLayersDFP, terminal */
 
 export function setupMenu() {
   const moreLinkContainer = document.querySelector('.terminal-nav-bar-inside-more-link');
@@ -82,6 +83,7 @@ export function setupMenu() {
     if (parsely && !window.terminal.isSearch) {
       addClickListener(searchLink, [moreSearch, searchTarget, container], searchLinkSVG);
       let currentQuery = '';
+      let slotNum = 1;
       addInputListener(navSearch, (event, inputArgs) => {
         event.stopImmediatePropagation();
         const query = encodeURIComponent(inputArgs[0].value.trim().replace(' ', '+'));
@@ -108,7 +110,34 @@ export function setupMenu() {
                   } else {
                     hide(resultMore);
                   }
-                  document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+                  if (window.AdLayersAPI &&
+                    window.adLayersDFP &&
+                    window.jQuery &&
+                    window.terminal &&
+                    window.terminal.inlineAds &&
+                    window.terminal.inlineAds.enabled &&
+                    window.terminal.inlineAds.unitSearch
+                  ) {
+                    const slotName = `${terminal.inlineAds.unitSearch}_${slotNum}`;
+                    const adTagContainer = jQuery('<div />')
+                      .attr('id', `ad_layers_${slotName}`)
+                      .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center covered-target');
+                    const adTag = jQuery('<div />')
+                      .attr('id', adLayersDFP.adUnitPrefix + slotName)
+                      .attr('class', 'dfp-ad');
+                    adTagContainer.append(adTag);
+                    results = `${results} ${adTagContainer}`;
+                    document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+                    (new AdLayersAPI())
+                      .lazyLoadAd({
+                        slotName,
+                        format: terminal.inlineAds.unitSearch,
+                      });
+                    slotNum += 1;
+                  } else {
+                    document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+                  }
+
                 } else {
                   results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline">No results found.</h1></div></div>';
                   document.querySelector('.terminal-results').innerHTML = results;
