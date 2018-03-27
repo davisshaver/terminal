@@ -1,5 +1,6 @@
 body {
 	background-color: #fff;
+	min-height: 100vh;
 }
 
 a {
@@ -52,8 +53,10 @@ svg.terminal-svg {
 #terminal-search {
 	display: flex;
 	justify-content: center;
+	align-items: flex-start;
 	margin: 10px auto;
 	flex-wrap: wrap;
+	min-height: 100vh;
 	width: 100%;
 	max-width: $max_container_width;
 }
