@@ -12,6 +12,7 @@ export function setupMenu() {
   const moreSearch = document.querySelector('.terminal-nav-bar-inside-search');
   const footer = document.querySelector('.terminal-footer');
   const share = document.querySelector('.essb_bottombar');
+  const searchHeader = document.querySelector('.terminal-search-header');
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   const searchLinkSVG = document.querySelector('.terminal-nav-bar-inside-search-link svg');
   const widget = document.querySelector('.widget_search');
@@ -82,7 +83,7 @@ export function setupMenu() {
     toggleHidden(widget);
     if (parsely && !window.terminal.isSearch) {
       addClickListener(searchLink, [moreSearch, searchTarget, container], searchLinkSVG);
-      let currentQuery = '';
+      let currentQuery = false;
       let slotNum = 1;
       addInputListener(navSearch, (event, inputArgs) => {
         event.stopImmediatePropagation();
@@ -93,15 +94,40 @@ export function setupMenu() {
           return fetch(link)
             .then(response => response.json())
             .then(({ data, links }) => {
-              if (links.first === firstLink && links.first.includes(currentQuery)) {
-                const values = Object.values(data);
-                let results = '';
-                const resultMore = document.querySelector('.terminal-results-more');
-                if (values.length !== 0) {
-                  results = values.reduce((agg, datum) => {
-                    const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : '';
-                    return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single terminal-card-no-grow"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
-                  }, '');
+              const values = Object.values(data);
+              const resultMore = document.querySelector('.terminal-results-more');
+              let results = '';
+              if (links.first === firstLink &&
+                links.first.includes(currentQuery) &&
+                values.length !== 0
+              ) {
+                results = values.reduce((agg, datum) => {
+                  const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : '';
+                  return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single terminal-card-no-grow"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
+                }, '');
+                if (window.AdLayersAPI &&
+                  window.adLayersDFP &&
+                  window.jQuery &&
+                  window.terminal &&
+                  window.terminal.inlineAds &&
+                  window.terminal.inlineAds.enabled &&
+                  window.terminal.inlineAds.unitSearch
+                ) {
+                  const slotName = `${terminal.inlineAds.unitSearch}_${slotNum}`;
+                  const adTagContainer = jQuery('<div />')
+                    .attr('id', `ad_layers_${slotName}`)
+                    .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center covered-target');
+                  const adTag = jQuery('<div />')
+                    .attr('id', adLayersDFP.adUnitPrefix + slotName)
+                    .attr('class', 'dfp-ad');
+                  adTagContainer.append(adTag);
+                  results = `${results} ${adTagContainer}`;
+                  document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+                  (new AdLayersAPI())
+                    .lazyLoadAd({
+                      slotName,
+                      format: terminal.inlineAds.unitSearch,
+                    });
                   if (links.next !== null) {
                     addEventListenerOnce(resultMore, 'click', () => {
                       loadSearchURL(links.next);
@@ -110,39 +136,17 @@ export function setupMenu() {
                   } else {
                     hide(resultMore);
                   }
-                  if (window.AdLayersAPI &&
-                    window.adLayersDFP &&
-                    window.jQuery &&
-                    window.terminal &&
-                    window.terminal.inlineAds &&
-                    window.terminal.inlineAds.enabled &&
-                    window.terminal.inlineAds.unitSearch
-                  ) {
-                    const slotName = `${terminal.inlineAds.unitSearch}_${slotNum}`;
-                    const adTagContainer = jQuery('<div />')
-                      .attr('id', `ad_layers_${slotName}`)
-                      .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center covered-target');
-                    const adTag = jQuery('<div />')
-                      .attr('id', adLayersDFP.adUnitPrefix + slotName)
-                      .attr('class', 'dfp-ad');
-                    adTagContainer.append(adTag);
-                    results = `${results} ${adTagContainer}`;
-                    document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
-                    (new AdLayersAPI())
-                      .lazyLoadAd({
-                        slotName,
-                        format: terminal.inlineAds.unitSearch,
-                      });
-                    slotNum += 1;
-                  } else {
-                    document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
-                  }
-
+                  slotNum += 1;
                 } else {
-                  results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline">No results found.</h1></div></div>';
-                  document.querySelector('.terminal-results').innerHTML = results;
-                  hide(resultMore);
+                  document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                 }
+              } else if (links.first === firstLink &&
+                links.first.includes(currentQuery) &&
+                values.length === 0
+              ) {
+                results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
+                document.querySelector('.terminal-results').innerHTML = results;
+                hide(resultMore);
               }
             })
             .catch(err => console.error(err));
@@ -150,12 +154,13 @@ export function setupMenu() {
         const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=6&page=1&q=${query}`;
         if (firstLink !== maybeFirstLink && query !== currentQuery && query !== '') {
           currentQuery = query;
-          searchTarget.innerHTML = '';
           firstLink = maybeFirstLink;
-          searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>`;
+          document.querySelector('.terminal-results').innerHTML = '';
+          searchHeader.innerText = `Searching for ${inputArgs[0].value}`;
           loadSearchURL(firstLink);
         } else if (query === '') {
-          searchTarget.innerHTML = '<div class="terminal-header terminal-header-font"><h2>Enter a search term for instant results</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>';
+          document.querySelector('.terminal-results').innerHTML = '';
+          searchHeader.innerText = 'Enter a search term for instant results';
         }
       });
     } else {
