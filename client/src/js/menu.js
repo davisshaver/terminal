@@ -82,13 +82,11 @@ export function setupMenu() {
         event.stopImmediatePropagation();
         const query = encodeURIComponent(inputArgs[0].value.replace(' ', '+'));
         let firstLink = '';
-        let nextLink = '';
         function loadSearchURL(link) {
           return fetch(link)
             .then(response => response.json())
             .then(({ data, links }) => {
-              if (links.first === firstLink && links.next !== nextLink) {
-                nextLink = links.next;
+              if (links.first === firstLink) {
                 const values = Object.values(data);
                 let results = '';
                 if (values.length !== 0) {
@@ -96,10 +94,10 @@ export function setupMenu() {
                     const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : '';
                     return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single terminal-card-no-grow"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
                   }, '');
-                  if (nextLink !== null) {
+                  if (links.next !== null) {
                     const resultMore = document.querySelector('.terminal-results-more');
                     addEventListenerOnce(resultMore, 'click', () => {
-                      loadSearchURL(nextLink);
+                      loadSearchURL(links.next);
                     });
                     reveal(resultMore);
                   }
