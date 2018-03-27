@@ -93,17 +93,18 @@ export function setupMenu() {
                 if (values.length !== 0) {
                   results = values.reduce((agg, datum) => {
                     const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : null;
-                    return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font terminal-mobile-hide"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font">By ${datum.author}</div></div></div>`;
+                    return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
                   }, '');
                   const resultMore = document.querySelector('.terminal-results-more');
                   reveal(resultMore);
                   resultMore.addEventListener('click', () => {
                     loadSearchURL(nextLink);
                   });
+                  document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                 } else {
                   results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline">No results found.</h1></div></div>';
+                  document.querySelector('.terminal-results').innerHTML = results;
                 }
-                document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
               }
             })
             .catch(err => console.error(err));
@@ -112,7 +113,11 @@ export function setupMenu() {
         if (firstLink !== maybeFirstLink) {
           console.log('reset');
           searchTarget.innerHTML = '';
-          searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>`;
+          if (inputArgs[0].value !== '') {
+            searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>`;
+          } else {
+            searchTarget.innerHTML = '<div class="terminal-header terminal-header-font"><h2>Enter a search term for instant results</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>';
+          }
           firstLink = maybeFirstLink;
           loadSearchURL(firstLink);
         }

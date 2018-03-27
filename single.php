@@ -5,9 +5,9 @@
  * @package Terminal
  */
 
-get_header(); ?>
-<div id="terminal-search" class="terminal-hidden">
-</div>
+get_header();
+get_template_part( 'partials/search' );
+?>
 <div class="terminal-container">
 
 <?php

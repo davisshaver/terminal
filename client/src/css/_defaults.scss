@@ -49,6 +49,14 @@ svg.terminal-svg {
 	transition: transform .05s ease-out;
 }
 
+#terminal-search {
+	display: flex;
+	justify-content: center;
+	margin: 10px auto;
+	flex-wrap: wrap;
+	width: 100%;
+	max-width: $max_container_width;
+}
 .terminal-container {
 	display: flex;
 	justify-content: center;

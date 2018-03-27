@@ -12,10 +12,10 @@
  * @package Terminal
  */
 
-get_header(); ?>
-<div id="terminal-search" class="terminal-hidden">
+get_header();
+get_template_part( 'partials/search' );
+?>
 
-</div>
 <div id="terminal-container" class="terminal-container">
 	<?php
 	if ( is_home() && ! is_paged() ) {
