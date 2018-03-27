@@ -85,15 +85,18 @@ export function setupMenu() {
         event.stopImmediatePropagation();
         const query = encodeURIComponent(inputArgs[0].value.replace(' ', '+'));
         let firstLink = '';
+        let waiting = true;
+
         function loadSearchURL(link) {
           return fetch(link)
             .then(response => response.json())
             .then(({ data, links }) => {
               if (links.first === firstLink) {
+                waiting = false;
                 const values = Object.values(data);
                 let results = '';
                 const resultMore = document.querySelector('.terminal-results-more');
-                if (values.length !== 0) {
+                if (values.length !== 0 && !waiting) {
                   results = values.reduce((agg, datum) => {
                     const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : '';
                     return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single terminal-card-no-grow"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
@@ -107,6 +110,8 @@ export function setupMenu() {
                     hide(resultMore);
                   }
                   document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+                } else if (values.length === 0 && !waiting) {
+                  hide(resultMore);
                 } else {
                   results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline">No results found.</h1></div></div>';
                   document.querySelector('.terminal-results').innerHTML = results;
@@ -125,6 +130,7 @@ export function setupMenu() {
             searchTarget.innerHTML = '<div class="terminal-header terminal-header-font"><h2>Enter a search term for instant results</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>';
           }
           firstLink = maybeFirstLink;
+          waiting = true;
           loadSearchURL(firstLink);
         }
       });
