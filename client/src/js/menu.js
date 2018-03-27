@@ -98,7 +98,7 @@ export function setupMenu() {
                   }, '');
                   if (nextLink !== null) {
                     const resultMore = document.querySelector('.terminal-results-more');
-                    resultMore.addEventListener('click', () => {
+                    addEventListenerOnce(resultMore, 'click', () => {
                       loadSearchURL(nextLink);
                     });
                     reveal(resultMore);
