@@ -119,16 +119,14 @@ export function setupMenu() {
             .catch(err => console.error(err));
         }
         const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=6&page=1&q=${query}`;
-        if (firstLink !== maybeFirstLink && query !== currentQuery) {
+        if (firstLink !== maybeFirstLink && query !== currentQuery && query !== '') {
           currentQuery = query;
           searchTarget.innerHTML = '';
           firstLink = maybeFirstLink;
-          if (inputArgs[0].value !== '') {
-            searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>`;
-          } else {
-            searchTarget.innerHTML = '<div class="terminal-header terminal-header-font"><h2>Enter a search term for instant results</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>';
-          }
+          searchTarget.innerHTML = `<div class="terminal-header terminal-header-font"><h2>Searching for ${inputArgs[0].value}</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>`;
           loadSearchURL(firstLink);
+        } else if (query === '') {
+          searchTarget.innerHTML = '<div class="terminal-header terminal-header-font"><h2>Enter a search term for instant results</h2></div><div class="terminal-results"></div><div class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div></div>';
         }
       });
     } else {
