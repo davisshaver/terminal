@@ -25,6 +25,10 @@ $home = ob_get_contents();
 ob_end_clean();
 
 ob_start();
+get_template_part( 'partials/svg/down.svg' );
+$down = ob_get_contents();
+ob_end_clean();
+ob_start();
 get_template_part( 'partials/svg/recent.svg' );
 $recent = ob_get_contents();
 ob_end_clean();
@@ -81,6 +85,7 @@ ob_end_clean();
 			! is_search() ? esc_attr( 'terminal-hidden' ) : null
 		);
 		get_search_form( true );
+
 		?>
 	</div>
 	<?php
