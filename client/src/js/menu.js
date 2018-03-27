@@ -112,7 +112,7 @@ export function setupMenu() {
             })
             .catch(err => console.error(err));
         }
-        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=12&page=1&q=${query}`;
+        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=6&page=1&q=${query}`;
         if (firstLink !== maybeFirstLink) {
           searchTarget.innerHTML = '';
           if (inputArgs[0].value !== '') {
