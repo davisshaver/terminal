@@ -112,7 +112,7 @@ export function setupMenu() {
               ) {
                 results = values.reduce((agg, datum) => {
                   const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : '';
-                  return `${agg} <div class="terminal-sidebar-card terminal-card terminal-card-single terminal-card-no-grow"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
+                  return `${agg} <div class="terminal-card terminal-card-single terminal-search-card terminal-card-no-grow"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-card-text terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
                 }, '');
                 if (window.AdLayersAPI &&
                   window.adLayersDFP &&
@@ -125,7 +125,7 @@ export function setupMenu() {
                   const slotName = `${terminal.inlineAds.unitSearch}_${slotNum}`;
                   const adTagContainer = jQuery('<div />')
                     .attr('id', `ad_layers_${slotName}`)
-                    .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center covered-target');
+                    .attr('class', 'terminal-card terminal-card-single terminal-alignment-center covered-target');
                   const adTag = jQuery('<div />')
                     .attr('id', adLayersDFP.adUnitPrefix + slotName)
                     .attr('class', 'dfp-ad');
@@ -155,7 +155,7 @@ export function setupMenu() {
                 !links.prev
               ) {
                 hide(resultMore);
-                results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
+                results = '<div class="terminal-card terminal-card-single terminal-no-photo terminal-search-card"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
                 document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
               } else {
                 hide(resultMore);
@@ -163,7 +163,7 @@ export function setupMenu() {
             })
             .catch(err => console.error(err));
         }
-        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=6&page=1&q=${query}`;
+        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=12&page=1&q=${query}`;
         if (firstLink !== maybeFirstLink && query !== currentQuery && query !== '') {
           currentQuery = query;
           firstLink = maybeFirstLink;
