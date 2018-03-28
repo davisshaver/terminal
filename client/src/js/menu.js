@@ -172,11 +172,11 @@ export function setupMenu() {
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
           document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<div id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
-          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
           loadSearchURL(firstLink);
         } else if (query === '') {
           document.querySelector('.terminal-results').innerHTML = '';
-          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
           searchHeader.innerText = 'Enter a search term for instant results';
