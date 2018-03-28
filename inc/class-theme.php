@@ -98,6 +98,24 @@ class Theme {
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
 		add_filter( 'body_class', [ $this, 'add_uncovered' ] );
+		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
+	}
+
+	/**
+	 * Filter parsely post tags.
+	 *
+	 * @param $tags array Existing tags.
+	 * @param $post_id Post ID
+	 * @return array Filtered tags
+	 */
+	public function filter_parsely_post_tags( $tags, $post_id ) {
+		$filtered_tags = $tags;
+		$placements = wp_get_post_terms( $post_id, 'terminal-placement');
+		foreach( $placements as $placement ) {
+			$filtered_tags[] = 'placement|' . $placement->name;
+			$filtered_tags[] = 'placement-id|' . $placement->term_id;
+		}
+		return $filtered_tags;
 	}
 
 	/**

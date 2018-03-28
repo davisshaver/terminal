@@ -171,7 +171,7 @@ export function setupMenu() {
           searchHeader.innerText = `Searching for ${inputArgs[0].value}`;
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
-          document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<div id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
+          document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<button id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
           resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
           loadSearchURL(firstLink);
         } else if (query === '') {
