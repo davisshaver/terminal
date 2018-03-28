@@ -149,9 +149,15 @@ export function setupMenu() {
                 } else {
                   hide(resultMore);
                 }
-              } else {
+              } else if (
+                links.first === firstLink &&
+                links.first.includes(currentQuery) &&
+                !links.prev
+              ) {
+                hide(resultMore);
                 results = '<div class="terminal-sidebar-card terminal-card terminal-card-single terminal-no-photo"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
-                document.querySelector('.terminal-results').innerHTML = results;
+                document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+              } else {
                 hide(resultMore);
               }
             })
@@ -163,9 +169,14 @@ export function setupMenu() {
           firstLink = maybeFirstLink;
           document.querySelector('.terminal-results').innerHTML = '';
           searchHeader.innerText = `Searching for ${inputArgs[0].value}`;
+          const more = document.querySelectorAll('.terminal-results-more');
+          [...more].forEach(node => node.parentNode.removeChild(node));
+          document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<div id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
           loadSearchURL(firstLink);
         } else if (query === '') {
           document.querySelector('.terminal-results').innerHTML = '';
+          const more = document.querySelectorAll('.terminal-results-more');
+          [...more].forEach(node => node.parentNode.removeChild(node));
           searchHeader.innerText = 'Enter a search term for instant results';
         }
       });
@@ -174,7 +185,6 @@ export function setupMenu() {
     }
   }
 }
-
 export default {
   setupMenu,
 };
