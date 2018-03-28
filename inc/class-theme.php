@@ -49,7 +49,7 @@ class Theme {
 		add_image_size( 'terminal-thumbnail-small', 100, 100, true );
 		add_image_size( 'terminal-featured', 1404, 740, false );
 		add_filter( 'image_size_names_choose', [ $this, 'filter_image_size_names_choose' ] );
-
+		add_filter( 'parsely_filter_image_size', [ $this, 'filter_parsely_image_size' ] );
 		$custom_background_args = array(
 			'default-color' => '#f4f4f4',
 		);
@@ -98,6 +98,13 @@ class Theme {
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
 		add_filter( 'body_class', [ $this, 'add_uncovered' ] );
+	}
+
+	/**
+	 * Filter parsely image size
+	 */
+	public function filter_parsely_image_size() {
+		return 'terminal-uncut-thumbnail';
 	}
 
 	/**
