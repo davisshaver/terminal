@@ -18,7 +18,7 @@ if ( version_compare( strtok( $GLOBALS['wp_version'], '-' ), '4.9', '<' ) ) {
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {
-	define( 'TERMINAL_VERSION', '1.89' );
+	define( 'TERMINAL_VERSION', '1.90' );
 }
 
 if ( ! defined( 'TERMINAL_APP' ) ) {

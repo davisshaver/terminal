@@ -51,15 +51,14 @@ svg.terminal-svg {
 }
 
 #terminal-search {
-	display: flex;
-	justify-content: center;
 	align-items: flex-start;
-	margin: 10px auto;
+	display: flex;
 	flex-wrap: wrap;
-	position: relative	;
-	width: 100%;
+	justify-content: center;
 	max-width: $max_container_width;
+	width: 100%;
 }
+
 .terminal-container {
 	display: flex;
 	justify-content: center;

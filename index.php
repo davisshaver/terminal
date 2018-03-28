@@ -13,7 +13,6 @@
  */
 
 get_header();
-get_template_part( 'partials/search' );
 ?>
 
 <div id="terminal-container" class="terminal-container">
