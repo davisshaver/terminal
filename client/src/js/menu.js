@@ -17,7 +17,7 @@ export function setupMenu() {
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   const searchLinkSVG = document.querySelector('.terminal-nav-bar-inside-search-link svg');
   const widget = document.querySelector('.widget_search');
-  const container = document.querySelector('.terminal-container');
+  const resultsContainer = document.querySelector('.terminal-results');
   function addEventListenerOnce(target, type, listener) {
     target.addEventListener(type, function fn(event) {
       event.preventDefault();
@@ -88,7 +88,7 @@ export function setupMenu() {
     if (parsely && !window.terminal.isSearch) {
       addClickListener(
         searchLink,
-        [moreSearch, searchTarget, container],
+        [moreSearch, searchTarget],
         searchLinkSVG,
         navSearchField,
       );
@@ -98,7 +98,6 @@ export function setupMenu() {
         event.stopImmediatePropagation();
         const query = encodeURIComponent(inputArgs[0].value.trim().replace(' ', '+'));
         let firstLink = '';
-
         function loadSearchURL(link) {
           return fetch(link)
             .then(response => response.json())
@@ -107,7 +106,7 @@ export function setupMenu() {
               const resultMore = document.querySelector('.terminal-results-more');
               let results = '';
               if (links.first === firstLink &&
-                links.first.includes(currentQuery) &&
+                links.first.endsWith(`q=${currentQuery}`) &&
                 values.length !== 0
               ) {
                 results = values.reduce((agg, datum) => {
@@ -173,9 +172,11 @@ export function setupMenu() {
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
           document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<div id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
+          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
           loadSearchURL(firstLink);
         } else if (query === '') {
           document.querySelector('.terminal-results').innerHTML = '';
+          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
           searchHeader.innerText = 'Enter a search term for instant results';
