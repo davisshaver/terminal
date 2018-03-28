@@ -95,12 +95,22 @@ class Theme {
 		add_filter( 'pings_open', '__return_false', 20, 2 );
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 		add_filter( 'unipress_push_taxonomies_post_types', [ $this, 'remove_unipress_buggy_tax' ] );
+		add_filter( 'wpseo_canonical', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
 		add_filter( 'body_class', [ $this, 'add_uncovered' ] );
 		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
 	}
 
+	/**
+	 * Filter WP SEO Canonical
+	 *
+	 * @param $canonical string Canonical
+	 * @return string Filtered canonical
+	 */
+	public function ensure_no_www_in_canonical( $canonical ) {
+		return str_replace( 'www.', '', $canonical );
+	}
 	/**
 	 * Filter parsely post tags.
 	 *
