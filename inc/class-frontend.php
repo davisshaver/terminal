@@ -155,6 +155,13 @@ class Frontend {
 	 */
 	public function disable_unipress_styles() {
 		wp_dequeue_style( 'unipress-api' );
+		if ( ! is_singular() || ! has_shortcode( get_the_content(), 'logo-carousel-pro' ) ) {
+			wp_dequeue_style( 'slick' );
+			wp_dequeue_style( 'font-awesome-min' );
+			wp_dequeue_style( 'tooltipster-min-css' );
+			wp_dequeue_style( 'logo-carousel-pro-style' );
+			wp_dequeue_style( 'logo-carousel-pro-responsive');
+		}
 	}
 
 	/**
@@ -162,6 +169,13 @@ class Frontend {
 	 */
 	public function disable_unipress_scripts() {
 		wp_dequeue_script( 'unipress-api' );
+		wp_dequeue_script( 'jquery-isotope-min-js' );
+		wp_dequeue_script( 'jquery-masonry' );
+		if ( ! is_singular() || ! has_shortcode( get_the_content(), 'logo-carousel-pro' ) ) {
+			wp_dequeue_script( 'slick-min-js' );
+			wp_dequeue_script( 'tooltipstermin-js' );
+			wp_dequeue_script( 'logo-carousel-pro-scripts-js' );
+		}
 	}
 
 	/**
