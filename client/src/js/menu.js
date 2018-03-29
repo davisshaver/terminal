@@ -7,6 +7,7 @@ export function setupMenu() {
   const moreLink = document.querySelector('.terminal-nav-bar-inside-more-link a');
   const navSearch = document.querySelector('.terminal-nav-bar-inside-search');
   const navSearchField = document.querySelector('.terminal-nav-bar-inside-search .search-field');
+  const navSearchFieldTwo = document.querySelector('.terminal-nav-bar-inside-search .search-field-filter-one');
   const searchTarget = document.querySelector('#terminal-search');
   const searchLink = document.querySelector('.terminal-nav-bar-inside-search-link a');
   const moreNav = document.querySelector('.terminal-nav-bar-inside-more');
@@ -19,6 +20,9 @@ export function setupMenu() {
   const searchLinkSVG = document.querySelector('.terminal-nav-bar-inside-search-link svg');
   const widget = document.querySelector('.widget_search');
   const resultsContainer = document.querySelector('.terminal-results');
+  const searchFormMore = document.querySelector('.terminal-search-form-more');
+  const searchFormMoreSVG = document.querySelector('.terminal-search-form-more svg');
+  const searchFormMoreLink = document.querySelector('.terminal-search-form-more-link');
   function addEventListenerOnce(target, type, listener) {
     target.addEventListener(type, function fn(event) {
       event.preventDefault();
@@ -84,6 +88,7 @@ export function setupMenu() {
   }
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
+    toggleHiddenNoJS(searchFormMoreLink);
     toggleHiddenNoJS(searchContainer);
     addClickListener(moreLink, [moreNav], svgLink);
     const parsely = window.terminal.parsely.enabled;
@@ -95,6 +100,12 @@ export function setupMenu() {
         [moreSearch, searchTarget],
         searchLinkSVG,
         navSearchField,
+      );
+      addClickListener(
+        searchFormMoreLink,
+        [searchFormMore],
+        searchFormMoreSVG,
+        navSearchFieldTwo,
       );
       let currentQuery = false;
       let slotNum = 1;
