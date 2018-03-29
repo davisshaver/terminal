@@ -98,8 +98,35 @@ class Theme {
 		add_filter( 'wpseo_canonical', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
+		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 2 );
+		
+		if ( is_customize_preview() ) {
+			add_filter( 'user_can_richedit', '__return_false' );
+		}
 		add_filter( 'body_class', [ $this, 'add_uncovered' ] );
 		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
+	}
+
+	/**
+	 * Add amp-ad to allowed wp_kses_post tags
+	 *
+	 * @param string $tags Allowed tags, attributes, and/or entities.
+	 * @param string $context Context to judge allowed tags by. Allowed values are 'post',
+	 *
+	 * @return mixed
+	 */
+	public function add_amp_ad( $tags, $context ) {
+		if ( 'post' === $context ) {
+			$tags['amp-ad'] = array(
+				'width' => true,
+				'height' => true,
+				'type' => true,
+				'data-ad-client' => true,
+				'data-ad-slot' => true,
+				'layout' => true,
+			);
+		}
+		return $tags;
 	}
 
 	/**

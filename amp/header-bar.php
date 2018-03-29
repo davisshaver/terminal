@@ -14,17 +14,11 @@ $width = absint( $header->width );
 $height = absint( $header->height );
 ?>
 <header id="header" class="amp-wp-header terminal-amp-header">
-	<div class="terminal-amp-ad">
-		<amp-ad
-			width=320
-			height=50
-			type="adsense"
-			data-ad-client="ca-pub-0809625376938310"
-			data-ad-slot="7383568527"
-			layout="fixed"
-		>
-		</amp-ad>
-	</div>
+	<?php if ( terminal_has_amp_tag( 'header' ) ) : ?>
+		<div class="terminal-amp-ad">
+			<?php terminal_print_amp_tag( 'header' ); ?>
+		</div>
+	<?php endif; ?>
 	<div class="terminal-amp-header-image">
 		<a href="<?php echo esc_url( $this->get( 'home_url' ) ); ?>">
 		<amp-img src="<?php header_image(); ?>" layout="responsive" width="<?php echo esc_attr( $width ); ?>" height="<?php echo esc_attr( $height ); ?>"></amp-img>

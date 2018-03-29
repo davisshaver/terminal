@@ -117,6 +117,9 @@ class Data {
 				'ios_install' => null,
 				'inline_ads'  => false,
 				'inline_unit' => '',
+				'amp_post'    => '',
+				'amp_header'  => '',
+				'amp_footer'  => '',
 			) );
 		}
 		if ( ! $key ) {
@@ -197,6 +200,33 @@ class Data {
 	 */
 	public function get_inline_ads_tag() {
 		return $this->get_ad_data( 'inline_unit' );
+	}
+
+	/**
+	 * What AMP header unit should we use?
+	 *
+	 * @return string Ad tag
+	 */
+	public function get_amp_header_tag() {
+		return $this->get_ad_data( 'amp_header' );
+	}
+
+	/**
+	 * What AMP post unit should we use?
+	 *
+	 * @return string Ad tag
+	 */
+	public function get_amp_post_tag() {
+		return $this->get_ad_data( 'amp_post' );
+	}
+
+	/**
+	 * What AMP footer unit should we use?
+	 *
+	 * @return string Ad tag
+	 */
+	public function get_amp_footer_tag() {
+		return $this->get_ad_data( 'amp_footer' );
 	}
 
 	/**

@@ -33,6 +33,30 @@ class FM_Ads {
 					'inline_ads'  => new \Fieldmanager_Checkbox( 'Enable inline ads' ),
 					'inline_unit' => new \Fieldmanager_Textfield( 'Ad Layers unit to use' ),
 					'ios_install' => new \Fieldmanager_Textfield( 'iOS app ID for install banner' ),
+					'amp_header' => new \Fieldmanager_RichTextArea( array(
+						'label' => 'AMP code for header ad',
+						'editor_settings' => array(
+							'wpautop' => false,
+							'media_buttons' => false,
+							'default_editor' => 'html',
+						)
+					) ),
+					'amp_post' => new \Fieldmanager_RichTextArea( array(
+						'label' => 'AMP code for in-post ad',
+						'editor_settings' => array(
+							'wpautop' => false,
+							'media_buttons' => false,
+							'default_editor' => 'html',
+						)
+					) ),
+					'amp_footer' => new \Fieldmanager_RichTextArea( array(
+						'label' => 'AMP code for footer ad',
+						'editor_settings' => array(
+							'wpautop' => false,
+							'media_buttons' => false,
+							'default_editor' => 'html',
+						)
+					) ),
 					'adblock_nag' => new \Fieldmanager_Media( 'Adblock Nag' ),
 				),
 			)

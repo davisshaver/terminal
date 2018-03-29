@@ -252,6 +252,40 @@ function terminal_print_facebook_count_for_post() {
 }
 
 /**
+ * Template function to check if AMP tag exists.
+ *
+ * @param string $amp_tag string AMP tag.
+ * @return boolean whether has tag
+ */
+function terminal_has_amp_tag( $amp_tag ) {
+	if ( empty( $amp_tag ) || ! is_string( $amp_tag ) ) {
+		return false;
+	}
+	$data = Terminal\Data::instance();
+	$tag = $data->get_ad_data( 'amp_' . $amp_tag );
+	if ( empty( $tag ) ) {
+		return false;
+	}
+	return true;
+}
+
+/**
+ * Template function to print AMP tag.
+ *
+ * @param string $amp_tag string AMP tag.
+ */
+function terminal_print_amp_tag( $amp_tag ) {
+	$data = Terminal\Data::instance();
+	if ( empty( $amp_tag ) || ! is_string( $amp_tag ) ) {
+		return;
+	}
+	$tag = $data->get_ad_data( 'amp_' . $amp_tag );
+	$tag = str_replace( '<p>', '', $tag );
+	$tag = str_replace( '</p>', '', $tag );
+	echo $tag;
+}
+
+/**
  * Template function to print author avatar.
  *
  * @param int      $author_id Author id.

@@ -12,17 +12,11 @@
  */
 ?>
 <footer class="amp-wp-footer terminal-utility-font">
-	<div class="terminal-amp-footer-ad">
-		<amp-ad
-			width=320
-			height=50
-			type="adsense"
-			data-ad-client="ca-pub-0809625376938310"
-			data-ad-slot="1249883947"
-			layout="fixed"
-		>
-		</amp-ad>
-	</div>
+	<?php if ( terminal_has_amp_tag( 'footer' ) ) : ?>
+		<div class="terminal-amp-footer-ad">
+		<?php terminal_print_amp_tag( 'footer' ); ?>
+		</div>
+	<?php endif; ?>
 	<div id="copyright">
 		<p>&copy;&nbsp;
 		<?php
