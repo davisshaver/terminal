@@ -1,5 +1,6 @@
 body {
 	background-color: #fff;
+	min-height: 100vh;
 }
 
 a {
@@ -47,6 +48,16 @@ svg.terminal-svg {
 	height: 1rem !important;
 	position: relative !important;
 	transition: transform .05s ease-out;
+}
+
+#terminal-search {
+	align-items: flex-start;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 0 auto 30px auto;
+	max-width: $max_container_width;
+	width: 100%;
 }
 
 .terminal-container {
@@ -164,7 +175,8 @@ form[role="search"] {
 		display: none;
 	}
 	.search-field {
-		width: 70%;
+		display: flex;
+		flex: 1 0 70%;
 		-webkit-appearance: none;
 		height: 30px;
 	}
@@ -174,7 +186,8 @@ form[role="search"] {
 		border-top-right-radius: 0;
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
-		width: 30%;
+		display: flex;
+		flex: 0 1 30%;
     background-color: #f2f2f2;
 	}
 }

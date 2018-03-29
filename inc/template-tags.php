@@ -359,6 +359,11 @@ function  terminal_print_data_layer_json( $echo = true ) {
 				'unit'    => $data->get_inline_ads_tag(),
 			),
 			'single'    => $data->get_single_data_layer(),
+			'isSearch'    => is_search(),
+			'parsely'     => array(
+				'enabled'     => (bool) getenv( 'TERMINAL_ENABLE_PARSELY_SEARCH' ),
+				'apiKey'      => getenv( 'TERMINAL_PARSELY_API_KEY' ),
+			),
 	) );
 	if ( ! $echo ) {
 		return $data_layer;

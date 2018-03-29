@@ -3,7 +3,6 @@
 
 import './index.scss';
 import { setupMenu } from './js/menu';
-// // import { popular } from './js/popular';
 
 function scaleAd(ID) {
   const adDiv = jQuery(ID);
@@ -114,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   exponentialBackoff(
-    () => window.googletag.pubadsReady,
+    () => window.googletag && window.googletag.pubadsReady,
     50,
     50,
     coveredUncovered,

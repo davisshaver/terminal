@@ -5,11 +5,11 @@
  * @package Terminal
  */
 
-get_header(); ?>
+get_header();
+get_template_part( 'partials/search' );
+?>
 
 <div class="terminal-container">
-<div id="terminal-search">
-</div>
 <?php
 if ( have_posts() ) :
 	while ( have_posts() ) :

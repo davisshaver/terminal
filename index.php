@@ -12,12 +12,10 @@
  * @package Terminal
  */
 
-get_header(); ?>
+get_header();
+?>
 
 <div id="terminal-container" class="terminal-container">
-	<div id="terminal-search">
-
-	</div>
 	<?php
 	if ( is_home() && ! is_paged() ) {
 		echo '<div class="terminal-top-container">';

@@ -49,7 +49,7 @@ class Theme {
 		add_image_size( 'terminal-thumbnail-small', 100, 100, true );
 		add_image_size( 'terminal-featured', 1404, 740, false );
 		add_filter( 'image_size_names_choose', [ $this, 'filter_image_size_names_choose' ] );
-
+		add_filter( 'parsely_filter_image_size', [ $this, 'filter_parsely_image_size' ] );
 		$custom_background_args = array(
 			'default-color' => '#f4f4f4',
 		);
@@ -95,9 +95,44 @@ class Theme {
 		add_filter( 'pings_open', '__return_false', 20, 2 );
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 		add_filter( 'unipress_push_taxonomies_post_types', [ $this, 'remove_unipress_buggy_tax' ] );
+		add_filter( 'wpseo_canonical', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
 		add_filter( 'body_class', [ $this, 'add_uncovered' ] );
+		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
+	}
+
+	/**
+	 * Filter WP SEO Canonical
+	 *
+	 * @param $canonical string Canonical
+	 * @return string Filtered canonical
+	 */
+	public function ensure_no_www_in_canonical( $canonical ) {
+		return str_replace( 'www.', '', $canonical );
+	}
+	/**
+	 * Filter parsely post tags.
+	 *
+	 * @param $tags array Existing tags.
+	 * @param $post_id Post ID
+	 * @return array Filtered tags
+	 */
+	public function filter_parsely_post_tags( $tags, $post_id ) {
+		$filtered_tags = $tags;
+		$placements = wp_get_post_terms( $post_id, 'terminal-placement');
+		foreach( $placements as $placement ) {
+			$filtered_tags[] = 'placement|' . $placement->name;
+			$filtered_tags[] = 'placement-id|' . $placement->term_id;
+		}
+		return $filtered_tags;
+	}
+
+	/**
+	 * Filter parsely image size
+	 */
+	public function filter_parsely_image_size() {
+		return 'terminal-uncut-thumbnail';
 	}
 
 	/**

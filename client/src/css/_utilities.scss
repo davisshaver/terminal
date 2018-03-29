@@ -7,11 +7,11 @@ body {
     -ms-user-select: none;
   }
   .terminal-hidden {
-    display: none;
+    display: none !important;
   }
 
   .terminal-hidden-no-js {
-    display: none;
+    display: none !important;
   }
 
   .terminal-flipped {

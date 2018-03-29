@@ -284,7 +284,7 @@ class Customizer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'footer_ad_background_color_setting', 'inherit' ) ); ?>;
 			}
 
-			.terminal-featured-section, .terminal-hero-container .terminal-hero-widget, .terminal-breakout-container .terminal-hero-widget {
+			.terminal-featured-section, .terminal-hero-container .terminal-hero-widget, .terminal-breakout-container .terminal-hero-widget, #terminal-search {
 				<?php
 				$featured_section = get_theme_mod( 'featured_section_background_color_setting', false );
 				if ( ! empty( $featured_section ) ) {
