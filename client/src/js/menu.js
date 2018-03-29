@@ -13,6 +13,7 @@ export function setupMenu() {
   const moreSearch = document.querySelector('.terminal-nav-bar-inside-search');
   const footer = document.querySelector('.terminal-footer');
   const share = document.querySelector('.essb_bottombar');
+  const shareMobile = document.querySelector('.essb-mobile-sharebottom');
   const searchHeader = document.querySelector('.terminal-search-header');
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   const searchLinkSVG = document.querySelector('.terminal-nav-bar-inside-search-link svg');
@@ -53,6 +54,9 @@ export function setupMenu() {
         targets.forEach(target => toggleHidden(target));
         if (share) {
           toggleHidden(share);
+        }
+        if (shareMobile) {
+          toggleHidden(shareMobile);
         }
         if (footer) {
           toggleHidden(footer);
