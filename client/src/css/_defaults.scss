@@ -179,6 +179,19 @@ form[role="search"] {
 		flex: 1 0 70%;
 		-webkit-appearance: none;
 		height: 30px;
+		&::-webkit-search-cancel-button {
+
+			/* Remove default */
+			-webkit-appearance: none;
+			content: '';
+			display: block;
+			width: 15px;
+			height: 12px;
+			background-repeat: no-repeat;
+			background-size: 12px;
+			background-position: top left;
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFIAAABSAQMAAAD94hHYAAAABlBMVEUAAACXl5cNUA2AAAAAAnRSTlP9B0nlx2sAAABxSURBVHhe7dK9DYYgFIXhYywsGYFRHA3djMRFGIGS4gb0XoRg4s9XfRVvcfIMcJCOnKwVLzCN52pAFxOgxISzySIUj1f7Ow/PTm5O3JB+9ha1L15JOfN/d3fLDz++qpkxW7EpG9KrffbIDo0pe2LX7A7qXBSslhfN8AAAAABJRU5ErkJggg==);
+		}
 	}
 	.search-submit {
 		cursor: pointer;
