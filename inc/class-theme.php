@@ -62,7 +62,7 @@ class Theme {
 			'terminal-footer-more' => esc_html__( 'Footer More Menu', 'terminal' ),
 			'terminal-footer'      => esc_html__( 'Footer Menu', 'terminal' ),
 		) );
-
+		add_filter( 'parsely_filter_insert_javascript', [ $this, 'filter_parsely_filter_insert_javascript' ] );
 		add_theme_support( 'html5', array(
 			'search-form',
 			'gallery',
@@ -107,6 +107,18 @@ class Theme {
 		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
 	}
 
+	/**
+	 * Filter whether parsely inserts JS.
+	 *
+	 * @param bool $insert Whether to insert JS.
+	 * @return bool Filtered value.
+	 */
+	public function filter_parsely_filter_insert_javascript( $insert ) {
+		if ( ! defined( 'NOT_PROD' ) || ! NOT_PROD ) {
+			return $insert;
+		}
+		return false;
+	}
 	/**
 	 * Add amp-ad to allowed wp_kses_post tags
 	 *
