@@ -15,8 +15,8 @@ $footer_data = terminal_get_footer_data( array(
 	<div class="terminal-footer-inside">
 		<div class="terminal-footer-leaderboard">
 			<?php
-			if ( is_active_sidebar( 'footer' ) ) {
-				dynamic_sidebar( 'footer' );
+			if ( is_active_sidebar( 'terminal-footer' ) ) {
+				dynamic_sidebar( 'terminal-footer' );
 			}
 			?>
 		</div>
