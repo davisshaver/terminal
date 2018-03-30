@@ -31,12 +31,6 @@
 		display: block;
 	}
 
-
-	.terminal-limit-max-content-width-add-margin {
-		max-width: calc(#{$max_content_width} - 60px);
-		width: calc(100% - 60px);
-		margin: auto;
-	}
 	.terminal-card-text {
 		margin: 0 auto 0 auto;
 		&.terminal-card-text-top-margin {
