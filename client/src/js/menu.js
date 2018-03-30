@@ -21,8 +21,9 @@ export function setupMenu() {
   const widget = document.querySelector('.widget_search');
   const resultsContainer = document.querySelector('.terminal-results');
   const searchFormMore = document.querySelector('.terminal-search-form-more');
-  const searchFormMoreSVG = document.querySelector('.terminal-search-form-more svg');
+  const searchFormMoreSVG = document.querySelector('.terminal-search-form-more-link svg');
   const searchFormMoreLink = document.querySelector('.terminal-search-form-more-link');
+  const searchFormResetLink = document.querySelector('.terminal-search-form-reset-link');
   function addEventListenerOnce(target, type, listener) {
     target.addEventListener(type, function fn(event) {
       event.preventDefault();
