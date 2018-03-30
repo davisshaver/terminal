@@ -137,6 +137,7 @@ body.home, body.search, body.archive {
 	.terminal-footer-leaderboard {
 		display: flex;
 		width: 100%;
+		flex-wrap: wrap;
 		margin: 0 auto;
 		.widget_ad_layers_ad_widget {
 			margin: 0 auto;
@@ -146,10 +147,19 @@ body.home, body.search, body.archive {
 		}
 	}
 	.terminal-footer-leaderboard {
+		margin-top: 10px;
 		background-color: inherit;
+		.terminal-footer-section {
+			display: flex;
+			flex: 0 0 100%;
+			margin: 10px auto;
+			.textwidget {
+				margin: 0 auto;
+			}
+		}
 	}
 	.terminal-footer-icons, .terminal-ppc-logo, .terminal-copyright, .terminal-menu-footer ul a {
-		margin-top: 15px;
+		margin-top: 10px;
 	}
 	.terminal-copyright p {
 		margin: 0;
