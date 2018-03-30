@@ -118,8 +118,8 @@ ob_end_clean();
 			?>
 				<div class="terminal-footer-leaderboard">
 					<?php
-					if ( is_active_sidebar( 'footer' ) ) {
-						dynamic_sidebar( 'footer' );
+					if ( is_active_sidebar( 'terminal-footer' ) ) {
+						dynamic_sidebar( 'terminal-footer' );
 					}
 					?>
 				</div>
