@@ -206,7 +206,7 @@ export function setupMenu() {
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
           document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<button id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
-          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+          document.querySelector('.terminal-reslults-more').scrollIntoView(false);
           loadSearchURL(firstLink);
         } else if (query === '') {
           resetForm();
@@ -217,7 +217,7 @@ export function setupMenu() {
           (e) => {
             e.target.closest('form').reset();
             resetForm();
-            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+            document.querySelector('.terminal-reslults-more').scrollIntoView(false);
             navSearchField.focus();
           },
         );
