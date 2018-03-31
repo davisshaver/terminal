@@ -175,6 +175,9 @@ export function setupMenu() {
                 } else {
                   document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                 }
+                if (!links.prev) {
+                  document.querySelector('.terminal-search-header').scrollIntoView(false);
+                }
                 if (links.next !== null && values.length !== 0) {
                   addEventListenerOnce(resultMore, 'click', () => {
                     loadSearchURL(links.next);
@@ -206,10 +209,10 @@ export function setupMenu() {
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
           document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<button id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
-          document.querySelector('.terminal-reslults-more').scrollIntoView(false);
           loadSearchURL(firstLink);
         } else if (query === '') {
           resetForm();
+          document.querySelector('.terminal-search-header').scrollIntoView(false);
         }
 
         searchFormResetLink.addEventListener(
@@ -217,7 +220,7 @@ export function setupMenu() {
           (e) => {
             e.target.closest('form').reset();
             resetForm();
-            document.querySelector('.terminal-reslults-more').scrollIntoView(false);
+            document.querySelector('.terminal-search-header').scrollIntoView(false);
             navSearchField.focus();
           },
         );
