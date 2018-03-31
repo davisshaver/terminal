@@ -194,6 +194,7 @@ export function setupMenu() {
                 hide(resultMore);
                 results = '<div class="terminal-card terminal-card-no-grow terminal-card-single terminal-no-photo terminal-search-card"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
                 document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
+                document.querySelector('.terminal-search-header').scrollIntoView(false);
               } else {
                 hide(resultMore);
               }
