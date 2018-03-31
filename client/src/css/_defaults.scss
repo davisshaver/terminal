@@ -193,11 +193,19 @@ form[role="search"] {
 		flex-wrap: wrap;
 		width: 100%;
 		flex: 0 0 100%;
-		input, select, label {
+		input, label {
 			margin: 5px auto;
 			display: flex;
 			width: 100%;
 			flex: 0 0 100%;
+			max-width: calc(100% - 15px);
+		}
+		select {
+			margin: 5px auto;
+			display: flex;
+			width: 100%;
+			flex: 0 0 100%;
+			max-width: 100%;
 		}
 	}
 	.search-field {
