@@ -47,7 +47,15 @@ export function setupMenu() {
   function toggleHidden(element) {
     element.classList.toggle('terminal-hidden');
   }
-  function addClickListener(listen, targets, icon = false, focus = false) {
+
+  function resetForm() {
+    document.querySelector('.terminal-results').innerHTML = '';
+    const more = document.querySelectorAll('.terminal-results-more');
+    [...more].forEach(node => node.parentNode.removeChild(node));
+    searchHeader.innerText = 'Enter a search term for instant results';
+  }
+
+  function addClickListener(listen, targets, icon = false, focus = false, callback = false) {
     listen.addEventListener(
       'click',
       (e) => {
@@ -69,23 +77,33 @@ export function setupMenu() {
         if (focus && focus.offsetParent !== null) {
           focus.focus();
         }
+        if (callback) {
+          callback();
+        }
       },
     );
   }
 
   function addInputListener(inputContainer, resultsCallback) {
-    const inputs = inputContainer.getElementsByTagName('input');
+    const inputs = inputContainer.querySelectorAll('input');
+    const select = inputContainer.querySelector('select');
     const form = inputContainer.querySelector('form');
     form.addEventListener('submit', e => e.preventDefault());
     [...inputs].filter(input => input.type === 'submit').forEach(input => input.setAttribute('style', 'display: none'));
-    const getValues = () => [...inputs].map(({ type, value }) => ({
+    const getValues = () => [...inputs, select].map(({ type, value, name }) => ({
+      name,
       type,
       value,
     }))
       .filter(input => input.type !== 'submit');
     [...inputs].forEach(input => input.addEventListener('keyup', (e) => {
+      console.log(getValues());
       resultsCallback(e, getValues());
     }));
+    select.addEventListener('change', (e) => {
+      console.log(getValues());
+      resultsCallback(e, getValues());
+    });
   }
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
@@ -191,12 +209,18 @@ export function setupMenu() {
           resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
           loadSearchURL(firstLink);
         } else if (query === '') {
-          document.querySelector('.terminal-results').innerHTML = '';
-          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
-          const more = document.querySelectorAll('.terminal-results-more');
-          [...more].forEach(node => node.parentNode.removeChild(node));
-          searchHeader.innerText = 'Enter a search term for instant results';
+          resetForm();
         }
+
+        searchFormResetLink.addEventListener(
+          'click',
+          (e) => {
+            e.target.closest('form').reset();
+            resetForm();
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+            navSearchField.focus();
+          },
+        );
       });
     } else {
       addClickListener(searchLink, [moreSearch], searchLinkSVG);
