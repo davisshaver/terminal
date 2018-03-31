@@ -27,6 +27,7 @@ $searchform_id = 'search-' . rand();
 	<div class="terminal-hidden terminal-search-form-more">
 	<label for="terminal-boost-<?php echo esc_attr( $searchform_id ); ?>"><?php esc_html_e( 'Sort:', 'terminal' ); ?></label>
 	<select id="terminal-boost-<?php echo esc_attr( $searchform_id ); ?>" name="boost">
+		<option value="default"><?php esc_html_e( 'Default', 'terminal' ); ?></option>
 		<option value="recency"><?php esc_html_e( 'Recency', 'terminal' ); ?></option>
 		<option value="social_referrals"><?php esc_html_e( 'Social Referrals', 'terminal' ); ?></option>
 		<option value="engaged_minutes"><?php esc_html_e( 'Total Engagement', 'terminal' ); ?></option>

@@ -19,7 +19,6 @@ export function setupMenu() {
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   const searchLinkSVG = document.querySelector('.terminal-nav-bar-inside-search-link svg');
   const widget = document.querySelector('.widget_search');
-  const resultsContainer = document.querySelector('.terminal-results');
   const searchFormMore = document.querySelector('.terminal-search-form-more');
   const searchFormMoreSVG = document.querySelector('.terminal-search-form-more-link svg');
   const searchFormMoreLink = document.querySelector('.terminal-search-form-more-link');
@@ -126,21 +125,43 @@ export function setupMenu() {
         searchFormMoreSVG,
         navSearchFieldTwo,
       );
-      let currentQuery = false;
+      let currentQuery;
       let slotNum = 1;
       addInputListener(navSearch, (event, inputArgs) => {
         event.stopImmediatePropagation();
-        const query = encodeURIComponent(inputArgs[0].value.trim().replace(' ', '+'));
+        const inputValues = Object.values(inputArgs);
+        const query = encodeURIComponent(inputValues.find(element => element.name === 's').value.trim().replace(' ', '+'));
+        const boost = encodeURIComponent(inputValues.find(element => element.name === 'boost').value);
+        const pubDateEnd = encodeURIComponent(inputValues.find(element => element.name === 'pub_date_end').value);
+        const pubDateStart = encodeURIComponent(inputValues.find(element => element.name === 'pub_date_start').value);
+        let params = '';
+        if (boost && boost !== 'recency' && boost !== 'default') {
+          params = `&boost=${boost}${params}`;
+        }
+        if (boost === 'recency') {
+          params = `&sort=pub_date${params}`;
+        }
+        if (pubDateEnd) {
+          params = `&pub_date_end=${pubDateEnd}${params}`;
+        }
+        if (pubDateStart) {
+          params = `&pub_date_start=${pubDateStart}${params}`;
+        }
         let firstLink = '';
         function loadSearchURL(link) {
           return fetch(link)
             .then(response => response.json())
             .then(({ data, links }) => {
-              const values = Object.values(data);
+              let values = [];
+              if (data) {
+                values = Object.values(data);
+              }
               const resultMore = document.querySelector('.terminal-results-more');
               let results = '';
-              if (links.first === firstLink &&
-                links.first.endsWith(`q=${currentQuery}`) &&
+              if ((
+                links.first.includes(`&q=${currentQuery}&`) ||
+                links.first.endsWith(`&q=${currentQuery}`)
+              ) &&
                 values.length !== 0
               ) {
                 results = values.reduce((agg, datum) => {
@@ -187,8 +208,10 @@ export function setupMenu() {
                   hide(resultMore);
                 }
               } else if (
-                links.first === firstLink &&
-                links.first.includes(currentQuery) &&
+                (
+                  links.first.includes(`&q=${currentQuery}&`) ||
+                  links.first.endsWith(`&q=${currentQuery}`)
+                ) &&
                 !links.prev
               ) {
                 hide(resultMore);
@@ -201,10 +224,10 @@ export function setupMenu() {
             })
             .catch(err => console.error(err));
         }
-        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=12&page=1&q=${query}`;
-        if (firstLink !== maybeFirstLink && query !== currentQuery && query !== '') {
-          currentQuery = query;
+        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=12&page=1&q=${query}${params}`;
+        if (firstLink !== maybeFirstLink && query !== '') {
           firstLink = maybeFirstLink;
+          currentQuery = query;
           document.querySelector('.terminal-results').innerHTML = '';
           searchHeader.innerText = `Searching for ${inputArgs[0].value}`;
           const more = document.querySelectorAll('.terminal-results-more');
