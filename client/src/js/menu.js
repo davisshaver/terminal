@@ -16,6 +16,7 @@ export function setupMenu() {
   const share = document.querySelector('.essb_bottombar');
   const shareMobile = document.querySelector('.essb-mobile-sharebottom');
   const searchHeader = document.querySelector('.terminal-search-header');
+  const searchHeaderParams = document.querySelector('.terminal-search-header-params');
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   const searchLinkSVG = document.querySelector('.terminal-nav-bar-inside-search-link svg');
   const widget = document.querySelector('.widget_search');
@@ -52,6 +53,7 @@ export function setupMenu() {
     const more = document.querySelectorAll('.terminal-results-more');
     [...more].forEach(node => node.parentNode.removeChild(node));
     searchHeader.innerText = 'Enter a search term for instant results';
+    searchHeaderParams.innerText = '';
   }
 
   function addClickListener(listen, targets, icon = false, focus = false, callback = false) {
@@ -95,12 +97,10 @@ export function setupMenu() {
       value,
     }))
       .filter(input => input.type !== 'submit');
-    [...inputs].forEach(input => input.addEventListener('keyup', (e) => {
-      console.log(getValues());
+    [...inputs].forEach(input => input.addEventListener('change', (e) => {
       resultsCallback(e, getValues());
     }));
     select.addEventListener('change', (e) => {
-      console.log(getValues());
       resultsCallback(e, getValues());
     });
   }
@@ -135,17 +135,45 @@ export function setupMenu() {
         const pubDateEnd = encodeURIComponent(inputValues.find(element => element.name === 'pub_date_end').value);
         const pubDateStart = encodeURIComponent(inputValues.find(element => element.name === 'pub_date_start').value);
         let params = '';
+        let sorting = '';
+        let dateFilteringBefore = '';
+        let dateFilteringAfter = '';
         if (boost && boost !== 'recency' && boost !== 'default') {
           params = `&boost=${boost}${params}`;
+          switch (boost) {
+            case 'social_referrals': {
+              sorting = 'Sorted by social referrals';
+              break;
+            }
+            case 'engaged_minutes': {
+              sorting = 'Sorted by social referrals';
+              break;
+            }
+            case 'fb_referrals': {
+              sorting = 'Sorted by social referrals';
+              break;
+            }
+            case 'tw_referrals': {
+              sorting = 'Sorted by social referrals';
+              break;
+            }
+            default: {
+              sorting = '';
+              break;
+            }
+          }
         }
         if (boost === 'recency') {
           params = `&sort=pub_date${params}`;
+          sorting = 'Sorted by recency';
         }
         if (pubDateEnd) {
           params = `&pub_date_end=${pubDateEnd}${params}`;
+          dateFilteringBefore = `Published before ${pubDateEnd}`;
         }
         if (pubDateStart) {
           params = `&pub_date_start=${pubDateStart}${params}`;
+          dateFilteringAfter = `Published after ${pubDateStart}`;
         }
         let firstLink = '';
         function loadSearchURL(link) {
@@ -230,6 +258,7 @@ export function setupMenu() {
           currentQuery = query;
           document.querySelector('.terminal-results').innerHTML = '';
           searchHeader.innerText = `Searching for ${inputArgs[0].value}`;
+          searchHeaderParams.innerText = `${[sorting, dateFilteringBefore, dateFilteringAfter].filter(item => item).join(' and ')}`;
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
           document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<button id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
