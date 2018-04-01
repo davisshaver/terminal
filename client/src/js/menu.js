@@ -142,7 +142,7 @@ export function setupMenu() {
         let dateFilteringBefore = '';
         let dateFilteringAfter = '';
         if (boost && boost !== 'recency' && boost !== 'default') {
-          params = `&boost=${boost}${params}`;
+          params = `${params}&boost=${boost}`;
           switch (boost) {
             case 'social_referrals': {
               sorting = 'Sorted by social referrals';
@@ -166,19 +166,31 @@ export function setupMenu() {
             }
           }
         }
+        if (pubDateStart) {
+          params = `${params}&pub_date_start=${pubDateStart}`;
+          dateFilteringAfter = `Starting ${pubDateStart}`;
+        }
         if (boost === 'recency') {
-          params = `&sort=pub_date${params}`;
+          params = `${params}&sort=pub_date`;
           sorting = 'Sorted by recency';
         }
+        params = `${params}&limit=12&page=1`;
         if (pubDateEnd) {
-          params = `&pub_date_end=${pubDateEnd}${params}`;
-          dateFilteringBefore = `Published before ${pubDateEnd}`;
+          params = `${params}&pub_date_end=${pubDateEnd}`;
+          dateFilteringBefore = `Ending ${pubDateEnd}`;
         }
-        if (pubDateStart) {
-          params = `&pub_date_start=${pubDateStart}${params}`;
-          dateFilteringAfter = `Published after ${pubDateStart}`;
+        const maybeParamsObject = {
+          pub_date_end: pubDateEnd,
+          pub_date_start: pubDateStart,
+        };
+        if (boost && boost !== 'recency' && boost !== 'default') {
+          maybeParamsObject.boost = boost;
+        }
+        if (boost === 'recency') {
+          maybeParamsObject.sort = 'pub_date';
         }
         let firstLink = '';
+        let paramsObject = {};
         function loadSearchURL(link) {
           return fetch(link)
             .then(response => response.json())
@@ -189,10 +201,15 @@ export function setupMenu() {
               }
               const resultMore = document.querySelector('.terminal-results-more');
               let results = '';
-              if ((
-                links.first.includes(`&q=${currentQuery}&`) ||
-                links.first.endsWith(`&q=${currentQuery}`)
-              ) &&
+              if (
+                Object.keys(paramsObject)
+                  .reduce((agg, key) => {
+                    if (!links.first.includes(`${paramsObject[key]}`)) {
+                      return false;
+                    }
+                    return true;
+                  }, true) &&
+                firstLink === links.first &&
                 values.length !== 0
               ) {
                 results = values.reduce((agg, datum) => {
@@ -255,13 +272,14 @@ export function setupMenu() {
             })
             .catch(err => console.error(err));
         }
-        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=12&page=1&q=${query}${params}`;
+        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}${params}&q=${query}`;
         if (firstLink !== maybeFirstLink && query !== '') {
+          paramsObject = maybeParamsObject;
           firstLink = maybeFirstLink;
           currentQuery = query;
           document.querySelector('.terminal-results').innerHTML = '';
           searchHeader.innerText = `Searching for ${inputArgs[0].value}`;
-          searchHeaderParams.innerText = `${[sorting, dateFilteringBefore, dateFilteringAfter].filter(item => item).join(' and ')}`;
+          searchHeaderParams.innerText = `${[sorting, dateFilteringAfter, dateFilteringBefore].filter(item => item).join(' and ')}`;
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
           document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<button id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
