@@ -37,6 +37,7 @@ if ( has_post_thumbnail() ) :
 	echo '<div class="terminal-card-image">';
 	the_post_thumbnail( 'terminal-uncut-thumbnail-large' );
 	echo '</div>';
+	terminal_print_featured_image_caption();
 endif;
 if ( is_active_sidebar( 'terminal-before-article' ) ) {
 	dynamic_sidebar( 'terminal-before-article' );

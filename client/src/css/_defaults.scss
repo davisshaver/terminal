@@ -138,6 +138,8 @@ body.home, body.search, body.archive {
 		display: flex;
 		width: 100%;
 		flex-wrap: wrap;
+		margin-top: 10px;
+		background-color: inherit;
 		margin: 0 auto;
 		.widget_ad_layers_ad_widget {
 			margin: 0 auto;
@@ -145,17 +147,10 @@ body.home, body.search, body.archive {
 		.dfp-ad {
 			padding: 0;
 		}
-	}
-	.terminal-footer-leaderboard {
-		margin-top: 10px;
-		background-color: inherit;
 		.terminal-footer-section {
 			display: flex;
 			flex: 0 0 100%;
 			margin: 10px auto;
-			.textwidget {
-				margin: 0 auto;
-			}
 		}
 	}
 	.terminal-footer-icons, .terminal-ppc-logo, .terminal-copyright, .terminal-menu-footer ul a {
