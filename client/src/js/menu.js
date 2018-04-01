@@ -15,7 +15,7 @@ export function setupMenu() {
   const footer = document.querySelector('.terminal-footer');
   const share = document.querySelector('.essb_bottombar');
   const shareMobile = document.querySelector('.essb-mobile-sharebottom');
-  const searchHeader = document.querySelector('.terminal-search-header');
+  const searchHeader = () => document.querySelector('.terminal-search-header');
   const searchHeaderParams = document.querySelector('.terminal-search-header-params');
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   const searchLinkSVG = document.querySelector('.terminal-nav-bar-inside-search-link svg');
@@ -24,6 +24,16 @@ export function setupMenu() {
   const searchFormMoreSVG = document.querySelector('.terminal-search-form-more-link svg');
   const searchFormMoreLink = document.querySelector('.terminal-search-form-more-link');
   const searchFormResetLink = document.querySelector('.terminal-search-form-reset-link');
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const html = document.documentElement;
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || html.clientHeight) &&
+      rect.right <= (window.innerWidth || html.clientWidth)
+    );
+  }
   function addEventListenerOnce(target, type, listener) {
     target.addEventListener(type, function fn(event) {
       event.preventDefault();
@@ -52,7 +62,7 @@ export function setupMenu() {
     document.querySelector('.terminal-results').innerHTML = '';
     const more = document.querySelectorAll('.terminal-results-more');
     [...more].forEach(node => node.parentNode.removeChild(node));
-    searchHeader.innerText = 'Enter a search term for instant results';
+    searchHeader().innerText = 'Enter a search term for instant results';
     searchHeaderParams.innerText = '';
   }
 
@@ -246,7 +256,9 @@ export function setupMenu() {
                   document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                 }
                 if (!links.prev) {
-                  document.querySelector('.terminal-search-header').scrollIntoView(false);
+                  if (searchHeader() && !isInViewport(searchHeader())) {
+                    searchHeader().scrollIntoView(false);
+                  }
                 }
                 if (links.next !== null && values.length !== 0) {
                   addEventListenerOnce(resultMore, 'click', () => {
@@ -266,7 +278,10 @@ export function setupMenu() {
                 hide(resultMore);
                 results = '<div class="terminal-card terminal-card-no-grow terminal-card-single terminal-no-photo terminal-search-card"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
                 document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
-                document.querySelector('.terminal-search-header').scrollIntoView(false);
+                console.log(isInViewport(searchHeader()));
+                if (searchHeader && !isInViewport(searchHeader())) {
+                  searchHeader().scrollIntoView(false);
+                }
               } else {
                 hide(resultMore);
               }
@@ -279,7 +294,7 @@ export function setupMenu() {
           firstLink = maybeFirstLink;
           currentQuery = query;
           document.querySelector('.terminal-results').innerHTML = '';
-          searchHeader.innerText = `Searching for ${inputArgs[0].value}`;
+          searchHeader().innerText = `Searching for ${inputArgs[0].value}`;
           searchHeaderParams.innerText = `${[sorting, dateFilteringAfter, dateFilteringBefore].filter(item => item).join(' and ')}`;
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
@@ -287,7 +302,7 @@ export function setupMenu() {
           loadSearchURL(firstLink);
         } else if (query === '') {
           resetForm();
-          document.querySelector('.terminal-search-header').scrollIntoView(false);
+          searchHeader().scrollIntoView(false);
         }
 
         searchFormResetLink.addEventListener(
