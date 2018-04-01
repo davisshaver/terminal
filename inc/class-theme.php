@@ -96,7 +96,7 @@ class Theme {
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 		add_filter( 'unipress_push_taxonomies_post_types', [ $this, 'remove_unipress_buggy_tax' ] );
 		add_filter( 'wpseo_canonical', [ $this, 'ensure_no_www_in_canonical' ] );
-		add_filter ('wp_parsely_page_url', [ $this, 'ensure_no_www_n_canonical' ] );
+		add_filter ('wp_parsely_page_url', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
 		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 2 );

@@ -149,15 +149,15 @@ export function setupMenu() {
               break;
             }
             case 'engaged_minutes': {
-              sorting = 'Sorted by social referrals';
+              sorting = 'Sorted by engaged minutes';
               break;
             }
             case 'fb_referrals': {
-              sorting = 'Sorted by social referrals';
+              sorting = 'Sorted by Facebook referrals';
               break;
             }
             case 'tw_referrals': {
-              sorting = 'Sorted by social referrals';
+              sorting = 'Sorted by Twitter referrals';
               break;
             }
             default: {
