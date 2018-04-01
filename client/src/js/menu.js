@@ -100,6 +100,9 @@ export function setupMenu() {
     [...inputs].forEach(input => input.addEventListener('change', (e) => {
       resultsCallback(e, getValues());
     }));
+    [...inputs].forEach(input => input.addEventListener('keyup', (e) => {
+      resultsCallback(e, getValues());
+    }));
     select.addEventListener('change', (e) => {
       resultsCallback(e, getValues());
     });
