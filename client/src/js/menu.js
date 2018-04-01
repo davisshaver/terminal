@@ -182,6 +182,7 @@ export function setupMenu() {
         const maybeParamsObject = {
           pub_date_end: pubDateEnd,
           pub_date_start: pubDateStart,
+          q: query,
         };
         if (boost && boost !== 'recency' && boost !== 'default') {
           maybeParamsObject.boost = boost;
@@ -201,6 +202,7 @@ export function setupMenu() {
               }
               const resultMore = document.querySelector('.terminal-results-more');
               let results = '';
+              console.log(paramsObject, links.first);
               if (
                 Object.keys(paramsObject)
                   .reduce((agg, key) => {
@@ -209,7 +211,6 @@ export function setupMenu() {
                     }
                     return true;
                   }, true) &&
-                firstLink === links.first &&
                 values.length !== 0
               ) {
                 results = values.reduce((agg, datum) => {
