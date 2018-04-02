@@ -98,6 +98,7 @@ class Theme {
 		add_filter( 'wpseo_canonical', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter ('wpseo_json_ld_output', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
+		add_filter ( 'post_link', [ $this, 'post_link_www'] );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
 		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 2 );
 		
@@ -140,6 +141,16 @@ class Theme {
 			);
 		}
 		return $tags;
+	}
+
+	/**
+	 * Filter WP SEO Canonical
+	 *
+	 * @param $link string Canonical
+	 * @return string Filtered canonical
+	 */
+	public function post_link_www( $link ) {
+		return str_replace( 'www.', '', $link );
 	}
 
 	/**
