@@ -221,11 +221,11 @@ export function setupMenu() {
               if (
                 Object.keys(paramsObject)
                   .reduce((agg, key) => {
-                    if (!links.first.includes(`${paramsObject[key]}`)) {
-                      return false;
+                    if (links.first.includes(`=${paramsObject[key]}&`) || links.first.endsWith(`=${paramsObject[key]}`)) {
+                      return true;
                     }
-                    return true;
-                  }, true) &&
+                    return false;
+                  }, false) &&
                 values.length !== 0
               ) {
                 results = values.reduce((agg, datum) => {
