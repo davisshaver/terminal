@@ -217,7 +217,6 @@ export function setupMenu() {
               }
               const resultMore = document.querySelector('.terminal-results-more');
               let results = '';
-              console.log(paramsObject, links.first);
               if (
                 Object.keys(paramsObject)
                   .reduce((agg, key) => {
