@@ -28,7 +28,7 @@ class Links {
 			$this->link_post_type_link_key = getenv( 'TERMINAL_LINK_POST_TYPE_LINK_KEY' );
 		}
 		add_action( 'init', [ $this, 'register_link_post_type' ] );
-		add_filter( 'the_title', [ $this, 'filter_feed_title' ] );
+		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
  		add_filter( 'pre_get_posts', array( $this, 'include_link_post_type_in_rss' ) );
 		add_filter( 'enter_title_here', [ $this, 'change_headline_to_link_title' ] );
 		add_action( 'init', [ $this, 'register_link_fields' ] );
@@ -39,10 +39,11 @@ class Links {
 	 * Filter feed title.
 	 *
 	 * @param string $title Current title
+	 * @param int    $id Current post ID.
 	 * @return string Filtered title
 	 */
-	public function filter_feed_title( $title ) {
-		if ( is_feed() ) {
+	public function filter_feed_title( $title, $id ) {
+		if ( is_feed() && $this->link_post_type === get_post_type( $id ) ) {
 			return "[LINK] ${title}";
 		}
 		return $title;
