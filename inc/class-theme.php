@@ -96,7 +96,7 @@ class Theme {
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 		add_filter( 'unipress_push_taxonomies_post_types', [ $this, 'remove_unipress_buggy_tax' ] );
 		add_filter( 'wpseo_canonical', [ $this, 'ensure_no_www_in_canonical' ] );
-		add_filter ('wp_parsely_page_url', [ $this, 'ensure_no_www_in_canonical' ] );
+		add_filter ('wpseo_json_ld_output', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
 		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 2 );
@@ -145,11 +145,13 @@ class Theme {
 	/**
 	 * Filter WP SEO Canonical
 	 *
-	 * @param $canonical string Canonical
+	 * @param $value string Canonical
 	 * @return string Filtered canonical
 	 */
-	public function ensure_no_www_in_canonical( $canonical ) {
-		return str_replace( 'www.', '', $canonical );
+	public function ensure_no_www_in_canonical( $value ) {
+		$link = get_permalink();
+		$parsed_link = parse_url( $link );
+		return str_replace( $parsed_link['host'], str_replace( 'www.', '', $parsed_link['host'] ), $value );
 	}
 	/**
 	 * Filter parsely post tags.
