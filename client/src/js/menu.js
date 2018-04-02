@@ -66,7 +66,7 @@ export function setupMenu() {
     searchHeaderParams.innerText = '';
   }
 
-  function addClickListener(listen, targets, icon = false, focus = false, callback = false) {
+  function addClickListener(listen, targets, icon = false, focus = false, callback = false, scroll = false) {
     listen.addEventListener(
       'click',
       (e) => {
@@ -90,6 +90,9 @@ export function setupMenu() {
         }
         if (callback) {
           callback();
+        }
+        if (scroll && !isInViewport(scroll)) {
+          scroll.scrollIntoView(false);
         }
       },
     );
@@ -131,6 +134,8 @@ export function setupMenu() {
         [moreSearch, searchTarget],
         searchLinkSVG,
         navSearchField,
+        false,
+        searchHeader(),
       );
       addClickListener(
         searchFormMoreLink,
@@ -255,11 +260,6 @@ export function setupMenu() {
                 } else {
                   document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
                 }
-                if (!links.prev) {
-                  if (searchHeader() && !isInViewport(searchHeader())) {
-                    searchHeader().scrollIntoView(false);
-                  }
-                }
                 if (links.next !== null && values.length !== 0) {
                   addEventListenerOnce(resultMore, 'click', () => {
                     loadSearchURL(links.next);
@@ -278,10 +278,6 @@ export function setupMenu() {
                 hide(resultMore);
                 results = '<div class="terminal-card terminal-card-no-grow terminal-card-single terminal-no-photo terminal-search-card"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
                 document.querySelector('.terminal-results').insertAdjacentHTML('beforeend', results);
-                console.log(isInViewport(searchHeader()));
-                if (searchHeader && !isInViewport(searchHeader())) {
-                  searchHeader().scrollIntoView(false);
-                }
               } else {
                 hide(resultMore);
               }
@@ -302,7 +298,9 @@ export function setupMenu() {
           loadSearchURL(firstLink);
         } else if (query === '') {
           resetForm();
-          searchHeader().scrollIntoView(false);
+          if (searchHeader && !isInViewport(searchHeader())) {
+            searchHeader().scrollIntoView(false);
+          }
         }
 
         searchFormResetLink.addEventListener(
