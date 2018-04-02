@@ -25,6 +25,7 @@ class Books {
 		}
 		add_action( 'init', [ $this, 'register_book_post_type' ] );
 		add_filter( 'pre_get_posts', array( $this, 'include_book_post_type_in_rss' ) );
+		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
 	}
 
 	/**
@@ -32,6 +33,20 @@ class Books {
 	 */
 	public function get_book_post_type() {
 		return $this->book_post_type;
+	}
+
+	/**
+	 * Filter feed title.
+	 *
+	 * @param string $title Current title
+	 * @param int    $id Current post ID.
+	 * @return string Filtered title
+	 */
+	public function filter_feed_title( $title, $id ) {
+		if ( is_feed() && $this->book_post_type === get_post_type( $id ) ) {
+			return "[BOOK] ${title}";
+		}
+		return $title;
 	}
 
 	/**

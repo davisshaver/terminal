@@ -30,6 +30,7 @@ class Community {
 		add_action( 'init', [ $this, 'register_community_post_type' ] );
 		add_filter( 'pre_get_posts', array( $this, 'include_community_post_type_in_rss' ) );
 		add_action( 'init', [ $this, 'register_community_fields' ] );
+		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
 	}
 
 	/**
@@ -37,6 +38,19 @@ class Community {
 	 */
 	public function get_community_post_type() {
 		return $this->community_post_type;
+	}
+	/**
+	 * Filter feed title.
+	 *
+	 * @param string $title Current title
+	 * @param int    $id Current post ID.
+	 * @return string Filtered title
+	 */
+	public function filter_feed_title( $title, $id ) {
+		if ( is_feed() && $this->community_post_type === get_post_type( $id ) ) {
+			return "[COMMUNITY] ${title}";
+		}
+		return $title;
 	}
 
 	/**

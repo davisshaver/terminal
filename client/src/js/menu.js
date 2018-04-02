@@ -15,14 +15,25 @@ export function setupMenu() {
   const footer = document.querySelector('.terminal-footer');
   const share = document.querySelector('.essb_bottombar');
   const shareMobile = document.querySelector('.essb-mobile-sharebottom');
-  const searchHeader = document.querySelector('.terminal-search-header');
+  const searchHeader = () => document.querySelector('.terminal-search-header');
+  const searchHeaderParams = document.querySelector('.terminal-search-header-params');
   const svgLink = document.querySelector('.terminal-nav-bar-inside-more-link svg');
   const searchLinkSVG = document.querySelector('.terminal-nav-bar-inside-search-link svg');
   const widget = document.querySelector('.widget_search');
-  const resultsContainer = document.querySelector('.terminal-results');
   const searchFormMore = document.querySelector('.terminal-search-form-more');
-  const searchFormMoreSVG = document.querySelector('.terminal-search-form-more svg');
+  const searchFormMoreSVG = document.querySelector('.terminal-search-form-more-link svg');
   const searchFormMoreLink = document.querySelector('.terminal-search-form-more-link');
+  const searchFormResetLink = document.querySelector('.terminal-search-form-reset-link');
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const html = document.documentElement;
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || html.clientHeight) &&
+      rect.right <= (window.innerWidth || html.clientWidth)
+    );
+  }
   function addEventListenerOnce(target, type, listener) {
     target.addEventListener(type, function fn(event) {
       event.preventDefault();
@@ -46,7 +57,16 @@ export function setupMenu() {
   function toggleHidden(element) {
     element.classList.toggle('terminal-hidden');
   }
-  function addClickListener(listen, targets, icon = false, focus = false) {
+
+  function resetForm() {
+    document.querySelector('.terminal-results').innerHTML = '';
+    const more = document.querySelectorAll('.terminal-results-more');
+    [...more].forEach(node => node.parentNode.removeChild(node));
+    searchHeader().innerText = 'Enter a search term for instant results';
+    searchHeaderParams.innerText = '';
+  }
+
+  function addClickListener(listen, targets, icon = false, focus = false, callback = false, scroll = false) {
     listen.addEventListener(
       'click',
       (e) => {
@@ -68,23 +88,37 @@ export function setupMenu() {
         if (focus && focus.offsetParent !== null) {
           focus.focus();
         }
+        if (callback) {
+          callback();
+        }
+        if (scroll && !isInViewport(scroll)) {
+          scroll.scrollIntoView(false);
+        }
       },
     );
   }
 
   function addInputListener(inputContainer, resultsCallback) {
-    const inputs = inputContainer.getElementsByTagName('input');
+    const inputs = inputContainer.querySelectorAll('input');
+    const select = inputContainer.querySelector('select');
     const form = inputContainer.querySelector('form');
     form.addEventListener('submit', e => e.preventDefault());
     [...inputs].filter(input => input.type === 'submit').forEach(input => input.setAttribute('style', 'display: none'));
-    const getValues = () => [...inputs].map(({ type, value }) => ({
+    const getValues = () => [...inputs, select].map(({ type, value, name }) => ({
+      name,
       type,
       value,
     }))
       .filter(input => input.type !== 'submit');
+    [...inputs].forEach(input => input.addEventListener('change', (e) => {
+      resultsCallback(e, getValues());
+    }));
     [...inputs].forEach(input => input.addEventListener('keyup', (e) => {
       resultsCallback(e, getValues());
     }));
+    select.addEventListener('change', (e) => {
+      resultsCallback(e, getValues());
+    });
   }
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
@@ -100,6 +134,8 @@ export function setupMenu() {
         [moreSearch, searchTarget],
         searchLinkSVG,
         navSearchField,
+        false,
+        searchHeader(),
       );
       addClickListener(
         searchFormMoreLink,
@@ -107,21 +143,89 @@ export function setupMenu() {
         searchFormMoreSVG,
         navSearchFieldTwo,
       );
-      let currentQuery = false;
+      let currentQuery;
       let slotNum = 1;
       addInputListener(navSearch, (event, inputArgs) => {
         event.stopImmediatePropagation();
-        const query = encodeURIComponent(inputArgs[0].value.trim().replace(' ', '+'));
+        const inputValues = Object.values(inputArgs);
+        const query = encodeURIComponent(inputValues.find(element => element.name === 's').value.trim().replace(' ', '+'));
+        const boost = encodeURIComponent(inputValues.find(element => element.name === 'boost').value);
+        const pubDateEnd = encodeURIComponent(inputValues.find(element => element.name === 'pub_date_end').value);
+        const pubDateStart = encodeURIComponent(inputValues.find(element => element.name === 'pub_date_start').value);
+        let params = '';
+        let sorting = '';
+        let dateFilteringBefore = '';
+        let dateFilteringAfter = '';
+        if (boost && boost !== 'recency' && boost !== 'default') {
+          params = `${params}&boost=${boost}`;
+          switch (boost) {
+            case 'social_referrals': {
+              sorting = 'Sorted by social referrals';
+              break;
+            }
+            case 'engaged_minutes': {
+              sorting = 'Sorted by engaged minutes';
+              break;
+            }
+            case 'fb_referrals': {
+              sorting = 'Sorted by Facebook referrals';
+              break;
+            }
+            case 'tw_referrals': {
+              sorting = 'Sorted by Twitter referrals';
+              break;
+            }
+            default: {
+              sorting = '';
+              break;
+            }
+          }
+        }
+        if (pubDateStart) {
+          params = `${params}&pub_date_start=${pubDateStart}`;
+          dateFilteringAfter = `Starting ${pubDateStart}`;
+        }
+        if (boost === 'recency') {
+          params = `${params}&sort=pub_date`;
+          sorting = 'Sorted by recency';
+        }
+        params = `${params}&limit=12&page=1`;
+        if (pubDateEnd) {
+          params = `${params}&pub_date_end=${pubDateEnd}`;
+          dateFilteringBefore = `Ending ${pubDateEnd}`;
+        }
+        const maybeParamsObject = {
+          pub_date_end: pubDateEnd,
+          pub_date_start: pubDateStart,
+          q: query,
+        };
+        if (boost && boost !== 'recency' && boost !== 'default') {
+          maybeParamsObject.boost = boost;
+        }
+        if (boost === 'recency') {
+          maybeParamsObject.sort = 'pub_date';
+        }
         let firstLink = '';
+        let paramsObject = {};
         function loadSearchURL(link) {
           return fetch(link)
             .then(response => response.json())
             .then(({ data, links }) => {
-              const values = Object.values(data);
+              let values = [];
+              if (data) {
+                values = Object.values(data);
+              }
               const resultMore = document.querySelector('.terminal-results-more');
               let results = '';
-              if (links.first === firstLink &&
-                links.first.endsWith(`q=${currentQuery}`) &&
+              console.log(paramsObject, links.first);
+              if (
+                Object.keys(paramsObject)
+                  .reduce((agg, key) => {
+                    if (links.first.includes(`=${paramsObject[key]}&`) || links.first.endsWith(`=${paramsObject[key]}`)) {
+                      return true;
+                    }
+                    return false;
+                  }, false) &&
                 values.length !== 0
               ) {
                 results = values.reduce((agg, datum) => {
@@ -165,8 +269,10 @@ export function setupMenu() {
                   hide(resultMore);
                 }
               } else if (
-                links.first === firstLink &&
-                links.first.includes(currentQuery) &&
+                (
+                  links.first.includes(`&q=${currentQuery}&`) ||
+                  links.first.endsWith(`&q=${currentQuery}`)
+                ) &&
                 !links.prev
               ) {
                 hide(resultMore);
@@ -178,24 +284,34 @@ export function setupMenu() {
             })
             .catch(err => console.error(err));
         }
-        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}&limit=12&page=1&q=${query}`;
-        if (firstLink !== maybeFirstLink && query !== currentQuery && query !== '') {
-          currentQuery = query;
+        const maybeFirstLink = `https://api.parsely.com/v2/search?apikey=${apikey}${params}&q=${query}`;
+        if (firstLink !== maybeFirstLink && query !== '') {
+          paramsObject = maybeParamsObject;
           firstLink = maybeFirstLink;
+          currentQuery = query;
           document.querySelector('.terminal-results').innerHTML = '';
-          searchHeader.innerText = `Searching for ${inputArgs[0].value}`;
+          searchHeader().innerText = `Searching for ${inputArgs[0].value}`;
+          searchHeaderParams.innerText = `${[sorting, dateFilteringAfter, dateFilteringBefore].filter(item => item).join(' and ')}`;
           const more = document.querySelectorAll('.terminal-results-more');
           [...more].forEach(node => node.parentNode.removeChild(node));
           document.querySelector('#terminal-search').insertAdjacentHTML('beforeend', `<button id="terminal-current-query-${currentQuery}" class="terminal-results-more terminal-header terminal-header-font terminal-hidden">Load more</div>`);
-          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
           loadSearchURL(firstLink);
         } else if (query === '') {
-          document.querySelector('.terminal-results').innerHTML = '';
-          resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
-          const more = document.querySelectorAll('.terminal-results-more');
-          [...more].forEach(node => node.parentNode.removeChild(node));
-          searchHeader.innerText = 'Enter a search term for instant results';
+          resetForm();
+          if (searchHeader && !isInViewport(searchHeader())) {
+            searchHeader().scrollIntoView(false);
+          }
         }
+
+        searchFormResetLink.addEventListener(
+          'click',
+          (e) => {
+            e.target.closest('form').reset();
+            resetForm();
+            document.querySelector('.terminal-search-header').scrollIntoView(false);
+            navSearchField.focus();
+          },
+        );
       });
     } else {
       addClickListener(searchLink, [moreSearch], searchLinkSVG);

@@ -27,6 +27,7 @@ class Photos {
 		if ( getenv( 'TERMINAL_PHOTO_POST_TYPE_PHOTOG_KEY' ) ) {
 			$this->photo_post_type_photo_key = getenv( 'TERMINAL_PHOTO_POST_TYPE_PHOTOG_KEY' );
 		}
+		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
 		add_action( 'init', [ $this, 'register_photo_post_type' ] );
 		add_filter( 'pre_get_posts', array( $this, 'include_photo_post_type_in_rss' ) );
 		add_action( 'init', [ $this, 'register_photo_fields' ] );
@@ -68,6 +69,19 @@ class Photos {
 		}
 	}
 
+	/**
+	 * Filter feed title.
+	 *
+	 * @param string $title Current title
+	 * @param int    $id Current post ID.
+	 * @return string Filtered title
+	 */
+	public function filter_feed_title( $title, $id ) {
+		if ( is_feed() && $this->photo_post_type === get_post_type( $id ) ) {
+			return "[PHOTO] ${title}";
+		}
+		return $title;
+	}
 	/**
 	 * Include community post type.
 	 *
