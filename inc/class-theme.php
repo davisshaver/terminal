@@ -327,7 +327,7 @@ class Theme {
 			'name'          => __( 'Recirculation ', 'terminal' ),
 			'id'            => 'terminal-recirc',
 			'description'   => __( 'Recirculation', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="terminal-headline-font terminal-recirc-section terminal-card terminal-card-single %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-headline-font terminal-recirc-section terminal-card terminal-card-single terminal-card-no-grow %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<div class="terminal-card-title terminal-card-title-breakout terminal-no-select terminal-sidebar-header-font"">',
 			'after_title'   => '</div>',
