@@ -43,3 +43,19 @@ body.home,  {
 		height: auto;
 	}
 }
+
+ul.parsely-recommended-widget {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	li {
+		img {
+			max-width: 100%;
+			margin-bottom: 10px;
+		}
+		a {
+			display: block;
+			margin: 0 10px 15px 10px;
+		}
+	}
+}
