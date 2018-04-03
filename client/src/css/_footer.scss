@@ -4,11 +4,13 @@
 }
 
 .terminal-footer-inside {
+  width: 100%;
+}
+.terminal-footer-leaderboard {
   .textwidget {
     margin: 0 auto;
     width: fit-content;
   }
-  width: 100%;
 }
 .terminal-menu-footer ul {
 	width: calc(100% - 60px);
