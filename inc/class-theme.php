@@ -100,6 +100,7 @@ class Theme {
 		add_filter ('wpseo_json_ld_output', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter ( 'post_link', [ $this, 'post_link_www'] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
+		add_filter ( 'post_link', [ $this, 'post_link_www'] );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
 		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 2 );
 		
@@ -153,6 +154,7 @@ class Theme {
 	public function post_link_www( $link ) {
 		return str_replace( 'www.', '', $link );
 	}
+
 	/**
 	 * Filter WP SEO Canonical
 	 *
@@ -164,6 +166,7 @@ class Theme {
 		$parsed_link = parse_url( $link );
 		return str_replace( $parsed_link['host'], str_replace( 'www.', '', $parsed_link['host'] ), $value );
 	}
+
 	/**
 	 * Filter parsely post tags.
 	 *
@@ -324,9 +327,9 @@ class Theme {
 			'name'          => __( 'Recirculation ', 'terminal' ),
 			'id'            => 'terminal-recirc',
 			'description'   => __( 'Recirculation', 'terminal' ),
-			'before_widget' => '<div id="%1$s" class="terminal-recirc-section %2$s">',
+			'before_widget' => '<div id="%1$s" class="terminal-recirc-section terminal-card terminal-card-single terminal-card-no-grow %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="terminal-recirc-header terminal-sidebar-header-font">',
+			'before_title'  => '<div class="terminal-card-title terminal-card-title-breakout terminal-no-select terminal-sidebar-header-font"">',
 			'after_title'   => '</div>',
 		) );
 	}

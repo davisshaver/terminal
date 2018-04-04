@@ -324,6 +324,9 @@ class Customizer {
 		<?php
 		if ( $amp ) {
 			?>
+			.amp-wp-article-content .wpcnt {
+					display: none;
+				}
 			.terminal-amp-ad {
 				height: 50px;
 				padding: 5px 0;
