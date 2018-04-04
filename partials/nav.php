@@ -52,7 +52,7 @@ ob_end_clean();
 			$rotation = is_search() ? 'terminal-flipped' : '';
 			$search_icon = str_replace( 'terminal-svg', sprintf( 'terminal-svg %s', esc_attr( $rotation ) ), $search_icon );
 			$search = sprintf(
-				'<li class="terminal-nav-bar-recent"><a href="%s">%s</a></li><li class="terminal-nav-bar-inside-popular-link terminal-hidden-no-js terminal-hidden-no-parsely"><a href="#">%s</a><li class="terminal-nav-bar-inside-search-link terminal-hidden-no-js"><a href="#">%s</a></li></ul>',
+				'<li class="terminal-nav-bar-recent"><a href="%s">%s</a></li><li class="terminal-nav-bar-inside-popular-link terminal-hidden-no-js"><a href="#">%s</a><li class="terminal-nav-bar-inside-search-link terminal-hidden-no-js"><a href="#">%s</a></li></ul>',
 				esc_url( home_url( '#recent' ) ),
 				$recent,
 				$trending_icon,

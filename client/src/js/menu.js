@@ -4,12 +4,14 @@
 export function setupMenu() {
   const moreLinkContainer = document.querySelector('.terminal-nav-bar-inside-more-link');
   const searchContainer = document.querySelector('.terminal-nav-bar-inside-search-link');
+  const popularContainer = document.querySelector('.terminal-nav-bar-inside-popular-link');
   const moreLink = document.querySelector('.terminal-nav-bar-inside-more-link a');
   const navSearch = document.querySelector('.terminal-nav-bar-inside-search');
   const navSearchField = document.querySelector('.terminal-nav-bar-inside-search .search-field');
   const navSearchFieldTwo = document.querySelector('.terminal-nav-bar-inside-search .search-field-filter-one');
   const searchTarget = document.querySelector('#terminal-search');
   const searchLink = document.querySelector('.terminal-nav-bar-inside-search-link a');
+  // const popularLink = document.querySelector('.terminal-nav-bar-inside-popular-link a');
   const moreNav = document.querySelector('.terminal-nav-bar-inside-more');
   const moreSearch = document.querySelector('.terminal-nav-bar-inside-search');
   const footer = document.querySelector('.terminal-footer');
@@ -66,7 +68,14 @@ export function setupMenu() {
     searchHeaderParams.innerText = '';
   }
 
-  function addClickListener(listen, targets, icon = false, focus = false, callback = false, scroll = false) {
+  function addClickListener(
+    listen,
+    targets,
+    icon = false,
+    focus = false,
+    callback = false,
+    scroll = false,
+  ) {
     listen.addEventListener(
       'click',
       (e) => {
@@ -123,6 +132,7 @@ export function setupMenu() {
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
     toggleHiddenNoJS(searchFormMoreLink);
+    toggleHiddenNoJS(popularContainer);
     toggleHiddenNoJS(searchContainer);
     addClickListener(moreLink, [moreNav], svgLink);
     const parsely = window.terminal.parsely.enabled;
