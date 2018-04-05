@@ -79,6 +79,7 @@ class FM_Header {
 					'cta_icon'                     => new \Fieldmanager_Media( 'CTA Icon' ),
 					'cta_link'                     => new \Fieldmanager_Link( 'CTA Link' ),
 					'mobile_header_image_override' => new \Fieldmanager_Media( 'Mobile Header Image Override' ),
+					'example_searches'             => new \Fieldmanager_TextArea( 'Example searches' ),
 				),
 			)
 		);

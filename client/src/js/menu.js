@@ -13,6 +13,7 @@ export function setupMenu() {
   const moreNav = document.querySelector('.terminal-nav-bar-inside-more');
   const moreSearch = document.querySelector('.terminal-nav-bar-inside-search');
   const footer = document.querySelector('.terminal-footer');
+  const searches = document.querySelector('.terminal-example-searches');
   const share = document.querySelector('.essb_bottombar');
   const shareMobile = document.querySelector('.essb-mobile-sharebottom');
   const searchHeader = () => document.querySelector('.terminal-search-header');
@@ -147,6 +148,7 @@ export function setupMenu() {
       let slotNum = 1;
       addInputListener(navSearch, (event, inputArgs) => {
         event.stopImmediatePropagation();
+        hide(searches);
         const inputValues = Object.values(inputArgs);
         const query = encodeURIComponent(inputValues.find(element => element.name === 's').value.trim().replace(' ', '+'));
         const boost = encodeURIComponent(inputValues.find(element => element.name === 'boost').value);
@@ -297,9 +299,6 @@ export function setupMenu() {
           loadSearchURL(firstLink);
         } else if (query === '') {
           resetForm();
-          if (searchHeader && !isInViewport(searchHeader())) {
-            searchHeader().scrollIntoView(false);
-          }
         }
 
         searchFormResetLink.addEventListener(
@@ -307,7 +306,7 @@ export function setupMenu() {
           (e) => {
             e.target.closest('form').reset();
             resetForm();
-            document.querySelector('.terminal-search-header').scrollIntoView(false);
+            reveal(searches);
             navSearchField.focus();
           },
         );

@@ -9,6 +9,10 @@ if ( ! has_nav_menu( 'terminal-header' ) ) {
 	return;
 }
 
+$header_data = terminal_get_header_data( array(
+	'example_searches' => '',
+) );
+
 ob_start();
 get_template_part( 'partials/svg/hamburger.svg' );
 $hamburger = ob_get_contents();
@@ -85,7 +89,15 @@ ob_end_clean();
 			! is_search() ? esc_attr( 'terminal-hidden' ) : null
 		);
 		get_search_form( true );
-
+		if ( ! empty( $header_data['example_searches'] ) ) {
+			echo '<div class="terminal-example-searches terminal-mobile-hide terminal-alignment-center">';
+			printf(
+				'<h4>%s</h4>',
+				esc_html( __( 'Example Searches', 'terminal' ) )
+			);
+			echo wp_kses_post( wpautop( $header_data['example_searches'] ) );
+			echo '</div>';
+		}
 		?>
 	</div>
 	<?php
