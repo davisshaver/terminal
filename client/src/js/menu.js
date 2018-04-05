@@ -148,7 +148,9 @@ export function setupMenu() {
       let slotNum = 1;
       addInputListener(navSearch, (event, inputArgs) => {
         event.stopImmediatePropagation();
-        hide(searches);
+        if (searches) {
+          hide(searches);
+        }
         const inputValues = Object.values(inputArgs);
         const query = encodeURIComponent(inputValues.find(element => element.name === 's').value.trim().replace(' ', '+'));
         const boost = encodeURIComponent(inputValues.find(element => element.name === 'boost').value);
@@ -306,7 +308,9 @@ export function setupMenu() {
           (e) => {
             e.target.closest('form').reset();
             resetForm();
-            reveal(searches);
+            if (searches) {
+              reveal(searches);
+            }
             navSearchField.focus();
           },
         );
