@@ -44,14 +44,49 @@ export function toggleHidden(element) {
   element.classList.toggle('terminal-hidden');
 }
 
+export function addClickListener(
+  listen,
+  targets,
+  icon = false,
+  focus = false,
+  callback = false,
+  scroll = false,
+) {
+  listen.addEventListener(
+    'click',
+    (e) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      if (icon) {
+        toggleOpen(icon);
+      }
+      targets.forEach((target) => {
+        if (target) {
+          toggleHidden(target);
+        }
+      });
+      if (focus && focus.offsetParent !== null) {
+        focus.focus();
+      }
+      if (callback) {
+        callback();
+      }
+      if (scroll && !isInViewport(scroll)) {
+        scroll.scrollIntoView(false);
+      }
+    },
+  );
+}
+
 export default {
-  isInViewport,
+  addClickListener,
+  addEventListenerOnce,
   evaluateQuerySelector,
   evaluateQuerySelectorAll,
-  addEventListenerOnce,
-  reveal,
   hide,
-  toggleOpen,
-  toggleHiddenNoJS,
+  isInViewport,
+  reveal,
   toggleHidden,
+  toggleHiddenNoJS,
+  toggleOpen,
 };

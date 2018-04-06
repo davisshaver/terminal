@@ -2,13 +2,12 @@
 /* global jQuery, AdLayersAPI, adLayersDFP, terminal */
 
 import {
-  isInViewport,
+  addClickListener,
   evaluateQuerySelector,
   evaluateQuerySelectorAll,
   addEventListenerOnce,
   reveal,
   hide,
-  toggleOpen,
   toggleHiddenNoJS,
   toggleHidden,
 } from './utils';
@@ -72,45 +71,6 @@ export function setupMenu() {
     });
   }
 
-  function addClickListener(
-    listen,
-    targets,
-    icon = false,
-    focus = false,
-    callback = false,
-    scroll = false,
-  ) {
-    listen.addEventListener(
-      'click',
-      (e) => {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        if (icon) {
-          toggleOpen(icon);
-        }
-        targets.forEach(target => toggleHidden(target));
-        if (share) {
-          toggleHidden(share);
-        }
-        if (shareMobile) {
-          toggleHidden(shareMobile);
-        }
-        if (footer) {
-          toggleHidden(footer);
-        }
-        if (focus && focus.offsetParent !== null) {
-          focus.focus();
-        }
-        if (callback) {
-          callback();
-        }
-        if (scroll && !isInViewport(scroll)) {
-          scroll.scrollIntoView(false);
-        }
-      },
-    );
-  }
-
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
     toggleHiddenNoJS(searchFormMoreLink);
@@ -122,7 +82,7 @@ export function setupMenu() {
     if (parsely && !window.terminal.isSearch) {
       addClickListener(
         searchLink,
-        [moreSearch, searchTarget],
+        [moreSearch, searchTarget, share, shareMobile, footer],
         searchLinkSVG,
         navSearchField,
         false,
