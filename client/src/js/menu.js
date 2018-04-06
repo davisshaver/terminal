@@ -23,7 +23,6 @@ export function setupMenu() {
   const navSearch = evaluateQuerySelector('.terminal-nav-bar-inside-search');
   const navSearchField = evaluateQuerySelector('.terminal-nav-bar-inside-search .search-field');
   const navSearchFieldTwo = evaluateQuerySelector('.terminal-nav-bar-inside-search .search-field-filter-one');
-  const popularContainer = evaluateQuerySelector('.terminal-nav-bar-inside-popular-link');
   const results = () => evaluateQuerySelector('.terminal-results');
   const resultsMoreAll = () => evaluateQuerySelectorAll('.terminal-results-more');
   const resultsMore = () => evaluateQuerySelector('.terminal-results-more');
@@ -41,10 +40,11 @@ export function setupMenu() {
   const shareMobile = evaluateQuerySelector('.essb-mobile-sharebottom');
   const svgLink = evaluateQuerySelector('.terminal-nav-bar-inside-more-link svg');
   const widget = evaluateQuerySelector('.widget_search');
+  const searches = evaluateQuerySelector('.terminal-example-searches');
 
   function resetForm() {
     results.innerHTML = '';
-    [...resultsMoreAll].forEach(node => node.parentNode.removeChild(node));
+    [...resultsMoreAll()].forEach(node => node.parentNode.removeChild(node));
     searchHeader().innerText = 'Enter a search term for instant results';
     searchHeaderParams.innerText = '';
   }
@@ -114,7 +114,6 @@ export function setupMenu() {
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
     toggleHiddenNoJS(searchFormMoreLink);
-    toggleHiddenNoJS(popularContainer);
     toggleHiddenNoJS(searchContainer);
     addClickListener(moreLink, [moreNav], svgLink);
     const parsely = window.terminal.parsely.enabled;
@@ -139,6 +138,9 @@ export function setupMenu() {
       let slotNum = 1;
       addInputListener(navSearch, (event, inputArgs) => {
         event.stopImmediatePropagation();
+        if (searches) {
+          hide(searches);
+        }
         const inputValues = Object.values(inputArgs);
         const query = encodeURIComponent(inputValues.find(element => element.name === 's').value.trim().replace(' ', '+'));
         const boost = encodeURIComponent(inputValues.find(element => element.name === 'boost').value);
@@ -221,7 +223,7 @@ export function setupMenu() {
                 searchResults = values.reduce((agg, datum) => {
                   const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : '';
                   const noImageClass = image ? '' : 'terminal-no-photo';
-                  return `${agg} <div class="terminal-card terminal-card-single terminal-search-card terminal-card-no-grow ${noImageClass}"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-card-text terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
+                  return `${agg} <div class="terminal-card terminal-card-single terminal-search-card ${noImageClass}"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-card-text terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
                 }, '');
                 if (window.AdLayersAPI &&
                   window.adLayersDFP &&
@@ -266,7 +268,7 @@ export function setupMenu() {
                 !links.prev
               ) {
                 hide(resultsMore());
-                searchResults = '<div class="terminal-card terminal-card-no-grow terminal-card-single terminal-no-photo terminal-search-card"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
+                searchResults = '<div class="terminal-card-single terminal-no-photo terminal-search-card"><div class="terminal-card-text terminal-limit-max-content-width-add-margin"><h1 class="terminal-headline-font terminal-stream-headline terminal-search-header">No results found.</h1></div></div>';
                 results().insertAdjacentHTML('beforeend', searchResults);
               } else {
                 hide(resultsMore());
@@ -288,15 +290,15 @@ export function setupMenu() {
           loadSearchURL(firstLink);
         } else if (query === '') {
           resetForm();
-          if (searchHeader && !isInViewport(searchHeader())) {
-            searchHeader().scrollIntoView(false);
-          }
         }
         searchFormResetLink.addEventListener(
           'click',
           (e) => {
             e.target.closest('form').reset();
             resetForm();
+            if (searches) {
+              reveal(searches);
+            }
             navSearchField.focus();
           },
         );

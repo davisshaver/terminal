@@ -5,6 +5,10 @@
  * @package Terminal
  */
 
+$header_data = terminal_get_header_data( array(
+	'example_searches' => '',
+) );
+
 // Randomized ID in case there are multiple search forms on a single page.
 $searchform_id = 'search-' . rand();
 ?>
