@@ -10,6 +10,7 @@ if ( ! has_nav_menu( 'terminal-header' ) ) {
 }
 
 $header_data = terminal_get_header_data( array(
+	'mobile_header_image_override' => null,
 	'example_searches' => '',
 ) );
 
@@ -32,7 +33,19 @@ ob_start();
 get_template_part( 'partials/svg/down.svg' );
 $down = ob_get_contents();
 ob_end_clean();
-
+if ( $header_data['mobile_header_image_override'] ) {
+	$logo = wp_get_attachment_image(
+		$header_data['mobile_header_image_override'],
+		'terminal-uncut-thumbnail-logo',
+		false
+	);
+} else {
+	$logo = sprintf(
+		'<img class="terminal-image" src="%s" draggable="false" alt="%s" />',
+		get_header_image(),
+		esc_attr( get_bloginfo( 'title' ) )
+	);
+}
 ?>
 
 <div class="terminal-nav-bar">
@@ -43,12 +56,15 @@ ob_end_clean();
 			'depth'          => 1,
 			'echo'           => false,
 			'menu_id'        => 'terminal-nav-bar-header',
+			'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>'
 		) );
 		if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
 			$rotation = is_search() ? 'terminal-flipped' : '';
 			$search_icon = str_replace( 'terminal-svg', sprintf( 'terminal-svg %s', esc_attr( $rotation ) ), $search_icon );
 			$search = sprintf(
-				'<li class="terminal-nav-bar-inside-search-link terminal-hidden-no-js"><a href="#">%s</a></li></ul>',
+				'<li class="terminal-nav-bar-logo terminal-desktop-hide terminal-scroll-show"><a href="%s">%s</a></li><li class="terminal-nav-bar-inside-search-link terminal-hidden-no-js"><a href="#">%s</a></li></ul>',
+				home_url(),
+				$logo,
 				$search_icon
 			);
 			if ( is_home() ) {
@@ -92,6 +108,12 @@ ob_end_clean();
 	<?php
 	if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
 		echo '<div class="terminal-nav-bar-inside-more terminal-nav-font terminal-hidden">';
+		wp_nav_menu( array(
+			'theme_location' => 'terminal-header',
+			'depth'          => 1,
+			'menu_id'        => 'terminal-nav-bar-header-inside',
+			'items_wrap'     => '<ul id="%1$s" class="%2$s terminal-scroll-show">%3$s</ul>'
+		) );
 		if ( has_nav_menu( 'terminal-header-more' ) ) {
 			printf(
 				'<h2>%s</h2>',

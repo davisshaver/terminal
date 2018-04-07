@@ -54,7 +54,7 @@ class Theme {
 			'default-color' => '#f4f4f4',
 		);
 		add_theme_support( 'custom-background', $custom_background_args );
-
+		add_filter( 'nav_menu_css_class', [ $this, 'add_classes_on_li' ], 1, 3);
 		register_nav_menus( array(
 			'terminal-header'      => esc_html__( 'Header Menu', 'terminal' ),
 			'terminal-header-more' => esc_html__( 'Header More Menu - Content', 'terminal' ),
@@ -111,6 +111,12 @@ class Theme {
 		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
 	}
 
+	public function add_classes_on_li( $classes, $item, $args ) {
+		if ( 'terminal-nav-bar-header' === $args->menu_id ) {
+			$classes[] = 'terminal-scroll-hide';
+		}
+		return $classes;
+	}
 	/**
 	 * Filter whether parsely inserts JS.
 	 *

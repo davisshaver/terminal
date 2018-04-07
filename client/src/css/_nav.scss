@@ -5,13 +5,22 @@
 	z-index: 1;
 	top: 0;
 	h2 {
-		padding: 0 15px;
+		padding: 15px 10px 0 10px;
 		margin: auto;
 	}
 	svg {
 		margin-bottom: -0.2em;
 		&.terminal-flipped {
 			transform: rotate(90deg);
+		}
+	}
+	.terminal-nav-bar-logo {
+		a {
+			display: block;
+		}
+		.terminal-image {
+			height: 14px;
+			width: auto;
 		}
 	}
 
@@ -30,10 +39,10 @@
 		li {
 			flex: 0 1 20%;
       list-style: none;
-      margin: 10px;
+      margin: 5px;
 		}
 	}
-	#terminal-nav-bar-header-more {
+	#terminal-nav-bar-header-more, #terminal-nav-bar-header-inside {
     flex-wrap: wrap;
 		margin: auto;
     padding: 5px;
@@ -47,9 +56,10 @@
 		}
 	}
 	#terminal-nav-bar-header {
-    flex-wrap: nowrap;
+		flex-wrap: nowrap;
+		align-items: center;
     margin: 0;
-    padding: 10px 5px;
+    padding: 5px;
     flex: 1 1 100%;
     display: flex;
     justify-content: space-between;
@@ -122,7 +132,7 @@
     max-width: calc(800px - 60px);
     width: calc(100% - 60px);
     margin: 0 auto;
-    overflow: scroll;
+		overflow: scroll;
 	}
 	.terminal-nav-bar-inside-more-link a, .terminal-nav-bar-link a, .terminal-nav-bar-home {
 		padding: 5px;

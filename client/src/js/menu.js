@@ -10,7 +10,12 @@ import {
   hide,
   toggleHiddenNoJS,
   toggleHidden,
+  isInViewport,
+  throttle,
   removeOpen,
+  toggleInfinite,
+  addScrolled,
+  removeScrolled,
 } from './utils';
 
 export function setupMenu() {
@@ -40,9 +45,19 @@ export function setupMenu() {
   const svgLink = evaluateQuerySelector('.terminal-nav-bar-inside-more-link svg');
   const widget = evaluateQuerySelector('.widget_search');
   const searches = evaluateQuerySelector('.terminal-example-searches');
-  let menuOpen = false;
+  const content = evaluateQuerySelector('.terminal-content-container');
+  const top = evaluateQuerySelector('.terminal-top-container');
+  const breakout = evaluateQuerySelector('.terminal-breakout-container');
   let searchOpen = true;
 
+  function checkScrolled() {
+    const headerInViewport = isInViewport(evaluateQuerySelector('.terminal-logos'));
+    if (!headerInViewport) {
+      addScrolled(evaluateQuerySelector('body'));
+    } else {
+      removeScrolled(evaluateQuerySelector('body'));
+    }
+  }
   function resetForm() {
     results.innerHTML = '';
     [...resultsMoreAll()].forEach(node => node.parentNode.removeChild(node));
@@ -73,6 +88,10 @@ export function setupMenu() {
     });
   }
 
+  window.addEventListener('scroll', throttle(() => {
+    checkScrolled();
+  }, 10));
+
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
     toggleHiddenNoJS(searchFormMoreLink);
@@ -84,10 +103,12 @@ export function setupMenu() {
     if (parsely && !window.terminal.isSearch) {
       addClickListener(
         searchLink,
-        [moreSearch, searchTarget, share, shareMobile, footer],
+        [moreSearch, searchTarget, share, shareMobile, footer, content, top, breakout],
         searchLinkSVG,
         navSearchField,
         () => {
+          toggleInfinite();
+          checkScrolled();
           if (searchOpen) {
             searchOpen = false;
             hide(moreNav);

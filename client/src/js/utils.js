@@ -23,6 +23,17 @@ export function isInViewport(element) {
   );
 }
 
+export function throttle(fn, wait) {
+  let time = Date.now();
+  return () => {
+    const targetTime = time + wait;
+    if ((targetTime - Date.now()) < 0) {
+      fn();
+      time = Date.now();
+    }
+  };
+}
+
 export function evaluateQuerySelectorAll(selector) {
   return document.querySelectorAll(selector);
 }
@@ -38,6 +49,14 @@ export function addEventListenerOnce(target, type, listener) {
     target.removeEventListener(type, fn);
     listener(event);
   });
+}
+
+export function addScrolled(element) {
+  element.classList.add('terminal-scrolled');
+}
+
+export function removeScrolled(element) {
+  element.classList.remove('terminal-scrolled');
 }
 
 export function reveal(element) {

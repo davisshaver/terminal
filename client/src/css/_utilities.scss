@@ -96,3 +96,17 @@ body {
   width: calc(100% - 60px);
   margin: auto;
 }
+
+.terminal-scrolled {
+  .terminal-scroll-show {
+    display: flex !important;
+  }
+
+  .terminal-scroll-hide {
+    display: none !important;
+  }
+}
+
+.terminal-scroll-show {
+  display: none !important;
+}
