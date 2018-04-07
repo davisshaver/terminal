@@ -163,4 +163,3 @@ ob_end_clean();
 	}
 	?>
 </div>
-<?php get_template_part( 'partials/search' ); ?>

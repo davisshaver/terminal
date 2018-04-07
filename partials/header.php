@@ -126,6 +126,6 @@ if ( ! empty( $header_data['signup_show_on_desktop'] ) || ! empty( $header_data[
 	echo '</div>';
 echo '</div>';
 get_template_part( 'partials/nav' );
-
+get_template_part( 'partials/search' );
 ?>
 

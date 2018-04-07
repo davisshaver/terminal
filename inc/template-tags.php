@@ -194,7 +194,7 @@ function terminal_print_index_header() {
 				return;
 			}
 			printf(
-				'<div class="terminal-header terminal-header-font"><h2><a name="recent">%s</a></h2></div>',
+				'<div class="terminal-header terminal-header-font"><h2><a id="terminal-recent" name="recent">%s</a></h2></div>',
 				esc_html( $theme_mod )
 			);
 		} else {
@@ -216,6 +216,16 @@ function terminal_print_index_header() {
 			esc_html( strip_tags( get_the_archive_title() ) )
 		);
 	}
+}
+
+/**
+ * Template function to print popular header..
+ */
+function terminal_print_popular_header() {
+	printf(
+		'<div class="terminal-header terminal-header-font"><h2>%s</h2></div>',
+		esc_html( __( 'Trending', 'terminal' ) )
+	);
 }
 
 /**

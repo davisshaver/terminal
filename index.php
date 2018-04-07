@@ -25,6 +25,8 @@ get_header();
 		);
 		echo '</div>';
 		get_template_part( 'partials/breakout' );
+		get_template_part( 'partials/popular' );
+		echo '<div id="terminal-content-container" class="terminal-content-container">';
 		terminal_print_index_header();
 		if ( is_author() ) {
 			echo '<div class="terminal-card terminal-card-single terminal-post-card">';
@@ -44,6 +46,7 @@ get_header();
 				'sidebar' => 'terminal-stream-end'
 			)
 		);
+		echo '</div>';
 	} else {
 		echo '<div class="terminal-top-container">';
 		echo '<div class="terminal-hero-container">';

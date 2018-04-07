@@ -69,6 +69,15 @@ svg.terminal-svg {
 	width: 100%;
 	max-width: $max_container_width;
 }
+
+.terminal-content-container, .terminal-popular-container {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
 .terminal-content {
 	flex-basis: 75%;
 }
