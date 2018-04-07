@@ -133,6 +133,9 @@
 	.terminal-nav-bar-inside-more {
 		overflow: scroll;
 		height: auto;
+		max-width: calc(800px - 60px);
+		width: calc(100% - 60px);
+		margin: 0 auto;
     height: -webkit-fill-available;
 	}
 	.terminal-nav-bar-inside-more-link a, .terminal-nav-bar-link a, .terminal-nav-bar-home {
