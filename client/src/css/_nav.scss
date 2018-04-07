@@ -9,7 +9,6 @@
 		margin: auto;
 	}
 	svg {
-		margin-bottom: -0.2em;
 		&.terminal-flipped {
 			transform: rotate(90deg);
 		}
@@ -19,7 +18,7 @@
 			display: block;
 		}
 		.terminal-image {
-			height: 14px;
+			height: 20px;
 			width: auto;
 		}
 	}
@@ -64,6 +63,10 @@
     display: flex;
     justify-content: space-between;
 		li {
+			display: flex;
+			a {
+				display: flex;
+			}
       list-style: none;
 		}
 	}
@@ -128,11 +131,9 @@
 		}
 	}
 	.terminal-nav-bar-inside-more {
-    position: relative;
-    max-width: calc(800px - 60px);
-    width: calc(100% - 60px);
-    margin: 0 auto;
 		overflow: scroll;
+		height: auto;
+    height: -webkit-fill-available;
 	}
 	.terminal-nav-bar-inside-more-link a, .terminal-nav-bar-link a, .terminal-nav-bar-home {
 		padding: 5px;

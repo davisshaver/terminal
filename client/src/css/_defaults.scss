@@ -44,8 +44,8 @@ a.terminal-link-gray-light, .terminal-link-gray-light a {
 }
 
 svg.terminal-svg {
-	width: 1rem !important;
-	height: 1rem !important;
+	width: 20px !important;
+	height: 20px !important;
 	position: relative !important;
 	transition: transform .05s ease-out;
 }
@@ -168,7 +168,16 @@ body.home, body.search, body.archive {
 		margin: 0;
 	}
 }
-
+.terminal-search-form-more-link  {
+	display: flex;
+	a {
+		display: flex;
+		align-items: center;
+		svg {
+			display: flex;
+		}
+	}
+}
 form[role="search"] {
 	display: flex;
 	flex-wrap: wrap;
