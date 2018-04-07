@@ -6,7 +6,6 @@ import {
   hide,
   isInViewport,
   reveal,
-  toggleHiddenNoJS,
   toggleInfinite,
 } from './utils';
 
@@ -21,6 +20,10 @@ export function setupPopular() {
   function popularCallback() {
     open = !open;
     toggleInfinite();
+    const popular = evaluateQuerySelector('a[name="popular"]');
+    if (!isInViewport(popular)) {
+      popular.scrollIntoView();
+    }
   }
   function recentCallback() {
     const recent = evaluateQuerySelector('a[name="recent"]');
@@ -29,7 +32,7 @@ export function setupPopular() {
       reveal(evaluateQuerySelector('.terminal-content-container'));
       toggleInfinite();
       if (!isInViewport(recent)) {
-        recent.scrollIntoView(true);
+        recent.scrollIntoView();
       }
       open = !open;
     } else if (!isInViewport(recent)) {
@@ -40,7 +43,6 @@ export function setupPopular() {
   if (!parsely || !apikey || !apisecret) {
     return;
   }
-  toggleHiddenNoJS(evaluateQuerySelector('.terminal-nav-bar-inside-popular-link'));
   addClickListener(
     evaluateQuerySelector('.terminal-nav-bar-inside-popular-link a'),
     [evaluateQuerySelector('.terminal-content-container'), evaluateQuerySelector('.terminal-popular-container')],

@@ -3,7 +3,7 @@
 
 import './index.scss';
 import { setupMenu } from './js/menu';
-import { setupPopular } from './js/popular';
+// import { setupPopular } from './js/popular';
 
 function scaleAd(ID) {
   const adDiv = jQuery(ID);
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setupMenu();
-  setupPopular();
+  // setupPopular();
   setTimeout(scaleAllAds, 500);
   if (window.AdLayersAPI &&
     window.adLayersDFP &&

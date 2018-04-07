@@ -223,7 +223,7 @@ function terminal_print_index_header() {
  */
 function terminal_print_popular_header() {
 	printf(
-		'<div class="terminal-header terminal-header-font"><h2>%s</h2></div>',
+		'<div class="terminal-header terminal-header-font"><h2><a id="terminal-popular" name="popular">%s</a></h2></div>',
 		esc_html( __( 'Trending', 'terminal' ) )
 	);
 }

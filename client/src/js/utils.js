@@ -46,6 +46,10 @@ export function reveal(element) {
 export function hide(element) {
   element.classList.add('terminal-hidden');
 }
+
+export function removeOpen(element) {
+  element.classList.remove('terminal-flipped');
+}
 export function toggleOpen(element) {
   element.classList.toggle('terminal-flipped');
 }

@@ -10,6 +10,7 @@ import {
   hide,
   toggleHiddenNoJS,
   toggleHidden,
+  removeOpen,
 } from './utils';
 
 export function setupMenu() {
@@ -39,6 +40,8 @@ export function setupMenu() {
   const svgLink = evaluateQuerySelector('.terminal-nav-bar-inside-more-link svg');
   const widget = evaluateQuerySelector('.widget_search');
   const searches = evaluateQuerySelector('.terminal-example-searches');
+  let menuOpen = false;
+  let searchOpen = true;
 
   function resetForm() {
     results.innerHTML = '';
@@ -84,7 +87,15 @@ export function setupMenu() {
         [moreSearch, searchTarget, share, shareMobile, footer],
         searchLinkSVG,
         navSearchField,
-        false,
+        () => {
+          if (searchOpen) {
+            searchOpen = false;
+            hide(moreNav);
+            removeOpen(svgLink);
+          } else {
+            searchOpen = true;
+          }
+        },
         searchHeader(),
       );
       addClickListener(
