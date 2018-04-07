@@ -25,11 +25,6 @@ $search_icon = ob_get_contents();
 ob_end_clean();
 
 ob_start();
-get_template_part( 'partials/svg/home.svg' );
-$home = ob_get_contents();
-ob_end_clean();
-
-ob_start();
 get_template_part( 'partials/svg/down.svg' );
 $down = ob_get_contents();
 ob_end_clean();
@@ -67,21 +62,11 @@ if ( $header_data['mobile_header_image_override'] ) {
 				$logo,
 				$search_icon
 			);
-			if ( is_home() ) {
-				$more = sprintf(
-					'<ul id="terminal-nav-bar-header" class="menu"><li class="terminal-nav-bar-inside-more-link terminal-hidden-no-js"><a href="#">%s %s</a></li>',
-					esc_html( '', 'terminal' ),
-					$hamburger
-				);
-			} else {
-				$more = sprintf(
-					'<ul id="terminal-nav-bar-header" class="menu"><li class="terminal-nav-bar-inside-more-link terminal-hidden-no-js"><a href="#">%s %s</a></li><li class="terminal-nav-bar-home"><a href="%s">%s</a></li>',
-					esc_html( '', 'terminal' ),
-					$hamburger,
-					esc_url( home_url() ),
-					$home
-				);
-			}
+			$more = sprintf(
+				'<ul id="terminal-nav-bar-header" class="menu"><li class="terminal-nav-bar-inside-more-link terminal-hidden-no-js"><a href="#">%s %s</a></li>',
+				esc_html( '', 'terminal' ),
+				$hamburger
+			);
 			$nav_menu = str_replace( '<ul id="terminal-nav-bar-header" class="menu">', $more, $nav_menu );
 			$nav_menu = str_replace( '</ul>', $search, $nav_menu );
 		}
