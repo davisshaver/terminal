@@ -1,5 +1,17 @@
 /* eslint-env browser */
 
+export function toggleInfinite() {
+  if (!window.infiniteScroll) {
+    return;
+  }
+  if (!window.terminalInfinitePause && window.infiniteScroll.scroller) {
+    window.terminalInfinitePause = true;
+    window.infiniteScroll.scroller.pause();
+  } else if (window.terminalInfinitePause && window.infiniteScroll.scroller) {
+    window.terminalInfinitePause = false;
+    window.infiniteScroll.scroller.resume();
+  }
+}
 export function isInViewport(element) {
   const rect = element.getBoundingClientRect();
   const html = document.documentElement;

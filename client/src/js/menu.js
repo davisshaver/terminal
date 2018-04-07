@@ -13,7 +13,6 @@ import {
 } from './utils';
 
 export function setupMenu() {
-  // const popularLink = evaluateQuerySelector('.terminal-nav-bar-inside-popular-link a');
   const footer = evaluateQuerySelector('.terminal-footer');
   const moreLink = evaluateQuerySelector('.terminal-nav-bar-inside-more-link a');
   const moreLinkContainer = evaluateQuerySelector('.terminal-nav-bar-inside-more-link');
