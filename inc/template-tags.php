@@ -397,6 +397,7 @@ function  terminal_print_data_layer_json( $echo = true ) {
 			'parsely'     => array(
 				'enabled'     => (bool) getenv( 'TERMINAL_ENABLE_PARSELY_SEARCH' ),
 				'apiKey'      => getenv( 'TERMINAL_PARSELY_API_KEY' ),
+				'apiSecret'   => getenv( 'TERMINAL_PARSELY_API_SECRET' ),
 			),
 	) );
 	if ( ! $echo ) {
