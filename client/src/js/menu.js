@@ -50,7 +50,6 @@ export function setupMenu() {
   const content = evaluateQuerySelector('.terminal-content-container');
   const top = evaluateQuerySelector('.terminal-top-container');
   const breakout = evaluateQuerySelector('.terminal-breakout-container');
-  let searchOpen = true;
 
   function headerInViewport() {
     return isInViewport(evaluateQuerySelector('.terminal-logos'));
@@ -83,9 +82,6 @@ export function setupMenu() {
     }))
       .filter(input => input.type !== 'submit');
     [...inputs].forEach(input => input.addEventListener('change', (e) => {
-      resultsCallback(e, getValues());
-    }));
-    [...inputs].forEach(input => input.addEventListener('keyup', (e) => {
       resultsCallback(e, getValues());
     }));
     select.addEventListener('change', (e) => {
@@ -126,19 +122,12 @@ export function setupMenu() {
     if (parsely && !window.terminal.isSearch) {
       addClickListener(
         searchLink,
-        [moreSearch, searchTarget, share, shareMobile, footer, content, top, breakout],
+        [moreSearch, searchTarget],
         searchLinkSVG,
         navSearchField,
         () => {
           toggleInfinite();
           checkScrolled();
-          if (searchOpen) {
-            searchOpen = false;
-            hide(moreNav);
-            removeOpen(svgLink);
-          } else {
-            searchOpen = true;
-          }
         },
         searchHeader(),
       );
@@ -267,7 +256,9 @@ export function setupMenu() {
                   results().insertAdjacentHTML('beforeend', searchResults);
                 }
                 if (links.next !== null && values.length !== 0) {
+                  console.log('setting..');
                   addEventListenerOnce(resultsMore(), 'click', () => {
+                    console.log(links);
                     loadSearchURL(links.next);
                   });
                   reveal(resultsMore());

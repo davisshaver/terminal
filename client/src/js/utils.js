@@ -44,8 +44,6 @@ export function evaluateQuerySelector(selector) {
 
 export function addEventListenerOnce(target, type, listener) {
   target.addEventListener(type, function fn(event) {
-    event.preventDefault();
-    event.stopImmediatePropagation();
     target.removeEventListener(type, fn);
     listener(event);
   });
