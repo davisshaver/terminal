@@ -10,7 +10,7 @@ if ( ! has_nav_menu( 'terminal-header' ) ) {
 }
 
 $header_data = terminal_get_header_data( array(
-	'mobile_header_image_override' => null,
+	'nav_header_image_override' => null,
 	'example_searches' => '',
 ) );
 
@@ -28,9 +28,9 @@ ob_start();
 get_template_part( 'partials/svg/down.svg' );
 $down = ob_get_contents();
 ob_end_clean();
-if ( $header_data['mobile_header_image_override'] ) {
+if ( $header_data['nav_header_image_override'] ) {
 	$logo = wp_get_attachment_image(
-		$header_data['mobile_header_image_override'],
+		$header_data['nav_header_image_override'],
 		'terminal-uncut-thumbnail-logo',
 		false
 	);
