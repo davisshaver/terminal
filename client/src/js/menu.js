@@ -253,9 +253,7 @@ export function setupMenu() {
                   results().insertAdjacentHTML('beforeend', searchResults);
                 }
                 if (links.next !== null && values.length !== 0) {
-                  console.log('setting..');
                   addEventListenerOnce(resultsMore(), 'click', () => {
-                    console.log(links);
                     loadSearchURL(links.next);
                   });
                   reveal(resultsMore());
