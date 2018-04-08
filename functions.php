@@ -14,11 +14,11 @@ namespace Terminal;
  */
 if ( version_compare( strtok( $GLOBALS['wp_version'], '-' ), '4.9', '<' ) ) {
 	require get_template_directory() . '/inc/warnings.php';
-	return;
+	return; 
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {
-	define( 'TERMINAL_VERSION', '2.42' );
+	define( 'TERMINAL_VERSION', '2.50' );
 }
 
 if ( ! defined( 'TERMINAL_APP' ) ) {

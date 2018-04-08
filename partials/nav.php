@@ -93,12 +93,6 @@ if ( $header_data['nav_header_image_override'] ) {
 	<?php
 	if ( has_nav_menu( 'terminal-header-more' ) || has_nav_menu( 'terminal-header-more-meta' ) ) {
 		echo '<div class="terminal-nav-bar-inside-more terminal-nav-font terminal-hidden">';
-		wp_nav_menu( array(
-			'theme_location' => 'terminal-header',
-			'depth'          => 1,
-			'menu_id'        => 'terminal-nav-bar-header-inside',
-			'items_wrap'     => '<ul id="%1$s" class="%2$s terminal-scroll-show">%3$s</ul>'
-		) );
 		if ( has_nav_menu( 'terminal-header-more' ) ) {
 			printf(
 				'<h2>%s</h2>',

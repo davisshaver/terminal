@@ -46,14 +46,18 @@ export function setupMenu() {
   const svgLink = evaluateQuerySelector('.terminal-nav-bar-inside-more-link svg');
   const widget = evaluateQuerySelector('.widget_search');
   const searches = evaluateQuerySelector('.terminal-example-searches');
+  const container = evaluateQuerySelector('.terminal-container');
   const content = evaluateQuerySelector('.terminal-content-container');
   const top = evaluateQuerySelector('.terminal-top-container');
   const breakout = evaluateQuerySelector('.terminal-breakout-container');
   let searchOpen = true;
 
+  function headerInViewport() {
+    return isInViewport(evaluateQuerySelector('.terminal-logos'));
+  }
+
   function checkScrolled() {
-    const headerInViewport = isInViewport(evaluateQuerySelector('.terminal-logos'));
-    if (!headerInViewport) {
+    if (!headerInViewport()) {
       addScrolled(evaluateQuerySelector('body'));
     } else {
       removeScrolled(evaluateQuerySelector('body'));
@@ -104,14 +108,17 @@ export function setupMenu() {
     toggleHiddenNoJS(searchContainer);
     addClickListener(
       moreLink,
-      [moreNav, content, top, breakout],
+      [moreNav, container],
       svgLink,
       null,
       () => {
         toggleInfinite();
         toggleMenuOpen();
+        if (!headerInViewport()) {
+          header.scrollIntoView(true);
+        }
       },
-      header,
+      null,
     );
     const parsely = window.terminal.parsely.enabled;
     const apikey = window.terminal.parsely.apiKey;
