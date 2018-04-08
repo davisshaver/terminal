@@ -73,7 +73,9 @@ get_header();
 		terminal_print_template_part(
 			'main-sidebar'
 		);
-	echo '</div>';
+		echo '</div>';
+		echo '<div id="terminal-content-container" class="terminal-content-container">';
+		echo '</div>';
 	}
 
 	?>
