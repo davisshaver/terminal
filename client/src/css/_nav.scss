@@ -131,7 +131,8 @@
 		}
 	}
 	.terminal-nav-bar-inside-more {
-		overflow: scroll;
+		overflow-x: hidden;
+		overflow-y: hidden;
 		height: auto;
 		max-width: calc(800px - 60px);
 		width: calc(100% - 60px);
