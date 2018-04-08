@@ -101,7 +101,7 @@ export function setupMenu() {
     toggleHiddenNoJS(searchContainer);
     addClickListener(
       moreLink,
-      [moreNav, container],
+      [moreNav],
       svgLink,
       null,
       () => {
