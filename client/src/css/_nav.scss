@@ -3,6 +3,8 @@
 	position: -webkit-sticky;
 	position: sticky;
 	z-index: 1;
+	overflow-x: hidden;
+	overflow-y: scroll;
 	top: 0;
 	h2 {
 		padding: 15px 10px 0 10px;
@@ -135,8 +137,6 @@
 		max-width: #{$max_content_width};
     height: -webkit-fill-available;
     margin: 0 auto;
-    overflow-x: hidden;
-    overflow-y: scroll;
 	}
 	.terminal-nav-bar-inside-more-link a, .terminal-nav-bar-link a, .terminal-nav-bar-home {
 		padding: 5px;
