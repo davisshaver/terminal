@@ -19,6 +19,7 @@ import {
 } from './utils';
 
 export function setupMenu() {
+  const header = evaluateQuerySelector('#terminal-nav-bar-header');
   const footer = evaluateQuerySelector('.terminal-footer');
   const moreLink = evaluateQuerySelector('.terminal-nav-bar-inside-more-link a');
   const moreLinkContainer = evaluateQuerySelector('.terminal-nav-bar-inside-more-link');
@@ -87,16 +88,31 @@ export function setupMenu() {
       resultsCallback(e, getValues());
     });
   }
-
+  let menuOpen = false;
+  const toggleMenuOpen = () => {
+    menuOpen = !menuOpen;
+  };
   window.addEventListener('scroll', throttle(() => {
-    checkScrolled();
+    if (!menuOpen) {
+      checkScrolled();
+    }
   }, 10));
 
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
     toggleHiddenNoJS(searchFormMoreLink);
     toggleHiddenNoJS(searchContainer);
-    addClickListener(moreLink, [moreNav], svgLink);
+    addClickListener(
+      moreLink,
+      [moreNav, content, top, breakout],
+      svgLink,
+      null,
+      () => {
+        toggleInfinite();
+        toggleMenuOpen();
+      },
+      header,
+    );
     const parsely = window.terminal.parsely.enabled;
     const apikey = window.terminal.parsely.apiKey;
     toggleHidden(widget);
