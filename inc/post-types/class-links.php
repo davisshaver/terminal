@@ -42,7 +42,10 @@ class Links {
 	 * @param int    $id Current post ID.
 	 * @return string Filtered title
 	 */
-	public function filter_feed_title( $title, $id ) {
+	public function filter_feed_title( $title, $id = null ) {
+		if ( ! $id ) {
+			$id = get_the_id();
+		}
 		if ( is_feed() && $this->link_post_type === get_post_type( $id ) ) {
 			return "[LINK] ${title}";
 		}
