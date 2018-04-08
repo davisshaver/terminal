@@ -149,3 +149,9 @@ body.uncovered{
 .spinner {
 	z-index: 0 !important;
 }
+
+.essbis_site {
+	.essb-mobile-sharebottom, .essb_bottombar, .essb_topbar {
+		z-index: 1;
+	}
+}

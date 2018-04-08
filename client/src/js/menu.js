@@ -74,7 +74,6 @@ export function setupMenu() {
     const select = inputContainer.querySelector('select');
     const form = inputContainer.querySelector('form');
     form.addEventListener('submit', e => e.preventDefault());
-    // [...inputs].filter(input => input.type === 'submit').forEach(input => input.setAttribute('style', 'display: none'));
     const getValues = () => [...inputs, select].map(({ type, value, name }) => ({
       name,
       type,
@@ -93,9 +92,7 @@ export function setupMenu() {
     menuOpen = !menuOpen;
   };
   window.addEventListener('scroll', throttle(() => {
-    if (!menuOpen) {
-      checkScrolled();
-    }
+    checkScrolled();
   }, 10));
 
   if (moreLink) {
