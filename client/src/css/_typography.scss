@@ -10,7 +10,7 @@
   line-height: 1.2;
 }
 
-.terminal-body-font, .terminal-nav-font {
+.terminal-body-font {
   font-size: 20px;
 
   p, ul, ol {
@@ -28,7 +28,8 @@
 .terminal-sidebar-body-font,
 .terminal-sidebar-header-font,
 .terminal-single-meta-font,
-.terminal-utility-font {
+.terminal-utility-font,
+.terminal-nav-font {
   font-size: 16px;
 }
 
