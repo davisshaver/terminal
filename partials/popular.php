@@ -44,6 +44,58 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
         echo '</div>';
       }
     }
+    $result = wp_cache_get( 'terminal-parsely-popular-last-week' );
+    if ( false === $result ) {
+      $result = wp_remote_get(
+        "https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=7d&limit=12"
+      );
+      wp_cache_set( 'terminal-parsely-popular-last-week', $result, '', 3600 );
+    }
+    if ( ! empty( $result ) ) {
+      $json = json_decode( wp_remote_retrieve_body( $result ) );
+      if ( ! empty( $json->data ) ) {
+        echo '<div data-value="past-week" class="terminal-card-text terminal-popular-list terminal-popular-list-week terminal-hidden">';
+        foreach( $json->data as $popular_post ) {
+          terminal_print_template_part(
+            'popular-list-item',
+            array(
+              'url' => $popular_post->url,
+              'image_url' => $popular_post->image_url,
+              'authors' => $popular_post->authors,
+              'views' => $popular_post->metrics->views,
+              'title' => $popular_post->title,  
+            )
+          );
+        }
+        echo '</div>';
+      }
+    }
+    $result = wp_cache_get( 'terminal-parsely-popular-last-four-weeks' );
+    if ( false === $result ) {
+      $result = wp_remote_get(
+        "https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=4w&limit=12"
+      );
+      wp_cache_set( 'terminal-parsely-popular-last-four-weeks', $result, '', 3600 );
+    }
+    if ( ! empty( $result ) ) {
+      $json = json_decode( wp_remote_retrieve_body( $result ) );
+      if ( ! empty( $json->data ) ) {
+        echo '<div data-value="past-month" class="terminal-card-text terminal-popular-list terminal-popular-list-month terminal-hidden">';
+        foreach( $json->data as $popular_post ) {
+          terminal_print_template_part(
+            'popular-list-item',
+            array(
+              'url' => $popular_post->url,
+              'image_url' => $popular_post->image_url,
+              'authors' => $popular_post->authors,
+              'views' => $popular_post->metrics->views,
+              'title' => $popular_post->title,  
+            )
+          );
+        }
+        echo '</div>';
+      }
+    }
     ?>
   </div>
 </div>

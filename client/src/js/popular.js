@@ -1,53 +1,49 @@
 /* eslint-env browser */
 
 import {
-  addClickListener,
-  evaluateQuerySelector,
-  isInViewport,
+  hide,
+  reveal,
   toggleHiddenNoJS,
-  toggleInfinite,
-  add,
-  remove,
+  evaluateQuerySelector,
 } from './utils';
 
 export function setupPopular() {
-  const parsely = window.terminal.parsely.enabled;
-  const apikey = window.terminal.parsely.apiKey;
-  const apisecret = window.terminal.parsely.apiSecret;
-
-  let open = false;
   const popular = evaluateQuerySelector('.terminal-popular-container');
   if (!popular) {
     return;
   }
-  toggleHiddenNoJS(evaluateQuerySelector('.terminal-popular-container'));
-  function popularCallback() {
-    open = !open;
-    toggleInfinite();
-    const popularLink = evaluateQuerySelector('a[name="popular"]');
-    if (open) {
-      add(evaluateQuerySelector('body'), 'terminal-viewing-popular');
-    } else {
-      remove(evaluateQuerySelector('body'), 'terminal-viewing-popular');
-    }
-    if (!isInViewport(popularLink)) {
-      popularLink.scrollIntoView();
-    }
-  }
+  toggleHiddenNoJS(popular);
+  const select = evaluateQuerySelector('.terminal-popular-select-filter');
+  const pastDay = evaluateQuerySelector('.terminal-popular-list-day');
+  const pastWeek = evaluateQuerySelector('.terminal-popular-list-week');
+  const pastMonth = evaluateQuerySelector('.terminal-popular-list-month');
 
-  if (!parsely || !apikey || !apisecret) {
-    return;
-  }
-  addClickListener(
-    evaluateQuerySelector('.terminal-popular-link'),
-    [],
-    false,
-    false,
-    popularCallback,
-  );
+  select.addEventListener('change', (e) => {
+    if (e.target.selectedOptions) {
+      const selected = e.target.selectedOptions[0].value;
+      switch (selected) {
+        case 'past-day':
+          reveal(pastDay);
+          hide(pastWeek);
+          hide(pastMonth);
+          break;
+        case 'past-week':
+          reveal(pastWeek);
+          hide(pastDay);
+          hide(pastMonth);
+          break;
+        case 'past-month':
+          hide(pastWeek);
+          hide(pastDay);
+          reveal(pastMonth);
+          break;
+        default:
+          break;
+      }
+    }
+  });
 }
 
 export default {
   setupPopular,
 };
-
