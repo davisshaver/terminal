@@ -68,17 +68,16 @@ export function setupMenu() {
     } else {
       remove(evaluateQuerySelector('body'), 'terminal-scrolled');
     }
-    console.log('scroll');
-    if (topInViewport() || breakoutInViewport()) {
-      add(evaluateQuerySelector('body'), 'terminal-viewing-featured');
-    } else {
-      remove(evaluateQuerySelector('body'), 'terminal-viewing-featured');
-    }
 
     if (contentInViewport()) {
       add(evaluateQuerySelector('body'), 'terminal-viewing-content');
     } else {
       remove(evaluateQuerySelector('body'), 'terminal-viewing-content');
+    }
+    if ((topInViewport() || breakoutInViewport()) && !contentInViewport()) {
+      add(evaluateQuerySelector('body'), 'terminal-viewing-featured');
+    } else {
+      remove(evaluateQuerySelector('body'), 'terminal-viewing-featured');
     }
   }
   function resetForm() {
