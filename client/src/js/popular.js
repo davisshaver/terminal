@@ -16,18 +16,22 @@ export function setupPopular() {
   const apisecret = window.terminal.parsely.apiSecret;
 
   let open = false;
+  const popular = evaluateQuerySelector('.terminal-popular-container');
+  if (!popular) {
+    return;
+  }
   toggleHiddenNoJS(evaluateQuerySelector('.terminal-popular-container'));
   function popularCallback() {
     open = !open;
     toggleInfinite();
-    const popular = evaluateQuerySelector('a[name="popular"]');
+    const popularLink = evaluateQuerySelector('a[name="popular"]');
     if (open) {
       add(evaluateQuerySelector('body'), 'terminal-viewing-popular');
     } else {
       remove(evaluateQuerySelector('body'), 'terminal-viewing-popular');
     }
-    if (!isInViewport(popular)) {
-      popular.scrollIntoView();
+    if (!isInViewport(popularLink)) {
+      popularLink.scrollIntoView();
     }
   }
 
