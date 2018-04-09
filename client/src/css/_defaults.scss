@@ -323,9 +323,14 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
 	.terminal-card-image {
 		margin: -10px -10px 10px -10px;
 	}
+	.terminal-headline-font {
+		width: 100%;
+	}
 	.terminal-byline {
 		margin: 15px -10px;
 		padding: 5px;
+		background-color: inherit !important;
+		width: 100% !important;
 	}
 }
 @media (min-width: 410px) {

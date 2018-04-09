@@ -37,7 +37,7 @@ if ( $image_url ) {
       );
     ?>
   </h4>
-  <div class="terminal-byline terminal-text-gray-light">
+  <div class="terminal-byline terminal-text-gray">
     <div class="terminal-author terminal-no-select">
     <?php
     printf(
