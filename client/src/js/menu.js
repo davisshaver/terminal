@@ -11,16 +11,15 @@ import {
   toggleHiddenNoJS,
   toggleHidden,
   isInViewport,
+  isAnyPortionViewable,
   throttle,
-  removeOpen,
   toggleInfinite,
-  addScrolled,
-  removeScrolled,
+  add,
+  remove,
 } from './utils';
 
 export function setupMenu() {
   const header = evaluateQuerySelector('#terminal-nav-bar-header');
-  const footer = evaluateQuerySelector('.terminal-footer');
   const moreLink = evaluateQuerySelector('.terminal-nav-bar-inside-more-link a');
   const moreLinkContainer = evaluateQuerySelector('.terminal-nav-bar-inside-more-link');
   const moreNav = evaluateQuerySelector('.terminal-nav-bar-inside-more');
@@ -41,12 +40,9 @@ export function setupMenu() {
   const searchLink = evaluateQuerySelector('.terminal-nav-bar-inside-search-link a');
   const searchLinkSVG = evaluateQuerySelector('.terminal-nav-bar-inside-search-link svg');
   const searchTarget = evaluateQuerySelector('#terminal-search');
-  const share = evaluateQuerySelector('.essb_bottombar');
-  const shareMobile = evaluateQuerySelector('.essb-mobile-sharebottom');
   const svgLink = evaluateQuerySelector('.terminal-nav-bar-inside-more-link svg');
   const widget = evaluateQuerySelector('.widget_search');
   const searches = evaluateQuerySelector('.terminal-example-searches');
-  const container = evaluateQuerySelector('.terminal-container');
   const content = evaluateQuerySelector('.terminal-content-container');
   const top = evaluateQuerySelector('.terminal-top-container');
   const breakout = evaluateQuerySelector('.terminal-breakout-container');
@@ -55,11 +51,34 @@ export function setupMenu() {
     return isInViewport(evaluateQuerySelector('.terminal-logos'));
   }
 
+  function breakoutInViewport() {
+    return isAnyPortionViewable(breakout);
+  }
+
+  function contentInViewport() {
+    return isAnyPortionViewable(content);
+  }
+  function topInViewport() {
+    return isAnyPortionViewable(top);
+  }
+
   function checkScrolled() {
     if (!headerInViewport()) {
-      addScrolled(evaluateQuerySelector('body'));
+      add(evaluateQuerySelector('body'), 'terminal-scrolled');
     } else {
-      removeScrolled(evaluateQuerySelector('body'));
+      remove(evaluateQuerySelector('body'), 'terminal-scrolled');
+    }
+    console.log('scroll');
+    if (topInViewport() || breakoutInViewport()) {
+      add(evaluateQuerySelector('body'), 'terminal-viewing-featured');
+    } else {
+      remove(evaluateQuerySelector('body'), 'terminal-viewing-featured');
+    }
+
+    if (contentInViewport()) {
+      add(evaluateQuerySelector('body'), 'terminal-viewing-content');
+    } else {
+      remove(evaluateQuerySelector('body'), 'terminal-viewing-content');
     }
   }
   function resetForm() {

@@ -23,6 +23,15 @@ export function isInViewport(element) {
   );
 }
 
+export function isAnyPortionViewable(element) {
+  const rect = element.getBoundingClientRect();
+  const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+  const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+  const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
+  const horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
+  return (vertInView && horInView);
+}
+
 export function throttle(fn, wait) {
   let time = Date.now();
   return () => {
@@ -49,23 +58,23 @@ export function addEventListenerOnce(target, type, listener) {
   });
 }
 
-export function addScrolled(element) {
-  element.classList.add('terminal-scrolled');
+export function add(element, string) {
+  element.classList.add(string);
 }
 
-export function removeScrolled(element) {
-  element.classList.remove('terminal-scrolled');
+export function remove(element, string) {
+  element.classList.remove(string);
 }
 
 export function reveal(element) {
-  element.classList.remove('terminal-hidden');
+  remove(element, 'terminal-hidden');
 }
 export function hide(element) {
-  element.classList.add('terminal-hidden');
+  add(element, 'terminal-hidden');
 }
 
 export function removeOpen(element) {
-  element.classList.remove('terminal-flipped');
+  add(element, 'terminal-flipped');
 }
 export function toggleOpen(element) {
   element.classList.toggle('terminal-flipped');
@@ -112,12 +121,15 @@ export function addClickListener(
 }
 
 export default {
+  add,
   addClickListener,
   addEventListenerOnce,
   evaluateQuerySelector,
   evaluateQuerySelectorAll,
   hide,
   isInViewport,
+  isAnyPortionViewable,
+  remove,
   reveal,
   toggleHidden,
   toggleHiddenNoJS,

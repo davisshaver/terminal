@@ -110,3 +110,15 @@ body {
 .terminal-scroll-show {
   display: none !important;
 }
+
+.terminal-viewing-content {
+  .terminal-viewing-content-active {
+    font-weight: 700;
+  }
+}
+
+.terminal-viewing-featured {
+  .terminal-viewing-featured-active {
+    font-weight: 700;
+  }
+}

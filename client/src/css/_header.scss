@@ -33,6 +33,12 @@ body.admin-bar {
 			top: 0;
 		}
 	}
+	.terminal-filter {
+		top: 62px;
+		@media (max-width: 800px) {
+			top: 0;
+		}
+	}
 	.terminal-signup-container {
 		top: 35px;
 		@media (max-width: 800px) {
