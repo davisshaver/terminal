@@ -288,5 +288,8 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
 		margin: 0 auto;
 		max-width: 500px;
 		width: 100%;
+		@media screen and (max-width: 500px) {
+			margin: 0 15px;
+		}
 	}
 }
