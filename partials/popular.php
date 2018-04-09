@@ -73,7 +73,7 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
     $result = wp_cache_get( 'terminal-parsely-popular-last-four-weeks' );
     if ( false === $result ) {
       $result = wp_remote_get(
-        "https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=4w&limit=12"
+        "https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=4w&limit=4"
       );
       wp_cache_set( 'terminal-parsely-popular-last-four-weeks', $result, '', 3600 );
     }

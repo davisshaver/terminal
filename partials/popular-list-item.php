@@ -41,11 +41,9 @@ if ( $image_url ) {
     <div class="terminal-author terminal-no-select">
     <?php
     printf(
-      '%s %s (%s %s)',
+      '%s %s',
       esc_html( __( 'By', 'terminal' ) ),
-      esc_html( implode( ', ', $authors ) ),
-      esc_html( number_format( $views ) ),
-      esc_html( __( 'views', 'terminal' ) )
+      esc_html( implode( ', ', $authors ) )
     );
     ?>
 	</div>
