@@ -10,7 +10,6 @@ import {
   hide,
   toggleHiddenNoJS,
   toggleHidden,
-  isInViewport,
   isAnyPortionViewable,
   throttle,
   toggleInfinite,
@@ -48,7 +47,7 @@ export function setupMenu() {
   const breakout = evaluateQuerySelector('.terminal-breakout-container');
 
   function headerInViewport() {
-    return isInViewport(evaluateQuerySelector('.terminal-logos'));
+    return isAnyPortionViewable(evaluateQuerySelector('.terminal-logos'));
   }
 
   function breakoutInViewport() {
