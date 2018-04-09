@@ -276,6 +276,7 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
 	background: #f2f2f2;
 	opacity: .9;
 	padding: 5px 0;
+	position: -webkit-sticky;
 	position: sticky;
 	top: 30px;
 	width: 100%;
