@@ -21,7 +21,7 @@ printf(
 );
 printf(
 	'<a href="#popular" class="terminal-popular-link terminal-viewing-popular-active">%s</a>',
-	esc_html( __( 'Popular', 'terminal' ) )
+	esc_html( __( 'Trending', 'terminal' ) )
 );
 printf(
 	'<a href="#recent" class="terminal-viewing-content-active">%s</a>',
