@@ -31,7 +31,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			if ( ! is_singular() ) {
+			if ( ! is_singular( 'post' ) ) {
 				return;
 			}
 			$author_query = new \WP_Query( array(
