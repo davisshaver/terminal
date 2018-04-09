@@ -92,6 +92,51 @@ export function toggleHidden(element) {
   element.classList.toggle('terminal-hidden');
 }
 
+export function popularInViewport() {
+  return isAnyPortionViewable(evaluateQuerySelector('.terminal-popular-container'));
+}
+
+export function headerInViewport() {
+  return isAnyPortionViewable(evaluateQuerySelector('.terminal-logos'));
+}
+
+export function breakoutInViewport() {
+  const breakout = evaluateQuerySelector('.terminal-breakout-container');
+  return isAnyPortionViewable(breakout);
+}
+
+export function contentInViewport() {
+  const content = evaluateQuerySelector('.terminal-content-container');
+  return isAnyPortionViewable(content);
+}
+export function topInViewport() {
+  const top = evaluateQuerySelector('.terminal-top-container');
+  return isAnyPortionViewable(top);
+}
+
+export function checkScrolled() {
+  if (!headerInViewport()) {
+    add(evaluateQuerySelector('body'), 'terminal-scrolled');
+  } else {
+    remove(evaluateQuerySelector('body'), 'terminal-scrolled');
+  }
+
+  if (contentInViewport()) {
+    add(evaluateQuerySelector('body'), 'terminal-viewing-content');
+  } else {
+    remove(evaluateQuerySelector('body'), 'terminal-viewing-content');
+  }
+  if (!contentInViewport() && popularInViewport()) {
+    add(evaluateQuerySelector('body'), 'terminal-viewing-popular');
+  } else {
+    remove(evaluateQuerySelector('body'), 'terminal-viewing-popular');
+  }
+  if ((topInViewport() || breakoutInViewport()) && !contentInViewport() && !popularInViewport()) {
+    add(evaluateQuerySelector('body'), 'terminal-viewing-featured');
+  } else {
+    remove(evaluateQuerySelector('body'), 'terminal-viewing-featured');
+  }
+}
 export function addClickListener(
   listen,
   targets,
@@ -139,5 +184,7 @@ export default {
   reveal,
   toggleHidden,
   toggleHiddenNoJS,
+  checkScrolled,
   toggleOpen,
+  headerInViewport,
 };

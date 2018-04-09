@@ -3,12 +3,12 @@
 import {
   addClickListener,
   evaluateQuerySelector,
-  hide,
   isInViewport,
-  reveal,
+  toggleHiddenNoJS,
   toggleInfinite,
+  add,
+  remove,
 } from './utils';
-
 
 export function setupPopular() {
   const parsely = window.terminal.parsely.enabled;
@@ -16,27 +16,18 @@ export function setupPopular() {
   const apisecret = window.terminal.parsely.apiSecret;
 
   let open = false;
-
+  toggleHiddenNoJS(evaluateQuerySelector('.terminal-popular-container'));
   function popularCallback() {
     open = !open;
     toggleInfinite();
     const popular = evaluateQuerySelector('a[name="popular"]');
+    if (open) {
+      add(evaluateQuerySelector('body'), 'terminal-viewing-popular');
+    } else {
+      remove(evaluateQuerySelector('body'), 'terminal-viewing-popular');
+    }
     if (!isInViewport(popular)) {
       popular.scrollIntoView();
-    }
-  }
-  function recentCallback() {
-    const recent = evaluateQuerySelector('a[name="recent"]');
-    if (open) {
-      hide(evaluateQuerySelector('.terminal-popular-container'));
-      reveal(evaluateQuerySelector('.terminal-content-container'));
-      toggleInfinite();
-      if (!isInViewport(recent)) {
-        recent.scrollIntoView();
-      }
-      open = !open;
-    } else if (!isInViewport(recent)) {
-      recent.scrollIntoView(true);
     }
   }
 
@@ -44,18 +35,11 @@ export function setupPopular() {
     return;
   }
   addClickListener(
-    evaluateQuerySelector('.terminal-nav-bar-inside-popular-link a'),
-    [evaluateQuerySelector('.terminal-content-container'), evaluateQuerySelector('.terminal-popular-container')],
-    false,
-    false,
-    popularCallback,
-  );
-  addClickListener(
-    evaluateQuerySelector('.terminal-nav-bar-recent'),
+    evaluateQuerySelector('.terminal-popular-link'),
     [],
     false,
     false,
-    recentCallback,
+    popularCallback,
   );
 }
 
