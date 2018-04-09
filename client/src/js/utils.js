@@ -13,6 +13,9 @@ export function toggleInfinite() {
   }
 }
 export function isInViewport(element) {
+  if (!element) {
+    return false;
+  }
   const rect = element.getBoundingClientRect();
   const html = document.documentElement;
   return (
@@ -24,6 +27,9 @@ export function isInViewport(element) {
 }
 
 export function isAnyPortionViewable(element) {
+  if (!element) {
+    return false;
+  }
   const rect = element.getBoundingClientRect();
   const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
   const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
