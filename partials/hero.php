@@ -24,21 +24,6 @@ if ( empty( $size ) ) {
 	data-terminal-title="<?php the_title_attribute(); ?>"
 	data-terminal-view="hero"
 >
-	<h1 class="terminal-headline-featured-font terminal-limit-max-content-width">
-		<?php
-			printf(
-				'<a id="hero-title-%s" href="%s" class="terminal-link-gray %s" title="%s" data-terminal-post-id="%s" data-terminal-view="hero title" data-terminal-title="%s">',
-				get_the_ID(),
-				get_the_permalink(),
-				! is_singular() ? 'terminal-tracking' : '',
-				the_title_attribute( array( 'echo' => false ) ),
-				get_the_ID(),
-				the_title_attribute( array( 'echo' => false ) )
-			);
-		?>
-			<?php the_title(); ?>
-		</a>
-	</h1>
 	<?php
 	if ( has_post_thumbnail() ) :
 	?>
@@ -57,12 +42,27 @@ if ( empty( $size ) ) {
 				<?php the_post_thumbnail( 'terminal-uncut-thumbnail-large', array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
-		<div class="terminal-limit-max-content-width terminal-card-text terminal-body-font terminal-text-gray">
-			<?php
-				the_excerpt();
-			?>
-		</div>
 	<?php
 	endif;
 	?>
+	<h1 class="terminal-headline-featured-font terminal-limit-max-content-width">
+		<?php
+			printf(
+				'<a id="hero-title-%s" href="%s" class="terminal-link-gray %s" title="%s" data-terminal-post-id="%s" data-terminal-view="hero title" data-terminal-title="%s">',
+				get_the_ID(),
+				get_the_permalink(),
+				! is_singular() ? 'terminal-tracking' : '',
+				the_title_attribute( array( 'echo' => false ) ),
+				get_the_ID(),
+				the_title_attribute( array( 'echo' => false ) )
+			);
+		?>
+			<?php the_title(); ?>
+		</a>
+	</h1>
+	<div class="terminal-limit-max-content-width terminal-card-text terminal-body-font terminal-text-gray">
+		<?php
+			the_excerpt();
+		?>
+	</div>
 </div>
