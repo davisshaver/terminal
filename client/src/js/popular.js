@@ -33,7 +33,7 @@ export function setupPopular() {
           reveal(pastTwoDays);
           hide(pastWeek);
           hide(pastMonth);
-          hide(pastTwoDays);
+          hide(pastDay);
           break;
         case 'past-week':
           reveal(pastWeek);
