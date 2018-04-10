@@ -268,6 +268,10 @@ form[role="search"] {
 }
 
 a[name="recent"], a[name="popular"],  a[name="featured"] {
+	@media screen and (max-width: 500px) {
+		margin-top: -50px;
+		padding-top: 50px;
+	}
 	margin-top: -100px;
 	padding-top: 100px;
 }
@@ -346,11 +350,7 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
     max-width: calc(50% - 10px);
   }
 }
-@media (min-width: 620px) {
-  .terminal-popular-list .terminal-popular-list-item {
-    max-width: calc(33.33333% - 10px);
-  }
-}
+
 @media (min-width: 830px) {
   .terminal-popular-list .terminal-popular-list-item {
     max-width: calc(25% - 10px);
