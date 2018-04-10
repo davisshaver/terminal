@@ -1,10 +1,11 @@
 .textwidget {
 	padding: 15px;
 }
-.terminal-before-article-section.textwidget {
-	padding: 0;
+.terminal-before-article-section {
+	.textwidget {
+		padding: 0;
+	}
 }
-
 .terminal-post-widget {
 	width: 100%;
 	.terminal-image {
