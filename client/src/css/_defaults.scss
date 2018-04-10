@@ -309,10 +309,11 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
     background-position: calc(100% - 20px) center;
     background-repeat: no-repeat;
     background-size: 8px;
-    border: 0 !important;
     letter-spacing: inherit;
+    padding: 10px;
+    margin: -10px;
     text-transform: inherit;
-    min-width: 150px;
+    min-width: 200px;
 	}
 }
 

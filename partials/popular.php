@@ -13,6 +13,7 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
     <div class="terminal-card-title terminal-card-title-popular terminal-sidebar-header-font">
       <select class="terminal-popular-select-filter" name="filter">
         <option value="past-day"><?php esc_html_e( 'Past Day', 'terminal' ); ?></option>
+        <option value="past-two-days"><?php esc_html_e( 'Past 48 hours', 'terminal' ); ?></option>
         <option value="past-week"><?php esc_html_e( 'Past Week', 'terminal' ); ?></option>
         <option value="past-month"><?php esc_html_e( 'Past Month', 'terminal' ); ?></option>
       </select>
@@ -29,6 +30,32 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
       if ( ! empty( $json->data ) ) {
         echo '<div data-value="past-day" class="terminal-card-text terminal-popular-list terminal-popular-list-day">';
+        foreach( $json->data as $popular_post ) {
+          terminal_print_template_part(
+            'popular-list-item',
+            array(
+              'url' => $popular_post->url,
+              'image_url' => $popular_post->image_url,
+              'authors' => $popular_post->authors,
+              'views' => $popular_post->metrics->views,
+              'title' => $popular_post->title,  
+            )
+          );
+        }
+        echo '</div>';
+      }
+    }
+    $result = wp_cache_get( 'terminal-parsely-popular-last-two-days' );
+    if ( false === $result ) {
+      $result = wp_remote_get(
+        "https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=48h&limit=4"
+      );
+      wp_cache_set( 'terminal-parsely-popular-last-two-days', $result, '', 3600 );
+    }
+    if ( ! empty( $result ) ) {
+      $json = json_decode( wp_remote_retrieve_body( $result ) );
+      if ( ! empty( $json->data ) ) {
+        echo '<div data-value="past-two-days" class="terminal-card-text terminal-popular-list terminal-hidden terminal-popular-list-two-days">';
         foreach( $json->data as $popular_post ) {
           terminal_print_template_part(
             'popular-list-item',

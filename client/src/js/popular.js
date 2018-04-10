@@ -15,6 +15,7 @@ export function setupPopular() {
   toggleHiddenNoJS(popular);
   const select = evaluateQuerySelector('.terminal-popular-select-filter');
   const pastDay = evaluateQuerySelector('.terminal-popular-list-day');
+  const pastTwoDays = evaluateQuerySelector('.terminal-popular-list-two-days');
   const pastWeek = evaluateQuerySelector('.terminal-popular-list-week');
   const pastMonth = evaluateQuerySelector('.terminal-popular-list-month');
 
@@ -26,14 +27,23 @@ export function setupPopular() {
           reveal(pastDay);
           hide(pastWeek);
           hide(pastMonth);
+          hide(pastTwoDays);
+          break;
+        case 'past-two-days':
+          reveal(pastTwoDays);
+          hide(pastWeek);
+          hide(pastMonth);
+          hide(pastTwoDays);
           break;
         case 'past-week':
           reveal(pastWeek);
+          hide(pastTwoDays);
           hide(pastDay);
           hide(pastMonth);
           break;
         case 'past-month':
           hide(pastWeek);
+          hide(pastTwoDays);
           hide(pastDay);
           reveal(pastMonth);
           break;
