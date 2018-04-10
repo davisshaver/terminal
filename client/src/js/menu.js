@@ -203,7 +203,7 @@ export function setupMenu() {
                 searchResults = values.reduce((agg, datum) => {
                   const image = datum.image_url ? `<a href="${datum.url}" class="terminal-card-image"><img src="${datum.image_url}" /></a>` : '';
                   const noImageClass = image ? '' : 'terminal-no-photo';
-                  return `${agg} <div class="terminal-card terminal-card-single terminal-search-card ${noImageClass}"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-card-text terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide">By ${datum.author}</div></div></div>`;
+                  return `${agg} <div class="terminal-card terminal-card-single terminal-search-card ${noImageClass}"><div class="terminal-card-title terminal-no-select">${datum.section}</div>${image}<div class="terminal-card-text terminal-limit-max-content-width-add-margin terminal-index-meta-font"><h1 class="terminal-headline-font terminal-stream-headline"><a href="${datum.url}">${datum.title}</a></h1><div class="terminal-byline terminal-index-meta-font terminal-mobile-hide terminal-limit-max-content-width-add-margin">By ${datum.author}</div></div></div>`;
                 }, '');
                 if (window.AdLayersAPI &&
                   window.adLayersDFP &&
