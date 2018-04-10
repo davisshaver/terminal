@@ -39,14 +39,14 @@ if ( has_post_thumbnail() ) :
 	echo '</div>';
 	terminal_print_featured_image_caption();
 endif;
-if ( is_active_sidebar( 'terminal-before-article' ) ) {
-	dynamic_sidebar( 'terminal-before-article' );
-}
 if ( 'middle' === $single_data['single_meta_position'] ) :
 	terminal_print_template_part( 'byline', array(
 		'post_type' => $post_type
 	) );
 endif;
+if ( is_active_sidebar( 'terminal-before-article' ) ) {
+	dynamic_sidebar( 'terminal-before-article' );
+}
 printf(
 	'<div class="terminal-card-text terminal-body-font terminal-limit-max-content-width">%s',
 	apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) )
