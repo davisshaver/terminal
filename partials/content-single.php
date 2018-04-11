@@ -59,7 +59,6 @@ if ( 'bottom' === $single_data['single_meta_position'] ) :
 	) );
 endif;
 if ( is_active_sidebar( 'terminal-after-article' ) ) {
-	terminal_print_after_article_header();
 	dynamic_sidebar( 'terminal-after-article' );
 }
 if ( ! is_page() && empty( $single_data['hide_bio_on_single'] ) ) :
