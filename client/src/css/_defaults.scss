@@ -91,9 +91,6 @@ svg.terminal-svg {
 	margin: 0 auto 15px auto;
 	.terminal-card-text {
 		max-width: 50%;
-		h2, p {
-			width: 100%;
-		}
 		margin: 0 0 10px 0;
 		@media (max-width: 560px) {
 			max-width: 75%;
@@ -104,12 +101,12 @@ svg.terminal-svg {
 		margin: 0 auto 10px auto;
 	}
 	.terminal-card-text, img {
-		display: flex;
-		flex: 0 1 50%;
-		flex-wrap: wrap;
-		width: 100%;
-		height: auto;
-
+    display: flex;
+    flex: 1 1 50%;
+    min-width: 200px;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
 	}
 }
 .terminal-author {
@@ -366,3 +363,25 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
     max-width: calc(25% - 10px);
   }
 }
+
+
+.terminal-twitter {
+  background-color: #55acee; }
+  .terminal-twitter:hover {
+    background-color: rgba(85, 172, 238, 0.8); }
+
+.terminal-facebook {
+  background-color: #3b5998; }
+  .terminal-facebook:hover {
+    background-color: rgba(59, 89, 152, 0.8); }
+
+.terminal-linked {
+	background-color: #4875B4; }
+	.terminal-linked:hover {
+		background-color: rgba(72,117,180, 0.8) }
+
+
+.terminal-pinterest {
+	background-color: rgb(203, 32, 39); }
+	.terminal-pinterest:hover {
+		background-color: rgba(203, 32, 39, 0.8) }

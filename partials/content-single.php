@@ -23,12 +23,16 @@ if ( 'top' === $single_data['single_meta_position'] ) :
 		'post_type' => $post_type
 	) );
 endif;
+echo '<div class="terminal-meta terminal-no-select">';
 if ( function_exists( 'yoast_breadcrumb' ) ) {
 	yoast_breadcrumb(
 		'<div class="terminal-breadcrumbs terminal-single-meta-font terminal-link-gray">',
 		'</div>'
 	);
 }
+terminal_print_template_part( 'social-counts' );
+echo '</div>';
+echo '<div class="terminal-social-counts"><span class="terminal-facebook"></span></div>';
 printf(
 	'<h1 class="terminal-header terminal-header-no-background terminal-headline-featured-font">%s</h1>',
 	get_the_title()
