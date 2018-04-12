@@ -29,7 +29,7 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
     if ( ! empty( $result ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
       if ( ! empty( $json->data ) ) {
-        echo '<div data-value="past-day" class="terminal-card-text terminal-popular-list terminal-popular-list-day">';
+        echo '<div data-value="past-day" class="terminal-card-text terminal-popular-list terminal-popular-list-day terminal-hidden">';
         foreach( $json->data as $popular_post ) {
           terminal_print_template_part(
             'popular-list-item',
@@ -55,7 +55,7 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
     if ( ! empty( $result ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
       if ( ! empty( $json->data ) ) {
-        echo '<div data-value="past-two-days" class="terminal-card-text terminal-popular-list terminal-hidden terminal-popular-list-two-days">';
+        echo '<div data-value="past-two-days" class="terminal-card-text terminal-popular-list terminal-popular-list-two-days">';
         foreach( $json->data as $popular_post ) {
           terminal_print_template_part(
             'popular-list-item',
