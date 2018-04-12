@@ -8,6 +8,11 @@
 if ( empty( $url ) || empty( $title ) ) {
   return;
 }
+
+if ( empty( $rank ) ) {
+  $rank = null;
+}
+
 if ( ! empty( $image_url ) ) {
   $image_class = '';
 } else {
@@ -16,8 +21,9 @@ if ( ! empty( $image_url ) ) {
 }
 
 printf(
-  '<div class="terminal-popular-list-item %s">',
-  esc_attr( $image_class )
+  '<div class="terminal-popular-list-item %s" data-rank="%s">',
+  esc_attr( $image_class ),
+  esc_attr( $rank )
 );
 if ( $image_url ) {
   printf(

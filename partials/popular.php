@@ -30,7 +30,8 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
       if ( ! empty( $json->data ) ) {
         echo '<div data-value="past-day" class="terminal-card-text terminal-popular-list terminal-popular-list-day terminal-hidden">';
-        foreach( $json->data as $popular_post ) {
+        $rank = 1;
+        foreach( $json->data as $index => $popular_post ) {
           terminal_print_template_part(
             'popular-list-item',
             array(
@@ -38,9 +39,11 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
               'image_url' => $popular_post->image_url,
               'authors' => $popular_post->authors,
               'views' => $popular_post->metrics->views,
-              'title' => $popular_post->title,  
+              'title' => $popular_post->title,
+              'rank' => $rank,
             )
           );
+          $rank++;
         }
         echo '</div>';
       }
@@ -56,6 +59,7 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
       if ( ! empty( $json->data ) ) {
         echo '<div data-value="past-two-days" class="terminal-card-text terminal-popular-list terminal-popular-list-two-days">';
+        $rank = 1;
         foreach( $json->data as $popular_post ) {
           terminal_print_template_part(
             'popular-list-item',
@@ -65,8 +69,10 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
               'authors' => $popular_post->authors,
               'views' => $popular_post->metrics->views,
               'title' => $popular_post->title,  
+              'rank' => $rank,
             )
           );
+          $rank++;
         }
         echo '</div>';
       }
@@ -82,6 +88,7 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
       if ( ! empty( $json->data ) ) {
         echo '<div data-value="past-week" class="terminal-card-text terminal-popular-list terminal-popular-list-week terminal-hidden">';
+        $rank = 1;
         foreach( $json->data as $popular_post ) {
           terminal_print_template_part(
             'popular-list-item',
@@ -91,8 +98,10 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
               'authors' => $popular_post->authors,
               'views' => $popular_post->metrics->views,
               'title' => $popular_post->title,  
+              'rank' => $rank,
             )
           );
+          $rank++;
         }
         echo '</div>';
       }
@@ -108,6 +117,7 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
       if ( ! empty( $json->data ) ) {
         echo '<div data-value="past-month" class="terminal-card-text terminal-popular-list terminal-popular-list-month terminal-hidden">';
+        $rank = 1;
         foreach( $json->data as $popular_post ) {
           terminal_print_template_part(
             'popular-list-item',
@@ -117,8 +127,10 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
               'authors' => $popular_post->authors,
               'views' => $popular_post->metrics->views,
               'title' => $popular_post->title,  
+              'rank' => $rank,
             )
           );
+          $rank++;
         }
         echo '</div>';
       }
