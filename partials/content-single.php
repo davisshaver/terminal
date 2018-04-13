@@ -26,7 +26,7 @@ endif;
 echo '<div class="terminal-meta terminal-no-select">';
 if ( function_exists( 'yoast_breadcrumb' ) ) {
 	yoast_breadcrumb(
-		'<div class="terminal-breadcrumbs terminal-single-meta-font terminal-link-gray">',
+		'<div class="terminal-breadcrumbs terminal-single-meta-font terminal-text-gray terminal-link-gray-light">',
 		'</div>'
 	);
 }

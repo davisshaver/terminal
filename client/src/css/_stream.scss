@@ -160,6 +160,9 @@
 		flex: 1 1 50%;
 		height: 20px;
 		min-width: 200px;
+		@media screen and (max-width: 400px) {
+			order: 2;
+		}
 	}
 
 	.terminal-social-counts {
@@ -167,14 +170,16 @@
 		width: fit-content;
 		opacity: 0.3;
 		height: 20px;
-
+		@media screen and (max-width: 400px) {
+			order: 1;
+		}
 		&:hover {
 			opacity: 1;
 		}
 		justify-content: flex-end;
 		display: flex;
 		flex: 1 1 50%;
-		ul {
+		ul {	
 			margin: 0;
 			display: flex;
 			padding: 0;
