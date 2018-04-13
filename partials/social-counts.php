@@ -54,7 +54,7 @@ printf(
   esc_url( 'http://www.facebook.com/sharer.php?u=' . get_the_permalink() . '&amp;t=' . urlencode( get_the_title() ) ),
   $facebook,
   ! empty( $json->data[0]->fb ) ? null : 'terminal-hidden',
-  ! empty( $json->data[0]->fb ) ? esc_html( $json->data[0]->fb ) : null
+  ! empty( $json->data[0]->fb ) ? esc_html( number_format( $json->data[0]->fb ) ) : null
 );
 
 printf(
@@ -64,7 +64,7 @@ printf(
   ),
   $twitter,
   ! empty( $json->data[0]->tw ) ? null : 'terminal-hidden',
-  ! empty( $json->data[0]->tw ) ? esc_html( $json->data[0]->tw ) : null
+  ! empty( $json->data[0]->tw ) ? esc_html( number_format( $json->data[0]->tw ) ) : null
 );
 printf(
   '<li class="terminal-linked"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count %s">%s</span></a></li>',
@@ -73,7 +73,7 @@ printf(
   ),
   $linked_in,
   ! empty( $json->data[0]->li ) ? null : 'terminal-hidden',
-  ! empty( $json->data[0]->li ) ? esc_html( $json->data[0]->li ) : null
+  ! empty( $json->data[0]->li ) ? esc_html( number_format( $json->data[0]->li ) ) : null
 );
 printf(
   '<li class="terminal-pinterest"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count %s">%s</span></a></li>',
@@ -82,7 +82,7 @@ printf(
   ),
   $pinterest,
   ! empty( $json->data[0]->pi ) ? null : 'terminal-hidden',
-  ! empty( $json->data[0]->pi ) ? esc_html( $json->data[0]->pi ) : null
+  ! empty( $json->data[0]->pi ) ? esc_html( number_format( $json->data[0]->pi ) ) : null
 );
 echo '</ul>';
 echo '</div>';
