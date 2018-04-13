@@ -50,34 +50,38 @@ ob_end_clean();
 echo '<div class="terminal-social-counts">';
 echo '<ul>';
 printf(
-  '<li class="terminal-facebook"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count">%s</span></a></li>',
+  '<li class="terminal-facebook"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count %s">%s</span></a></li>',
   esc_url( 'http://www.facebook.com/sharer.php?u=' . get_the_permalink() . '&amp;t=' . urlencode( get_the_title() ) ),
   $facebook,
+  ! empty( $json->data[0]->fb ) ? null : 'terminal-hidden',
   ! empty( $json->data[0]->fb ) ? esc_html( $json->data[0]->fb ) : null
 );
 
 printf(
-  '<li class="terminal-twitter"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count">%s</span></a></li>',
+  '<li class="terminal-twitter"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count %s">%s</span></a></li>',
   esc_url(
     'http://twitter.com/home?status=' . urlencode( get_the_title() ) . ' ' . get_the_permalink()
   ),
   $twitter,
+  ! empty( $json->data[0]->tw ) ? null : 'terminal-hidden',
   ! empty( $json->data[0]->tw ) ? esc_html( $json->data[0]->tw ) : null
 );
 printf(
-  '<li class="terminal-linked"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count">%s</span></a></li>',
+  '<li class="terminal-linked"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count %s">%s</span></a></li>',
   esc_url(
     'http://www.linkedin.com/shareArticle?mini=true&url=' . get_the_permalink() . '&title=' . urlencode( get_the_title() ) . '&summary=' . urlencode( get_the_excerpt() ) . '&source=' . str_replace( 'https://', '', get_home_url() )
   ),
   $linked_in,
+  ! empty( $json->data[0]->li ) ? null : 'terminal-hidden',
   ! empty( $json->data[0]->li ) ? esc_html( $json->data[0]->li ) : null
 );
 printf(
-  '<li class="terminal-pinterest"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count">%s</span></a></li>',
+  '<li class="terminal-pinterest"><a rel="nofollow" href="%s" target="_new">%s<span class="terminal-count %s">%s</span></a></li>',
   esc_url(
     'http://pinterest.com/pin/create/button/?url=' . get_the_permalink() . '&description=' . urlencode( get_the_title() )
   ),
   $pinterest,
+  ! empty( $json->data[0]->pi ) ? null : 'terminal-hidden',
   ! empty( $json->data[0]->pi ) ? esc_html( $json->data[0]->pi ) : null
 );
 echo '</ul>';
