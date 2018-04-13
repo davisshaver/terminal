@@ -13,12 +13,12 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
 $url = get_the_permalink();
 
 
-$result = wp_cache_get( 'terminal-social-2' . $id );
+$result = wp_cache_get( 'terminal-social-' . $id );
 if ( false === $result ) {
   $result = wp_remote_get(
-    "https://api.parsely.com/v2/shares/post/detail?apikey=${api_key}&secret=${api_secret}&url=https://onwardstate.com/2018/02/19/best-features-thon-2018/"
+    "https://api.parsely.com/v2/shares/post/detail?apikey=${api_key}&secret=${api_secret}&url=${url}"
   );
-  wp_cache_set( 'terminal-social-2' . $id, $result, '', 3600 );
+  wp_cache_set( 'terminal-social-' . $id, $result, '', 3600 );
 }
 
 if ( empty( $result ) ) {
