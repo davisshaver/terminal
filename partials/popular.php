@@ -13,7 +13,7 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
     <div class="terminal-card-title terminal-card-title-popular terminal-sidebar-header-font">
       <select class="terminal-popular-select-filter" name="filter">
         <option value="past-day"><?php esc_html_e( 'Past Day', 'terminal' ); ?></option>
-        <option value="past-two-days"><?php esc_html_e( 'Past 48 Hours', 'terminal' ); ?></option>
+        <option selected="selected" value="past-two-days"><?php esc_html_e( 'Past 48 Hours', 'terminal' ); ?></option>
         <option value="past-week"><?php esc_html_e( 'Past Week', 'terminal' ); ?></option>
         <option value="past-month"><?php esc_html_e( 'Past Month', 'terminal' ); ?></option>
       </select>
