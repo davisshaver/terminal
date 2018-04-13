@@ -313,6 +313,7 @@ class Customizer {
 
 			.terminal-byline {
 				background-color: <?php echo esc_attr( get_theme_mod( 'byline_background_color_setting', 'inherit' ) ); ?>;
+				padding: 5px;
 			}
 
 			.terminal-header-leaderboard {
