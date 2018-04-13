@@ -156,17 +156,17 @@
 		display: flex;
 		position: relative;
 		width: fit-content;
-		padding: 5px 30px;
+		padding: 1px 30px;
 		flex: 1 1 50%;
-		height: 30px;
+		height: 20px;
 		min-width: 200px;
 	}
 
 	.terminal-social-counts {
 		position: relative;
 		width: fit-content;
-		opacity: 0.5;
-		height: 30px;
+		opacity: 0.3;
+		height: 20px;
 
 		&:hover {
 			opacity: 1;
@@ -196,6 +196,10 @@
 				fill: #fff;
 				svg, span {
 					display: flex;
+				}
+				svg.terminal-svg {
+					height: 18px !important;
+					width: 18px !important;
 				}
 				span {
 					margin-left: 10px;
