@@ -21,7 +21,7 @@
 		})(window,document,'script','dataLayer','GTM-PPN9ZXB');</script>
 	</head>
 	<body <?php body_class(); ?>>
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPN9ZXB"
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPN9ZXB&noscript=true"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<?php
 			get_template_part( 'partials/header' );
