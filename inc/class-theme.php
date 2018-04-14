@@ -169,8 +169,14 @@ class Theme {
 	 */
 	public function ensure_no_www_in_canonical( $value ) {
 		$link = get_permalink();
+		if ( ! $link ) {
+			return $value;
+		}
 		$parsed_link = parse_url( $link );
-		return str_replace( $parsed_link['host'], str_replace( 'www.', '', $parsed_link['host'] ), $value );
+		if ( ! empty( $parsed_link['host'] ) ) {
+			return str_replace( $parsed_link['host'], str_replace( 'www.', '', $parsed_link['host'] ), $value );
+		}
+		return $value;
 	}
 
 	/**
