@@ -30,9 +30,10 @@ if ( function_exists( 'yoast_breadcrumb' ) ) {
 		'</div>'
 	);
 }
-terminal_print_template_part( 'social-counts' );
 echo '</div>';
-echo '<div class="terminal-social-counts"><span class="terminal-facebook"></span></div>';
+// if ( current_user_can( 'edit_posts' ) ) {
+// 	terminal_print_template_part( 'analytics' );
+// }
 printf(
 	'<h1 class="terminal-header terminal-header-no-background terminal-headline-featured-font">%s</h1>',
 	get_the_title()
