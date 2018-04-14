@@ -72,11 +72,11 @@ class Frontend {
 		}
 		$json = json_decode( wp_remote_retrieve_body( $result ) );
 		$updated = $current;
-		$updated['facebook'] = $json->data[0]->fb;
-		$updated['twitter'] = $json->data[0]->tw;
-		$updated['linkedin'] = $json->data[0]->li;
-		$updated['pinterest'] = $json->data[0]->pi;
-		$updated['total'] = $json->data[0]->total;
+		$updated['facebook'] = ! empty( $json->data[0]->fb ) ? $json->data[0]->fb : $current['facebook'];
+		$updated['twitter'] = ! empty( $json->data[0]->tw ) ? $json->data[0]->tw : $current['twitter'];
+		$updated['linkedin'] = ! empty( $json->data[0]->li ) ? $json->data[0]->li : $current['linkedin'];
+		$updated['pinterest'] = ! empty( $json->data[0]->pi ) ? $json->data[0]->pi : $current['pinterest'];
+		$updated['total'] = ! empty( $json->data[0]->total ) ?  $json->data[0]->total : $current['total'];
 		return $updated;
 	}
 
