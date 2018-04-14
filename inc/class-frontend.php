@@ -76,7 +76,9 @@ class Frontend {
 		$updated['twitter'] = ! empty( $json->data[0]->tw ) ? $json->data[0]->tw : $current['twitter'];
 		$updated['linkedin'] = ! empty( $json->data[0]->li ) ? $json->data[0]->li : $current['linkedin'];
 		$updated['pinterest'] = ! empty( $json->data[0]->pi ) ? $json->data[0]->pi : $current['pinterest'];
-		$updated['total'] = ! empty( $json->data[0]->total ) ?  $json->data[0]->total : $current['total'];
+		$updated['total'] = ! empty( $json->data[0]->total ) ?
+			$json->data[0]->total + $current['email'] :
+			$current['total'];
 		return $updated;
 	}
 
