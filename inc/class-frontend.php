@@ -44,42 +44,8 @@ class Frontend {
 		if ( empty( $id ) ) {
 			return;
 		}
-		$api_key = getenv( 'TERMINAL_PARSELY_API_KEY' );
-		$api_secret = getenv( 'TERMINAL_PARSELY_API_SECRET' );
-
-		if ( empty( $api_key ) || empty( $api_secret ) ) {
-			return $current;
-		}
-		$url = get_the_permalink();
-		$result = wp_cache_get( 'terminal-social-' . $id );
-		if ( false === $result ) {
-			$time_since_publish = current_time( 'timestamp' ) - get_the_time( 'U' );
-			// If published more than a week ago, cache longer.
-			if ( $time_since_publish > 6048000) {
-				$cache_length = 864000;
-			} elseif ( $time_since_publish > 604800) {
-				$cache_length = 86400;
-			} else {
-				$cache_length = 8640;
-			}
-			$result = wp_remote_get(
-				"https://api.parsely.com/v2/shares/post/detail?apikey=${api_key}&secret=${api_secret}&url=${url}"
-			);
-			wp_cache_set( 'terminal-social-' . $id, $result, '', $cache_length );
-		}
-		if ( empty( $result ) ) {
-			return $current;
-		}
-		$json = json_decode( wp_remote_retrieve_body( $result ) );
-		$updated = $current;
-		$updated['facebook'] = ! empty( $json->data[0]->fb ) ? $json->data[0]->fb : $current['facebook'];
-		$updated['twitter'] = ! empty( $json->data[0]->tw ) ? $json->data[0]->tw : $current['twitter'];
-		$updated['linkedin'] = ! empty( $json->data[0]->li ) ? $json->data[0]->li : $current['linkedin'];
-		$updated['pinterest'] = ! empty( $json->data[0]->pi ) ? $json->data[0]->pi : $current['pinterest'];
-		$updated['total'] = ! empty( $json->data[0]->total ) ?
-			$json->data[0]->total + $current['mail'] :
-			$current['total'];
-		return $updated;
+		$parsely = Parsely::instance();
+		return $parsely->filter_essb4_counters( $current, $id );
 	}
 
 	/**
