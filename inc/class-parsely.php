@@ -199,10 +199,18 @@ class Parsely {
     return false;
   }
 
+  private function is_json( $string, $return_data = false ) {
+  $data = json_decode($string);
+  return (json_last_error() == JSON_ERROR_NONE) ? ($return_data ? $data : TRUE) : FALSE;
+  }
+
   private function get_cached( $key, $post_id ) {
     $value = get_post_meta( $post_id, $key, true );
     $expiration = get_post_meta( $post_id, $key . '_expiration', true );
     if ( empty( $value ) || empty( $expiration ) ) {
+      return false;
+    }
+    if ( ! is_string( $value ) || ! $this->is_json( $value ) ) {
       return false;
     }
     return json_decode( $value );
