@@ -243,7 +243,8 @@ class Customizer {
 			$header_accent = get_theme_mod( 'header_accent_color_setting', false );
 			if ( ! empty( $header_accent ) ) {
 				printf(
-					'body { border-top: 3px solid %s; } .terminal-signup { background-color: %s; } @media (max-width: 800px) { body { border-top: %s solid %s; } } ',
+					'.terminal-breakout-container{ border: 1px solid %s; } body { border-top: 3px solid %s; } .terminal-signup { background-color: %s; } @media (max-width: 800px) { body { border-top: %s solid %s; } } ',
+					esc_attr( get_theme_mod( 'header_accent_color_setting', null ) ),
 					esc_attr( get_theme_mod( 'header_accent_color_setting', null ) ),
 					esc_attr( get_theme_mod( 'header_accent_color_setting', null ) ),
 					! empty( $header_data['signup_show_on_mobile'] ) ? '30px' : '3px',
