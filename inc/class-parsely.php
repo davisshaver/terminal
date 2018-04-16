@@ -199,11 +199,10 @@ class Parsely {
   private function get_cached( $key, $post_id ) {
     $value = get_post_meta( $post_id, $key, true );
     $expiration = get_post_meta( $post_id, $key . '_expiration', true );
-    if ( ! empty( $value ) || ! empty( $expiration ) ) {
-      return json_decode( $value );
-    } elseif ( time() > $expiration ) {
-      return json_decode( $value );
+    if ( empty( $value ) || empty( $expiration ) ) {
+      return false;
     }
+    return json_decode( $value );
   }
 
   private function get_cached_referrers_for_post( $post_id ) {
@@ -223,6 +222,7 @@ class Parsely {
 			return;
     }
     $json = $this->get_cached( 'terminal_analytics', $post_id );
+    var_dump( $json );
     if (false === $json) {
       $this->possibly_schedule_event( 'retrieve_analytics_data', $post_id );
       return;
@@ -435,7 +435,7 @@ class Parsely {
     $json = $this->get_cached( 'terminal_social', $post_id );
 		if (false === $json) {
       $this->possibly_schedule_event( 'retrieve_social_data', $post_id );
-      return;
+      return false;
     }
     return $json;
   }
