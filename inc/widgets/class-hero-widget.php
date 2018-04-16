@@ -35,7 +35,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				return;
 			}
 			$cat_query = new \WP_Query( array(
-				'posts_per_page'      => 1,
+				'posts_per_page'      => ! empty( $instance['number'] ) ? $instance['number'] : 1,
 				'ignore_sticky_posts' => true,
 				'post__not_in'        => is_single() ? array( get_the_ID() ) : array(),
 				'tax_query' => array(
@@ -81,6 +81,16 @@ if ( class_exists( '\FM_Widget' ) ) {
 						'single',
 						'double',
 						'triple',
+					),
+				) ),
+				'number'         => new \Fieldmanager_Select( 'Number to show', array(
+					'default_value' => 1,
+					'options'       => array(
+						1,
+						2,
+						3,
+						4,
+						5,
 					),
 				) ),
 			];
