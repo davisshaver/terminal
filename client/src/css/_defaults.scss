@@ -119,6 +119,20 @@ svg.terminal-svg {
 	width: 100%;
 }
 
+.terminal-breakout-container {
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	margin: 0 15px 10px 15px;
+
+	.terminal-card-featured {
+		max-width: 90vw;
+		flex: 0 0 auto;
+		margin: 0 1vw 0 0;
+	}
+}
+
 .terminal-header, h1.terminal-header, h2.terminal-header, h3.terminal-header, h4.terminal-header, h5.terminal-header, h6.terminal-header {
 	padding: 10px 30px;
 	margin: 0 0 10px 0;
