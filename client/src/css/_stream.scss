@@ -258,3 +258,26 @@
 		margin: 5px auto;
 	}
 }
+
+.terminal-single-analytics {
+	display: flex;
+	padding: 0;
+	flex: auto;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	ul {
+		display: flex;
+		flex: auto;
+		padding: 0;
+		flex-wrap: wrap;
+		margin: 5px;
+		li {
+			margin: 5px;
+			display: flex;
+			flex: auto;
+			strong {
+				margin-right: 2px;
+			}
+		}
+	}
+}

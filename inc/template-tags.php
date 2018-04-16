@@ -666,4 +666,18 @@ function terminal_get_template_part( $template, $vars = array() ) {
 function terminal_print_template_part( $template, $vars = array() ) {
 	echo terminal_get_template_part( $template, $vars );
  }
- 
+
+function retrieve_social_data( $post_id ) {
+  $parsely = Terminal\Parsely::instance();
+  return $parsely->store_social_data( $post_id );
+}
+
+function retrieve_analytics_data( $post_id ) {
+  $parsely = Terminal\Parsely::instance();
+  return $parsely->store_analytics_data( $post_id );
+}
+
+function retrieve_referral_data( $post_id ) {
+  $parsely = Terminal\Parsely::instance();
+  return $parsely->store_referral_data( $post_id );
+}
