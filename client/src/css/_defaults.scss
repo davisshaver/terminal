@@ -118,14 +118,35 @@ svg.terminal-svg {
 .terminal-comments-container, .terminal-breakout-container, .terminal-popular-container {
 	width: 100%;
 }
-
 .terminal-breakout-container {
+	position: relative;
+	&::after {
+		background: #333;
+		color: #fff;
+		content: ">>";
+		font-size: 20px;
+		padding: 10px;
+		position: absolute;
+		right: 10px;
+		top: 25%;
+		user-select: none;
+		width: 50px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+	}
+}
+
+.terminal-breakout {
 	display: flex;
+	width: 100%;
 	flex-wrap: nowrap;
 	overflow-x: scroll;
 	-webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 	margin: 0 15px 10px 15px;
-
+	position: relative;
 	.terminal-card-featured {
 		max-width: 90vw;
 		flex: 0 0 auto;
