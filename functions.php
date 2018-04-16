@@ -18,7 +18,7 @@ if ( version_compare( strtok( $GLOBALS['wp_version'], '-' ), '4.9', '<' ) ) {
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {
-	define( 'TERMINAL_VERSION', '2.90' );
+	define( 'TERMINAL_VERSION', '2.91' );
 }
 
 if ( ! defined( 'TERMINAL_APP' ) ) {
@@ -42,6 +42,7 @@ require_once __DIR__ . '/inc/class-data.php';
 require_once __DIR__ . '/inc/class-frontend.php';
 require_once __DIR__ . '/inc/class-menu.php';
 require_once __DIR__ . '/inc/class-parsely.php';
+// require_once __DIR__ . '/inc/class-tweets.php';
 require_once __DIR__ . '/inc/class-permalinks.php';
 require_once __DIR__ . '/inc/class-settings.php';
 
