@@ -265,6 +265,10 @@
 	flex: auto;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	small {
+		flex: 0 0 100%;
+		text-align: center;
+	}
 	ul {
 		display: flex;
 		flex: auto;

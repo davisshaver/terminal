@@ -31,7 +31,7 @@ if ( function_exists( 'yoast_breadcrumb' ) ) {
 	);
 }
 echo '</div>';
-if ( current_user_can( 'manage_options' ) ) {
+if ( current_user_can( 'edit_posts' ) ) {
 	terminal_print_template_part( 'analytics' );
 }
 printf(
