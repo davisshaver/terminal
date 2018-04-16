@@ -298,7 +298,7 @@ class Parsely {
       echo '</ul>';
       printf(
         '<small>%s %s.</small>',
-        __( 'Analytics limited to past 90 days. Confidential to %s.', 'terminal' ),
+        __( 'Analytics limited to past 90 days. Confidential to', 'terminal' ),
         esc_html( get_bloginfo( 'title' ) )
       );
     }
