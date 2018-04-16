@@ -296,7 +296,11 @@ class Parsely {
         );
       }
       echo '</ul>';
-      echo '<small>Analytics are confidential to Onward State. These measures should be accurate over the last 90 days.</small>';
+      printf(
+        '<small>%s %s.</small>',
+        __( 'Analytics limited to past 90 days. Confidential to %s.', 'terminal' ),
+        esc_html( get_bloginfo( 'title' ) )
+      );
     }
   }
 
