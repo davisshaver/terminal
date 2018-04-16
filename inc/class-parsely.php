@@ -64,6 +64,9 @@ class Parsely {
   }
 
   private function possibly_schedule_event( $event, $post_id ) {
+    if ( is_preview() ) {
+      return;
+    }
     if (
       false === wp_next_scheduled(
         $event,
