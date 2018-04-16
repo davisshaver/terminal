@@ -46,6 +46,13 @@ require_once __DIR__ . '/inc/class-parsely.php';
 require_once __DIR__ . '/inc/class-permalinks.php';
 require_once __DIR__ . '/inc/class-settings.php';
 
+if(
+	! function_exists('twitter_api_get') &&
+	file_exists( dirname( __FILE__ ) . '/lib/wp-twitter-api/twitter-api.php' )
+) {
+	require dirname( __FILE__ ) . '/lib/wp-twitter-api/twitter-api.php';
+}
+
 // Features
 if ( getenv( 'TERMINAL_ENABLE_LINK_POST_TYPE' ) ) {
 	require_once __DIR__ . '/inc/post-types/class-links.php';
