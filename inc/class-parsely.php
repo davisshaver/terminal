@@ -222,7 +222,6 @@ class Parsely {
 			return;
     }
     $json = $this->get_cached( 'terminal_analytics', $post_id );
-    var_dump( $json );
     if (false === $json) {
       $this->possibly_schedule_event( 'retrieve_analytics_data', $post_id );
       return;
