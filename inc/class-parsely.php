@@ -297,6 +297,7 @@ class Parsely {
         );
       }
       echo '</ul>';
+      echo '<small>Analytics are confidential to Onward State. These measures should be accurate over the last 90 days.</small>';
     }
   }
 
