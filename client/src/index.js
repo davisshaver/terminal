@@ -4,7 +4,6 @@
 import './index.scss';
 import { setupMenu } from './js/menu';
 import { setupPopular } from './js/popular';
-import { setupSlider } from './js/slider';
 
 
 function scaleAd(ID) {
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('we give up');
     }
   }
-  setupSlider();
   setupMenu();
   setupPopular();
   setTimeout(scaleAllAds, 500);
