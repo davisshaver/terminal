@@ -260,7 +260,7 @@ class Parsely {
       echo '<ul>';
       foreach( $json->data[0] as $metric => $value ) {
         if ( 'total' === $metric ) {
-          break;
+          continue;
         }
         $name = $this->parsely_metric_to_name( $metric );
         printf(
