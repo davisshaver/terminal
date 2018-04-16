@@ -147,9 +147,11 @@ svg.terminal-svg {
 	margin: 0 15px 10px 15px;
 	position: relative;
 	.terminal-card-featured {
-		max-width: 90vw;
-		flex: 0 0 auto;
-		margin: 0 1vw 0 0;
+		flex: 0 0 100%;
+		margin: 0 15px 0 0;
+		@media (max-height: 400px) {
+			max-width: 100vh;
+		}
 	}
 }
 
