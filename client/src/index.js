@@ -4,7 +4,7 @@
 import './index.scss';
 import { setupMenu } from './js/menu';
 import { setupPopular } from './js/popular';
-
+import { setupScroller } from './js/scroller';
 
 function scaleAd(ID) {
   const adDiv = jQuery(ID);
@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setupMenu();
   setupPopular();
-  setTimeout(scaleAllAds, 500);
+  setupScroller();
+
   if (window.AdLayersAPI &&
     window.adLayersDFP &&
     window.jQuery &&

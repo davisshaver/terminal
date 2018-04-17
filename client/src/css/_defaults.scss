@@ -120,15 +120,21 @@ svg.terminal-svg {
 }
 .terminal-breakout-container {
 	position: relative;
-	&::after {
+	.terminal-arrow-left {
+		left: 16px;
+	}
+	.terminal-arrow-right {
+		right: 16px;
+	}
+	.terminal-arrow {
 		background: #333;
 		color: #fff;
-		content: ">>";
 		font-size: 20px;
 		padding: 10px;
 		position: absolute;
-		right: 15px;
+		z-index: 1;
 		top: 25%;
+		cursor: pointer;
 		user-select: none;
 		width: 50px;
     -moz-user-select: none;
@@ -138,14 +144,16 @@ svg.terminal-svg {
 	}
 }
 
+
 .terminal-breakout {
 	display: flex;
 	flex-wrap: nowrap;
 	overflow-x: scroll;
 	-webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
+	-ms-overflow-style: none;
 	margin: 0 15px 10px 15px;
 	position: relative;
+	
 	.terminal-card-featured {
 		flex: 0 0 100%;
 		margin: 0 15px 0 0;

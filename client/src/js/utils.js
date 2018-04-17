@@ -109,6 +109,7 @@ export function contentInViewport() {
   const content = evaluateQuerySelector('.terminal-content-container');
   return isAnyPortionViewable(content);
 }
+
 export function topInViewport() {
   const top = evaluateQuerySelector('.terminal-top-container');
   return isAnyPortionViewable(top);
