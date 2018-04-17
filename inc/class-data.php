@@ -283,7 +283,7 @@ class Data {
 	public function get_facebook_count_for_post() {
 		return 0;
 	}
-
+		
 	/**
 	 * Get post featured metadata.
 	 */
@@ -291,12 +291,24 @@ class Data {
 		$default = array(
 			'caption' => '',
 			'credit' => '',
+			'add_featured_embed' => false,
+			'use_featured_embed_on_landing' => false,
+			'use_featured_embed_on_single' => false,
+			'featured_embed' => '',
 		);
 		$options = array(
 			'caption' => get_post_meta( get_the_ID(), 'terminal_featured_meta_caption', true ),
-			'credit'  => get_post_meta( get_the_ID(), 'terminal_featured_meta_credit', true ),
+			'caption' => get_post_meta( get_the_ID(), 'terminal_featured_meta_caption', true ),
+			'add_featured_embed' => get_post_meta( get_the_ID(), 'terminal_featured_meta_add_featured_embed', true ),
+			'use_featured_embed_on_landing' => get_post_meta( get_the_ID(), 'terminal_featured_meta_use_featured_embed_on_landing', true ),
+			'use_featured_embed_on_single' => get_post_meta( get_the_ID(), 'terminal_featured_meta_use_featured_embed_on_single', true ),
+			'featured_embed'  => get_post_meta( get_the_ID(), 'terminal_featured_meta_featured_embed', true ),
 		);
 		return array(
+			'add_featured_embed' => ! empty( $options['add_featured_embed'] ) ? $options['add_featured_embed'] : $default['add_featured_embed'],
+			'use_featured_embed_on_landing' => ! empty( $options['use_featured_embed_on_landing'] ) ? $options['use_featured_embed_on_landing'] : $default['use_featured_embed_on_single'],
+			'use_featured_embed_on_single' => ! empty( $options['use_featured_embed_on_single'] ) ? $options['use_featured_embed_on_single'] : $default['use_featured_embed_on_single'],
+			'featured_embed' => ! empty( $options['featured_embed'] ) ? $options['featured_embed'] : $default['featured_embed'],
 			'caption' => ! empty( $options['caption'] ) ? $options['caption'] : $default['caption'],
 			'credit'  => ! empty( $options['credit'] ) ? $options['credit'] : $default['credit'],
 		);

@@ -7,6 +7,17 @@
 if ( empty( $size ) ) {
 	$size = 'double';
 }
+$data = Terminal\Data::instance();
+$meta = $data->get_post_featured_meta();
+if (
+	! empty( $meta['add_featured_embed'] ) &&
+	! empty( $meta['use_featured_embed_on_landing'] ) &&
+	! empty( $meta['featured_embed'] )
+) {
+	$use_featured_embed = $meta['featured_embed'];
+} else {
+	$use_featured_embed = false;
+}
 ?>
 
 <div 
@@ -25,8 +36,8 @@ if ( empty( $size ) ) {
 	data-terminal-view="hero"
 >
 	<?php
-	if ( has_post_thumbnail() ) :
-	?>
+	if ( has_post_thumbnail() && empty( $meta['hide_featured_image'] ) && empty( $use_featured_embed ) ) {
+		?>
 		<div class="terminal-card-image">
 		<?php
 			printf(
@@ -43,7 +54,11 @@ if ( empty( $size ) ) {
 			</a>
 		</div>
 	<?php
-	endif;
+	} elseif ( ! empty( $use_featured_embed ) ) {
+		echo '<div class="terminal-card-embed">';
+		echo apply_filters( 'the_content', $use_featured_embed );
+		echo '</div>';
+	}
 	?>
 	<h1 class="terminal-headline-featured-font terminal-limit-max-content-width">
 		<?php

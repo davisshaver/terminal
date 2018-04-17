@@ -13,7 +13,17 @@ $loop_data = terminal_get_layout_data( array(
 $hide_excerpt_on_mobile = ! empty( $loop_data['hide_excerpt_on_mobile'] ) ?
 	true :
 	false;
-
+$data = Terminal\Data::instance();
+$meta = $data->get_post_featured_meta();
+if (
+	! empty( $meta['add_featured_embed'] ) &&
+	! empty( $meta['use_featured_embed_on_landing'] ) &&
+	! empty( $meta['featured_embed'] )
+) {
+	$use_featured_embed = $meta['featured_embed'];
+} else {
+	$use_featured_embed = false;
+}
 $terminal_no_photo_class = ! has_post_thumbnail() ? 'terminal-no-photo' : '';
 $terminal_card_title = false;
 $terminal_card_title_meta = false;
@@ -88,7 +98,7 @@ printf(
 			'post_type' => $post_type
 		) );
 	endif;
-	if ( has_post_thumbnail() ) {
+	if ( has_post_thumbnail() && empty( $meta['hide_featured_image'] ) && empty( $use_featured_embed ) ) {
 		$thumb = wp_get_attachment_image_src(
 			get_post_thumbnail_id( $post_id ),
 			'terminal-uncut-thumbnail-large'
@@ -116,6 +126,10 @@ printf(
 		);
 		the_post_thumbnail( 'terminal-uncut-thumbnail' );
 		echo '</a>';
+	} elseif ( ! empty( $use_featured_embed ) ) {
+		echo '<div class="terminal-card-embed">';
+		echo apply_filters( 'the_content', $use_featured_embed );
+		echo '</div>';
 	}
 	echo '<div class="terminal-card-text">';
 		if ( 'photo' === $post_type ) {

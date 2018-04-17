@@ -30,6 +30,15 @@
 		}
 		display: block;
 	}
+	.terminal-card-embed {
+		flex-basis: 100%;
+		margin: 0 auto 10px auto;
+		flex-grow: 1;
+		display: block;
+		iframe {
+			width: 100% !important;
+		}
+	}
 	.terminal-card-text > iframe {
 		margin: 0 auto 10px auto ! important;
 	}
