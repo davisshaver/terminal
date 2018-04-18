@@ -165,7 +165,7 @@ class Frontend {
 	 */
 	public function disable_unipress_styles() {
 		wp_dequeue_style( 'unipress-api' );
-		if ( ! is_singular() || ! has_shortcode( get_the_content(), 'logo-carousel-pro' ) ) {
+		if ( ! is_singular() || ( in_the_loop() && ! has_shortcode( get_the_content(), 'logo-carousel-pro' ) ) ) {
 			wp_dequeue_style( 'slick' );
 			wp_dequeue_style( 'tooltipster-min-css' );
 			wp_dequeue_style( 'logo-carousel-pro-style' );
