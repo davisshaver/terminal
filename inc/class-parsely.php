@@ -32,6 +32,32 @@ class Parsely {
     add_action( 'retrieve_social_data', 'retrieve_social_data', 10, 1 );
     add_action( 'retrieve_analytics_data', 'retrieve_analytics_data', 10, 1 );
     add_action( 'retrieve_referral_data', 'retrieve_referral_data', 10, 1 );
+    add_action( 'retrieve_data', 'retrieve_data', 10, 1 );
+    add_action( 'publish_post', [ $this, 'schedule_some_retrievals' ], 10, 2 );
+    add_action( 'trashed_post', [ $this, 'remove_some_retrievals' ], 10, 2 );
+  }
+
+  public function remove_some_retrievals( $post_id, $post ) {
+    foreach( $hours as $hour ) {
+      $target = $timestamp + ( $hour * HOUR_IN_SECONDS );
+      $possibly_scheduled = wp_next_scheduled( 'retrieve_data', array( $post_id, $hour ) );
+      if( $possibly_scheduled ) {
+        wp_unschedule_event( $timestamp, 'retrieve_data', array( $post_id, $hour ) );
+      }
+    }
+  }
+
+  public function schedule_some_retrievals( $post_id, $post ) {
+    $timestamp = get_post_time( 'U', false, $post );
+    $hours = array( 1, 2, 4, 6, 8, 10, 12 );
+    foreach( $hours as $hour ) {
+      $target = $timestamp + ( $hour * HOUR_IN_SECONDS );
+      $this->possibly_schedule_event(
+        'retrieve_data',
+        array( $post_id, $hour ),
+        $target
+      );
+    }
   }
 
   public function parsely_custom_orderby( $query ) {
@@ -63,9 +89,12 @@ class Parsely {
     return $clauses;
   }
 
-  private function possibly_schedule_event( $event, $post_id ) {
+  private function possibly_schedule_event( $event, $post_id, $target = false ) {
     if ( is_preview() ) {
       return;
+    }
+    if ( ! $target ) {
+      $target = time();
     }
     if (
       false === wp_next_scheduled(
@@ -74,7 +103,7 @@ class Parsely {
       )
     ) {
       wp_schedule_single_event(
-        time(),
+       $target,
         $event,
         array( $post_id )
       );
