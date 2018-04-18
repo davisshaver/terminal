@@ -200,8 +200,8 @@ class Parsely {
   }
 
   private function is_json( $string, $return_data = false ) {
-  $data = json_decode($string);
-  return (json_last_error() == JSON_ERROR_NONE) ? ($return_data ? $data : TRUE) : FALSE;
+    $data = json_decode( $string );
+    return ( json_last_error() == JSON_ERROR_NONE ) ? ( $return_data ? $data : TRUE ) : FALSE;
   }
 
   private function get_cached( $key, $post_id ) {
@@ -213,6 +213,19 @@ class Parsely {
     if ( ! is_string( $value ) || ! $this->is_json( $value ) ) {
       return false;
     }
+    if ( time() > $expiration ) {
+      switch ( $key ) {
+        case 'terminal_analytics':
+          $this->possibly_schedule_event( 'retrieve_analytics_data', $post_id );
+          break;
+        case 'terminal_social':
+          $this->possibly_schedule_event( 'retrieve_social_data', $post_id );
+          break;
+        case 'terminal_referrers':
+          $this->possibly_schedule_event( 'retrieve_referral_data', $post_id );
+          break;
+      }
+    }
     return json_decode( $value );
   }
 
@@ -220,24 +233,14 @@ class Parsely {
     if ( empty( $this->api_key ) || empty( $this->api_secret ) ) {
 			return;
     }
-    $json = $this->get_cached( 'terminal_referrers', $post_id );
-    if (false === $json) {
-      $this->possibly_schedule_event( 'retrieve_referral_data', $post_id );
-      return;
-    }
-    return $json;
+    return $this->get_cached( 'terminal_referrers', $post_id );
   }
 
   private function get_cached_analytics_for_post( $post_id ) {
     if ( empty( $this->api_key ) || empty( $this->api_secret ) ) {
 			return;
     }
-    $json = $this->get_cached( 'terminal_analytics', $post_id );
-    if (false === $json) {
-      $this->possibly_schedule_event( 'retrieve_analytics_data', $post_id );
-      return;
-    }
-    return $json;
+    return $this->get_cached( 'terminal_analytics', $post_id );
   }
 
   private function parsely_metric_to_name( $metric ) {
@@ -345,8 +348,10 @@ class Parsely {
       $cache_length = WEEK_IN_SECONDS;
     } elseif ( $time_since_publish > WEEK_IN_SECONDS) {
       $cache_length = DAY_IN_SECONDS;
-    } else {
+    } elseif ( $time_since_publish > DAY_IN_SECONDS )  {
       $cache_length = HOUR_IN_SECONDS;
+    } else {
+      $cache_length = MINUTE_IN_SECONDS * 10;
     }
     return $cache_length;
   }
@@ -439,20 +444,16 @@ class Parsely {
     if ( ! empty( $json->data[0]->li ) ) {
       update_post_meta( $post_id, 'terminal_parsely_linked_in_shares', $json->data[0]->li );
     }
-  }
+  }  
 
   private function get_cached_social_data( $post_id ) {
 		if ( empty( $this->api_key ) || empty( $this->api_secret ) ) {
 			return;
     }
     $url = get_the_permalink( $post_id );
-    $json = $this->get_cached( 'terminal_social', $post_id );
-		if (false === $json) {
-      $this->possibly_schedule_event( 'retrieve_social_data', $post_id );
-      return false;
-    }
-    return $json;
+    return $this->get_cached( 'terminal_social', $post_id );
   }
+
   /**
    * Filter ESSB4 share counts.
    *
