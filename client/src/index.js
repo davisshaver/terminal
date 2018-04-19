@@ -45,17 +45,24 @@ function scaleAllAds() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  function exponentialBackoff(toTry, maxTries = 5, delay, callback, finalCallback = false) {
+  function exponentialBackoff(toTry, maxTries, delay, callback, finalCallback = false) {
+    let target;
+    if (maxTries === target) {
+      target = 5;
+    } else {
+      target = maxTries;
+    }
     const result = toTry();
-    let max = maxTries || 10;
+    let max = target;
     if (result) {
       callback(result);
     } else if (max > 0) {
       setTimeout(() => {
         max -= 1;
-        exponentialBackoff(toTry, max, delay * 2, callback);
+        exponentialBackoff(toTry, max, delay * 2, callback, finalCallback);
       }, delay);
     } else {
+      console.log(finalCallback);
       if (finalCallback) {
         finalCallback();
       }
@@ -109,21 +116,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const body = document.querySelector('body');
 
-
   function addUncovered(element) {
     element.classList.add('uncovered');
   }
   const coveredUncovered = () => {
-    if (window.googletag.pubadsReady) {
+    if (!window.googletag.pubadsReady) {
       addUncovered(body);
     }
   };
   exponentialBackoff(
     () => (window.googletag && window.googletag.pubadsReady),
     5,
-    50,
+    3,
     coveredUncovered,
-    addUncovered,
+    coveredUncovered,
   );
   window.addEventListener('resize', () => {
     scaleAllAds();
