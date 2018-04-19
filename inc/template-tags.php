@@ -104,7 +104,7 @@ function terminal_print_featured_image_caption() {
 		echo '<div class="terminal-featured-meta terminal-sidebar-body-font terminal-limit-max-content-width terminal-text-gray-light">';
 		if ( ! empty( $meta['caption'] ) ) {
 			printf(
-				'<div class="terminal-featured-caption">%s</div>',
+				'<div class="terminal-featured-caption terminal-limit-max-content-width-add-margin">%s</div>',
 				wp_kses_post( $meta['caption'] )
 			);
 		}
