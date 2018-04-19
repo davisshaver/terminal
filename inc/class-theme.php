@@ -204,18 +204,6 @@ class Theme {
 	}
 
 	/**
-	 * Add uncovered.
-	 *
-	 * @param $classes array Existing classes.
-	 * @return array Filtered classes.
-
-	 */
-	public function add_uncovered( $classes ) {
-		array_push( $classes, 'uncovered' );
-		return $classes;
-	}
-
-	/**
 	 * Removes placements. Filter docs via Gutenberg...
 	 *
 	 * Fires right before the meta boxes are rendered.

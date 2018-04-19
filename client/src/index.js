@@ -45,7 +45,7 @@ function scaleAllAds() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  function exponentialBackoff(toTry, maxTries = 5, delay, callback) {
+  function exponentialBackoff(toTry, maxTries = 5, delay, callback, finalCallback = false) {
     const result = toTry();
     let max = maxTries || 10;
     if (result) {
@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         exponentialBackoff(toTry, max, delay * 2, callback);
       }, delay);
     } else {
+      if (finalCallback) {
+        finalCallback();
+      }
       console.log('we give up');
     }
   }
@@ -107,19 +110,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('body');
 
 
-  function toggleUncovered(element) {
-    element.classList.toggle('uncovered');
+  function addUncovered(element) {
+    element.classList.add('uncovered');
   }
   const coveredUncovered = () => {
     if (window.googletag.pubadsReady) {
-      toggleUncovered(body);
+      addUncovered(body);
     }
   };
   exponentialBackoff(
-    () => window.googletag && window.googletag.pubadsReady,
-    50,
+    () => (window.googletag && window.googletag.pubadsReady),
+    5,
     50,
     coveredUncovered,
+    addUncovered,
   );
   window.addEventListener('resize', () => {
     scaleAllAds();
