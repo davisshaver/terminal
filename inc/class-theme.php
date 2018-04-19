@@ -107,7 +107,6 @@ class Theme {
 		if ( is_customize_preview() ) {
 			add_filter( 'user_can_richedit', '__return_false' );
 		}
-		add_filter( 'body_class', [ $this, 'add_uncovered' ] );
 		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
 	}
 
