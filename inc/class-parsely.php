@@ -394,7 +394,7 @@ class Parsely {
 			$this->api_secret,
 			$url
 		);
-		$result = wp_remote_get( $rest_target, array( 'timeout' => 15 ) );
+		$result = wp_remote_get( $rest_target, array( 'timeout' => 20 ) );
 		if ( is_wp_error( $result ) ) {
 			return;
 		}
@@ -423,7 +423,7 @@ class Parsely {
 			$this->api_secret,
 			$url
 		);
-		$result = wp_remote_get( $rest_target, array( 'timeout' => 15 ) );
+		$result = wp_remote_get( $rest_target, array( 'timeout' => 20 ) );
 		if ( is_wp_error( $result ) ) {
 			return;
 		}
@@ -452,7 +452,7 @@ class Parsely {
 			$this->api_secret,
 			$url
 		);
-		$result = wp_remote_get( $rest_target, array( 'timeout' => 15 ) );
+		$result = wp_remote_get( $rest_target, array( 'timeout' => 20 ) );
 		if ( is_wp_error( $result ) ) {
 			return;
 		}
