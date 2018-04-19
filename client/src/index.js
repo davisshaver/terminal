@@ -61,12 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
         max -= 1;
         exponentialBackoff(toTry, max, delay * 2, callback, finalCallback);
       }, delay);
-    } else {
-      console.log(finalCallback);
-      if (finalCallback) {
-        finalCallback();
-      }
-      console.log('we give up');
+    } else if (max === 0 && finalCallback) {
+      finalCallback();
     }
   }
   setupMenu();
