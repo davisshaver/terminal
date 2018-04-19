@@ -236,12 +236,6 @@ class Parsely {
 	private function get_cached( $key, $post_id ) {
 		$value = get_post_meta( $post_id, $key, true );
 		$expiration = get_post_meta( $post_id, $key . '_expiration', true );
-		if ( empty( $value ) || empty( $expiration ) ) {
-			return false;
-		}
-		if ( ! is_string( $value ) || ! $this->is_json( $value ) ) {
-			return false;
-		}
 		if ( time() > $expiration ) {
 			switch ( $key ) {
 				case 'terminal_analytics':
@@ -255,7 +249,13 @@ class Parsely {
 					break;
 			}
 		}
-		return json_decode( $value );
+		if ( empty( $value ) ) {
+			return false;
+		}
+		if ( is_string( $value ) && $this->is_json( $value ) ) {
+			return json_decode( $value );
+		}
+		return $value;
 	}
 
 	private function get_cached_referrers_for_post( $post_id ) {
