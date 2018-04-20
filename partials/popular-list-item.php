@@ -37,7 +37,7 @@ if ( $image_url ) {
   <h4 class="terminal-headline-font">
     <?php
       printf(
-        '<a href="%s">%s</a>',
+        '<a href="%s" class="terminal-link-gray">%s</a>',
         esc_url( $url ),
         $title
       );
