@@ -44,6 +44,7 @@ class Theme {
 		add_image_size( 'terminal-uncut-thumbnail-logo', 100, 100, false );
 		add_image_size( 'terminal-uncut-thumbnail', 500, 500, false );
 		add_image_size( 'terminal-uncut-thumbnail-large', 775, 500, false );
+		add_image_size( 'terminal-uncut-thumbnail-extra-large', 2000, 1500, false );
 		add_image_size( 'terminal-primary-thumbnail', 702, 370, true );
 		add_image_size( 'terminal-thumbnail', 500, 500, true );
 		add_image_size( 'terminal-thumbnail-small', 100, 100, true );
