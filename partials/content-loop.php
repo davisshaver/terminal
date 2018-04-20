@@ -138,7 +138,7 @@ printf(
 			echo '</p>';
 		}
 		printf(
-			'<h1 class="terminal-headline-font terminal-stream-headline"><a
+			'<h1 class="terminal-headline-font terminal-stream-headline terminal-limit-max-content-width-add-margin"><a
 				id="%s"
 				href="%s"
 				class="terminal-tracking terminal-link-gray"
