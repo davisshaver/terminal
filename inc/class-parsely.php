@@ -37,7 +37,7 @@ class Parsely {
 		add_action( 'trashed_post', [ $this, 'remove_some_retrievals' ], 10, 2 );
 	}
 
-	public function remove_some_retrievals( $post_id, $post ) {
+	public function remove_some_retrievals( $post_id, $post = false ) {
 		foreach( $hours as $hour ) {
 			$target = $timestamp + ( $hour * HOUR_IN_SECONDS );
 			$possibly_scheduled = wp_next_scheduled( 'retrieve_data', array( $post_id, $hour ) );
