@@ -50,7 +50,7 @@ if (
 				the_title_attribute( array( 'echo' => false ) )
 			);
 		?>
-				<?php the_post_thumbnail( 'terminal-uncut-thumbnail-large', array( 'title' => get_the_title() ) ); ?>
+				<?php the_post_thumbnail( 'full', array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
 	<?php
