@@ -514,7 +514,7 @@ function terminal_print_stories_loop() {
 			) );
 		endwhile;
 	else :
-		echo '<div class="terminal-card terminal-card-single terminal-post-card terminal-limit-max-content-width-add-margins">';
+		echo '<div class="terminal-card terminal-card-single terminal-post-card terminal-limit-max-content-width-add-margin">';
 		echo '<div class="terminal-card-title terminal-no-select">';
 		esc_html_e( 'No posts founds', 'terminal' );
 		echo '</div><div class="terminal-card-text terminal-body-font terminal-limit-max-content-width"><p>';
