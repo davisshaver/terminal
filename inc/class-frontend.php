@@ -211,8 +211,6 @@ class Frontend {
 		wp_dequeue_script( 'devicepx' );
 		wp_deregister_script( 'wp-embed' );
 		wp_deregister_style( 'the-neverending-homepage' );
-		wp_deregister_style( 'tiled-gallery' );
-		wp_deregister_script( 'tiled-gallery' );
 	}
 
 	/**
