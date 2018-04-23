@@ -14,7 +14,7 @@
 
 get_header();
 if ( is_home() && ! is_paged() ) {
-	echo '<div class="terminal-filter terminal-link-gray terminal-scroll-show terminal-viewing-popular-active">';
+	echo '<div class="terminal-filter terminal-link-gray terminal-scroll-show terminal-viewing-popular-active terminal-hidden">';
 	echo '<div class="terminal-filter-inside">';
 	printf(
 		'<a href="#featured" class="terminal-viewing-featured-active">%s</a>',

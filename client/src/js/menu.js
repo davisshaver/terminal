@@ -18,6 +18,10 @@ import {
 
 export function setupMenu() {
   const header = evaluateQuerySelector('#terminal-nav-bar-header');
+  const filter = evaluateQuerySelector('.terminal-filter');
+  const featured = evaluateQuerySelector('a[name="featured"]');
+  const popular = evaluateQuerySelector('a[name="popular"]');
+  const recent = evaluateQuerySelector('a[name="recent"]');
   const moreLink = evaluateQuerySelector('.terminal-nav-bar-inside-more-link a');
   const moreLinkContainer = evaluateQuerySelector('.terminal-nav-bar-inside-more-link');
   const moreNav = evaluateQuerySelector('.terminal-nav-bar-inside-more');
@@ -74,7 +78,9 @@ export function setupMenu() {
   window.addEventListener('scroll', throttle(() => {
     checkScrolled();
   }, 10));
-
+  if (featured && popular && recent) {
+    toggleHidden(filter);
+  }
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
     toggleHiddenNoJS(searchFormMoreLink);
