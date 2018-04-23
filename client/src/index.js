@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     element.classList.add('uncovered');
   }
   const coveredUncovered = () => {
-    if (!window.googletag.pubadsReady) {
+    if (!window.googleTag || window.googletag.pubadsReady) {
       addUncovered(body);
     }
   };
