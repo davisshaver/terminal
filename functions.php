@@ -45,6 +45,7 @@ require_once __DIR__ . '/inc/class-parsely.php';
 // require_once __DIR__ . '/inc/class-tweets.php';
 require_once __DIR__ . '/inc/class-permalinks.php';
 require_once __DIR__ . '/inc/class-settings.php';
+require_once __DIR__ . '/inc/class-woo.php';
 
 if(
 	! function_exists('twitter_api_get') &&
