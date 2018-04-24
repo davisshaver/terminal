@@ -298,7 +298,7 @@ class Data {
 		);
 		$options = array(
 			'caption' => get_post_meta( get_the_ID(), 'terminal_featured_meta_caption', true ),
-			'caption' => get_post_meta( get_the_ID(), 'terminal_featured_meta_caption', true ),
+			'credit' => get_post_meta( get_the_ID(), 'terminal_featured_meta_credit', true ),
 			'add_featured_embed' => get_post_meta( get_the_ID(), 'terminal_featured_meta_add_featured_embed', true ),
 			'use_featured_embed_on_landing' => get_post_meta( get_the_ID(), 'terminal_featured_meta_use_featured_embed_on_landing', true ),
 			'use_featured_embed_on_single' => get_post_meta( get_the_ID(), 'terminal_featured_meta_use_featured_embed_on_single', true ),
