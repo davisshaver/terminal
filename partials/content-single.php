@@ -30,7 +30,7 @@ printf(
 	implode( get_post_class( array( 'terminal-card', 'terminal-post-card', 'terminal-card-double' ) ), ' ' ),
 	get_the_ID()
 );
-if ( 'top' === $single_data['single_meta_position'] ) :
+if ( 'top' === $single_data['single_meta_position'] && ! is_page() ) :
 	terminal_print_template_part( 'byline', array(
 		'post_type' => $post_type
 	) );
@@ -60,7 +60,7 @@ if ( has_post_thumbnail() && empty( $meta['hide_featured_image'] ) && empty( $us
 	echo apply_filters( 'the_content', $use_featured_embed );
 	echo '</div>';
 }
-if ( 'middle' === $single_data['single_meta_position'] ) :
+if ( 'middle' === $single_data['single_meta_position'] && ! is_page() ) :
 	terminal_print_template_part( 'byline', array(
 		'post_type' => $post_type
 	) );
@@ -74,7 +74,7 @@ printf(
 );
 wp_link_pages();
 echo '</div>';
-if ( 'bottom' === $single_data['single_meta_position'] ) :
+if ( 'bottom' === $single_data['single_meta_position'] && ! is_page() ) :
 	terminal_print_template_part( 'byline', array(
 		'post_type' => $post_type
 	) );
