@@ -36,7 +36,7 @@ if ( 'top' === $single_data['single_meta_position'] && ! is_page() ) :
 	) );
 endif;
 echo '<div class="terminal-meta terminal-no-select">';
-if ( function_exists( 'yoast_breadcrumb' ) ) {
+if ( function_exists( 'yoast_breadcrumb' ) && ! is_page() ) {
 	yoast_breadcrumb(
 		'<div class="terminal-breadcrumbs terminal-single-meta-font terminal-text-gray terminal-link-gray-light">',
 		'</div>'
