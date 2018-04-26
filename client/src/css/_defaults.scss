@@ -430,6 +430,22 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
 	.terminal-pinterest:hover {
 		background-color: rgba(203, 32, 39, 0.8) }
 
+.mepr-submit {
+	color: #3f3f3f;
+	background: #fff;
+	border-radius: 30px;
+	display: block;
+	height: 50px;
+	margin: 0 auto 10px auto;
+	line-height: 50px;
+	cursor: pointer;
+	width: 210px;
+	text-transform: uppercase;
+	&:hover {
+		background: #3f3f3f;
+		color: #fff;
+	}
+}
 
 .terminal-button {
 	@media (max-width: 869px) {
@@ -441,27 +457,12 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
 		color: #3f3f3f;
 		margin: 5px auto;
 		background: #fff;
+		cursor: pointer;
 		border-radius: 30px;
 		display: block;
 		height: 25px;
 		line-height: 25px;
 		width: 210px;
-		text-transform: uppercase;
-		&:hover {
-			background: #3f3f3f;
-			color: #fff;
-		}
-	}
-
-	&.mepr-submit {
-		color: #3f3f3f;
-    background: #fff;
-    border-radius: 30px;
-    display: block;
-    height: 50px;
-    margin: 0 auto 10px auto;
-    line-height: 50px;
-    width: 210px;
 		text-transform: uppercase;
 		&:hover {
 			background: #3f3f3f;
