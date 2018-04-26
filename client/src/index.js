@@ -76,7 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const coveredUncovered = () => {
-    if (!window.googleTag || !window.googletag.pubadsReady) {
+    if (
+      !!window.terminal.inlineAds.subscribed &&
+      !window.googleTag &&
+      !window.googletag.pubadsReady
+    ) {
       addUncovered(body);
       setAdLinks();
     }
