@@ -170,6 +170,15 @@ class Data {
 	}
 
 	/**
+	 * Get Ad block link.
+	 *
+	 * @return string Ad block link
+	 */
+	public function get_ad_block_link() {
+		return $this->get_ad_data( 'adblock_link' );
+	}
+
+	/**
 	 * Get prepared data.
 	 *
 	 * @param string $key Optional key.
@@ -183,6 +192,7 @@ class Data {
 				'inline_unit' => '',
 				'amp_post'    => '',
 				'amp_header'  => '',
+				'adblock_link' => null,
 				'amp_footer'  => '',
 			) );
 		}

@@ -402,6 +402,7 @@ function  terminal_print_data_layer_json( $echo = true ) {
 				'enabled' => $data->has_inline_ads(),
 				'unit'    => $data->get_inline_ads_tag(),
 				'noAdID' => $data->get_no_ad_id(),
+				'adblockLink' => $data->get_ad_block_link(),
 				'subscribed' => $data->user_has_no_ad_id(),
 			),
 			'single'    => $data->get_single_data_layer(),

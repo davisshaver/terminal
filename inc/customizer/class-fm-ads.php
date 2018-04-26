@@ -58,6 +58,7 @@ class FM_Ads {
 						)
 					) ),
 					'adblock_nag' => new \Fieldmanager_Media( 'Adblock Nag' ),
+					'adblock_link' => new \Fieldmanager_Link( 'Adblock Link' ),
 				),
 			)
 		);
