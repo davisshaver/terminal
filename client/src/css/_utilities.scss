@@ -85,7 +85,7 @@ body {
   max-width: $max_container_width;
 }
 
-.terminal-limit-max-container-width-add-margin {
+.terminal-limit-max-container-width-add-margin, .mp_wrapper {
   max-width: calc(#{$max_container_width} - 60px);
   width: calc(100% - 60px);
   margin: auto;

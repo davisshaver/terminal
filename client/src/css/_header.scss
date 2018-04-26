@@ -103,22 +103,10 @@ body.admin-bar {
 	flex-wrap: wrap;
 	justify-content: center;
 
-	div.terminal-button {
-		@media (max-width: 869px) {
-			flex-basis: 100%;
-			margin-bottom: 5px;
-		}
-
+	.terminal-button {
 		a {
 			color: #3f3f3f;
-			margin: 5px auto;
 			background: #fff;
-			border-radius: 30px;
-			display: block;
-			height: 25px;
-			line-height: 25px;
-			width: 210px;
-			text-transform: uppercase;
 		}
 	}
 

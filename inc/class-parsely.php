@@ -394,8 +394,14 @@ class Parsely {
 			$this->api_secret,
 			$url
 		);
-		$result = wp_remote_get( $rest_target, array( 'timeout' => 20 ) );
-		if ( is_wp_error( $result ) ) {
+		$result = false;
+		try {
+			$result = wp_remote_get( $rest_target, array( 'timeout' => 20 ) );
+		} catch( Exception $ex ) {
+			error_log( $ex->getMessage() );
+		}
+
+		if ( false === $result || is_wp_error( $result ) ) {
 			return;
 		}
 		if ( empty( $result ) ) {
@@ -423,10 +429,17 @@ class Parsely {
 			$this->api_secret,
 			$url
 		);
-		$result = wp_remote_get( $rest_target, array( 'timeout' => 20 ) );
-		if ( is_wp_error( $result ) ) {
+		$result = false;
+		try {
+			$result = wp_remote_get( $rest_target, array( 'timeout' => 20 ) );
+		} catch( Exception $ex ) {
+			error_log( $ex->getMessage() );
+		}
+
+		if ( false === $result || is_wp_error( $result ) ) {
 			return;
 		}
+
 		if ( empty( $result ) ) {
 			return;
 		}
@@ -452,8 +465,14 @@ class Parsely {
 			$this->api_secret,
 			$url
 		);
-		$result = wp_remote_get( $rest_target, array( 'timeout' => 20 ) );
-		if ( is_wp_error( $result ) ) {
+		$result = false;
+		try {
+			$result = wp_remote_get( $rest_target, array( 'timeout' => 20 ) );
+		} catch( Exception $ex ) {
+			error_log( $ex->getMessage() );
+		}
+
+		if ( false === $result || is_wp_error( $result ) ) {
 			return;
 		}
 		if ( empty( $result ) ) {
