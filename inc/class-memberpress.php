@@ -34,6 +34,8 @@ class Memberpress {
 	public function check_email_domain( $errors ) {
 		$data = Data::instance();
 		$membership = $data->get_restricted_domains_by_membership();
+		error_log( json_encode( $membership ) );
+		error_log( json_encode( $_POST ) );
 		if (
 			! empty( $membership ) &&
 			! empty( $_POST['mepr_product_id'] ) &&
