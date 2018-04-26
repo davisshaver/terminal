@@ -177,3 +177,12 @@ body.uncovered{
 .essbis-hover-overlay {
 	z-index: 0 !important;
 }
+
+div#mepr-account-nav {
+	display: flex;
+	justify-content: space-around;
+
+	span.mepr-nav-item {
+		display: flex;
+	}
+}
