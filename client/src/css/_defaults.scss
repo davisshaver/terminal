@@ -430,17 +430,26 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
 	.terminal-pinterest:hover {
 		background-color: rgba(203, 32, 39, 0.8) }
 
-.mepr-submit {
-	color: #3f3f3f;
+.mepr-submit, .uncovered p.terminal-adblock-notice {
 	background: #fff;
 	border-radius: 30px;
+	color: #3f3f3f;
+	cursor: pointer;
 	display: block;
 	height: 50px;
-	margin: 0 auto 10px auto;
 	line-height: 50px;
-	cursor: pointer;
-	width: 210px;
+	margin: 0 auto 10px auto;
+	text-align: center;
 	text-transform: uppercase;
+	width: 210px;
+	&.invert {
+		background: #3f3f3f;
+		color: #fff;
+		&:hover {
+			background: #fff;
+			color: #3f3f3f;
+		}
+	}
 	&:hover {
 		background: #3f3f3f;
 		color: #fff;
