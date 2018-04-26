@@ -34,17 +34,14 @@ class Memberpress {
 	public function check_email_domain( $errors ) {
 		$data = Data::instance();
 		$membership = $data->get_restricted_domains_by_membership();
-		error_log( json_encode( $membership ) );
-		error_log( json_encode( $_POST ) );
 		if (
 			! empty( $membership ) &&
 			! empty( $_POST['mepr_product_id'] ) &&
 			! empty( $_POST['user_email'] ) &&
-			! empty( $membership[ $_POST['mepr_product_id'] ] ) &&
-			! empty($membership[ $_POST['mepr_product_id'] ]['domains'] )
+			! empty( $membership[ $_POST['mepr_product_id'] ] )
 		) {
 			$email = stripslashes( $_POST['user_email'] );
-			if( ! $this->ends_with( $email, $membership[ $_POST['mepr_product_id'] ]['domains'] ) ) {
+			if( ! $this->ends_with( $email, $membership[ $_POST['mepr_product_id'] ] ) ) {
 				$errors[] = __( 'Sorry, only valid email addresses are allowed on this membership', 'terminal' );
 			}
 		}

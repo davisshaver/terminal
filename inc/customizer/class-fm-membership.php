@@ -28,27 +28,22 @@ class FM_Membership {
     $fm = new \Fieldmanager_Group( array(
       'name' => 'terminal_membership_options', 
       'label' => __( 'Membership Options', 'terminal' ),
-      'limit'  => 0,
-      'starting_count' => 0,
-      'add_more_label' => 'Add more',
-      'collapsible' => true,
       'children' => array(
-        'membership_id' => new Fieldmanager_Datasource_Post( array(
-          'query_args' => array(
-            'post_type' => 'memberpressproduct'
-          ),
-        ) ),
-        'domains' => new Fieldmanager_Group( array(
-          'label' => __( 'Domains', 'terminal' ),
-          'limit' => 0,
-          'starting_count' => 0,
-          'add_more_label' => 'Add domain',
-          'sortable' => true,
-          'collapsible' => true,
-          'children' => array(
-            'domain' => new Fieldmanager_Textfield(),
-          ),
-        ) )
+        'restricted_memberships' => new \Fieldmanager_Group(
+          __( 'Restricted memberships', 'terminal' ),
+          array(
+            'limit'  => 0,
+            'starting_count' => 0,
+            'add_more_label' => 'Add more',
+            'collapsible' => true,
+            'children' => array(
+              'membership_id' => new \Fieldmanager_Textfield( __( 'Membership ID', 'terminal' ) ),
+              'domains' => new \Fieldmanager_Textfield(
+                __( 'Eligible domains (comma-separated)', 'terminal' )
+              ),
+            )
+          )
+        )
       )
     ) );
 		fm_beta_customize_add_to_customizer( array(
