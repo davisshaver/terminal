@@ -5,6 +5,7 @@ import './index.scss';
 import { setupMenu } from './js/menu';
 import { setupPopular } from './js/popular';
 import { setupScroller } from './js/scroller';
+import { setAdLinks } from './js/ads';
 
 function scaleAd(ID) {
   const adDiv = jQuery(ID);
@@ -68,7 +69,19 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMenu();
   setupPopular();
   setupScroller();
+  const body = document.querySelector('body');
 
+  function addUncovered(element) {
+    element.classList.add('uncovered');
+  }
+
+  const coveredUncovered = () => {
+    if (!window.googleTag || !window.googletag.pubadsReady) {
+      addUncovered(body);
+      setAdLinks();
+    }
+  };
+  coveredUncovered();
   if (window.AdLayersAPI &&
     window.adLayersDFP &&
     window.jQuery &&
@@ -84,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const infiniteTarget = `.infinite-loader:nth-of-type(${slotNum})`;
       const adTagContainer = jQuery('<div />')
         .attr('id', `ad_layers_${slotName}`)
-        .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center covered-target');
+        .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center covered-target widget_ad_layers_ad_widget');
       const adTag = jQuery('<div />')
         .attr('id', adLayersDFP.adUnitPrefix + slotName)
         .attr('class', 'dfp-ad');
@@ -105,29 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
               slotName: thisSlotName,
               format: terminal.inlineAds.unit,
             });
+          coveredUncovered();
           maybeScaleAd(`#${adLayersDFP.adUnitPrefix}${slotName}`);
         },
       );
       slotNum += 1;
     });
   }
-  const body = document.querySelector('body');
 
-  function addUncovered(element) {
-    element.classList.add('uncovered');
-  }
-  const coveredUncovered = () => {
-    if (!window.googleTag || window.googletag.pubadsReady) {
-      addUncovered(body);
-    }
-  };
-  exponentialBackoff(
-    () => (window.googletag && window.googletag.pubadsReady),
-    5,
-    3,
-    coveredUncovered,
-    coveredUncovered,
-  );
   window.addEventListener('resize', () => {
     scaleAllAds();
   });
