@@ -77,6 +77,21 @@ class Data {
 		return array_merge( $default, $layout_options );
 	}
 
+
+	/**
+	 * Get membership data.
+	 *
+	 * @param array $default Default options.
+	 * @return array Data.
+	 */
+	public function get_prepared_membership_data( $default = array() ) {
+		$membership_options = get_option( 'terminal_membership_options', array() );
+		if ( empty( $membership_options ) ) {
+			return $default;
+		}
+		return array_merge( $default, $membership_options );
+	}
+
 	/**
 	 * Get byline data.
 	 *
