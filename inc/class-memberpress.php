@@ -42,7 +42,7 @@ class Memberpress {
 		) {
 			$email = stripslashes( $_POST['user_email'] );
 			if( ! $this->ends_with( $email, $membership[ $_POST['mepr_product_id'] ] ) ) {
-				$errors[] = __( 'Sorry, only valid email addresses are allowed on this membership', 'terminal' );
+				$errors[] = __( 'Sorry, your email domain is not eligible for this account type.', 'terminal' );
 			}
 		}
 		return $errors;
