@@ -71,7 +71,7 @@ if ( is_active_sidebar( 'terminal-before-article' ) && is_singular( 'post' ) ) {
 printf(
 	'<div class="terminal-card-text terminal-body-font terminal-limit-max-content-width">%s <p class="terminal-adblock-notice invert terminal-link-gray">%s</p>',
 	apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) ),
-	esc_html( $data->get_ad_block_alert() )
+	esc_html( is_singular( 'post' ) ? $data->get_ad_block_alert() : null )
 );
 wp_link_pages();
 echo '</div>';
