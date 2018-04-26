@@ -66,6 +66,11 @@
 			height: auto;
 			width: calc(100% - 60px);
 		}
+		table {
+			word-wrap: break-word;
+			table-layout: fixed;
+			font-size: 13px;
+		}
 		hr {
 			margin: 0 auto 10px auto;
 			clear: both;
