@@ -123,19 +123,23 @@ body.uncovered{
 		background-position: center;
 		min-height: 250px;
 	}
-	article.terminal-card-text p:not(.terminal-adblock-notice):nth-of-type(n+2){
+	&.single-post article .terminal-card-text p:not(.terminal-adblock-notice):nth-of-type(n+2){
     display:none;
 	}
 
-	article.terminal-adblock-notice {
+	&.single-post article .terminal-adblock-notice {
 		display: block;
 	}
 
-	article.terminal-card-text :not(p) {
+	&.single-post article .terminal-card-text :not(p) {
     display:none;
 	}
+
+	.terminal-comments-container {
+		display: none;
+	}
 }
-article.terminal-adblock-notice {
+article .terminal-adblock-notice {
 	display: none;
 }
 
