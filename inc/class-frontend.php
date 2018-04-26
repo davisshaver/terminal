@@ -33,10 +33,29 @@ class Frontend {
 			add_filter( 'wpseo_breadcrumb_single_link', [ $this, 'adjust_single_breadcrumb' ] );
 			add_filter( 'jetpack_implode_frontend_css', '__return_false' );
 			add_action( 'wp_head', [ $this, 'remove_jetpack_crap' ], 130 );
+			add_filter( 'sidebars_widgets', [ $this, 'maybe_disable_ads' ] );
 			add_filter( 'option_coral_talk_container_classes', [ $this, 'filter_talk_classes' ] );
 			add_filter('essb4_get_cached_counters', [ $this, 'filter_essb4_counters' ] );
 		}
 		$this->disable_emojis();
+	}
+
+	public function maybe_disable_ads( $widgets ) {
+		$use_widgets = $widgets;
+		array_shift( $widgets );
+		$data = Data::instance();
+		$disable = $data->user_has_no_ad_id();
+		if ( $disable ) {
+			$disable_ads = false;
+			foreach( $widgets as $sidebar_name => $sidebar_widgets ) {
+				foreach( $sidebar_widgets as $key => $sidebar_widget ) {
+					if ( false !== strpos( $sidebar_widget, 'ad_layers' ) ) {
+						unset( $use_widgets[ $sidebar_name ][ $key ] );
+					}
+				}
+			}
+		}
+		return $use_widgets;
 	}
 
 	public function filter_essb4_counters( $current ) {

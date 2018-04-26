@@ -78,6 +78,38 @@ class Data {
 	}
 
 	/**
+	 * Get no AD id.
+	 *
+	 * @return int No AD id.
+	 */
+	public function user_has_no_ad_id() {
+		$no_ad_id = $this->get_no_ad_id();
+		if ( ! $no_ad_id ) {
+			return false;
+		}
+		if ( current_user_can( sprintf(
+			'memberpress_product_authorized_%s',
+			$no_ad_id
+		 ) ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Get ad block membership ID.
+	 *
+	 * @return int Membership ID for ad block subscription.
+	 */
+	public function get_no_ad_id() {
+		$membership_options = get_option( 'terminal_membership_options', array() );
+		if ( ! empty( $membership_options['ad_free_subscription'] ) ) {
+			return $membership_options['ad_free_subscription'];
+		}
+		return false;
+	}
+
+	/**
 	 * Get membership data.
 	 *
 	 * @param array $default Default options.

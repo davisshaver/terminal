@@ -75,7 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.terminal &&
     window.terminal.inlineAds &&
     window.terminal.inlineAds.enabled &&
-    window.terminal.inlineAds.unit
+    window.terminal.inlineAds.unit &&
+    !window.terminal.inlineAds.subscribed
   ) {
     let slotNum = 1;
     jQuery(document.body).on('post-load', () => {
