@@ -123,7 +123,7 @@ body.uncovered{
 		background-position: center;
 		min-height: 250px;
 	}
-	&.single-post article .terminal-card-text p:not(.terminal-adblock-notice):nth-of-type(n+2){
+	&.single-post article .terminal-card-text > p:not(.terminal-adblock-notice):nth-of-type(n+2){
     display:none;
 	}
 
@@ -131,7 +131,7 @@ body.uncovered{
 		display: block;
 	}
 
-	&.single-post article .terminal-card-text :not(p) {
+	&.single-post article .terminal-card-text > :not(p) {
     display:none;
 	}
 
