@@ -123,6 +123,20 @@ body.uncovered{
 		background-position: center;
 		min-height: 250px;
 	}
+	.terminal-card-text p:not(.terminal-adblock-notice):nth-of-type(n+2){
+    display:none;
+	}
+
+	.terminal-adblock-notice {
+		display: block;
+	}
+
+	.terminal-card-text :not(p) {
+    display:none;
+	}
+}
+.terminal-adblock-notice {
+	display: none;
 }
 
 .dfp-ad {

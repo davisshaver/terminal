@@ -179,6 +179,15 @@ class Data {
 	}
 
 	/**
+	 * Get Ad block alert.
+	 *
+	 * @return string Ad block alert
+	 */
+	public function get_ad_block_alert() {
+		return $this->get_ad_data( 'adblock_alert' );
+	}
+
+	/**
 	 * Get prepared data.
 	 *
 	 * @param string $key Optional key.

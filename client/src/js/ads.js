@@ -10,6 +10,15 @@ export function setAdLinks() {
         element.setAttribute('style', 'cursor: pointer');
       }
     });
+  [...document.querySelectorAll('.terminal-adblock-notice')]
+    .forEach((element) => {
+      if (window.terminal.inlineAds.adblockLink) {
+        element.addEventListener('click', () => {
+          window.location.href = window.terminal.inlineAds.adblockLink;
+        });
+        element.setAttribute('style', 'cursor: pointer');
+      }
+    });
 }
 
 export default {

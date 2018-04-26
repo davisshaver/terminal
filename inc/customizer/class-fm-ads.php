@@ -57,6 +57,7 @@ class FM_Ads {
 							'default_editor' => 'html',
 						)
 					) ),
+					'adblock_alert' => new \Fieldmanager_Textfield( 'Adblock Alert' ),
 					'adblock_nag' => new \Fieldmanager_Media( 'Adblock Nag' ),
 					'adblock_link' => new \Fieldmanager_Link( 'Adblock Link' ),
 				),
