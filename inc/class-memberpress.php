@@ -13,12 +13,6 @@ namespace Terminal;
 class Memberpress {
 
 	use Singleton;
-	/**
-	 * Setup actions
-	 */
-	public function setup() {
-		add_filter( 'mepr-validate-signup', [ $this, 'check_email_domain' ] );
-	}
 
 	private function ends_with( $haystack, $needles ) {
 		if ( ! is_array ( $needles ) && is_string( $needles ) ) {
@@ -38,8 +32,8 @@ class Memberpress {
 	}
 
 	public function check_email_domain( $errors ) {
-		$data = Terminal\Data::instance();
-		$membership = $data->get_prepared_membership_data( array() );
+		$data = Data::instance();
+		$membership = $data->get_restricted_domains_by_membership();
 		if (
 			! empty( $membership ) &&
 			! empty( $_POST['mepr_product_id'] ) &&
@@ -56,5 +50,4 @@ class Memberpress {
 	}
 }
 
-add_action( 'after_setup_theme', [ '\Terminal\Memberpress', 'instance' ] );
-
+add_action( 'init', [ '\Terminal\Memberpress', 'instance' ] );

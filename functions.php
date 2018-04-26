@@ -42,9 +42,18 @@ require_once __DIR__ . '/inc/class-data.php';
 require_once __DIR__ . '/inc/class-frontend.php';
 require_once __DIR__ . '/inc/class-menu.php';
 require_once __DIR__ . '/inc/class-parsely.php';
-// require_once __DIR__ . '/inc/class-tweets.php';
+require_once __DIR__ . '/inc/class-memberpress.php';
 require_once __DIR__ . '/inc/class-permalinks.php';
 require_once __DIR__ . '/inc/class-settings.php';
+
+
+add_filter( 'mepr-validate-signup', function( $errors ) {
+	return Memberpress::instance()->check_email_domain( $errors );
+} );
+
+add_filter( 'mepr-validate-account', function( $errors ) {
+	return Memberpress::instance()->check_email_domain( $errors );
+} );
 
 if(
 	! function_exists('twitter_api_get') &&
