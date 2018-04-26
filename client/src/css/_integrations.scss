@@ -127,7 +127,7 @@ body.uncovered{
     display:none !important;
 	}
 
-	&.single-post article .terminal-adblock-notice {
+	.terminal-adblock-notice {
 		display: block;
 	}
 
@@ -139,7 +139,8 @@ body.uncovered{
 		display: none;
 	}
 }
-article .terminal-adblock-notice {
+
+.terminal-adblock-notice {
 	display: none;
 }
 
