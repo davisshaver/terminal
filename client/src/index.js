@@ -140,8 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   exponentialBackoff(
     () => (window.pbjs) || (window.googletag && window.googletag.pubadsReady),
-    5,
-    3,
+    10,
+    50,
     coveredUncovered,
     coveredUncovered,
   );
