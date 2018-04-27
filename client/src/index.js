@@ -75,6 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
     element.classList.add('uncovered');
   }
 
+  function removeUncovered(element) {
+    element.classList.remove('uncovered');
+  }
+
   const coveredUncovered = () => {
     if (
       !window.terminal.inlineAds.subscribed &&
@@ -82,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ) {
       addUncovered(body);
       setAdLinks();
+    } else {
+      removeUncovered(body);
     }
   };
   coveredUncovered();
