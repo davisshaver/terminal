@@ -19,6 +19,7 @@ class Memberpress {
 	}
 
 	public function print_tab() {
+		$data = Data::instance();
 		$membership_page = $data->get_membership_page();
 		if ( empty( $membership_page ) ) {
 			return;
