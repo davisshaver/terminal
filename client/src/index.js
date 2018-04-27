@@ -82,14 +82,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const coveredUncovered = () => {
     if (
       (
-        (!window.terminal.inlineAds.subscribed &&
-        !window.googletag) &&
-        (!window.terminal.inlineAds.subscribed &&
-        window.googletag && window.googletag.pubadsReady)
+        !window.terminal.inlineAds.subscribed &&
+        !window.googletag
       ) &&
       (!window.terminal.inlineAds.susbcribed &&
       !window.pbjs)
     ) {
+      if (window.googletag && window.googletag.pubadsReady) {
+        return;
+      }
       addUncovered(body);
       setAdLinks();
     } else {
