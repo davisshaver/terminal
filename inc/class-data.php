@@ -203,6 +203,7 @@ class Data {
 				'amp_header'  => '',
 				'adblock_link' => null,
 				'amp_footer'  => '',
+				'adblock_alert' => __( 'Ad block detected.', 'terminal' ),
 			) );
 		}
 		if ( ! $key ) {
