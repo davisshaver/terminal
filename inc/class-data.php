@@ -188,7 +188,7 @@ class Data {
 		if ( ! empty( $alert ) ) {
 			return $alert;
 		}
-		return __( 'Ad block detected.', 'terminal' );
+		return __( 'Disable ad block to continue reading.', 'terminal' );
 	}
 
 	/**
