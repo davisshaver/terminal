@@ -85,7 +85,7 @@ class Data {
 	public function user_has_no_ad_id() {
 		$no_ad_id = $this->get_no_ad_id();
 		if ( ! $no_ad_id ) {
-			return false;
+			return current_user_can( 'edit_posts' );
 		}
 		if ( current_user_can( sprintf(
 			'memberpress_product_authorized_%s',
