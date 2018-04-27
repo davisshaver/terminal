@@ -81,8 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const coveredUncovered = () => {
     if (
-      !window.terminal.inlineAds.subscribed &&
-      !window.googleTag
+      (!window.terminal.inlineAds.subscribed &&
+      !window.googleTag) &&
+      (!window.terminal.inlineAds.susbcribed &&
+      !window.pbjs)
     ) {
       addUncovered(body);
       setAdLinks();
@@ -135,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   exponentialBackoff(
-    () => (window.googletag && window.googletag.pubadsReady),
+    () => (window.pbjs) || (window.googletag && window.googletag.pubadsReady),
     5,
     3,
     coveredUncovered,
