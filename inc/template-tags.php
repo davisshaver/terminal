@@ -399,6 +399,7 @@ function  terminal_print_data_layer_json( $echo = true ) {
 	$data_layer = wp_json_encode( array(
 		'debugMode' => getenv( 'WP_DEBUG' ),
 			'inlineAds' => array(
+				'disabled' => $data->is_blocker_disabled(),
 				'enabled' => $data->has_inline_ads(),
 				'unit'    => $data->get_inline_ads_tag(),
 				'noAdID' => $data->get_no_ad_id(),
