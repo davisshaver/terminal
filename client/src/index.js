@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       slotNum += 1;
     });
   }
-  document.addEventListener('load', () => {
+  window.addEventListener('load', () => {
     exponentialBackoff(
       () => (window.pbjs) || (window.googletag && window.googletag.pubadsReady),
       5,
