@@ -65,11 +65,12 @@ if ( 'middle' === $single_data['single_meta_position'] && is_singular( 'post' ) 
 		'post_type' => $post_type
 	) );
 endif;
+
 if ( is_active_sidebar( 'terminal-before-article' ) && is_singular( 'post' ) ) {
 	dynamic_sidebar( 'terminal-before-article' );
 }
 printf(
-	'<div class="terminal-card-text terminal-body-font terminal-limit-max-content-width">%s <p class="terminal-adblock-notice invert terminal-link-gray">%s</p>',
+	'<div class="terminal-card-text terminal-body-font terminal-limit-max-content-width">%s <p class="terminal-adblock-notice invert terminal-link-gray terminal-no-select">%s</p>',
 	apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) ),
 	esc_html( is_singular( 'post' ) ? $data->get_ad_block_alert() : null )
 );
