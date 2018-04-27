@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       removeUncovered(body);
     }
   };
-  coveredUncovered();
+
   if (window.AdLayersAPI &&
     window.adLayersDFP &&
     window.jQuery &&
@@ -134,7 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
       slotNum += 1;
     });
   }
-
+  exponentialBackoff(
+    () => (window.googletag && window.googletag.pubadsReady),
+    5,
+    3,
+    coveredUncovered,
+    coveredUncovered,
+  );
   window.addEventListener('resize', () => {
     scaleAllAds();
   });

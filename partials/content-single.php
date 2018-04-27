@@ -66,7 +66,6 @@ if ( 'middle' === $single_data['single_meta_position'] && is_singular( 'post' ) 
 	) );
 endif;
 if ( is_active_sidebar( 'terminal-before-article' ) && is_singular( 'post' ) ) {
-	echo 'test';
 	dynamic_sidebar( 'terminal-before-article' );
 }
 printf(
