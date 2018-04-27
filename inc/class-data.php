@@ -184,7 +184,11 @@ class Data {
 	 * @return string Ad block alert
 	 */
 	public function get_ad_block_alert() {
-		return $this->get_ad_data( 'adblock_alert' );
+		$alert = $this->get_ad_data( 'adblock_alert' );
+		if ( ! empty( $alert ) ) {
+			return $alert;
+		}
+		return __( 'Ad block detected.', 'terminal' );
 	}
 
 	/**
@@ -203,7 +207,7 @@ class Data {
 				'amp_header'  => '',
 				'adblock_link' => null,
 				'amp_footer'  => '',
-				'adblock_alert' => __( 'Ad block detected.', 'terminal' ),
+				'adblock_alert' => null
 			) );
 		}
 		if ( ! $key ) {
