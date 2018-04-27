@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const coveredUncovered = () => {
     if (
-      !window.terminal.inlineAds.disabled &&
+      (!window.terminal.inlineAds.subscribed && !window.terminal.inlineAds.disabled) &&
       (
         (!window.terminal.inlineAds.subscribed &&
         !window.googletag) ||
