@@ -140,13 +140,15 @@ document.addEventListener('DOMContentLoaded', () => {
       slotNum += 1;
     });
   }
-  exponentialBackoff(
-    () => (window.pbjs) || (window.googletag && window.googletag.pubadsReady),
-    5,
-    5,
-    coveredUncovered,
-    coveredUncovered,
-  );
+  document.addEventListener('load', () => {
+    exponentialBackoff(
+      () => (window.pbjs) || (window.googletag && window.googletag.pubadsReady),
+      5,
+      5,
+      coveredUncovered,
+      coveredUncovered,
+    );
+  });
   window.addEventListener('resize', () => {
     scaleAllAds();
   });
