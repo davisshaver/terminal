@@ -41,6 +41,9 @@ class Frontend {
 	}
 
 	public function maybe_disable_ads( $widgets ) {
+		if ( is_customize_preview() || is_admin() ) {
+			return $widgets;
+		}
 		$use_widgets = $widgets;
 		array_shift( $widgets );
 		$data = Data::instance();
