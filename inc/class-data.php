@@ -218,6 +218,7 @@ class Data {
 				'inline_ads'  => false,
 				'inline_unit' => '',
 				'amp_post'    => '',
+				'disable_blocker' => true,
 				'amp_header'  => '',
 				'adblock_link' => null,
 				'amp_footer'  => '',
@@ -293,6 +294,15 @@ class Data {
 	 */
 	public function has_inline_ads() {
 		return (bool) $this->get_ad_data( 'inline_ads' );
+	}
+
+	/**
+	 * What unit should we use?
+	 *
+	 * @return string Ad unit
+	 */
+	public function is_blocker_disabled() {
+		return $this->get_ad_data( 'disable_blocker' );
 	}
 
 	/**
