@@ -302,7 +302,11 @@ class Data {
 	 * @return string Ad unit
 	 */
 	public function is_blocker_disabled() {
-		return $this->get_ad_data( 'disable_blocker' );
+		$value = $this->get_ad_data( 'disable_blocker' );
+		if ( empty( $value ) ) {
+			return false;
+		}
+		return true;
 	}
 
 	/**

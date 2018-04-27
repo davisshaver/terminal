@@ -65,10 +65,16 @@ export function addEventListenerOnce(target, type, listener) {
 }
 
 export function add(element, string) {
+  if (!element) {
+    return;
+  }
   element.classList.add(string);
 }
 
 export function remove(element, string) {
+  if (!element) {
+    return;
+  }
   element.classList.remove(string);
 }
 
@@ -80,15 +86,27 @@ export function hide(element) {
 }
 
 export function removeOpen(element) {
+  if (!element) {
+    return;
+  }
   add(element, 'terminal-flipped');
 }
 export function toggleOpen(element) {
+  if (!element) {
+    return;
+  }
   element.classList.toggle('terminal-flipped');
 }
 export function toggleHiddenNoJS(element) {
+  if (!element) {
+    return;
+  }
   element.classList.toggle('terminal-hidden-no-js');
 }
 export function toggleHidden(element) {
+  if (!element) {
+    return;
+  }
   element.classList.toggle('terminal-hidden');
 }
 
