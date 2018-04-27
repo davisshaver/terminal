@@ -133,6 +133,20 @@ class Data {
 	 * @param array $default Default options.
 	 * @return array Data.
 	 */
+	public function get_membership_page() {
+		$membership_options = $this->get_prepared_membership_data();
+		if ( empty( $membership_options['membership_page'] ) ) {
+			return false;
+		}
+		return $membership_options['membership_page'];
+	}
+
+	/**
+	 * Get membership data.
+	 *
+	 * @param array $default Default options.
+	 * @return array Data.
+	 */
 	public function get_prepared_membership_data( $default = array() ) {
 		$membership_options = get_option( 'terminal_membership_options', array() );
 		if ( empty( $membership_options ) ) {

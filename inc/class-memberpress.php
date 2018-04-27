@@ -14,6 +14,21 @@ class Memberpress {
 
 	use Singleton;
 
+	public function setup() {
+		add_action( 'mepr_account_nav', [ $this, 'print_tab' ] );
+	}
+
+	public function print_tab() {
+		$membership_page = $data->get_membership_page();
+		if ( empty( $membership_page ) ) {
+			return;
+		}
+		printf(
+			'<span class="mepr-nav-item"><a href="%s" id="mepr-membership-options">%s</a></span>',
+			esc_url( get_permalink( $membership_page ) ),
+			__( 'Membership Options', 'terminal' )
+		);
+	}
 	private function ends_with( $haystack, $needles ) {
 		if ( ! is_array ( $needles ) && is_string( $needles ) ) {
 			$needles = [ $needles ];

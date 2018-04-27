@@ -29,6 +29,7 @@ class FM_Membership {
       'name' => 'terminal_membership_options', 
       'label' => __( 'Membership Options', 'terminal' ),
       'children' => array(
+        'membership_page' => new \Fieldmanager_Link( __( 'Membership Info URL', 'terminal' ) ),
         'ad_free_subscription' => new \Fieldmanager_Textfield( __( 'Ad Free Subscription ID', 'terminal' ) ),
         'restricted_memberships' => new \Fieldmanager_Group(
           __( 'Restricted memberships', 'terminal' ),
