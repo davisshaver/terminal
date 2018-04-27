@@ -198,6 +198,8 @@ div#mepr-account-nav {
 .mp-password-strength-area {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
 	span {
 		display: flex;
 		flex: auto;
