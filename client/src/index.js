@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const coveredUncovered = () => {
     if (
       (!window.terminal.inlineAds.subscribed &&
-      !window.googleTag) &&
+      !window.googletag) &&
       (!window.terminal.inlineAds.susbcribed &&
       !window.pbjs)
     ) {
