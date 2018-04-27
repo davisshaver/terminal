@@ -26,7 +26,7 @@ class Memberpress {
 		}
 		printf(
 			'<span class="mepr-nav-item"><a href="%s" id="mepr-membership-options">%s</a></span>',
-			esc_url( get_permalink( $membership_page ) ),
+			esc_url( $membership_page ),
 			__( 'Membership Options', 'terminal' )
 		);
 	}
