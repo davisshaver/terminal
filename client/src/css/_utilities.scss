@@ -86,14 +86,14 @@ body {
 }
 
 .terminal-limit-max-container-width-add-margin, .mp_wrapper {
-  max-width: calc(#{$max_container_width} - 60px);
-  width: calc(100% - 60px);
+  max-width: calc(#{$max_container_width} - 30px);
+  width: calc(100% - 30px);
   margin: auto;
 }
 
 .terminal-limit-max-content-width-add-margin {
-  max-width: calc(#{$max_content_width} - 60px);
-  width: calc(100% - 60px);
+  max-width: calc(#{$max_content_width} - 30px);
+  width: calc(100% - 30px);
   margin: auto;
 }
 
