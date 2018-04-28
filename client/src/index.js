@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
   exponentialBackoff(
     () => (window.pbjs) || (window.googletag && window.googletag.pubadsReady),
     3,
-    13,
+    14,
     coveredUncovered,
     coveredUncovered,
   );
