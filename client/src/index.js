@@ -1,5 +1,6 @@
 /* eslint-env browser */
 /* global jQuery, AdLayersAPI, adLayersDFP, terminal */
+import fuckAdBlock from 'fuckadblock';
 
 import './index.scss';
 import { setupMenu } from './js/menu';
@@ -44,7 +45,8 @@ function scaleAllAds() {
       maybeScaleAd(`#${item.getAttribute('id')}`);
     });
 }
-document.addEventListener('load', () => {
+
+document.addEventListener('DOMContentLoaded', () => {
   function exponentialBackoff(toTry, maxTries, delay, callback, finalCallback = false) {
     let target;
     if (maxTries === target) {
@@ -65,6 +67,9 @@ document.addEventListener('load', () => {
       finalCallback();
     }
   }
+  setupMenu();
+  setupPopular();
+  setupScroller();
   const body = document.querySelector('body');
 
   function addUncovered(element) {
@@ -74,16 +79,10 @@ document.addEventListener('load', () => {
   function removeUncovered(element) {
     element.classList.remove('uncovered');
   }
+
   const coveredUncovered = () => {
     if (
-      (!window.terminal.inlineAds.subscribed && !window.terminal.inlineAds.disabled) &&
-      (
-        (!window.terminal.inlineAds.subscribed &&
-        !window.googletag) ||
-        (window.googletag && !window.googletag.pubadsReady) === true
-      ) &&
-      (!window.terminal.inlineAds.susbcribed &&
-      !window.pbjs)
+      (!window.terminal.inlineAds.subscribed && !window.terminal.inlineAds.disabled)
     ) {
       addUncovered(body);
       setAdLinks();
@@ -135,18 +134,11 @@ document.addEventListener('load', () => {
       slotNum += 1;
     });
   }
-  exponentialBackoff(
-    () => (window.pbjs) || (window.googletag && window.googletag.pubadsReady),
-    3,
-    14,
-    coveredUncovered,
-    coveredUncovered,
-  );
-});
-document.addEventListener('DOMContentLoaded', () => {
-  setupMenu();
-  setupPopular();
-  setupScroller();
+  if (typeof fuckAdBlock === 'undefined') {
+    coveredUncovered();
+  } else {
+    fuckAdBlock.onDetected(coveredUncovered);
+  }
   window.addEventListener('resize', () => {
     scaleAllAds();
   });
