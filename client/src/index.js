@@ -44,8 +44,7 @@ function scaleAllAds() {
       maybeScaleAd(`#${item.getAttribute('id')}`);
     });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('load', () => {
   function exponentialBackoff(toTry, maxTries, delay, callback, finalCallback = false) {
     let target;
     if (maxTries === target) {
@@ -66,9 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
       finalCallback();
     }
   }
-  setupMenu();
-  setupPopular();
-  setupScroller();
   const body = document.querySelector('body');
 
   function addUncovered(element) {
@@ -78,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function removeUncovered(element) {
     element.classList.remove('uncovered');
   }
-
   const coveredUncovered = () => {
     if (
       (!window.terminal.inlineAds.subscribed && !window.terminal.inlineAds.disabled) &&
@@ -147,6 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
     coveredUncovered,
     coveredUncovered,
   );
+});
+document.addEventListener('DOMContentLoaded', () => {
+  setupMenu();
+  setupPopular();
+  setupScroller();
   window.addEventListener('resize', () => {
     scaleAllAds();
   });
