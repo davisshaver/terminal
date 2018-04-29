@@ -134,9 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
       slotNum += 1;
     });
   }
-  const fab = new FuckAdBlock();
-  fab.onDetected(coveredUncovered);
-  fab.check();
+  if (!FuckAdBlock) {
+    coveredUncovered();
+  } else {
+    const fab = new FuckAdBlock();
+    fab.onDetected(coveredUncovered);
+    fab.check();
+  }
   window.addEventListener('resize', () => {
     scaleAllAds();
   });
