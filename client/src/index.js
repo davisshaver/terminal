@@ -1,6 +1,6 @@
 /* eslint-env browser */
-/* global jQuery, AdLayersAPI, adLayersDFP, terminal */
-import fuckAdBlock from 'fuckadblock';
+/* global jQuery, AdLayersAPI, adLayersDFP, terminal, FuckAdBlock */
+import fuckadblock from 'fuckadblock';
 
 import './index.scss';
 import { setupMenu } from './js/menu';
@@ -134,11 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
       slotNum += 1;
     });
   }
-  if (typeof fuckAdBlock === 'undefined') {
-    coveredUncovered();
-  } else {
-    fuckAdBlock.onDetected(coveredUncovered);
-  }
+  const fab = new FuckAdBlock();
+  fab.onDetected(coveredUncovered);
+  fab.check();
   window.addEventListener('resize', () => {
     scaleAllAds();
   });
