@@ -214,3 +214,21 @@ div#mepr-account-nav {
 .mp_wrapper.mp_login_form {
 	margin: 15px auto;
 }
+
+.terminal-card-featured .wpcnt, .terminal-post-widget .wpcnt {
+	display: none;
+}
+
+.amp-wp-article-content .wpcnt {
+	display: none;
+}
+
+.essb_links .essb_force_hide_name .essb_icon {
+    margin: 0 auto !important;
+		display: block;
+}
+
+
+.essb_links.essb_counter_modern_top_mini .essb_counter {
+	margin-top: -21px !important;
+}
