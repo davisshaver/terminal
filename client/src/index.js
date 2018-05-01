@@ -1,6 +1,5 @@
 /* eslint-env browser */
-/* global jQuery, AdLayersAPI, adLayersDFP, terminal, FuckAdBlock */
-import fuckadblock from 'fuckadblock';
+/* global jQuery, AdLayersAPI, adLayersDFP, terminal, fuckAdBlock */
 
 import './index.scss';
 import { setupMenu } from './js/menu';
@@ -134,12 +133,24 @@ document.addEventListener('DOMContentLoaded', () => {
       slotNum += 1;
     });
   }
-  if (!FuckAdBlock) {
+  if (typeof fuckAdBlock !== 'undefined' || typeof FuckAdBlock !== 'undefined') {
     coveredUncovered();
   } else {
-    const fab = new FuckAdBlock();
-    fab.onDetected(coveredUncovered);
-    fab.check();
+    // Otherwise, you import the script FuckAdBlock
+    const importFAB = document.createElement('script');
+    importFAB.onload = () => {
+      if (window.terminal.debugMode) {
+        fuckAdBlock.setOption('debug', true);
+      }
+      fuckAdBlock.onDetected(coveredUncovered);
+    };
+    importFAB.onerror = () => {
+      coveredUncovered();
+    };
+    importFAB.integrity = 'sha256-xjwKUY/NgkPjZZBOtOxRYtK20GaqTwUCf7WYCJ1z69w=';
+    importFAB.crossOrigin = 'anonymous';
+    importFAB.src = 'https://cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js';
+    document.head.appendChild(importFAB);
   }
   window.addEventListener('resize', () => {
     scaleAllAds();
