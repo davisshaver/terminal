@@ -128,7 +128,7 @@ class Photos {
 			'labels'              => $photo_labels,
 			'supports'            => array( 'title', 'author', 'thumbnail', 'revisions' ),
 			'hierarchical'        => false,
-			'public'              => false,
+			'public'              => true,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'show_in_nav_menus'   => true,
