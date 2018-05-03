@@ -10,6 +10,20 @@
 namespace Terminal;
 
 /**
+ * Set root path.
+ */
+$rootPath = realpath( __DIR__ );
+
+/**
+ * Include the Composer autoload
+ */
+if (
+	file_exists( $rootPath . '/vendor/autoload.php' )
+) {
+	require_once( $rootPath . '/vendor/autoload.php' );
+}
+
+/**
  * Terminal only works if the REST API is available with the latest improvements to the Customizer in 4.9.
  */
 if ( version_compare( strtok( $GLOBALS['wp_version'], '-' ), '4.9', '<' ) ) {
@@ -36,6 +50,7 @@ require_once __DIR__ . '/inc/class-theme.php';
 // Remaining classes can be loaded independently.
 require_once __DIR__ . '/inc/class-api.php';
 require_once __DIR__ . '/inc/class-metaboxes.php';
+require_once __DIR__ . '/inc/class-jwt.php';
 require_once __DIR__ . '/inc/class-widgets.php';
 require_once __DIR__ . '/inc/class-customizer.php';
 require_once __DIR__ . '/inc/class-data.php';
