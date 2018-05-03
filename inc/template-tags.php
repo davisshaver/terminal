@@ -585,6 +585,37 @@ function terminal_authors( $user_roles = array( 'author', 'editor', 'administrat
 /**
  * Get terminal post type.
  *
+ * @return array post types
+ */
+function terminal_get_post_types( $values_only = true ) {
+	$post_types = array(
+		'post' => 'post',
+	);
+	if ( getenv( 'TERMINAL_ENABLE_LINK_POST_TYPE' ) ) {
+		$links = Terminal\Links::instance();
+		$post_types['link'] = $links->get_link_post_type();
+	}
+	if ( getenv( 'TERMINAL_ENABLE_BOOK_POST_TYPE' ) ) {
+		$books = Terminal\Books::instance();
+		$post_types['book'] = $books->get_book_post_type();
+	}
+	if ( getenv( 'TERMINAL_ENABLE_PHOTO_POST_TYPE' ) ) {
+		$photos = Terminal\Photos::instance();
+		$post_types['photo'] = $photos->get_photo_post_type();
+	}
+	if ( getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE' ) ) {
+		$community = Terminal\Community::instance();
+		$post_types['community'] = $community->get_community_post_type();
+	}
+	if ( $values_only ) {
+		return array_values( $post_types );
+	}
+	return $post_types;
+}
+
+/**
+ * Get terminal post type.
+ *
  * @param object $post
  * @return string post type mapping
  */

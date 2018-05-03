@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
               slotName: thisSlotName,
               format: terminal.inlineAds.unit,
             });
-          coveredUncovered();
           maybeScaleAd(`#${adLayersDFP.adUnitPrefix}${slotName}`);
         },
       );

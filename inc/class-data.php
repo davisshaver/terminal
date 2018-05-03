@@ -253,10 +253,9 @@ class Data {
 	 * Get single data layer.
 	 */
 	public function get_single_data_layer() {
-		if ( ! is_singular() ) {
+		if ( ! is_singular( terminal_get_post_types() ) ) {
 			return array();
 		}
-
 		return array(
 			'author_name' => get_the_author(),
 			'author_id' => get_the_author_meta( 'ID' ),
@@ -264,6 +263,7 @@ class Data {
 			'post_has_thumbnail' => has_post_thumbnail(),
 			'post_title' => the_title_attribute( array( 'echo' => false ) ),
 			'post_id' => get_the_ID(),
+			'post_type' => terminal_get_post_type( get_post() ),
 		);
 	}
 
