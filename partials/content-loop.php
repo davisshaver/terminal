@@ -31,8 +31,7 @@ $terminal_card_size = 'terminal-card-single';
 if ( 'link' === $post_type ) {
 	$terminal_card_title = __( '🔗 External Link', 'terminal' );
 	$host = parse_url( get_the_permalink(), PHP_URL_HOST );
-	$path = parse_url( get_the_permalink(), PHP_URL_PATH );
-	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $host . $path;
+	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $host;
 } elseif ( 'book' === $post_type ) {
 	$terminal_card_title = __( '📖  Book Review', 'terminal' );
 } elseif ( 'community' === $post_type ) {
