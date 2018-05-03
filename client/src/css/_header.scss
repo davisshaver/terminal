@@ -57,7 +57,7 @@ body.admin-bar {
 		justify-content: center;
 
 		.terminal-logo {
-			flex-basis: auto;
+			flex: 1 1 50%;
 			padding: 5px 0;
 			.terminal-image {
 				max-height: 120px;
