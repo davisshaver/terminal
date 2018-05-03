@@ -83,7 +83,6 @@ export function setupMenu() {
   }
   if (moreLink) {
     toggleHiddenNoJS(moreLinkContainer);
-    toggleHiddenNoJS(searchFormMoreLink);
     toggleHiddenNoJS(searchContainer);
     addClickListener(
       moreLink,
@@ -103,6 +102,7 @@ export function setupMenu() {
     const apikey = window.terminal.parsely.apiKey;
     toggleHidden(widget);
     if (parsely && !window.terminal.isSearch) {
+      toggleHidden(searchFormMoreLink);
       addClickListener(
         searchLink,
         [moreSearch, searchTarget],
