@@ -1,11 +1,13 @@
 /* eslint-env browser */
-/* global jQuery, AdLayersAPI, adLayersDFP, terminal, fuckAdBlock */
+/* global jQuery, AdLayersAPI, adLayersDFP, terminal, checkPubInterference */
 
 import './index.scss';
 import { setupMenu } from './js/menu';
 import { setupPopular } from './js/popular';
 import { setupScroller } from './js/scroller';
 import { setAdLinks } from './js/ads';
+
+require('./js/adblock');
 
 function scaleAd(ID) {
   const adDiv = jQuery(ID);
@@ -132,25 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
       slotNum += 1;
     });
   }
-  if (typeof fuckAdBlock !== 'undefined' || typeof FuckAdBlock !== 'undefined') {
-    coveredUncovered();
-  } else {
-    // Otherwise, you import the script FuckAdBlock
-    const importFAB = document.createElement('script');
-    importFAB.onload = () => {
-      if (window.terminal.debugMode) {
-        fuckAdBlock.setOption('debug', true);
-      }
-      fuckAdBlock.onDetected(coveredUncovered);
-    };
-    importFAB.onerror = () => {
-      coveredUncovered();
-    };
-    importFAB.integrity = 'sha256-xjwKUY/NgkPjZZBOtOxRYtK20GaqTwUCf7WYCJ1z69w=';
-    importFAB.crossOrigin = 'anonymous';
-    importFAB.src = 'https://cdnjs.cloudflare.com/ajax/libs/fuckadblock/3.2.1/fuckadblock.min.js';
-    document.head.appendChild(importFAB);
+  if (window.terminal.debugMode) {
+    checkPubInterference.setOption('debug', true);
   }
+  checkPubInterference.onDetected(coveredUncovered);
   window.addEventListener('resize', () => {
     scaleAllAds();
   });
