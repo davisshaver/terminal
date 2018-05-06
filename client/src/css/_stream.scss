@@ -269,8 +269,8 @@
     margin: 0;
 		li {
 			margin: 5px;
-			display: 0 0 200px;
-			flex: auto;
+			flex: 0 0 200px;
+			display: flex;
 			strong {
 				margin-right: 2px;
 			}
