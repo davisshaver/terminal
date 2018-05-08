@@ -327,6 +327,10 @@ class Customizer {
 		<?php
 		if ( $amp ) {
 			?>
+
+			.terminal-credit, .terminal-featured-caption {
+				margin: 0 15px;
+			}
 			.amp-wp-article-content .wpcnt {
 					display: none;
 				}
@@ -403,6 +407,9 @@ class Customizer {
 				margin: 10px auto;
 				max-width: 600px;
 				color: #999;
+				svg {
+					fill: #999;
+				}
 			}
 		<?php
 		}
