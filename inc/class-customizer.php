@@ -407,9 +407,10 @@ class Customizer {
 				margin: 10px auto;
 				max-width: 600px;
 				color: #999;
-				svg {
-					fill: #999;
-				}
+			}
+
+			.terminal-featured-meta svg {
+				fill: #999;
 			}
 		<?php
 		}
