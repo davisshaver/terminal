@@ -45,7 +45,8 @@
 }
 body.home {
 	.terminal-primary-sidebar {
-		height: auto;
+		// Switch this to auto for sidebar cars that expand to fill space.
+		height: 100%;
 	}
 }
 
