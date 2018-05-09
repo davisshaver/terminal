@@ -329,7 +329,8 @@ class Customizer {
 			?>
 
 			.terminal-credit, .terminal-featured-caption {
-				margin: 0 15px;
+				max-width: calc(100vw - 30px);
+				margin: auto;
 			}
 			.amp-wp-article-content .wpcnt {
 					display: none;
