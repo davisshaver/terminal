@@ -109,6 +109,7 @@ class Theme {
 			add_filter( 'user_can_richedit', '__return_false' );
 		}
 		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
+		add_filter( 'publishpress_disable_timepicker', '__return_true' );
 	}
 
 	public function add_classes_on_li( $classes, $item, $args ) {
