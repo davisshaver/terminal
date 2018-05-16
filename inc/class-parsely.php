@@ -35,6 +35,35 @@ class Parsely {
 		add_action( 'retrieve_data', 'retrieve_data', 10, 1 );
 		add_action( 'publish_post', [ $this, 'schedule_some_retrievals' ], 10, 2 );
 		add_action( 'trashed_post', [ $this, 'remove_some_retrievals' ], 10, 2 );
+		add_action( 'wp', [ $this, 'possibly_schedule_analytics_update' ] );
+	}
+
+	public function possibly_schedule_analytics_update() {
+		if ( ! wp_next_scheduled( 'terminal_check_cached_analytics_values' ) ) {
+			wp_schedule_event( current_time( 'timestamp' ), 'hourly', [ $this, 'check_cached_analytics_values' ] );
+		}
+	}
+
+	public function check_cached_analytics_values() {
+		$today = getdate();
+		$posts = get_posts( [
+			'post_type' => terminal_get_post_types(),
+			'posts_per_page' => -1, // getting all posts of a post type
+			'no_found_rows' => true, //speeds up a query significantly and can be set to 'true' if we don't use pagination
+			'fields' => 'ids', //again, for performance
+			'date_query' => array(
+        array(
+            'after' => $today[ 'month' ] . ' 1st, ' . ($today[ 'year' ] - 1)
+        )
+			) // last year
+		] );
+		foreach ( $posts as $post_id ) {
+			$this->possibly_schedule_event(
+				'retrieve_data',
+				array( $post_id ),
+				time()
+			);
+		}
 	}
 
 	public function remove_some_retrievals( $post_id, $post = false ) {
@@ -197,7 +226,7 @@ class Parsely {
 
 	private function set_cached( $key, $value, $post_id, $length ) {
 		update_post_meta( $post_id, $key, json_encode( $value ) );
-		update_post_meta( $post_id, $key . '_expiration', time() + $length );
+		update_post_meta( $post_id, $key . '_cache_length', time() + $length );
 	}
 
 	private function get_cached_meta( $post_id, $key, $single, $group ) {
@@ -221,7 +250,7 @@ class Parsely {
 	}
 
 	private function is_cached( $key, $post_id ) {
-		$expiration = get_post_meta( $post_id, $key . '_expiration', true );
+		$expiration = get_post_meta( $post_id, $key . '_cache_length', true );
 		if ( ! empty( $value ) || ! empty( $expiration ) ) {
 			return true;
 		}
@@ -235,7 +264,7 @@ class Parsely {
 
 	private function get_cached( $key, $post_id ) {
 		$value = get_post_meta( $post_id, $key, true );
-		$expiration = get_post_meta( $post_id, $key . '_expiration', true );
+		$expiration = get_post_meta( $post_id, $key . '_cache_length', true );
 		if ( time() > $expiration ) {
 			switch ( $key ) {
 				case 'terminal_analytics':
@@ -367,9 +396,9 @@ class Parsely {
 	private function get_cache_length( $post_id ) {
 		$time_since_publish = current_time( 'timestamp' ) - get_the_time( 'U', $post_id );
 		if ( $time_since_publish > ( 3 * MONTH_IN_SECONDS ) ) {
-			$cache_length = YEAR_IN_SECONDS;
+			$cache_length = DAY_IN_SECONDS * 3;
 		} elseif ( $time_since_publish > MONTH_IN_SECONDS) {
-			$cache_length = WEEK_IN_SECONDS;
+			$cache_length = DAY_IN_SECONDS * 2;
 		} elseif ( $time_since_publish > WEEK_IN_SECONDS) {
 			$cache_length = DAY_IN_SECONDS;
 		} elseif ( $time_since_publish > DAY_IN_SECONDS )  {
