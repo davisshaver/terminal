@@ -30,60 +30,28 @@ class Parsely {
 			add_action( 'pre_get_posts', [$this, 'parsely_custom_orderby' ] );
 		}
 		add_action( 'retrieve_social_data', 'retrieve_social_data', 10, 1 );
+		add_action( 'check_cached_analytics_values', 'check_cached_analytics_values', 10 );
 		add_action( 'retrieve_analytics_data', 'retrieve_analytics_data', 10, 1 );
 		add_action( 'retrieve_referral_data', 'retrieve_referral_data', 10, 1 );
 		add_action( 'retrieve_data', 'retrieve_data', 10, 1 );
 		add_action( 'publish_post', [ $this, 'schedule_some_retrievals' ], 10, 2 );
-		add_action( 'trashed_post', [ $this, 'remove_some_retrievals' ], 10, 2 );
 		add_action( 'wp', [ $this, 'possibly_schedule_analytics_update' ] );
 	}
 
 	public function possibly_schedule_analytics_update() {
 		if ( ! wp_next_scheduled( 'terminal_check_cached_analytics_values' ) ) {
-			wp_schedule_event( current_time( 'timestamp' ), 'hourly', [ $this, 'check_cached_analytics_values' ] );
-		}
-	}
-
-	public function check_cached_analytics_values() {
-		$today = getdate();
-		$posts = get_posts( [
-			'post_type' => terminal_get_post_types(),
-			'posts_per_page' => -1, // getting all posts of a post type
-			'no_found_rows' => true, //speeds up a query significantly and can be set to 'true' if we don't use pagination
-			'fields' => 'ids', //again, for performance
-			'date_query' => array(
-        array(
-            'after' => $today[ 'month' ] . ' 1st, ' . ($today[ 'year' ] - 1)
-        )
-			) // last year
-		] );
-		foreach ( $posts as $post_id ) {
-			$this->possibly_schedule_event(
-				'retrieve_data',
-				array( $post_id ),
-				time()
-			);
-		}
-	}
-
-	public function remove_some_retrievals( $post_id, $post = false ) {
-		foreach( $hours as $hour ) {
-			$target = $timestamp + ( $hour * HOUR_IN_SECONDS );
-			$possibly_scheduled = wp_next_scheduled( 'retrieve_data', array( $post_id, $hour ) );
-			if( $possibly_scheduled ) {
-				wp_unschedule_event( $timestamp, 'retrieve_data', array( $post_id, $hour ) );
-			}
+			wp_schedule_event( current_time( 'timestamp' ), 'hourly', 'check_cached_analytics_values' );
 		}
 	}
 
 	public function schedule_some_retrievals( $post_id, $post ) {
 		$timestamp = get_post_time( 'U', false, $post );
-		$hours = array( 1, 2, 4, 6, 8, 10, 12 );
+		$hours = array( 1 );
 		foreach( $hours as $hour ) {
 			$target = $timestamp + ( $hour * HOUR_IN_SECONDS );
 			$this->possibly_schedule_event(
 				'retrieve_data',
-				array( $post_id, $hour ),
+				$post_id,
 				$target
 			);
 		}
@@ -118,7 +86,7 @@ class Parsely {
 		return $clauses;
 	}
 
-	private function possibly_schedule_event( $event, $post_id, $target = false ) {
+	public function possibly_schedule_event( $event, $post_id, $target = false ) {
 		if ( is_preview() ) {
 			return;
 		}
@@ -132,7 +100,7 @@ class Parsely {
 			)
 		) {
 			wp_schedule_single_event(
-			 $target,
+				$target,
 				$event,
 				array( $post_id )
 			);

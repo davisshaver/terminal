@@ -717,6 +717,28 @@ function retrieve_referral_data( $post_id ) {
   return $parsely->store_referral_data( $post_id );
 }
 
+function check_cached_analytics_values() {
+	$today = getdate();
+	$posts = get_posts( [
+		'post_type' => terminal_get_post_types(),
+		'posts_per_page' => -1, // getting all posts of a post type
+		'no_found_rows' => true, //speeds up a query significantly and can be set to 'true' if we don't use pagination
+		'fields' => 'ids', //again, for performance
+		'date_query' => array(
+			array(
+					'after' => $today[ 'month' ] . ' 1st, ' . ($today[ 'year' ] - 1)
+			)
+		) // last year
+	] );
+	$parsely = Terminal\Parsely::instance();
+	foreach ( $posts as $post_id ) {
+		$parsely->possibly_schedule_event(
+			'retrieve_data',
+			$post_id
+		);
+	}
+}
+
 function retrieve_data( $post_id ) {
   $parsely = Terminal\Parsely::instance();
   return $parsely->store_referral_data( $post_id );

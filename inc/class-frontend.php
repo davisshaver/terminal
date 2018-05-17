@@ -202,7 +202,7 @@ class Frontend {
 		wp_dequeue_script( 'unipress-api' );
 		wp_dequeue_script( 'jquery-isotope-min-js' );
 		wp_dequeue_script( 'jquery-masonry' );
-		if ( ! is_singular() || ! has_shortcode( get_the_content(), 'logo-carousel-pro' ) ) {
+		if ( ! is_singular() || ( in_the_loop() && ! has_shortcode( get_the_content(), 'logo-carousel-pro' ) ) ) {
 			wp_dequeue_script( 'slick-min-js' );
 			wp_dequeue_script( 'tooltipstermin-js' );
 			wp_dequeue_script( 'logo-carousel-pro-scripts-js' );
