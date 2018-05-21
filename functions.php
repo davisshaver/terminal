@@ -32,7 +32,7 @@ if ( version_compare( strtok( $GLOBALS['wp_version'], '-' ), '4.9', '<' ) ) {
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {
-	define( 'TERMINAL_VERSION', '3.68' );
+	define( 'TERMINAL_VERSION', '3.69' );
 }
 
 if ( ! defined( 'TERMINAL_APP' ) ) {

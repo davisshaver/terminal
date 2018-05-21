@@ -85,6 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       (!window.terminal.inlineAds.subscribed && !window.terminal.inlineAds.disabled)
     ) {
+      window.dataLayer.push({
+        event: 'adBlock',
+        terminal: {
+          adBlockDetected: true,
+        },
+      });
       addUncovered(body);
       setAdLinks();
     } else {

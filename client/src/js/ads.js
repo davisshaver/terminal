@@ -14,6 +14,12 @@ export function setAdLinks() {
     .forEach((element) => {
       if (window.terminal.inlineAds.adblockLink) {
         element.addEventListener('click', () => {
+          window.dataLayer.push({
+            event: 'AdBlockBlockClick',
+            terminal: {
+              adBlockLink: window.terminal.inlineAds.adblockLink
+            },
+          });
           window.location.href = window.terminal.inlineAds.adblockLink;
         });
         element.setAttribute('style', 'cursor: pointer');
