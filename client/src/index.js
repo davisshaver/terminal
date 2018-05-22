@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       (!window.terminal.inlineAds.subscribed && !window.terminal.inlineAds.disabled)
     ) {
       window.dataLayer.push({
-        event: 'adBlock',
+        event: 'adBlockDetected',
         terminal: {
           adBlockDetected: true,
         },
