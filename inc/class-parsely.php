@@ -40,7 +40,7 @@ class Parsely {
 
 	public function possibly_schedule_analytics_update() {
 		if ( ! wp_next_scheduled( 'terminal_check_cached_analytics_values' ) ) {
-			wp_schedule_event( current_time( 'timestamp' ), 'hourly', 'check_cached_analytics_values' );
+			wp_schedule_single_event( current_time( 'timestamp' ) + HOUR_IN_SECONDS * 3, 'terminal_check_cached_analytics_values' );
 		}
 	}
 

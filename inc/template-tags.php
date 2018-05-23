@@ -726,7 +726,7 @@ function check_cached_analytics_values() {
 		'fields' => 'ids', //again, for performance
 		'date_query' => array(
 			array(
-					'after' => $today[ 'month' ] . ' 1st, ' . ($today[ 'year' ] - 1)
+					'after' => '90 days ago'
 			)
 		) // last year
 	] );
