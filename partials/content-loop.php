@@ -32,8 +32,12 @@ if ( 'link' === $post_type ) {
 	$terminal_card_title = __( '🔗 External Link', 'terminal' );
 	$host = parse_url( get_the_permalink(), PHP_URL_HOST );
 	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $host;
+} elseif ( 'housing' === $post_type ) {
+	$terminal_card_title = __( '🏘️ Featured Housing', 'terminal' );
+	$realtor = terminal_get_realtor( get_the_id() );
+	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $realtor;
 } elseif ( 'book' === $post_type ) {
-	$terminal_card_title = __( '📖  Book Review', 'terminal' );
+	$terminal_card_title = __( '📖 Book Review', 'terminal' );
 } elseif ( 'community' === $post_type ) {
 	$terminal_card_title = __( 'Reader-Submitted Post', 'terminal' );
 } elseif ( 'photo' === $post_type ) {
@@ -92,7 +96,7 @@ printf(
 				esc_html( $terminal_card_title_meta )
 		);
 	}
-	if ( 'top' === $loop_data['loop_meta_position'] ) :
+	if ( 'housing' !== $post_type && 'top' === $loop_data['loop_meta_position'] ) :
 		terminal_print_template_part( 'byline', array(
 			'post_type' => $post_type
 		) );
@@ -154,7 +158,7 @@ printf(
 			esc_attr( $post_title_attribute ),
 			esc_html( get_the_title() )
 		);
-		if ( 'middle' === $loop_data['loop_meta_position'] ) :
+		if ( 'housing' !== $post_type && 'middle' === $loop_data['loop_meta_position'] ) :
 			terminal_print_template_part( 'byline', array(
 				'post_type' => $post_type
 			) );
@@ -164,7 +168,7 @@ printf(
 			$hide_excerpt_on_mobile ? 'terminal-mobile-hide' : '',
 			wp_kses_post( wpautop( get_the_excerpt() ) )
 		);
-		if ( 'bottom' === $loop_data['loop_meta_position'] ) :
+		if ( 'housing' !== $post_type && 'bottom' === $loop_data['loop_meta_position'] ) :
 			terminal_print_template_part( 'byline', array(
 				'post_type' => $post_type
 			) );

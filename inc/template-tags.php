@@ -607,6 +607,10 @@ function terminal_get_post_types( $values_only = true ) {
 		$community = Terminal\Community::instance();
 		$post_types['community'] = $community->get_community_post_type();
 	}
+	if ( getenv( 'TERMINAL_ENABLE_HOUSING_POST_TYPE' ) ) {
+		$housing = Terminal\Housing::instance();
+		$post_types['housing'] = $housing->get_housing_post_type();
+	}
 	if ( $values_only ) {
 		return array_values( $post_types );
 	}
@@ -638,6 +642,10 @@ function terminal_get_post_type( $post = false ) {
 	if ( getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE' ) ) {
 		$community = Terminal\Community::instance();
 		$post_types['community'] = $community->get_community_post_type();
+	}
+	if ( getenv( 'TERMINAL_ENABLE_HOUSING_POST_TYPE' ) ) {
+		$housing = Terminal\Housing::instance();
+		$post_types['housing'] = $housing->get_housing_post_type();
 	}
 	$post_types = array_flip(
 		array_filter(
@@ -744,4 +752,9 @@ function retrieve_data( $post_id ) {
   return $parsely->store_referral_data( $post_id );
   return $parsely->store_analytics_data( $post_id );
   return $parsely->store_social_data( $post_id );
+}
+
+function terminal_get_realtor( $post_id ) {
+	$housing = Terminal\Housing::instance();
+	return $housing->get_realtor();
 }
