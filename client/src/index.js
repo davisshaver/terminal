@@ -9,44 +9,6 @@ import { setAdLinks } from './js/ads';
 
 require('./js/adblock');
 
-function scaleAd(ID) {
-  const adDiv = jQuery(ID);
-  const adIframe = adDiv.children().find('iframe');
-  const adFrameContainer = adIframe
-    .parent()
-    .closest('.terminal-card ');
-  const widthRatio = adFrameContainer.innerWidth() / adIframe.innerWidth();
-  const heightRatio = adFrameContainer.innerHeight() / adIframe.innerHeight();
-  const scale = Math.min(heightRatio, widthRatio);
-  if ((adIframe.innerHeight() * widthRatio) <= adFrameContainer.innerHeight() && scale > 1) {
-    adDiv.css('transform', `scale(${scale})`);
-  } else if ((adIframe.innerWidth() * heightRatio) <= adFrameContainer.innerWidth() && scale > 1) {
-    adDiv.css('transform', `scale(${scale})`);
-  }
-}
-
-function maybeScaleAd(ID) {
-  const adDiv = jQuery(ID);
-  const adIframe = adDiv.children();
-  if (!adIframe) {
-    setTimeout(
-      () => {
-        maybeScaleAd(ID);
-      },
-      500,
-    );
-  } else {
-    scaleAd(ID);
-  }
-}
-
-function scaleAllAds() {
-  jQuery('div[id^="div-gpt-ad"]')
-    .each((index, item) => {
-      maybeScaleAd(`#${item.getAttribute('id')}`);
-    });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   function exponentialBackoff(toTry, maxTries, delay, callback, finalCallback = false) {
     let target;
@@ -134,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
               slotName: thisSlotName,
               format: terminal.inlineAds.unit,
             });
-          maybeScaleAd(`#${adLayersDFP.adUnitPrefix}${slotName}`);
         },
       );
       slotNum += 1;
@@ -144,10 +105,4 @@ document.addEventListener('DOMContentLoaded', () => {
     checkPubInterference.setOption('debug', true);
   }
   checkPubInterference.onDetected(coveredUncovered);
-  window.addEventListener('resize', () => {
-    scaleAllAds();
-  });
-  jQuery(document.body).on('lazyloaded', () => {
-    scaleAllAds();
-  });
 });
