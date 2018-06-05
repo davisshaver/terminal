@@ -187,7 +187,11 @@ class Frontend {
 	 */
 	public function disable_unipress_styles() {
 		wp_dequeue_style( 'unipress-api' );
-		if ( ! is_singular() || ( in_the_loop() && ! has_shortcode( get_the_content(), 'logo-carousel-pro' ) ) ) {
+		if (
+			empty( $post ) ||
+			! is_singular() ||
+			! has_shortcode( $post->post_content, 'logo-carousel-pro' )
+		) {
 			wp_dequeue_style( 'slick' );
 			wp_dequeue_style( 'tooltipster-min-css' );
 			wp_dequeue_style( 'logo-carousel-pro-style' );
@@ -202,7 +206,12 @@ class Frontend {
 		wp_dequeue_script( 'unipress-api' );
 		wp_dequeue_script( 'jquery-isotope-min-js' );
 		wp_dequeue_script( 'jquery-masonry' );
-		if ( ! is_singular() || ( in_the_loop() && ! has_shortcode( get_the_content(), 'logo-carousel-pro' ) ) ) {
+		$post = get_post();
+		if (
+			empty( $post ) ||
+			! is_singular() ||
+			! has_shortcode( $post->post_content, 'logo-carousel-pro' )
+		) {
 			wp_dequeue_script( 'slick-min-js' );
 			wp_dequeue_script( 'tooltipstermin-js' );
 			wp_dequeue_script( 'logo-carousel-pro-scripts-js' );
