@@ -50,7 +50,7 @@ require_once __DIR__ . '/inc/class-theme.php';
 // Remaining classes can be loaded independently.
 require_once __DIR__ . '/inc/class-api.php';
 require_once __DIR__ . '/inc/class-metaboxes.php';
-require_once __DIR__ . '/inc/class-jwt.php';
+// require_once __DIR__ . '/inc/class-jwt.php';
 require_once __DIR__ . '/inc/class-widgets.php';
 require_once __DIR__ . '/inc/class-customizer.php';
 require_once __DIR__ . '/inc/class-data.php';
