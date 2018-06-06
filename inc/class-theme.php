@@ -110,6 +110,10 @@ class Theme {
 		}
 		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
 		add_filter( 'publishpress_disable_timepicker', '__return_true' );
+
+		// Unipress Metatags.
+		add_filter( 'unipress_twitter_core_meta', '__return_false' );
+		add_filter( 'unipress_facebook_core_meta', '__return_false' );
 	}
 
 	public function add_classes_on_li( $classes, $item, $args ) {
