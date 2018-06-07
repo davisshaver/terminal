@@ -22,8 +22,6 @@ class Frontend {
 			remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
 			add_filter( 'feed_links_show_comments_feed', '__return_false' );
-			add_action( 'wp_enqueue_scripts', [ $this, 'disable_unipress_styles' ], 100 );
-			add_action( 'wp_print_scripts', [ $this, 'disable_unipress_scripts' ], 100 );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 			add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
@@ -180,42 +178,6 @@ class Frontend {
 	public function add_query_vars_filter( $vars ) {
 			$vars[] = 'filter';
 			return $vars;
-	}
-
-	/**
-	 * Disable Unipress garbage.
-	 */
-	public function disable_unipress_styles() {
-		wp_dequeue_style( 'unipress-api' );
-		if (
-			empty( $post ) ||
-			! is_singular() ||
-			! has_shortcode( $post->post_content, 'logo-carousel-pro' )
-		) {
-			wp_dequeue_style( 'slick' );
-			wp_dequeue_style( 'tooltipster-min-css' );
-			wp_dequeue_style( 'logo-carousel-pro-style' );
-			wp_dequeue_style( 'logo-carousel-pro-responsive');
-		}
-	}
-
-	/**
-	 * Disable Unipress garbage.
-	 */
-	public function disable_unipress_scripts() {
-		wp_dequeue_script( 'unipress-api' );
-		wp_dequeue_script( 'jquery-isotope-min-js' );
-		wp_dequeue_script( 'jquery-masonry' );
-		$post = get_post();
-		if (
-			empty( $post ) ||
-			! is_singular() ||
-			! has_shortcode( $post->post_content, 'logo-carousel-pro' )
-		) {
-			wp_dequeue_script( 'slick-min-js' );
-			wp_dequeue_script( 'tooltipstermin-js' );
-			wp_dequeue_script( 'logo-carousel-pro-scripts-js' );
-		}
 	}
 
 	/**
