@@ -100,7 +100,7 @@ if ( ! empty( $header_data['signup_show_on_desktop'] ) || ! empty( $header_data[
 						if ( ! empty( $header_data['cta_link'] ) ) {
 							printf( '<a href="%s">', esc_url( $header_data['cta_link'] ) );
 						}
-						$image = wp_get_attachment_image_src( $header_data['cta_icon'], 'terminal-uncut-thumbnail-small' );
+						$image = wp_get_attachment_image_src( $header_data['cta_icon'], 'terminal-uncut-thumbnail' );
 						if ( ! empty( $image ) ) {
 							printf(
 								'<img class="terminal-cta-image" src="%s" />',
