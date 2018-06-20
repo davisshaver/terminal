@@ -7,6 +7,21 @@
 if ( empty( $size ) ) {
 	$size = 'double';
 }
+
+if ( empty( $fade ) ) {
+	$fade = false;
+}
+
+if ( empty( $cropped ) ) {
+	$cropped = false;
+}
+
+if ( $cropped ) {
+	$size = 'terminal-thumbnail-extra-large';
+} else {
+	$size = 'terminal-uncut-thumbnail-extra-large';
+}
+
 $data = Terminal\Data::instance();
 $meta = $data->get_post_featured_meta();
 if (
@@ -50,7 +65,7 @@ if (
 				the_title_attribute( array( 'echo' => false ) )
 			);
 		?>
-				<?php the_post_thumbnail( 'terminal-uncut-thumbnail-extra-large', array( 'title' => get_the_title() ) ); ?>
+				<?php the_post_thumbnail( $size, array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
 	<?php
@@ -80,4 +95,9 @@ if (
 			the_excerpt();
 		?>
 	</div>
+	<?php
+	if ( $fade ) {
+		printf( '<div class="terminal-card-fade"></div>' );
+	}
+	?>
 </div>

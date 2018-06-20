@@ -120,6 +120,7 @@ svg.terminal-svg {
 }
 .terminal-breakout-container {
 	position: relative;
+
 	.terminal-arrow-left {
 		left: 16px;
 	}
@@ -153,10 +154,36 @@ svg.terminal-svg {
 	-ms-overflow-style: none;
 	margin: 0 15px 10px 15px;
 	position: relative;
-	
+	height: 550px;
+
 	.terminal-card-featured {
-		flex: 0 0 100%;
+		position: relative;
+	}
+
+	.terminal-card-fade {
+		background: white;
+		bottom: 0;
+		filter: blur(10px) contrast (90%);
+		height: 50px;
+		position: absolute;
+		width: 100%;
+		z-index: 2;
+	}
+
+	.terminal-card-image img {
+		max-height: 300px;
+		width: auto;
+	}
+	.terminal-card-featured {
+		flex: 0 0 50%;
+		height: 100%;
 		margin: 0 15px 0 0;
+		z-index: 0;
+
+		@media (max-width: 600px) {
+			flex: 0 0 100%;
+		}
+
 		@media (max-height: 400px) {
 			max-width: 100vh;
 		}

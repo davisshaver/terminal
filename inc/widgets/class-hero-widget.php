@@ -54,6 +54,8 @@ if ( class_exists( '\FM_Widget' ) ) {
 						'hero',
 						array(
 							'size' => isset( $instance['size'] ) ? $instance['size'] : 'double',
+							'cropped' => true,
+							'fade' => true
 						)
 					);
 				endwhile;
