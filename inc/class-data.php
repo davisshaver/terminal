@@ -23,6 +23,13 @@ class Data {
 	private $ad_data = array();
 
 	/**
+	 * Apps data.
+	 *
+	 * @var array $apps_data Apps data. Not used in customizer so can be cached.
+	 */
+	private $apps_data = array();
+
+	/**
 	 * Setup actions.
 	 */
 	public function setup() {
@@ -211,10 +218,30 @@ class Data {
 	 * @param string $key Optional key.
 	 * @return array Prepared data.
 	 */
+	public function get_apps_data( $key = false ) {
+		if ( empty( $this->apps_data ) ) {
+			$this->apps_data = get_option( 'terminal_app_options', array(
+				'smart_banner_enable_ios' => false,
+				'smart_banner_enable_google' => false,
+			) );
+		}
+		if ( ! $key ) {
+			return $this->apps_data;
+		} elseif ( isset( $this->apps_data[ $key ] ) ) {
+			return $this->apps_data[ $key ];
+		}
+		return null;
+	}
+
+	/**
+	 * Get prepared data.
+	 *
+	 * @param string $key Optional key.
+	 * @return array Prepared data.
+	 */
 	public function get_ad_data( $key = false ) {
 		if ( empty( $this->ad_data ) ) {
 			$this->ad_data = get_option( 'terminal_ad_options', array(
-				'ios_install' => null,
 				'inline_ads'  => false,
 				'inline_unit' => '',
 				'amp_post'    => '',

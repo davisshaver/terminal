@@ -145,16 +145,100 @@ class Frontend {
 	}
 
 	/**
-	 * Maybe print iOS install bug.
+	 * Maybe print apps meta tags.
 	 */
 	public function maybe_print_app_meta() {
 		$data = Data::instance();
-		$ios  = $data->get_ad_data( 'ios_install' );
-		if ( ! empty( $ios ) ) {
-			printf(
-				'<meta name="apple-itunes-app" content="app-id=%s">',
-				esc_attr( $ios )
-			);
+		$icons = array (
+			'smart_banner_icon_apple',
+			'smart_banner_icon_google'
+		);
+		$apps = $data->get_apps_data();
+		if (
+			empty( $apps['smart_banner_enable_ios'] ) &&
+			empty( $apps['smart_banner_enable_google'] )
+		) {
+			return;
+		}
+		if (
+			! empty( $apps['smart_banner_enable_ios'] )
+		) {
+			$platforms[] = 'ios';
+		}
+		if (
+			! empty( $apps['smart_banner_enable_google'] )
+		) {
+			$platforms[] = 'android';
+		}
+		$enabled = sprintf(
+			'<meta name="smartbanner:enabled-platforms" content="%s">',
+			esc_attr( implode( ', ', $platforms ) )
+		);
+		echo $enabled . PHP_EOL;
+		$targets = array(
+			array(
+				'key' => 'smart_banner_title',
+				'map' => 'smartbanner:title'
+			),
+			array(
+				'key' => 'smart_banner_author',
+				'map' => 'smartbanner:author'
+			),
+			array(
+				'key' => 'smart_banner_price',
+				'map' => 'smartbanner:price'
+			),
+			array(
+				'key' => 'smart_banner_suffix_apple',
+				'map' => 'smartbanner:price-suffix-apple'
+			),
+			array(
+				'key' => 'smart_banner_suffix_google',
+				'map' => 'smartbanner:price-suffix-google'
+			),
+			array(
+				'key' => 'smart_banner_icon_apple',
+				'map' => 'smartbanner:icon-apple'
+			),
+			array(
+				'key' => 'smart_banner_icon_google',
+				'map' => 'smartbanner:icon-google'
+			),
+			array(
+				'key' => 'smart_banner_button_text',
+				'map' => 'smartbanner:button'
+			),
+			array(
+				'key' => 'smart_banner_button_link_apple',
+				'map' => 'smartbanner:button-url-apple'
+			),
+			array(
+				'key' => 'smart_banner_button_link_google',
+				'map' => 'smartbanner:button-url-google'
+			),
+		);
+		foreach( $targets as $value ) {
+			if ( ! empty( $apps[ $value['key'] ] ) ) {
+				$key = $value['map'];
+				if ( in_array( $value['key'], $icons ) ) {
+					$img = wp_get_attachment_image_src( $apps[ $value[ 'key' ] ], 'terminal-uncut-thumbnail-small' );
+					if ( ! empty( $img ) ) {
+						$value = $img[0];
+					} else {
+						$value = false;
+					}
+				} else {
+					$value = $apps[ $value[ 'key' ] ];
+				}
+			}
+			if ( ! empty( $value ) ) {
+				$string = sprintf(
+					'<meta name="%s" content="%s">',
+					esc_attr( $key ),
+					esc_attr( $value )
+				);
+				echo $string . PHP_EOL;
+			}
 		}
 	}
 

@@ -8,6 +8,7 @@ import { setupScroller } from './js/scroller';
 import { setAdLinks } from './js/ads';
 
 require('./js/adblock');
+require('./js/smartbanner');
 
 document.addEventListener('DOMContentLoaded', () => {
   function exponentialBackoff(toTry, maxTries, delay, callback, finalCallback = false) {

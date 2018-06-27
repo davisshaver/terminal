@@ -33,7 +33,6 @@ class FM_Ads {
 					'disable_blocker'  => new \Fieldmanager_Checkbox( 'Disable ad blocker protection' ),
 					'inline_ads'  => new \Fieldmanager_Checkbox( 'Enable inline ads' ),
 					'inline_unit' => new \Fieldmanager_Textfield( 'Ad Layers unit to use' ),
-					'ios_install' => new \Fieldmanager_Textfield( 'iOS app ID for install banner' ),
 					'amp_header' => new \Fieldmanager_RichTextArea( array(
 						'label' => 'AMP code for header ad',
 						'editor_settings' => array(
