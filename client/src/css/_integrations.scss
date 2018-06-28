@@ -281,3 +281,9 @@ ins {
 .entry-header, .trip-short-desc, .wp-travel-trip-detail {
 	padding: 0 10px;
 }
+
+.wp-travel-notice-success {
+	display: flex;
+	flex: 0 0 100%;
+	margin-bottom: 20px;
+}
