@@ -218,26 +218,27 @@ class Frontend {
 			),
 		);
 		foreach( $targets as $value ) {
+			$item_value = false;
 			if ( ! empty( $apps[ $value['key'] ] ) ) {
 				$key = $value['map'];
 				if ( in_array( $value['key'], $icons ) ) {
 					$img = wp_get_attachment_image_src( $apps[ $value[ 'key' ] ], 'terminal-uncut-thumbnail-small' );
 					if ( ! empty( $img ) ) {
-						$value = $img[0];
+						$item_value = $img[0];
 					} else {
-						$value = false;
+						$item_value = false;
 					}
 				} else {
-					$value = $apps[ $value[ 'key' ] ];
+					$item_value = $apps[ $value['key'] ];
 				}
 			}
-			if ( ! empty( $value ) ) {
-				$string = sprintf(
+			if ( ! empty( $item_value ) ) {
+				printf(
 					'<meta name="%s" content="%s">',
 					esc_attr( $key ),
-					esc_attr( $value )
+					esc_attr( $item_value )
 				);
-				echo $string . PHP_EOL;
+				echo PHP_EOL;
 			}
 		}
 	}
