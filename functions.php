@@ -98,5 +98,9 @@ if ( getenv( 'TERMINAL_ENABLE_HOUSING_POST_TYPE' ) ) {
 	require_once __DIR__ . '/inc/post-types/class-housing.php';
 }
 
+if ( getenv( 'TERMINAL_ENABLE_DEALS_POST_TYPE' ) ) {
+	require_once __DIR__ . '/inc/post-types/class-deals.php';
+}
+
 // Define template tags last. They may need classes.
 require_once __DIR__ . '/inc/template-tags.php';

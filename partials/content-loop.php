@@ -36,6 +36,10 @@ if ( 'link' === $post_type ) {
 	$terminal_card_title = __( '🏘️ Featured Housing', 'terminal' );
 	$realtor = terminal_get_realtor( get_the_id() );
 	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $realtor;
+}  elseif ( 'deal' === $post_type ) {
+	$terminal_card_title = __( '🏷 Featured Deal', 'terminal' );
+	$sponsor = terminal_get_sponsor( get_the_id() );
+	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $sponsor;
 } elseif ( 'book' === $post_type ) {
 	$terminal_card_title = __( '📖 Book Review', 'terminal' );
 } elseif ( 'community' === $post_type ) {

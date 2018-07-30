@@ -611,6 +611,10 @@ function terminal_get_post_types( $values_only = true ) {
 		$housing = Terminal\Housing::instance();
 		$post_types['housing'] = $housing->get_housing_post_type();
 	}
+	if ( getenv( 'TERMINAL_ENABLE_DEALS_POST_TYPE' ) ) {
+		$deal = Terminal\Deals::instance();
+		$post_types['deal'] = $deal->get_deal_post_type();
+	}
 	if ( $values_only ) {
 		return array_values( $post_types );
 	}
@@ -646,6 +650,10 @@ function terminal_get_post_type( $post = false ) {
 	if ( getenv( 'TERMINAL_ENABLE_HOUSING_POST_TYPE' ) ) {
 		$housing = Terminal\Housing::instance();
 		$post_types['housing'] = $housing->get_housing_post_type();
+	}
+	if ( getenv( 'TERMINAL_ENABLE_DEALS_POST_TYPE' ) ) {
+		$deal = Terminal\Deals::instance();
+		$post_types['deal'] = $deal->get_deal_post_type();
 	}
 	$post_types = array_flip(
 		array_filter(
@@ -757,4 +765,9 @@ function retrieve_data( $post_id ) {
 function terminal_get_realtor( $post_id ) {
 	$housing = Terminal\Housing::instance();
 	return $housing->get_realtor();
+}
+
+function terminal_get_sponsor( $post_id ) {
+	$deal = Terminal\Deals::instance();
+	return $deal->get_sponsor();
 }
