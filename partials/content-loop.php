@@ -105,7 +105,7 @@ printf(
 			'post_type' => $post_type
 		) );
 	endif;
-	if ( has_post_thumbnail() && empty( $meta['hide_featured_image'] ) && empty( $use_featured_embed ) ) {
+	if ( has_post_thumbnail() && empty( $use_featured_embed ) ) {
 		$thumb = wp_get_attachment_image_src(
 			get_post_thumbnail_id( $post_id ),
 			'terminal-uncut-thumbnail-large'
