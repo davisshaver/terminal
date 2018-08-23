@@ -32,7 +32,7 @@ body.infinity-end {
 	}
 }
 // Easy Social Share
-.terminal-before-article-section > .textwidget > .essb-shortcode { 
+.terminal-before-article-section > .textwidget > .essb-shortcode {
 	margin: 30px 30px 0 30px;
 }
 
@@ -123,17 +123,89 @@ body.uncovered{
 		background-position: center;
 		min-height: 250px;
 	}
-	&.single-post article .terminal-card-text > p:not(.terminal-adblock-notice):nth-of-type(n+2){
-	display:none !important;
+
+	&.single-post article .terminal-card-text > * {
+		display: none;
+	}
+
+	&.single-post article .terminal-card-text > p:first-of-type, &.single-post article .terminal-card-text > .terminal-adblock-card {
+		display: block!important;
+	}
+
+	.terminal-adblock-card {
+
+		border: 2px solid red;
+		display: block!important;
+		text-align: center;
+		margin: 1em;
+		background: white;
+		color: black;
+		padding: 1em;
+		box-shadow: 0 -2em 10em 2em #f5f7f7, 0 2px 12px grey;
+		z-index: 999;
+		position: relative;
+		border-radius: 4px;
+
+		&-column {
+			display: inline-block;
+			font-size: .8em;
+			width: 42%;
+			margin: 1em 0;
+		}
+		&-column-or {
+			display: inline-block;
+			width: 6%;
+			margin: 1em 0;
+			text-align: center;
+			font-weight: bold;
+		}
+		@media (max-width: 700px) {
+			&-column {
+				display: block;
+				width: 100%;
+			}
+			&-column-or {
+				display: none;
+			}
+		}
+		input, button, &-subscribe {
+			display: inline-block;
+			padding: .75em;
+			background: white;
+			margin: .5em 0;
+			border: 1px solid lightgray;
+			transition: 120ms ease background;
+		}
+		input[type="email"] {
+			width: 65%;
+		}
+		input[type="submit"] {
+			width: 35%;
+			background: orange;
+			color: white;
+			border: 1px solid orange;
+			&:hover {
+				background: lighten(orange, 10%);
+			}
+		}
+		&-subscribe {
+			background: green;
+			color: white;
+			border: 1px solid green;
+			&:hover {
+				background: lighten(green, 5%);
+			}
+		}
+
 	}
 
 	.terminal-adblock-notice {
 		display: block;
 	}
 
-	&.single-post article .terminal-card-text > :not(p) {
-	display:none !important;
-	}
+	// &.single-post article .terminal-card-text > :not(p) {
+	// 	display:none !important;
+	// }
 
 	.terminal-comments-container {
 		display: none;
