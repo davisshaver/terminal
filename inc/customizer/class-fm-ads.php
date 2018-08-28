@@ -57,7 +57,12 @@ class FM_Ads {
 							'default_editor' => 'html',
 						)
 					) ),
+					'adblock_header' => new \Fieldmanager_Textfield( 'Adblock Header' ),
 					'adblock_alert' => new \Fieldmanager_Textfield( 'Adblock Alert' ),
+					'email_signup_text' => new \Fieldmanager_Textfield( 'Email Signup Text' ),
+					'membership_signup_button_text' => new \Fieldmanager_Textfield( 'Membership Signup Text' ),
+					'membership_signup_text' => new \Fieldmanager_Textfield( 'Membership Signup Text' ),
+					'bypass_text' => new \Fieldmanager_Textfield( 'Bypass Text' ),
 					'adblock_nag' => new \Fieldmanager_Media( 'Adblock Nag' ),
 					'adblock_link' => new \Fieldmanager_Link( 'Adblock Link' ),
 				),
