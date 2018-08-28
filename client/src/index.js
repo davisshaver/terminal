@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
       window.dataLayer.push({
         event: 'adBlockDetected',
         terminal: {
-          adBlockDetected: true,
-        },
+          adBlockDetected: true
+        }
       });
       addUncovered(body);
       setAdLinks();
@@ -95,9 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
           (new AdLayersAPI())
             .lazyLoadAd({
               slotName: thisSlotName,
-              format: terminal.inlineAds.unit,
+              format: terminal.inlineAds.unit
             });
-        },
+        }
       );
       slotNum += 1;
     });

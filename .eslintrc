@@ -1,3 +1,17 @@
 {
-  "extends": "airbnb"
+  "extends": "thinkcompany",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "complexity": 0,
+    "max-params": 0,
+    "no-console": 0
+  }
 }

@@ -19,5 +19,5 @@ export function setupScroller() {
 }
 
 export default {
-  setupScroller,
+  setupScroller
 };
