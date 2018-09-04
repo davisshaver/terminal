@@ -4,7 +4,7 @@ import {
   hide,
   reveal,
   toggleHiddenNoJS,
-  evaluateQuerySelector,
+  evaluateQuerySelector
 } from './utils';
 
 export function setupPopular() {
@@ -55,5 +55,5 @@ export function setupPopular() {
 }
 
 export default {
-  setupPopular,
+  setupPopular
 };

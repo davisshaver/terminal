@@ -162,7 +162,7 @@ export function addClickListener(
   icon = false,
   focus = false,
   callback = false,
-  scroll = false,
+  scroll = false
 ) {
   listen.addEventListener(
     'click',
@@ -186,7 +186,7 @@ export function addClickListener(
       if (scroll && !isInViewport(scroll)) {
         scroll.scrollIntoView(false);
       }
-    },
+    }
   );
 }
 
@@ -205,5 +205,5 @@ export default {
   toggleHiddenNoJS,
   checkScrolled,
   toggleOpen,
-  headerInViewport,
+  headerInViewport
 };
