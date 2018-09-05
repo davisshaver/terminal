@@ -18,7 +18,7 @@ export function setAdLinks() {
             event: 'AdBlockBlockClick',
             terminal: {
               adBlockLink: window.terminal.inlineAds.adblockLink
-            },
+            }
           });
           window.location.href = window.terminal.inlineAds.adblockLink;
         });
@@ -38,5 +38,5 @@ export function setAdLinks() {
 }
 
 export default {
-  setAdLinks,
+  setAdLinks
 };

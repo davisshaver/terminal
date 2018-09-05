@@ -20,27 +20,36 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: path.join(__dirname, '*.js'),
-        loader: 'babel-loader',
+        test: /\.js$/,
+        enforce: 'pre',
+        exclude: /node_modules/,
+        use: {
+          loader: 'eslint-loader',
+          options: {
+            configFile: __dirname + '/.eslintrc'
+          }
+        }
       },
-    ],
-    rules: [{
-      test: /\.scss$/,
-      use: extractSass.extract({
-        use: [
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
-        // use style-loader in development
-        fallback: 'style-loader',
-      }),
-    }],
+      {
+        test: path.join(__dirname, '*.js'),
+        loader: ['babel-loader']
+      }, {
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'sass-loader'
+            },
+          ],
+          fallback: 'style-loader'
+        }),
+      }
+    ]
   },
   plugins: [
-    extractSass,
+    extractSass
   ],
 };

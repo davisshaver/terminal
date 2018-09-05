@@ -2,3 +2,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.wp-block-image {
+  figcaption {
+    font-size: 16px;
+  }
+}

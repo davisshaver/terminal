@@ -13,7 +13,7 @@ import {
   throttle,
   toggleInfinite,
   checkScrolled,
-  headerInViewport,
+  headerInViewport
 } from './utils';
 
 export function setupMenu() {
@@ -61,7 +61,7 @@ export function setupMenu() {
     const getValues = () => [...inputs, select].map(({ type, value, name }) => ({
       name,
       type,
-      value,
+      value
     }))
       .filter(input => input.type !== 'submit');
     [...inputs].forEach(input => input.addEventListener('change', (e) => {
@@ -96,7 +96,7 @@ export function setupMenu() {
           header.scrollIntoView(true);
         }
       },
-      null,
+      null
     );
     const parsely = window.terminal.parsely.enabled;
     const apikey = window.terminal.parsely.apiKey;
@@ -112,13 +112,13 @@ export function setupMenu() {
           toggleInfinite();
           checkScrolled();
         },
-        searchHeader(),
+        searchHeader()
       );
       addClickListener(
         searchFormMoreLink,
         [searchFormMore],
         searchFormMoreSVG,
-        navSearchFieldTwo,
+        navSearchFieldTwo
       );
       let currentQuery;
       let slotNum = 1;
@@ -177,7 +177,7 @@ export function setupMenu() {
         const maybeParamsObject = {
           pub_date_end: pubDateEnd,
           pub_date_start: pubDateStart,
-          q: query,
+          q: query
         };
         if (boost && boost !== 'recency' && boost !== 'default') {
           maybeParamsObject.boost = boost;
@@ -233,7 +233,7 @@ export function setupMenu() {
                   (new AdLayersAPI())
                     .lazyLoadAd({
                       slotName,
-                      format: terminal.inlineAds.unitSearch,
+                      format: terminal.inlineAds.unitSearch
                     });
                 } else {
                   results().insertAdjacentHTML('beforeend', searchResults);
@@ -286,7 +286,7 @@ export function setupMenu() {
               reveal(searches);
             }
             navSearchField.focus();
-          },
+          }
         );
       });
     } else {
@@ -296,5 +296,5 @@ export function setupMenu() {
 }
 export default {
   setupMenu,
-  checkScrolled,
+  checkScrolled
 };
