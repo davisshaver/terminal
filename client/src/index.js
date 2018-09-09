@@ -5,7 +5,7 @@ import './index.scss';
 import { setupMenu } from './js/menu';
 import { setupPopular } from './js/popular';
 import { setupScroller } from './js/scroller';
-import { setAdLinks } from './js/ads';
+import { isCovered, setupMailchimp, setAdLinks } from './js/ads';
 
 require('./js/adblock');
 require('./js/smartbanner');
@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const coveredUncovered = () => {
     if (
-      (!window.terminal.inlineAds.subscribed && !window.terminal.inlineAds.disabled)
+      (!window.terminal.inlineAds.subscribed && !window.terminal.inlineAds.disabled) &&
+      !isCovered()
     ) {
       window.dataLayer.push({
         event: 'adBlockDetected',
@@ -56,11 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       addUncovered(body);
       setAdLinks();
+      setupMailchimp();
     } else {
       removeUncovered(body);
     }
   };
-
   if (window.AdLayersAPI &&
     window.adLayersDFP &&
     window.jQuery &&
@@ -105,5 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.terminal.debugMode) {
     checkPubInterference.setOption('debug', true);
   }
-  checkPubInterference.onDetected(coveredUncovered);
+  if (
+    window.terminal.mailchimpUser &&
+    window.terminal.mailchimpList
+  ) {
+    checkPubInterference.onDetected(coveredUncovered);
+  }
 });

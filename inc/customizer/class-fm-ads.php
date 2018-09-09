@@ -65,6 +65,9 @@ class FM_Ads {
 					'bypass_text' => new \Fieldmanager_Textfield( 'Bypass Text' ),
 					'adblock_nag' => new \Fieldmanager_Media( 'Adblock Nag' ),
 					'adblock_link' => new \Fieldmanager_Link( 'Adblock Link' ),
+					'mailchimp_url' => new \Fieldmanager_Link( 'Mailchimp URL' ),
+					'mailchimp_user' => new \Fieldmanager_Textfield( 'Mailchimp User' ),
+					'mailchimp_list' => new \Fieldmanager_Textfield( 'Mailchimp List' ),
 				),
 			)
 		);
