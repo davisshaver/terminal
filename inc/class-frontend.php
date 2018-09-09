@@ -158,6 +158,7 @@ class Frontend {
 			empty( $apps['smart_banner_enable_ios'] ) &&
 			empty( $apps['smart_banner_enable_google'] )
 		) {
+			echo '<meta name="smartbanner:enabled-platforms" content="none">';
 			return;
 		}
 		if (
