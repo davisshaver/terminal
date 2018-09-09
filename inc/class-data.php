@@ -191,6 +191,33 @@ class Data {
 	}
 
 	/**
+	 * Get mailchimp list.
+	 *
+	 * @return string mailchimp list
+	 */
+	public function get_mailchimp_list() {
+		return $this->get_ad_data( 'mailchimp_list' );
+	}
+
+	/**
+	 * Get mailchimp user.
+	 *
+	 * @return string mailchimp user
+	 */
+	public function get_mailchimp_user() {
+		return $this->get_ad_data( 'mailchimp_user' );
+	}
+
+	/**
+	 * Get mailchimp URL.
+	 *
+	 * @return string mailchimp URL
+	 */
+	public function get_mailchimp_url() {
+		return $this->get_ad_data( 'mailchimp_url' );
+	}
+
+	/**
 	 * Get Ad block link.
 	 *
 	 * @return string Ad block link
@@ -320,6 +347,9 @@ class Data {
 				'amp_footer'  => '',
 				'adblock_alert' => null,
 				'adblock_header' => '',
+				'mailchimp_url' => '',
+				'mailchimp_user' => '',
+				'mailchimp_list' => '',
 			) );
 		}
 		if ( ! $key ) {
