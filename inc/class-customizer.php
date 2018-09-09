@@ -167,7 +167,7 @@ class Customizer {
 		'signup_show_on_desktop'       => false,
 		'signup_show_on_mobile'        => false,
 	) );
-		
+
 		$google_stylesheets = array();
 		$font_data = array(
 			'targets' => array(
@@ -254,7 +254,7 @@ class Customizer {
 				);
 			}
 			?>
-			.terminal-header-container {
+			.terminal-header-container, .wp-polls .pollbar {
 				background-color: <?php echo esc_attr( get_theme_mod( 'header_background_color_setting', '#9DC1FD' ) ); ?>;
 			}
 

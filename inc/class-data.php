@@ -191,6 +191,33 @@ class Data {
 	}
 
 	/**
+	 * Get mailchimp list.
+	 *
+	 * @return string mailchimp list
+	 */
+	public function get_mailchimp_list() {
+		return $this->get_ad_data( 'mailchimp_list' );
+	}
+
+	/**
+	 * Get mailchimp user.
+	 *
+	 * @return string mailchimp user
+	 */
+	public function get_mailchimp_user() {
+		return $this->get_ad_data( 'mailchimp_user' );
+	}
+
+	/**
+	 * Get mailchimp URL.
+	 *
+	 * @return string mailchimp URL
+	 */
+	public function get_mailchimp_url() {
+		return $this->get_ad_data( 'mailchimp_url' );
+	}
+
+	/**
 	 * Get Ad block link.
 	 *
 	 * @return string Ad block link
@@ -200,16 +227,81 @@ class Data {
 	}
 
 	/**
+	 * Get membership signup text.
+	 *
+	 * @return string membership signup text
+	 */
+	public function get_bypass_text() {
+		$alert = $this->get_ad_data( 'bypass_text' );
+		if ( ! empty( $alert ) ) {
+			return $alert;
+		}
+		return __( 'Already recieving emails?', 'terminal' );
+	}
+
+	/**
+	 * Get membership signup text.
+	 *
+	 * @return string membership signup text
+	 */
+	public function get_membership_signup_button_text() {
+		$alert = $this->get_ad_data( 'membership_signup_button_text' );
+		if ( ! empty( $alert ) ) {
+			return $alert;
+		}
+		return __( 'Purchase a Subscription!', 'terminal' );
+	}
+
+	/**
+	 * Get membership signup text.
+	 *
+	 * @return string membership signup text
+	 */
+	public function get_membership_signup_text() {
+		$alert = $this->get_ad_data( 'membership_signup_text' );
+		if ( ! empty( $alert ) ) {
+			return $alert;
+		}
+		return __( 'Support quality journalism:', 'terminal' );
+	}
+
+	/**
+	 * Get email signup text.
+	 *
+	 * @return string email signup text
+	 */
+	public function get_email_signup_text() {
+		$alert = $this->get_ad_data( 'email_signup_text' );
+		if ( ! empty( $alert ) ) {
+			return $alert;
+		}
+		return __( 'Sign up for our e-mail newsletter:', 'terminal' );
+	}
+
+	/**
 	 * Get Ad block alert.
 	 *
 	 * @return string Ad block alert
 	 */
-	public function get_ad_block_alert() {
+	public function get_ad_block_header() {
+		$alert = $this->get_ad_data( 'adblock_header' );
+		if ( ! empty( $alert ) ) {
+			return $alert;
+		}
+		return __( 'Your ad blocker is on.', 'terminal' );
+	}
+
+	/**
+	 * Get Ad block alert.
+	 *
+	 * @return string Ad block alert
+	 */
+	public function get_ad_block_text() {
 		$alert = $this->get_ad_data( 'adblock_alert' );
 		if ( ! empty( $alert ) ) {
 			return $alert;
 		}
-		return __( 'Disable ad block to continue reading.', 'terminal' );
+		return __( 'Your ad blocker is on.', 'terminal' );
 	}
 
 	/**
@@ -247,9 +339,17 @@ class Data {
 				'amp_post'    => '',
 				'disable_blocker' => true,
 				'amp_header'  => '',
+				'membership_signup_button_text' => '',
+				'membership_signup_text' => '',
+				'email_signup_text' => '',
+				'bypass_text' => '',
 				'adblock_link' => null,
 				'amp_footer'  => '',
-				'adblock_alert' => null
+				'adblock_alert' => null,
+				'adblock_header' => '',
+				'mailchimp_url' => '',
+				'mailchimp_user' => '',
+				'mailchimp_list' => '',
 			) );
 		}
 		if ( ! $key ) {

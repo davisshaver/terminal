@@ -30,6 +30,9 @@
   },
   "dependencies": {
     "babel-core": "^6.26.3",
-    "fuckadblock": "^3.2.1"
+    "extract-text-webpack-plugin": "^3.0.2",
+    "js-cookie": "^2.2.0",
+    "mark.js": "^8.11.1",
+    "toaster-js": "^2.2.0"
   }
 }

@@ -12,6 +12,7 @@
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=contain">
+		<meta http-equiv="refresh" content="600">
 		<?php wp_head(); ?>
 		<?php terminal_print_data_layer(); ?>
 		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

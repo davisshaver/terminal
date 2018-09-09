@@ -70,9 +70,23 @@ if ( is_active_sidebar( 'terminal-before-article' ) && is_singular( terminal_get
 	dynamic_sidebar( 'terminal-before-article' );
 }
 printf(
-	'<div class="terminal-card-text terminal-body-font terminal-limit-max-content-width">%s <p class="terminal-adblock-notice invert terminal-link-gray terminal-no-select">%s</p>',
+	'<div class="terminal-card-text terminal-body-font terminal-limit-max-content-width">%s
+	<div class="terminal-card terminal-adblock-card"><h1>%s</h1><p>%s</p>
+	<div class="terminal-adblock-card-column">%s <br><div id="terminal-adblock-signup"><form action="%s"><input type="email" name="email" placeholder="Email" /><button type="submit">Sign Up</button></form><div id="terminal-mailchimp-response" style="display:none"></div></div></div>
+	<div class="terminal-adblock-card-column-or">%s</div>
+	<div class="terminal-adblock-card-column">%s <br> <a href="%s" class="terminal-adblock-notice terminal-adblock-card-subscribe">%s</a></div>
+	<div class="terminal-adblock-card-column"><a href="" class="terminal-adblock-subscribed">%s</a></p>
+	</div>',
 	apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) ),
-	esc_html( is_singular( terminal_get_post_types() ) ? $data->get_ad_block_alert() : null )
+	esc_html( $data->get_ad_block_header() ),
+	esc_html( $data->get_ad_block_text() ),
+	esc_html( $data->get_email_signup_text() ),
+	esc_url( $data->get_mailchimp_url() ),
+	esc_html( __( 'OR', 'terminal' ) ),
+	esc_html( $data->get_membership_signup_text() ),
+	esc_html( $data->get_ad_block_link() ),
+	esc_html( $data->get_membership_signup_button_text() ),
+	esc_html( $data->get_bypass_text() )
 );
 wp_link_pages();
 echo '</div>';
