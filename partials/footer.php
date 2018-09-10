@@ -23,11 +23,6 @@ $footer_data = terminal_get_footer_data( array(
 			?>
 		</div>
 		<div class="terminal-footer-spread">
-			<div class="terminal-footer-icons">
-				<a class="terminal-small-logo" href="<?php echo esc_url( bloginfo( 'rss2_url' ) ); ?>">
-					<img class="lazyload lazypreload" height="18" width="18" data-src="<?php echo esc_url( get_template_directory_uri() ); ?>/client/static/images/rss.png" alt="<?php esc_attr_e( 'RSS logo', 'terminal' ); ?>" />
-				</a>
-			</div>
 			<div class="terminal-menu-footer">
 				<?php
 				wp_nav_menu( array(

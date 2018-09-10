@@ -12,7 +12,9 @@
 	}
 	svg {
 		&.terminal-flipped {
+			filter: blur(2px);
 			transform: rotate(90deg);
+			transition: .2s -webkit-filter linear;
 		}
 	}
 	.terminal-nav-bar-logo {
@@ -51,9 +53,10 @@
     display: flex;
     justify-content: left;
 		li {
-			flex: 0 1 20%;
-      list-style: none;
-      margin: 10px;
+			flex: 0 0 auto;
+			list-style: none;
+			margin: 10px 50px 10px 10px;
+			justify-content: space-between;
 		}
 	}
 	#terminal-nav-bar-header {
