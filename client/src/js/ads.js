@@ -9,6 +9,13 @@ export const setOptOutCookie = () => {
   Cookies.set('terminal-opt-out', true, { expires: 7 });
 };
 
+const dismissableToast = (message) => {
+  const element = document.createElement('div');
+  element.textContent = message;
+  const newToast = new Toast(element, Toast.TYPE_MESSAGE);
+  element.addEventListener('click', () => newToast.delete());
+};
+
 export const removeUncovered = () => {
   document.querySelector('body').classList.remove('uncovered');
 };
@@ -35,10 +42,18 @@ export function setupMailchimp() {
             window.dataLayer.push({
               event: 'AdBlockMailChimpError',
               terminal: {
-                error: this.response.message
+                error: this.response.msg
               }
             });
-            new Toast('Error with Mailchimp. Go ahead...'); // eslint-disable-line no-new
+            if (this.response.result === 'error' && this.response.msg.includes('already subscribed')) {
+              dismissableToast('You were already subscribed. Thanks!'); // eslint-disable-line no-new
+            } else if (this.response.result === 'error') {
+              dismissableToast('There was an error with Mailchimp. Go ahead...'); // eslint-disable-line no-new
+            }
+            removeUncovered();
+            setOptOutCookie();
+          } else if (this.response && this.response.result && this.response.result === 'success') {
+            dismissableToast(this.response.msg); // eslint-disable-line no-new
             removeUncovered();
             setOptOutCookie();
           }
@@ -71,7 +86,7 @@ export function setAdLinks() {
     .forEach((element) => {
       if (window.terminal.inlineAds.adblockLink) {
         element.addEventListener('click', () => {
-          new Toast('We\'ll try not to both you for a while.'); // eslint-disable-line no-new
+          dismissableToast('Go ahead, just don\'t tell our boss.'); // eslint-disable-line no-new
           removeUncovered();
         });
       }
