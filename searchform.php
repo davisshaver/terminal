@@ -28,7 +28,7 @@ $searchform_id = 'search-' . rand();
 	echo $down;
 	?>
 	</a></div>
-	<div class="terminal-search-form-more">
+	<div class="terminal-hidden terminal-search-form-more">
 		<div class="terminal-search-form-more-column">
 			<label for="terminal-boost-<?php echo esc_attr( $searchform_id ); ?>"><?php esc_html_e( 'Sort:', 'terminal' ); ?></label>
 			<select id="terminal-boost-<?php echo esc_attr( $searchform_id ); ?>" name="boost">

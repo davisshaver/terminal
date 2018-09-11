@@ -325,6 +325,10 @@ class Customizer {
 			figure.wp-caption, .terminal-breadcrumbs, .terminal-card-title {
 				background-color: <?php echo esc_attr( get_theme_mod( 'card_title_background_color_setting', '#f2f2f2' ) ); ?>;
 			}
+
+			.terminal-search-form-more .terminal-search-form-reset-link a {
+				border: 1px solid <?php echo esc_attr( get_theme_mod( 'card_title_background_color_setting', '#f2f2f2' ) ); ?>;
+			}
 		<?php
 		if ( $amp ) {
 			?>
