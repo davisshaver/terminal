@@ -382,3 +382,16 @@ ins {
 	flex: 0 0 100%;
 	margin-bottom: 20px;
 }
+
+[class^="NoComments__message"] {
+	background: transparent;
+}
+
+[class^="TabBar__root"] {
+	border-bottom: none;
+}
+
+[class^="TabBar__root"] {
+	background: transparent;
+	border-bottom: none;
+}
