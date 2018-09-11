@@ -336,15 +336,15 @@ class Data {
 			$this->ad_data = get_option( 'terminal_ad_options', array(
 				'inline_ads'  => false,
 				'inline_unit' => '',
-				'amp_post'    => '',
+				'amp_post_ad'    => '',
 				'disable_blocker' => true,
-				'amp_header'  => '',
+				'amp_header_ad'  => '',
 				'membership_signup_button_text' => '',
 				'membership_signup_text' => '',
 				'email_signup_text' => '',
 				'bypass_text' => '',
 				'adblock_link' => null,
-				'amp_footer'  => '',
+				'amp_footer_ad'  => '',
 				'adblock_alert' => null,
 				'adblock_header' => '',
 				'mailchimp_url' => '',
@@ -451,7 +451,7 @@ class Data {
 	 * @return string Ad tag
 	 */
 	public function get_amp_header_tag() {
-		return $this->get_ad_data( 'amp_header' );
+		return $this->get_ad_data( 'amp_header_ad' );
 	}
 
 	/**
@@ -460,7 +460,7 @@ class Data {
 	 * @return string Ad tag
 	 */
 	public function get_amp_post_tag() {
-		return $this->get_ad_data( 'amp_post' );
+		return $this->get_ad_data( 'amp_post_ad' );
 	}
 
 	/**
@@ -469,7 +469,7 @@ class Data {
 	 * @return string Ad tag
 	 */
 	public function get_amp_footer_tag() {
-		return $this->get_ad_data( 'amp_footer' );
+		return $this->get_ad_data( 'amp_footer_ad' );
 	}
 
 	/**

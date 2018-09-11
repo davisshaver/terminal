@@ -29,7 +29,7 @@ $this->load_parts( array( 'html-start' ) );
 	</div>
 	<?php if ( terminal_has_amp_tag( 'post' ) ) : ?>
 		<div class="terminal-amp-ad-center">
-		<?php terminal_print_amp_tag( 'post' ); ?>
+		<?php terminal_print_amp_tag( 'post_ad' ); ?>
 		</div>
 	<?php endif; ?>
 	<footer class="amp-wp-article-footer">

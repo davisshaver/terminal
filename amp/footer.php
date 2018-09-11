@@ -14,7 +14,7 @@
 <footer class="amp-wp-footer terminal-utility-font">
 	<?php if ( terminal_has_amp_tag( 'footer' ) ) : ?>
 		<div class="terminal-amp-footer-ad">
-		<?php terminal_print_amp_tag( 'footer' ); ?>
+		<?php terminal_print_amp_tag( 'footer_ad' ); ?>
 		</div>
 	<?php endif; ?>
 	<div id="copyright">
