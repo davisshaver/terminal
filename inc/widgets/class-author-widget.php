@@ -46,7 +46,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				printf(
 					'%s %s %s %s',
 					$args['before_title'],
-					esc_html( __( 'More by ', 'terminal' ) ),
+					esc_html( __( 'Other posts by ', 'terminal' ) ),
 					get_the_author_meta( 'first_name' ),
 					$args['after_title']
 				);

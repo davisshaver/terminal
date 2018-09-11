@@ -39,7 +39,7 @@ if (
 	id="terminal-hero-post-<?php the_ID(); ?>"
 	<?php
 	printf(
-		'class="%s terminal-hero-widget terminal-card terminal-card-featured terminal-card-%s terminal-alignment-center"',
+		'class="%s terminal-hero-widget terminal-card-single terminal-card terminal-card-featured terminal-card-%s terminal-alignment-center"',
 		! is_singular() ? 'terminal-post-tracking' : '',
 		esc_attr( $size )
 	);
