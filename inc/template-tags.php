@@ -102,12 +102,6 @@ function terminal_print_featured_image_caption() {
 	$meta = apply_filters( 'terminal_featured_meta', $meta );
 	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
 		echo '<div class="terminal-featured-meta terminal-sidebar-body-font terminal-limit-max-content-width terminal-text-gray-light">';
-		if ( ! empty( $meta['caption'] ) ) {
-			printf(
-				'<div class="terminal-featured-caption terminal-limit-max-content-width-add-margin">%s</div>',
-				wp_kses_post( $meta['caption'] )
-			);
-		}
 		if ( ! empty( $meta['credit'] ) ) {
 			ob_start();
 			get_template_part( 'partials/svg/camera.svg' );
@@ -117,6 +111,12 @@ function terminal_print_featured_image_caption() {
 				'<div class="terminal-credit terminal-limit-max-content-width-add-margin">%s %s</div>',
 				$camera,
 				esc_html( $meta['credit'] )
+			);
+		}
+		if ( ! empty( $meta['caption'] ) ) {
+			printf(
+				'<div class="terminal-featured-caption terminal-limit-max-content-width-add-margin">%s</div>',
+				wp_kses_post( $meta['caption'] )
 			);
 		}
 		echo '</div>';
