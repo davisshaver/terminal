@@ -5,9 +5,9 @@
 	&.terminal-featured-section {
 		height: auto;
 	}
-	margin: 0 15px 10px 15px;
+	margin: 0 15px 1em 15px;
 	@media (max-width: 450px) {
-		margin: 0 0 10px 0;
+		margin: 0 0 1.75em 0;
 	}
 	&.terminal-no-photo {
 		h1.terminal-stream-headline {
@@ -63,6 +63,9 @@
 			margin: 0 auto 15px auto;
 			height: auto;
 			width: calc(100% - 30px);
+		}
+		p, ul, ol, blockquote, table, cite {
+			margin: 0 auto 1em auto;
 		}
 		table {
 			word-wrap: break-word;
@@ -120,7 +123,7 @@
 		.wp-block-image {
 			display: block;
 			width: unset !important;
-			margin: 0 auto 15px auto;
+			margin: 0 auto 1em auto;
 			figure {
 				width: 100%;
 
@@ -129,17 +132,17 @@
 					width: 100%;
 					height: auto;
 					&.alignright {
-						margin: 0 0 15px 15px;
+						margin: 0 0 1em 15px;
 					}
 
 					&.alignleft {
-						margin: 0 15px 15px 0;
+						margin: 0 15px 1em 0;
 					}
 				}
 			}
 			figcaption {
 				font-size: 16px;
-				margin: 0 15px 15px 15px;
+				margin: 0 15px 1em 15px;
 				padding: 15px 30px 15px 30px;
 			}
 		}
@@ -147,30 +150,30 @@
 		figure.wp-block-image {
 			display: block;
 			width: unset !important;
-			margin: 0 auto 15px auto;
+			margin: 0 auto 1em auto;
 			img {
 				margin: 0;
 				width: 100%;
 				height: auto;
 
 				&.alignright {
-					margin: 0 0 15px 15px;
+					margin: 0 0 1em 15px;
 				}
 
 				&.alignleft {
-					margin: 0 15px 15px 0;
+					margin: 0 15px 1em 0;
 				}
 			}
 			figcaption {
 				font-size: 16px;
-				margin: 0 15px 15px 15px;
-				padding: 15px 30px 15px 30px;
+				margin: 0 15px 15px 1em;
+				padding: 15px 30px 1em 30px;
 			}
 		}
 		figure.wp-caption {
 			display: block;
 			width: unset !important;
-			margin: 0 auto 15px auto;
+			margin: 0 auto 1em auto;
 			img.size-full {
 				margin: 0 auto 0 auto;
 				height: 100%;
@@ -181,27 +184,27 @@
 				margin: auto;
 				&.alignleft {
 					float: left;
-					margin: 0 15px 15px 0;
+					margin: 0 15px 1em 0;
 				}
 				&.alignright {
 					float: right;
-					margin: 0 0 15px 15px;
+					margin: 0 0 1em 15px;
 				}
 				@media (max-width: 420px) {
 					float: none;
-					margin: 0 0 15px 0;
+					margin: 0 0 1em 0;
 					height: auto;
 					width: 100%;
 				}
 			}
 			figcaption.wp-caption-text, p.wp-caption-text {
-					padding: 15px 15px 15px 15px;
+					padding: 15px 15px 1em 15px;
 			}
 		}
 	}
 	.terminal-credit {
 		text-align: left;
-		margin-bottom: 15px;
+		margin-bottom: 1em;
 		svg {
 			width: 1rem !important;
 			height: 1rem !important;
