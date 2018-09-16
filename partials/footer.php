@@ -11,7 +11,7 @@ $footer_data = terminal_get_footer_data( array(
 
 ?>
 
-<div class="terminal-utility-font terminal-footer">
+<div class="terminal-footer terminal-footer-font">
 	<div class="terminal-footer-inside">
 		<div class="terminal-footer-leaderboard">
 			<?php

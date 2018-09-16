@@ -184,6 +184,9 @@ class Customizer {
 				'.terminal-sidebar-header-font' => 'sidebar_header',
 				'.terminal-single-meta-font' => 'single_meta',
 				'body, .terminal-utility-font' => 'utility',
+				'.terminal-card-title' => 'card_title',
+				'.terminal-footer-font' => 'footer',
+				'.terminal-excerpt-font' => 'excerpt',
 			),
 		);
 		if ( ! $amp ) {
@@ -265,6 +268,15 @@ class Customizer {
 				<?php endif; ?>
 			}
 
+		.single .terminal-post-card, .single .terminal-card {
+				<?php
+				$post_page_single_background = get_theme_mod( 'post_page_single_background_color_setting', false );
+				if ( ! empty( $post_page_single_background ) ) {
+					printf( 'background-color: %s;', esc_attr( $post_page_single_background ) );
+				}
+				?>
+		}
+	
 		.terminal-post-card, .terminal-card {
 				<?php
 				$post_page_background = get_theme_mod( 'post_page_background_color_setting', false );
@@ -698,6 +710,23 @@ class Customizer {
 				'post_page_background_color_setting',
 				array(
 					'label'   => __( 'Post/page background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'post_page_single_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'post_page_single_background_color_setting',
+				array(
+					'label'   => __( 'Post/page background color (single)' ),
 					'section' => 'colors',
 				)
 			)

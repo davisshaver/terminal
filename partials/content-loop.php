@@ -77,7 +77,8 @@ printf(
     array(
       'terminal-post-tracking',
       'terminal-card',
-      'terminal-post-card',
+	  'terminal-post-card',
+	  'terminal-excerpt-font',
       $terminal_card_size,
       esc_html( $terminal_no_photo_class )
   ) ) ) ),
