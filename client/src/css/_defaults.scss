@@ -88,7 +88,7 @@ svg.terminal-svg {
 	justify-content: space-around;
 	align-items: center;
 	width: 100%;
-	margin: 0 auto 15px auto;
+	margin: 0 auto 1em auto;
 	.terminal-card-text {
 		max-width: 50%;
 		margin: 0 0 10px 0;
@@ -201,7 +201,7 @@ svg.terminal-svg {
 		margin: 0;
 	}
 }
-	
+
 body.home, body.search, body.archive {
 	.terminal-footer-icons, .terminal-ppc-logo, .terminal-copyright {
 		padding: 0 30px;
@@ -390,6 +390,7 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
     margin: -10px;
     text-transform: inherit;
     min-width: 200px;
+    color: inherit;
 	}
 }
 
