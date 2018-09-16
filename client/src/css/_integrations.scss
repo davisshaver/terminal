@@ -312,7 +312,8 @@ div#mepr-account-nav {
 
 .essb_links .essb_force_hide_name .essb_icon {
 	margin: 0 auto !important;
-		display: block;
+	display: block;
+	transform: scale(1.5) translateX(4px) translateY(4px);
 }
 
 .essb_links.essb_counter_modern_top_mini .essb_counter {
