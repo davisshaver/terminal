@@ -81,12 +81,31 @@ export function setAdLinks() {
         element.setAttribute('style', 'cursor: pointer');
       }
     });
-    // Easy out.
+
+  const signup = document.querySelector('#terminal-adblock-signup');
+  if (window.terminal.inlineAds.adblockLink && signup) {
+    signup.addEventListener('click', () => {
+      window.dataLayer.push({
+        event: 'AdBlockEmailClick',
+        terminal: {
+          adBlockLink: window.terminal.inlineAds.adblockLink
+        }
+      });
+    });
+  }
+
+  // Easy out.
   [...document.querySelectorAll('.terminal-adblock-subscribed')]
     .forEach((element) => {
       if (window.terminal.inlineAds.adblockLink) {
         element.addEventListener('click', () => {
           dismissableToast('Go ahead, just don\'t tell our boss.'); // eslint-disable-line no-new
+          window.dataLayer.push({
+            event: 'AdBlockBypassClick',
+            terminal: {
+              adBlockLink: window.terminal.inlineAds.adblockLink
+            }
+          });
           removeUncovered();
         });
       }
