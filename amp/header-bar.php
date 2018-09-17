@@ -16,7 +16,7 @@ $height = absint( $header->height );
 <header id="header" class="amp-wp-header terminal-amp-header">
 	<?php if ( terminal_has_amp_tag( 'header' ) ) : ?>
 		<div class="terminal-amp-ad">
-			<?php terminal_print_amp_tag( 'header_ad' ); ?>
+			<?php terminal_print_amp_tag( 'header' ); ?>
 		</div>
 	<?php endif; ?>
 	<div class="terminal-amp-header-image">

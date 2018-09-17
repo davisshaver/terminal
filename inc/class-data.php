@@ -331,9 +331,9 @@ class Data {
 	 * @param string $key Optional key.
 	 * @return array Prepared data.
 	 */
-	public function get_ad_data( $key = false ) {
-		if ( $key && empty( $this->ad_data[ $key ] ) && false !== $this->ad_data[ $key ] ) {
-			$this->ad_data[ $key ] = get_option( 'terminal_ad_option_' . $key );
+	public function get_ad_data( $key ) {
+		if ( empty( $this->ad_data ) ) {
+			$this->ad_data = get_option( 'terminal_ad_options' );
 		}
 		if ( ! empty( $this->ad_data[ $key ] ) ) {
 			return $this->ad_data[ $key ];
