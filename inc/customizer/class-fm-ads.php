@@ -29,45 +29,34 @@ class FM_Ads {
 			'Ad Options',
 			array(
 				'name'     => 'terminal_ad_options',
+				'serialize_data' => false,
 				'children' => array(
-					'disable_blocker'  => new \Fieldmanager_Checkbox( 'Disable ad blocker protection' ),
-					'inline_ads'  => new \Fieldmanager_Checkbox( 'Enable inline ads' ),
-					'inline_unit' => new \Fieldmanager_Textfield( 'Ad Layers unit to use' ),
-					'amp_header' => new \Fieldmanager_RichTextArea( array(
+					'terminal_ad_option_disable_blocker'  => new \Fieldmanager_Checkbox( 'Disable ad blocker protection' ),
+					'terminal_ad_option_inline_ads'  => new \Fieldmanager_Checkbox( 'Enable inline ads' ),
+					'terminal_ad_option_inline_unit' => new \Fieldmanager_Textfield( 'Ad Layers unit to use' ),
+					'terminal_ad_option_amp_header' => new \Fieldmanager_Textfield( array(
 						'label' => 'AMP code for header ad',
-						'editor_settings' => array(
-							'wpautop' => false,
-							'media_buttons' => false,
-							'default_editor' => 'html',
-						)
+						'sanitize' => 'wp_kses_post',
 					) ),
-					'amp_post' => new \Fieldmanager_RichTextArea( array(
+					'terminal_ad_option_amp_post' => new \Fieldmanager_Textfield( array(
 						'label' => 'AMP code for in-post ad',
-						'editor_settings' => array(
-							'wpautop' => false,
-							'media_buttons' => false,
-							'default_editor' => 'html',
-						)
+						'sanitize' => 'wp_kses_post',
 					) ),
-					'amp_footer' => new \Fieldmanager_RichTextArea( array(
+					'terminal_ad_option_amp_footer' => new \Fieldmanager_Textfield( array(
 						'label' => 'AMP code for footer ad',
-						'editor_settings' => array(
-							'wpautop' => false,
-							'media_buttons' => false,
-							'default_editor' => 'html',
-						)
+						'sanitize' => 'wp_kses_post',
 					) ),
-					'adblock_header' => new \Fieldmanager_Textfield( 'Adblock Header' ),
-					'adblock_alert' => new \Fieldmanager_Textfield( 'Adblock Alert' ),
-					'email_signup_text' => new \Fieldmanager_Textfield( 'Email Signup Text' ),
-					'membership_signup_button_text' => new \Fieldmanager_Textfield( 'Membership Signup Text' ),
-					'membership_signup_text' => new \Fieldmanager_Textfield( 'Membership Signup Text' ),
-					'bypass_text' => new \Fieldmanager_Textfield( 'Bypass Text' ),
-					'adblock_nag' => new \Fieldmanager_Media( 'Adblock Nag' ),
-					'adblock_link' => new \Fieldmanager_Link( 'Adblock Link' ),
-					'mailchimp_url' => new \Fieldmanager_Link( 'Mailchimp URL' ),
-					'mailchimp_user' => new \Fieldmanager_Textfield( 'Mailchimp User' ),
-					'mailchimp_list' => new \Fieldmanager_Textfield( 'Mailchimp List' ),
+					'terminal_ad_option_adblock_header' => new \Fieldmanager_Textfield( 'Adblock Header' ),
+					'terminal_ad_option_adblock_alert' => new \Fieldmanager_Textfield( 'Adblock Alert' ),
+					'terminal_ad_option_email_signup_text' => new \Fieldmanager_Textfield( 'Email Signup Text' ),
+					'terminal_ad_option_membership_signup_button_text' => new \Fieldmanager_Textfield( 'Membership Signup Text' ),
+					'terminal_ad_option_membership_signup_text' => new \Fieldmanager_Textfield( 'Membership Signup Text' ),
+					'terminal_ad_option_bypass_text' => new \Fieldmanager_Textfield( 'Bypass Text' ),
+					'terminal_ad_option_adblock_nag' => new \Fieldmanager_Media( 'Adblock Nag' ),
+					'terminal_ad_option_adblock_link' => new \Fieldmanager_Link( 'Adblock Link' ),
+					'terminal_ad_option_mailchimp_url' => new \Fieldmanager_Link( 'Mailchimp URL' ),
+					'terminal_ad_option_mailchimp_user' => new \Fieldmanager_Textfield( 'Mailchimp User' ),
+					'terminal_ad_option_mailchimp_list' => new \Fieldmanager_Textfield( 'Mailchimp List' ),
 				),
 			)
 		);
