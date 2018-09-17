@@ -98,7 +98,8 @@ export function setAdLinks() {
   [...document.querySelectorAll('.terminal-adblock-subscribed')]
     .forEach((element) => {
       if (window.terminal.inlineAds.adblockLink) {
-        element.addEventListener('click', () => {
+        element.addEventListener('click', (event) => {
+          event.preventDefault();
           dismissableToast('Go ahead, just don\'t tell our boss.'); // eslint-disable-line no-new
           window.dataLayer.push({
             event: 'AdBlockBypassClick',
