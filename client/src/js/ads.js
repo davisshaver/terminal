@@ -21,7 +21,8 @@ export const removeUncovered = () => {
 };
 
 export function setupMailchimp() {
-  new Mcsub('#terminal-adblock-signup', { // eslint-disable-line no-new
+  if (document.getElementById('#terminal-adblock-signup')) {
+    new Mcsub('#terminal-adblock-signup', { // eslint-disable-line no-new
       user: window.terminal.mailchimpUser,
       list: window.terminal.mailchimpList,
       reponse: '#terminal-mailchimp-response',
@@ -58,7 +59,8 @@ export function setupMailchimp() {
             setOptOutCookie();
           }
       }
-  });
+    });
+  }
 }
 
 export function setAdLinks() {

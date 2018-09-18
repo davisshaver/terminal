@@ -301,7 +301,7 @@ class Data {
 		if ( ! empty( $alert ) ) {
 			return $alert;
 		}
-		return __( 'Your ad blocker is on.', 'terminal' );
+		return __( 'Please choose an option.', 'terminal' );
 	}
 
 	/**
