@@ -17,9 +17,9 @@ if ( empty( $cropped ) ) {
 }
 
 if ( $cropped ) {
-	$size = 'terminal-thumbnail-extra-large';
+	$thumbnail_size = 'terminal-thumbnail-extra-large';
 } else {
-	$size = 'terminal-uncut-thumbnail-extra-large';
+	$thumbnail_size = 'terminal-uncut-thumbnail-extra-large';
 }
 
 $data = Terminal\Data::instance();
@@ -65,7 +65,7 @@ if (
 				the_title_attribute( array( 'echo' => false ) )
 			);
 		?>
-				<?php the_post_thumbnail( $size, array( 'title' => get_the_title() ) ); ?>
+				<?php the_post_thumbnail( $thumbnail_size, array( 'title' => get_the_title() ) ); ?>
 			</a>
 		</div>
 	<?php

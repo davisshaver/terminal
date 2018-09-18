@@ -188,6 +188,9 @@ class FM_Fonts {
 			'sidebar_header' => __( 'Sidebar Header', 'terminal' ),
 			'single_meta'    => __( 'Single Meta', 'terminal' ),
 			'share'          => __( 'Social share', 'terminal' ),
+			'card_title'     => __( 'Card title', 'terminal' ),
+			'footer'         => __( 'Footer', 'terminal' ),
+			'excerpt'        => __( 'Excerpt', 'terminal' ),
 		);
 		$children   = array();
 		$colors     = array();

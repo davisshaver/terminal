@@ -115,7 +115,7 @@ class Customizer {
 		function terminal_customizer_font_family( $key ) {
 			$font = terminal_get_fm_theme_mod( 'typography', "${key}_font", 'none' );
 			if ( ! isset( $font['family'] ) || 'default' === $font['family'] ) {
-				return 'none';
+				return 'inherit';
 			}
 			return $font['family'];
 		}
@@ -184,6 +184,9 @@ class Customizer {
 				'.terminal-sidebar-header-font' => 'sidebar_header',
 				'.terminal-single-meta-font' => 'single_meta',
 				'body, .terminal-utility-font' => 'utility',
+				'.terminal-card-title' => 'card_title',
+				'.terminal-footer-font' => 'footer',
+				'.terminal-excerpt-font' => 'excerpt',
 			),
 		);
 		if ( ! $amp ) {
@@ -234,8 +237,8 @@ class Customizer {
 				background-color: <?php echo esc_attr( get_theme_mod( 'nav_background_color_setting', 'inherit' ) ); ?>;
 			}
 		<?php
-			$ad_options = get_option( 'terminal_ad_options', array( 'adblock_nag' => 0 ) );
-			if ( ! empty( $ad_options['adblock_nag'] ) && ! empty( $image_src = wp_get_attachment_image_src( $ad_options['adblock_nag'], 'terminal-thumbnail', false, array( 'scheme' => 'https' ) ) ) ) {
+			$ad_block_nag = get_option( 'terminal_ad_option_adblock_nag' );
+			if ( ! empty( $ad_block_nag ) && ! empty( $image_src = wp_get_attachment_image_src( $ad_block_nag, 'terminal-thumbnail', false, array( 'scheme' => 'https' ) ) ) ) {
 			?>
 			body.uncovered .terminal-card.covered-target {
 				background-image: url("<?php echo esc_attr( $image_src[0] ); ?>");
@@ -265,6 +268,15 @@ class Customizer {
 				<?php endif; ?>
 			}
 
+		.single .terminal-post-card, .single .terminal-card {
+				<?php
+				$post_page_single_background = get_theme_mod( 'post_page_single_background_color_setting', false );
+				if ( ! empty( $post_page_single_background ) ) {
+					printf( 'background-color: %s;', esc_attr( $post_page_single_background ) );
+				}
+				?>
+		}
+	
 		.terminal-post-card, .terminal-card {
 				<?php
 				$post_page_background = get_theme_mod( 'post_page_background_color_setting', false );
@@ -698,6 +710,23 @@ class Customizer {
 				'post_page_background_color_setting',
 				array(
 					'label'   => __( 'Post/page background color' ),
+					'section' => 'colors',
+				)
+			)
+		);
+		$wp_customize->add_setting(
+			'post_page_single_background_color_setting',
+			array(
+				'type'              => 'theme_mod',
+				'sanitize_callback' => [ $this, 'sanitize_hex_color' ],
+			)
+		);
+		$wp_customize->add_control(
+			new \WP_Customize_Color_Control(
+				$wp_customize,
+				'post_page_single_background_color_setting',
+				array(
+					'label'   => __( 'Post/page background color (single)' ),
 					'section' => 'colors',
 				)
 			)

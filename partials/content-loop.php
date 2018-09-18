@@ -77,7 +77,8 @@ printf(
     array(
       'terminal-post-tracking',
       'terminal-card',
-      'terminal-post-card',
+	  'terminal-post-card',
+	  'terminal-utility-font',
       $terminal_card_size,
       esc_html( $terminal_no_photo_class )
   ) ) ) ),
@@ -138,7 +139,7 @@ printf(
 		echo apply_filters( 'the_content', $use_featured_embed );
 		echo '</div>';
 	}
-	echo '<div class="terminal-card-text">';
+	echo '<div class="terminal-card-text terminal-excerpt-font">';
 		if ( 'photo' === $post_type ) {
 			echo '<p class="terminal-credit terminal-text-gray">';
 			terminal_print_photo_caption();

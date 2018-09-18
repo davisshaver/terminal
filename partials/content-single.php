@@ -74,7 +74,7 @@ printf(
 	<div class="terminal-card terminal-adblock-card"><h1>%s</h1><p>%s</p>
 	<div class="terminal-adblock-card-column">%s <br><div id="terminal-adblock-signup"><form action="%s"><input type="email" name="EMAIL" placeholder="Email" required" required  oninvalid="this.setCustomValidity(\'Please enter a valid email\')" oninput="setCustomValidity(\'\')" /><button type="submit">Sign Up</button></form><div id="terminal-mailchimp-response" style="display:none"></div></div></div>
 	<div class="terminal-adblock-card-column-or">%s</div>
-	<div class="terminal-adblock-card-column">%s <br> <a href="%s" class="terminal-adblock-notice terminal-adblock-card-subscribe">%s</a></div>
+	<div class="terminal-adblock-card-column">%s <br> <a href="%s" class="terminal-adblock-card-subscribe">%s</a></div>
 	<div class="terminal-adblock-card-column"><a href="" class="terminal-adblock-subscribed">%s</a></p>
 	</div>',
 	apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) ),

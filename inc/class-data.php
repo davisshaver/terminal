@@ -331,30 +331,11 @@ class Data {
 	 * @param string $key Optional key.
 	 * @return array Prepared data.
 	 */
-	public function get_ad_data( $key = false ) {
+	public function get_ad_data( $key ) {
 		if ( empty( $this->ad_data ) ) {
-			$this->ad_data = get_option( 'terminal_ad_options', array(
-				'inline_ads'  => false,
-				'inline_unit' => '',
-				'amp_post'    => '',
-				'disable_blocker' => true,
-				'amp_header'  => '',
-				'membership_signup_button_text' => '',
-				'membership_signup_text' => '',
-				'email_signup_text' => '',
-				'bypass_text' => '',
-				'adblock_link' => null,
-				'amp_footer'  => '',
-				'adblock_alert' => null,
-				'adblock_header' => '',
-				'mailchimp_url' => '',
-				'mailchimp_user' => '',
-				'mailchimp_list' => '',
-			) );
+			$this->ad_data = get_option( 'terminal_ad_options' );
 		}
-		if ( ! $key ) {
-			return $this->ad_data;
-		} elseif ( isset( $this->ad_data[ $key ] ) ) {
+		if ( ! empty( $this->ad_data[ $key ] ) ) {
 			return $this->ad_data[ $key ];
 		}
 		return null;
