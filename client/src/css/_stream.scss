@@ -254,6 +254,10 @@
 	position: relative;
 	width: 100%;
 
+	&.terminal-card-title-popular {
+		justify-content: center;
+	}
+
 	.terminal-card-icon {
 		height: 20px;
 		flex: 0 0 auto;

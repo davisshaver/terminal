@@ -16,6 +16,7 @@ $byline_data = terminal_get_byline_options( array(
 	'loop_hide_avatar'     => true,
 	'loop_avatar_size'     => 25,
 	'loop_hide_date'       => false,
+	'loop_hide_reading_time' => false,
 	'loop_hide_author'     => false,
 	'loop_hide_category'   => false,
 	'loop_hide_comments'   => true,
@@ -26,6 +27,7 @@ $byline_data = terminal_get_byline_options( array(
 	'single_hide_author'   => false,
 	'single_hide_category' => false,
 	'single_hide_comments' => true,
+	'single_hide_reading_time' => false,
 	'single_hide_edit'     => true,
 ) );
 
@@ -53,6 +55,12 @@ $hide_avatar = boolval(
 	is_singular() ?
 	$byline_data['single_hide_avatar'] :
 	$byline_data['loop_hide_avatar']
+);
+
+$hide_reading_time = boolval(
+	is_singular() ?
+	$byline_data['single_hide_reading_time'] :
+	$byline_data['loop_hide_reading_time']
 );
 
 $hide_date = boolval(
@@ -145,6 +153,14 @@ if (
 ?>
 	<div class="terminal-number-of-comments"><a class="terminal-link-gray-light" href="<?php comments_link(); ?>">Comments</a><span class="share-number">&nbsp;<?php terminal_print_comment_count_for_post(); ?></span></div>
 <?php
+endif;
+if (
+	! $hide_reading_time &&
+	class_exists( 'readingTimeWP' )
+) :
+	echo do_shortcode(
+		'[rt_reading_time label="" postfix="mins read" postfix_singular="min read"]'
+	);
 endif;
 ?>
 </div>
