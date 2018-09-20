@@ -1,6 +1,6 @@
 <?php
 /**
- * JvWT integrations.
+ * JWT integrations.
  *
  * @package Terminal
  */
@@ -17,44 +17,53 @@ class JWT {
 
 	use Singleton;
 
-  private $key;
+	private $key;
 
-  private $token;
+	private $token;
 
-  public $encoded;
+	public $encoded;
 
 	/**
 	 * Setup actions.
 	 */
 	public function setup() {
-    if ( ! is_user_logged_in() ) {
-      return;
-    }
-    $this->secret = getenv( 'TERMINAL_TALK_JWT_SECRET' );
-    if ( ! empty ( $this->secret ) ) {
-      $current_user = wp_get_current_user();
-      $this->token = array(
-        'iss' => 'https://talk.phillypublishing.com',
-        'aud' => 'talk',
-        'user' => array(
-          'id' => $current_user->ID,
-          'name' => $current_user->display_name,
-          'username' => $current_user->user_login,
-          'email' => $current_user->user_email,
-        )
-      );
-      $this->encoded = JWT_Wrapper::encode(
-        $this->token,
-        $this->secret
-      );
-      add_filter(
-        'coral-auth-token',
-        function() {
-          return $this->encoded;
-        }
-      );
-    }
-  }
+		if ( ! is_user_logged_in() ) {
+			return;
+		}
+		add_filter(
+			'coral_auth_token',
+			function() {
+				return $this->get_JWT();
+			}
+		);
+	}
+
+	private function get_JWT() {
+		$this->secret = getenv( 'TERMINAL_TALK_JWT_SECRET' );
+		$this->audience = getenv( 'TERMINAL_TALK_JWT_AUD' );
+		$this->prefix = getenv( 'TERMINAL_TALK_JWT_USER_PREFIX' );
+		$this->iss = getenv( 'TERMINAL_TALK_JWT_ISS' );
+		if ( ! empty ( $this->secret ) && ! empty ( $this->iss ) && ! empty( $this->audience ) ) {
+			$current_user = wp_get_current_user();
+			$site = get_bloginfo();
+			$this->token = array(
+				'jti' => uniqid(),
+				'iss' => $this->iss,
+				'email' => $current_user->user_email,
+				'aud' => $this->audience,
+				'sub' => $this->prefix . '-' .$current_user->user_email,
+				'exp' => time() + 60 * 60,
+				'un' => $current_user->user_login,
+				'id' => $current_user->ID,
+				'site' => sanitize_title_with_dashes( $site )
+			);
+			$this->encoded = JWT_Wrapper::encode(
+				$this->token,
+				$this->secret
+			);
+			return $this->encoded;
+		}
+	}
 }
 
 
