@@ -6,6 +6,7 @@ import { setupMenu } from './js/menu';
 import { setupPopular } from './js/popular';
 import { setupScroller } from './js/scroller';
 import { isCovered, setupMailchimp, setAdLinks } from './js/ads';
+import * as iconWebComponent from 'icon-webcomponent';
 
 require('./js/adblock');
 require('./js/smartbanner');
@@ -103,6 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
       slotNum += 1;
     });
   }
+  const wc = iconWebComponent('svg-icon');
+  wc();
   if (window.terminal.debugMode) {
     checkPubInterference.setOption('debug', true);
   }

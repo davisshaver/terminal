@@ -28,19 +28,24 @@ $terminal_no_photo_class = ! has_post_thumbnail() ? 'terminal-no-photo' : '';
 $terminal_card_title = false;
 $terminal_card_title_meta = false;
 $terminal_card_size = 'terminal-card-single';
+$terminal_card_title_icon = false;
 if ( 'link' === $post_type ) {
-	$terminal_card_title = __( '🔗 External Link', 'terminal' );
+	$terminal_card_title = __( 'External Link', 'terminal' );
+	$terminal_card_title_icon = get_template_directory_uri() . '/client/static/images/icons/si-glyph-link-1.svg';
 	$host = parse_url( get_the_permalink(), PHP_URL_HOST );
 	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $host;
 } elseif ( 'housing' === $post_type ) {
-	$terminal_card_title = __( '🏘️ Featured Housing', 'terminal' );
+	$terminal_card_title = __( 'Featured Housing', 'terminal' );
+	$terminal_card_title_icon = get_template_directory_uri() . '/client/static/images/icons/si-glyph-house.svg';
 	$realtor = terminal_get_realtor( get_the_id() );
 	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $realtor;
 }  elseif ( 'deal' === $post_type ) {
 	$terminal_card_title = __( '🏷 Featured Deal', 'terminal' );
+	$terminal_card_title_icon = get_template_directory_uri() . '/client/static/images/icons/si-glyph-tag-price.svg';
 	$sponsor = terminal_get_sponsor( get_the_id() );
 	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $sponsor;
 } elseif ( 'book' === $post_type ) {
+	$terminal_card_title_icon = get_template_directory_uri() . '/client/static/images/icons/si-glyph-book-3.svg';
 	$terminal_card_title = __( '📖 Book Review', 'terminal' );
 } elseif ( 'community' === $post_type ) {
 	$terminal_card_title = __( 'Reader-Submitted Post', 'terminal' );
@@ -91,7 +96,10 @@ printf(
 );
 	if ( ! empty( $terminal_card_title ) ) {
 		printf(
-			'<div class="terminal-card-title terminal-no-select">%s</div>',
+			'<div class="terminal-card-title terminal-no-select">%s <span>%s</span></div>',
+				! empty( $terminal_card_title_icon ) ?
+					sprintf( '<div class="terminal-card-icon"><svg-icon><src href="%s" /></svg-icon></div>', esc_url( $terminal_card_title_icon ) ) :
+					'',
 				esc_html( $terminal_card_title )
 		);
 	}
@@ -139,7 +147,7 @@ printf(
 		echo apply_filters( 'the_content', $use_featured_embed );
 		echo '</div>';
 	}
-	echo '<div class="terminal-card-text terminal-excerpt-font">';
+	echo '<div class="terminal-card-text">';
 		if ( 'photo' === $post_type ) {
 			echo '<p class="terminal-credit terminal-text-gray">';
 			terminal_print_photo_caption();
@@ -169,7 +177,7 @@ printf(
 			) );
 		endif;
 		printf(
-			'<div class="terminal-card-text terminal-limit-max-content-width terminal-text-gray terminal-body-font %s">%s</div>',
+			'<div class="terminal-card-text terminal-limit-max-content-width terminal-text-gray terminal-excerpt-font %s">%s</div>',
 			$hide_excerpt_on_mobile ? 'terminal-mobile-hide' : '',
 			wp_kses_post( wpautop( get_the_excerpt() ) )
 		);
