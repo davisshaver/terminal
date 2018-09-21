@@ -163,8 +163,11 @@ class Frontend {
 		);
 		$apps = $data->get_apps_data();
 		if (
-			empty( $apps['smart_banner_enable_ios'] ) &&
-			empty( $apps['smart_banner_enable_google'] )
+			is_user_logged_in() ||
+			(
+				empty( $apps['smart_banner_enable_ios'] ) &&
+				empty( $apps['smart_banner_enable_google'] )
+			)
 		) {
 			echo '<meta name="smartbanner:enabled-platforms" content="none">';
 			return;
