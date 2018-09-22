@@ -44,6 +44,7 @@ if ( is_home() && ! is_paged() ) {
 		echo '</div>';
 		get_template_part( 'partials/breakout' );
 		get_template_part( 'partials/popular' );
+		get_template_part( 'partials/sponsors' );
 		echo '<div id="terminal-content-container" class="terminal-content-container">';
 		terminal_print_index_header();
 		if ( is_author() ) {

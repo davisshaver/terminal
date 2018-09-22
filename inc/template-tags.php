@@ -229,6 +229,16 @@ function terminal_print_popular_header() {
 }
 
 /**
+ * Template function to print sponsors header..
+ */
+function terminal_print_sponsors_header() {
+	printf(
+		'<div class="terminal-header terminal-header-font"><h2><a id="terminal-sponsors" name="sponsors">%s</a></h2></div>',
+		esc_html( __( 'Sponsors', 'terminal' ) )
+	);
+}
+
+/**
  * Template function to get Twitter count for a post.
  */
 function terminal_print_twitter_count_for_post() {
@@ -528,6 +538,17 @@ function terminal_print_stories_loop() {
 		echo '</p></div></div>';
 		get_template_part( 'partials/recirc' );
 	endif;
+}
+
+/**
+ * Get sponsor data.
+ *
+ * @param string $key Key.
+ * @return array data
+ */
+function terminal_get_sponsor_data( $key ) {
+	$data = Terminal\Data::instance();
+	return $data->get_sponsor_data( $key );
 }
 
 /**

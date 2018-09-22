@@ -23,6 +23,13 @@ class Data {
 	private $ad_data = array();
 
 	/**
+	 * Sponsor data.
+	 *
+	 * @var array $sponsor_data Sponsor data. Not used in customizer so can be cached.
+	 */
+	private $sponsor_data = array();
+
+	/**
 	 * Apps data.
 	 *
 	 * @var array $apps_data Apps data. Not used in customizer so can be cached.
@@ -321,6 +328,34 @@ class Data {
 			return $this->apps_data;
 		} elseif ( isset( $this->apps_data[ $key ] ) ) {
 			return $this->apps_data[ $key ];
+		}
+		return null;
+	}
+
+	/**
+	 * Get sponsor data.
+	 *
+	 * @return array Sponsor data.
+	 */
+	public function get_all_sponsor_data() {
+		if ( empty( $this->sponsor_data ) ) {
+			$this->sponsor_data = get_option( 'terminal_sponsor_options' );
+		}
+		return $this->sponsor_data;
+	}
+
+	/**
+	 * Get a sponsor data.
+	 *
+	 * @param string $key Optional key.
+	 * @return string Sponsor data.
+	 */
+	public function get_sponsor_data( $key ) {
+		if ( empty( $this->sponsor_data ) ) {
+			$this->sponsor_data = get_option( 'terminal_sponsor_options' );
+		}
+		if ( ! empty( $this->sponsor_data[ $key ] ) ) {
+			return $this->sponsor_data[ $key ];
 		}
 		return null;
 	}
