@@ -541,6 +541,17 @@ function terminal_print_stories_loop() {
 }
 
 /**
+ * Get sponsor data.
+ *
+ * @param string $key Key.
+ * @return array data
+ */
+function terminal_get_sponsor_data( $key ) {
+	$data = Terminal\Data::instance();
+	return $data->get_sponsor_data( $key );
+}
+
+/**
  * Get byline data.
  *
  * @param array $default Default data.
