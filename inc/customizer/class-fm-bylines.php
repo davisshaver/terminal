@@ -37,6 +37,7 @@ class FM_Bylines {
 					'loop_avatar_size'     => new \Fieldmanager_Select( 'Loop - Avatar Size', array( 'options' => array( 25, 30, 40, 50, 60, 75, 100 ) ) ),
 					'loop_hide_date'       => new \Fieldmanager_Checkbox( 'Loop - Disable Publish Date' ),
 					'loop_hide_author'     => new \Fieldmanager_Checkbox( 'Loop - Disable Author' ),
+					'loop_hide_reading_time'   => new \Fieldmanager_Checkbox( 'Loop - Disable Reading Time' ),
 					'loop_hide_category'   => new \Fieldmanager_Checkbox( 'Loop - Disable Categories' ),
 					'loop_hide_comments'   => new \Fieldmanager_Checkbox( 'Loop - Disable Comments' ),
 					'single_hide_avatar'   => new \Fieldmanager_Checkbox( 'Single - Disable Avatar' ),
@@ -45,6 +46,7 @@ class FM_Bylines {
 					'single_hide_author'   => new \Fieldmanager_Checkbox( 'Single - Disable Author' ),
 					'single_hide_category' => new \Fieldmanager_Checkbox( 'Single - Disable Categories' ),
 					'single_hide_comments' => new \Fieldmanager_Checkbox( 'Single - Disable Comments' ),
+					'single_hide_reading_time' => new \Fieldmanager_Checkbox( 'Single - Disable Reading Time' ),
 				),
 			)
 		);

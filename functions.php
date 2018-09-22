@@ -32,7 +32,7 @@ if ( version_compare( strtok( $GLOBALS['wp_version'], '-' ), '4.9', '<' ) ) {
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {
-	define( 'TERMINAL_VERSION', '3.91' );
+	define( 'TERMINAL_VERSION', '3.92' );
 }
 
 if ( ! defined( 'TERMINAL_APP' ) ) {
@@ -50,7 +50,7 @@ require_once __DIR__ . '/inc/class-theme.php';
 // Remaining classes can be loaded independently.
 require_once __DIR__ . '/inc/class-api.php';
 require_once __DIR__ . '/inc/class-metaboxes.php';
-// require_once __DIR__ . '/inc/class-jwt.php';
+require_once __DIR__ . '/inc/class-jwt.php';
 require_once __DIR__ . '/inc/class-widgets.php';
 require_once __DIR__ . '/inc/class-customizer.php';
 require_once __DIR__ . '/inc/class-data.php';
