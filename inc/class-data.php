@@ -288,7 +288,7 @@ class Data {
 	/**
 	 * Get Ad block alert.
 	 *
-	 * @return string A block alert
+	 * @return string Ad block alert
 	 */
 	public function get_ad_block_header() {
 		$alert = $this->get_ad_data( 'adblock_header' );
