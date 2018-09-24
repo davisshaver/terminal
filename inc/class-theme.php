@@ -115,6 +115,12 @@ class Theme {
 		// Unipress Metatags.
 		add_filter( 'unipress_twitter_core_meta', '__return_false' );
 		add_filter( 'unipress_facebook_core_meta', '__return_false' );
+
+		add_action( 'admin_init', [ $this, 'enqueue_wpapi'] );
+	}
+
+	public function enqueue_wpapi() {
+		wp_enqueue_script( 'wp-api' );
 	}
 
 	public function add_classes_on_li( $classes, $item, $args ) {
