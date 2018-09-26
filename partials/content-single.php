@@ -25,25 +25,26 @@ if (
 if ( is_page() ) {
 	$single_data['single_meta_position'] = false;
 }
+$post_types = terminal_get_post_types();
 printf(
 	'<article class="%s" id="terminal-post-%s">',
 	implode( get_post_class( array( 'terminal-card', 'terminal-post-card', 'terminal-card-double' ) ), ' ' ),
 	get_the_ID()
 );
-if ( 'top' === $single_data['single_meta_position'] && is_singular( terminal_get_post_types() ) ) :
+if ( 'top' === $single_data['single_meta_position'] && is_singular(  ) ) :
 	terminal_print_template_part( 'byline', array(
 		'post_type' => $post_type
 	) );
 endif;
 echo '<div class="terminal-meta terminal-no-select">';
-if ( function_exists( 'yoast_breadcrumb' ) && is_singular( terminal_get_post_types() ) ) {
+if ( function_exists( 'yoast_breadcrumb' ) && is_singular( $post_types ) ) {
 	yoast_breadcrumb(
 		'<div class="terminal-breadcrumbs terminal-single-meta-font terminal-text-gray terminal-link-gray-light">',
 		'</div>'
 	);
 }
 echo '</div>';
-if ( current_user_can( 'edit_others_posts' ) && is_singular( terminal_get_post_types() ) ) {
+if ( current_user_can( 'edit_others_posts' ) && is_singular( $post_types ) ) {
 	terminal_print_template_part( 'analytics' );
 }
 printf(
@@ -60,13 +61,13 @@ if ( has_post_thumbnail() && empty( $meta['hide_featured_image'] ) && empty( $us
 	echo apply_filters( 'the_content', $use_featured_embed );
 	echo '</div>';
 }
-if ( 'middle' === $single_data['single_meta_position'] && is_singular( terminal_get_post_types() ) ) :
+if ( 'middle' === $single_data['single_meta_position'] && is_singular( $post_types() ) ) :
 	terminal_print_template_part( 'byline', array(
 		'post_type' => $post_type
 	) );
 endif;
 
-if ( is_active_sidebar( 'terminal-before-article' ) && is_singular( terminal_get_post_types() ) ) {
+if ( is_active_sidebar( 'terminal-before-article' ) && is_singular( $post_types() ) ) {
 	dynamic_sidebar( 'terminal-before-article' );
 }
 printf(
@@ -90,20 +91,20 @@ printf(
 );
 wp_link_pages();
 echo '</div>';
-if ( 'bottom' === $single_data['single_meta_position'] && is_singular( terminal_get_post_types() ) ) :
+if ( 'bottom' === $single_data['single_meta_position'] && is_singular( $post_types() ) ) :
 	terminal_print_template_part( 'byline', array(
 		'post_type' => $post_type
 	) );
 endif;
-if ( is_active_sidebar( 'terminal-after-article' ) && is_singular( terminal_get_post_types() ) ) {
+if ( is_active_sidebar( 'terminal-after-article' ) && is_singular( $post_types() ) ) {
 	dynamic_sidebar( 'terminal-after-article' );
 }
-if ( is_singular( terminal_get_post_types() ) && empty( $single_data['hide_bio_on_single'] ) ) :
+if ( is_singular( $post_types() ) && empty( $single_data['hide_bio_on_single'] ) ) :
 	get_template_part( 'partials/author-snippet' );
 endif;
 $default = ! post_password_required() && comments_open( get_the_ID() );
 $terminal_comments_open = apply_filters( 'terminal_comments_open', $default );
-if ( is_singular( terminal_get_post_types() ) && $terminal_comments_open ) :
+if ( is_singular( $post_types() ) && $terminal_comments_open ) :
 	get_template_part( 'comments' );
 endif;
 echo '</article>';

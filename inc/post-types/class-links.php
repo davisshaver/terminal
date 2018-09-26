@@ -28,11 +28,58 @@ class Links {
 			$this->link_post_type_link_key = getenv( 'TERMINAL_LINK_POST_TYPE_LINK_KEY' );
 		}
 		add_action( 'init', [ $this, 'register_link_post_type' ] );
+		add_filter( 'author_link', [ $this, 'filter_feed_author_link' ], 10 );
+		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
 		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
  		add_filter( 'pre_get_posts', array( $this, 'include_link_post_type_in_rss' ) );
 		add_filter( 'enter_title_here', [ $this, 'change_headline_to_link_title' ] );
 		add_action( 'init', [ $this, 'register_link_fields' ] );
 		add_filter( 'post_type_link', [ $this, 'forward_to_linked_site' ], 10, 3 );
+		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
+	}
+
+	public function filter_ampnews_author_prefix( $prefix ) {
+		$id = get_the_id();
+		if ( $this->link_post_type === get_post_type( $id ) ) {
+			return __( 'Via', 'terminal' );
+		}
+		return $prefix;
+	}
+
+	/**
+	 * Filter feed author.
+	 *
+	 * @param string $link Current author
+	 * @param int    $id Current post ID.
+	 * @return string Filtered author
+	 */
+	public function filter_feed_author_link( $link ) {
+		$id = get_the_id();
+		if ( $this->link_post_type === get_post_type( $id ) ) {
+			$url = get_post_meta( $id, $this->link_post_type_link_key, true );
+			if ( ! empty ( $url ) ) {
+				return $url;
+			}
+		}
+		return $link;
+	}
+
+	/**
+	 * Filter feed author.
+	 *
+	 * @param string $author Current author
+	 * @param int    $id Current post ID.
+	 * @return string Filtered author
+	 */
+	public function filter_feed_author( $author ) {
+		$id = get_the_id();
+		if ( $this->link_post_type === get_post_type( $id ) ) {
+			$url = get_post_meta( $id, $this->link_post_type_link_key, true );
+			if ( ! empty ( $url ) ) {
+				return parse_url( $url, PHP_URL_HOST );
+			}
+		}
+		return $author;
 	}
 
 	/**
@@ -46,7 +93,7 @@ class Links {
 		if ( ! $id ) {
 			$id = get_the_id();
 		}
-		if ( is_feed() && $this->link_post_type === get_post_type( $id ) ) {
+		if ( $this->link_post_type === get_post_type( $id ) ) {
 			return "[LINK] ${title}";
 		}
 		return $title;

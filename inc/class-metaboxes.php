@@ -18,10 +18,24 @@ class Metaboxes {
 	 */
 	public function setup() {
 		if ( defined( 'FM_VERSION' ) ) {
+			add_filter( 'option_show_avatars', '__return_false' );
+			add_action( 'fm_user', array( $this, 'register_author_image' ) );
 			require_once __DIR__ . '/metaboxes/class-fm-featured-image-credit.php';
-			require_once __DIR__ . '/metaboxes/class-fm-placement-label.php';
-			require_once __DIR__ . '/metaboxes/class-fm-author-image.php';
 		}
+	}
+
+	/**
+	 * Register featured image credit.
+	 */
+	public function register_author_image() {
+		$fm = new \Fieldmanager_Group( array(
+			'name'           => 'terminal_author_fields',
+			'serialize_data' => false,
+			'children' => array(
+				'terminal_author_image' => new \Fieldmanager_Media( 'Headshot' ),
+			),
+		) );
+		$fm->add_user_form( 'Author' );
 	}
 }
 

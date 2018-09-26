@@ -31,6 +31,31 @@ class Community {
 		add_filter( 'pre_get_posts', array( $this, 'include_community_post_type_in_rss' ) );
 		add_action( 'init', [ $this, 'register_community_fields' ] );
 		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
+		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
+		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
+	}
+
+	/**
+	 * Filter feed author.
+	 *
+	 * @param string $author Current author
+	 * @param int    $id Current post ID.
+	 * @return string Filtered author
+	 */
+	public function filter_feed_author( $author ) {
+		$id = get_the_id();
+		if ( $this->community_post_type === get_post_type( $id ) ) {
+			return $this->get_author();
+		}
+		return $author;
+	}
+
+	public function filter_ampnews_author_prefix( $prefix ) {
+		$id = get_the_id();
+		if ( $this->community_post_type === get_post_type( $id ) ) {
+			return __( 'Contributed by', 'terminal' );
+		}
+		return $prefix;
 	}
 
 	/**
@@ -65,8 +90,18 @@ class Community {
 				'name'           => $this->community_post_type_community_key,
 				'serialize_data' => false,
 			) );
-			$fm->add_meta_box( 'Community', $this->community_post_type );
+			$fm->add_meta_box( 'Contributor', $this->community_post_type );
 		}
+	}
+
+	/**
+	 * Get author
+	 */
+	public function get_author( $post_id = null ) {
+		if ( ! $post_id ) {
+			$post_id = get_the_id();
+		}
+		return get_post_meta( $post_id, $this->community_post_type_community_key, true );
 	}
 
 	/**
@@ -86,7 +121,6 @@ class Community {
 		}
 		return $query;
 	}
-
 
 	/**
 	 * Register community post type.

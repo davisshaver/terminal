@@ -30,12 +30,48 @@ class Parsely {
 			add_action( 'pre_get_posts', [$this, 'parsely_custom_orderby' ] );
 		}
 		add_action( 'retrieve_social_data', 'retrieve_social_data', 10, 1 );
-		add_action( 'check_cached_analytics_values', 'check_cached_analytics_values', 10 );
-		add_action( 'retrieve_analytics_data', 'retrieve_analytics_data', 10, 1 );
-		add_action( 'retrieve_referral_data', 'retrieve_referral_data', 10, 1 );
-		add_action( 'retrieve_data', 'retrieve_data', 10, 1 );
+		add_action( 'check_cached_analytics_values', [ $this, 'check_cached_analytics_values' ], 10 );
+		add_action( 'retrieve_analytics_data', [ $this, 'retrieve_analytics_data' ], 10, 1 );
+		add_action( 'retrieve_referral_data', [ $this, 'retrieve_referral_data' ], 10, 1 );
+		add_action( 'retrieve_data', [$this, 'retrieve_data' ], 10, 1 );
 		add_action( 'publish_post', [ $this, 'schedule_some_retrievals' ], 10, 2 );
 		add_action( 'wp', [ $this, 'possibly_schedule_analytics_update' ] );
+	}
+
+	public function retrieve_social_data( $post_id ) {
+		$parsely = Terminal\Parsely::instance();
+		return $parsely->store_social_data( $post_id );
+	}
+
+	public function retrieve_analytics_data( $post_id ) {
+		$parsely = Terminal\Parsely::instance();
+		return $parsely->store_analytics_data( $post_id );
+	}
+
+	public function retrieve_referral_data( $post_id ) {
+		$parsely = Terminal\Parsely::instance();
+		return $parsely->store_referral_data( $post_id );
+	}
+
+	public function check_cached_analytics_values() {
+		$today = getdate();
+		$posts = get_posts( [
+			'post_type' => terminal_get_post_types(),
+			'posts_per_page' => -1, // getting all posts of a post type
+			'no_found_rows' => true, //speeds up a query significantly and can be set to 'true' if we don't use pagination
+			'fields' => 'ids', //again, for performance
+			'date_query' => array(
+				array(
+						'after' => '90 days ago'
+				)
+			) // last year
+		] );
+		foreach ( $posts as $post_id ) {
+			$this->possibly_schedule_event(
+				'retrieve_data',
+				$post_id
+			);
+		}
 	}
 
 	public function possibly_schedule_analytics_update() {
@@ -50,11 +86,17 @@ class Parsely {
 		foreach( $hours as $hour ) {
 			$target = $timestamp + ( $hour * HOUR_IN_SECONDS );
 			$this->possibly_schedule_event(
-				'retrieve_data',
+				[ $this, 'retrieve_data' ],
 				$post_id,
 				$target
 			);
 		}
+	}
+
+	public function retrieve_data( $post_id ) {
+		$parsely->store_referral_data( $post_id );
+		$parsely->store_analytics_data( $post_id );
+		$parsely->store_social_data( $post_id );
 	}
 
 	public function parsely_custom_orderby( $query ) {
@@ -492,33 +534,6 @@ class Parsely {
 		}
 		$url = get_the_permalink( $post_id );
 		return $this->get_cached( 'terminal_social', $post_id );
-	}
-
-	/**
-	 * Filter ESSB4 share counts.
-	 *
-	 * @param array $current Current counts.
-	 * @param int   $post_id Post ID (optional).
-	 * @return array Filtered counts.
-	 */
-	public function filter_essb4_counters( $current, $post_id = null) {
-		if ( empty( $post_id ) ) {
-			$post_id = get_the_ID();
-			return;
-		}
-		if ( empty( $post_id ) ) {
-			return;
-		}
-		$json = $this->get_cached_social_data( $post_id );
-		$updated = $current;
-		$updated['facebook'] = ! empty( $json->data[0]->fb ) ? $json->data[0]->fb : $current['facebook'];
-		$updated['twitter'] = ! empty( $json->data[0]->tw ) ? $json->data[0]->tw : $current['twitter'];
-		$updated['linkedin'] = ! empty( $json->data[0]->li ) ? $json->data[0]->li : $current['linkedin'];
-		$updated['pinterest'] = ! empty( $json->data[0]->pi ) ? $json->data[0]->pi : $current['pinterest'];
-		$updated['total'] = ! empty( $json->data[0]->total ) ?
-			intval( $json->data[0]->total ) + intval( $current['mail'] ) :
-			$current['total'];
-		return $updated;
 	}
 }
 

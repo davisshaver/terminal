@@ -34,6 +34,34 @@ class Housing {
 		add_action( 'init', [ $this, 'register_housing_fields' ] );
 		add_filter( 'post_type_link', [ $this, 'forward_to_housing_site' ], 10, 3 );
 		add_action('add_meta_boxes', [ $this, 'remove_yoast' ], 100);
+		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
+		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
+	}
+
+	/**
+	 * Filter feed author.
+	 *
+	 * @param string $author Current author
+	 * @param int    $id Current post ID.
+	 * @return string Filtered author
+	 */
+	public function filter_feed_author( $author ) {
+		$id = get_the_id();
+		if ( $this->housing_post_type === get_post_type( $id ) ) {
+			$realtor = get_realtor( $id );
+			if ( ! empty ( $realtor ) ) {
+				return $realtor;
+			}
+		}
+		return $author;
+	}
+
+	public function filter_ampnews_author_prefix( $prefix ) {
+		$id = get_the_id();
+		if ( $this->housing_post_type === get_post_type( $id ) ) {
+			return __( 'Sponsored by', 'terminal' );
+		}
+		return $prefix;
 	}
 
 	public function remove_yoast() {
