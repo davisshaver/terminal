@@ -34,9 +34,15 @@ class Frontend {
 			add_filter( 'sidebars_widgets', [ $this, 'maybe_disable_ads' ] );
 			add_filter( 'option_coral_talk_container_classes', [ $this, 'filter_talk_classes' ] );
 			add_filter('essb4_get_cached_counters', [ $this, 'filter_essb4_counters' ] );
-			add_filter('wpseo_breadcrumb_links', [ $this, 'wpseo_remove_home_breadcrumb' ]);
+			add_filter( 'wpseo_breadcrumb_links', [ $this, 'wpseo_remove_home_breadcrumb' ] );
 		}
 		$this->disable_emojis();
+		add_filter( 'web_app_manifest', [ $this, 'filter_web_app_manifest' ] );
+	}
+
+	public function filter_web_app_manifest( $manifest ) {
+		// Nothing to see here yet.
+		return $manifest;
 	}
 
 	public function wpseo_remove_home_breadcrumb( $links ) {
