@@ -58,6 +58,7 @@ class Theme {
 	public function filter_amp_news_post_type() {
 		return terminal_get_post_types();
 	}
+
 	public function enqueue_wpapi() {
 		wp_enqueue_script( 'wp-api' );
 	}

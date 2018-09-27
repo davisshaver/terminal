@@ -22,6 +22,7 @@ function terminal_get_post_types( $values_only = true ) {
 		$books = Terminal\Books::instance();
 		$post_types['book'] = $books->get_book_post_type();
 	}
+
 	if ( getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE' ) ) {
 		$community = Terminal\Community::instance();
 		$post_types['community'] = $community->get_community_post_type();
@@ -58,6 +59,13 @@ function terminal_get_post_type( $post = false ) {
 		$books = Terminal\Books::instance();
 		$post_types['book'] = $books->get_book_post_type();
 	}
+<<<<<<< HEAD
+=======
+	if ( getenv( 'TERMINAL_ENABLE_PHOTO_POST_TYPE' ) ) {
+		$photos = Terminal\Photos::instance();
+		$post_types['photo'] = $photos->get_photo_post_type();
+	}
+>>>>>>> da09e6630f5daf156cf396df0f80b203777b77e5
 	if ( getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE' ) ) {
 		$community = Terminal\Community::instance();
 		$post_types['community'] = $community->get_community_post_type();
