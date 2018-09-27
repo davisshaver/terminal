@@ -17,23 +17,21 @@ class Frontend {
 	 * Setup actions.
 	 */
 	public function setup() {
-		if ( ! is_admin() ) {
-			add_action( 'wp_head', [ $this, 'remove_jetpack_crap' ], 130 );
-			add_filter( 'feed_links_show_comments_feed', '__return_false' );
-			add_filter( 'jetpack_implode_frontend_css', '__return_false' );
-			add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
-			add_filter( 'simple_local_avatar', [ $this, 'hack_for_ssl' ] );
-			add_filter( 'wpseo_breadcrumb_links', [ $this, 'wpseo_remove_home_breadcrumb' ] );
-			add_filter( 'wpseo_breadcrumb_single_link', [ $this, 'adjust_single_breadcrumb' ] );
-			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
-			remove_action( 'wp_head', 'feed_links_extra', 3 );
-			remove_action( 'wp_head', 'rsd_link' );
-			remove_action( 'wp_head', 'wlwmanifest_link' );
-			remove_action( 'wp_head', 'wp_generator' );
-			remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-			add_filter( 'web_app_manifest', [ $this, 'filter_web_app_manifest' ] );
-			add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
-		}
+		add_action( 'wp_enqueue_scripts', [ $this, 'remove_jetpack_crap' ], 130 );
+		add_filter( 'feed_links_show_comments_feed', '__return_false' );
+		add_filter( 'jetpack_implode_frontend_css', '__return_false' );
+		add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
+		add_filter( 'simple_local_avatar', [ $this, 'hack_for_ssl' ] );
+		add_filter( 'wpseo_breadcrumb_links', [ $this, 'wpseo_remove_home_breadcrumb' ] );
+		add_filter( 'wpseo_breadcrumb_single_link', [ $this, 'adjust_single_breadcrumb' ] );
+		remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
+		remove_action( 'wp_head', 'feed_links_extra', 3 );
+		remove_action( 'wp_head', 'rsd_link' );
+		remove_action( 'wp_head', 'wlwmanifest_link' );
+		remove_action( 'wp_head', 'wp_generator' );
+		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+		add_filter( 'web_app_manifest', [ $this, 'filter_web_app_manifest' ] );
+		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
 	}
 
 	public function filter_web_app_manifest( $manifest ) {
@@ -62,6 +60,9 @@ class Frontend {
 		wp_deregister_style( 'tiled-gallery' );
 		wp_deregister_style( 'wp-parsely-style' );
 		wp_deregister_style( 'wpcom-notes-admin-bar' );
+		wp_deregister_style( 'mp-theme' );
+		wp_deregister_style( 'wp-block-library' );
+		wp_deregister_style( 'amp-default' );
 	}
 
 	/**

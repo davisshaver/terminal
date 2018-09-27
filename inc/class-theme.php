@@ -53,6 +53,7 @@ class Theme {
 		add_filter( 'publishpress_disable_timepicker', '__return_true' );
 		add_action( 'admin_init', [ $this, 'enqueue_wpapi'] );
 		add_filter( 'amp-news-post-type', [ $this, 'filter_amp_news_post_type'] );
+		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
 	}
 
 	public function filter_amp_news_post_type() {
