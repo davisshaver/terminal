@@ -1,0 +1,24 @@
+{
+  "name": "davisshaver/terminal",
+  "description": "Plugin for Philly Publishing sites, hosted on Pantheon.",
+  "type": "wordpress-plugin",
+  "keywords": [
+    "wordpress",
+    "wordpress-development",
+    "wordpress-api"
+  ],
+  "minimum-stability": "alpha",
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^0.14.0",
+    "squizlabs/php_codesniffer": "*"
+  },
+  "scripts": {
+    "code-sniff": [
+      "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+      "./vendor/bin/phpcs ."
+    ]
+  },
+  "require": {
+    "firebase/php-jwt": "^5.0"
+  }
+}
