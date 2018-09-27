@@ -4,7 +4,7 @@
  */
 
 /*
-Plugin Name: Terminal
+Plugin Name: Terminal Dev
 Text Domain: terminal
 */
 
