@@ -17,6 +17,8 @@ class Frontend {
 	 * Setup actions.
 	 */
 	public function setup() {
+		add_action( 'wp_head', [ $this, 'remove_more_jetpack_crap' ], 130 );
+		add_action( 'admin_init', [ $this, 'wp_api' ], 10 );
 		add_action( 'wp_enqueue_scripts', [ $this, 'remove_jetpack_crap' ], 130 );
 		add_filter( 'feed_links_show_comments_feed', '__return_false' );
 		add_filter( 'jetpack_implode_frontend_css', '__return_false' );
@@ -47,6 +49,13 @@ class Frontend {
 	}
 
 	/**
+	 * Ensure WP API loaded.
+	 */
+	public function wp_api() {
+		wp_enqueue_script( 'wp-api' );
+	}
+
+	/**
 	 * Remove Jetpack crap.
 	 */
 	public function remove_jetpack_crap() {
@@ -54,7 +63,6 @@ class Frontend {
 		wp_deregister_script( 'wpcom-notes-common' );
 		wp_deregister_style( 'dashicons' );
 		wp_deregister_style( 'jetpack-widget-social-icons-admin' );
-		wp_deregister_style( 'noticons' );
 		wp_deregister_style( 'the-neverending-homepage' );
 		wp_deregister_style( 'tiled-gallery' );
 		wp_deregister_style( 'tiled-gallery' );
@@ -63,6 +71,15 @@ class Frontend {
 		wp_deregister_style( 'mp-theme' );
 		wp_deregister_style( 'wp-block-library' );
 		wp_deregister_style( 'amp-default' );
+		wp_deregister_style( 'jetpack-widget-social-icons-styles' );
+	}
+
+	/**
+	 * Remove Jetpack crap.
+	 */
+	public function remove_more_jetpack_crap() {
+		wp_deregister_style( 'noticons' );
+		wp_deregister_style( 'wpcom-notes-admin-bar' );
 	}
 
 	/**
