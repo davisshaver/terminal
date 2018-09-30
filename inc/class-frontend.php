@@ -61,17 +61,16 @@ class Frontend {
 	public function remove_jetpack_crap() {
 		wp_deregister_script( 'wpcom-notes-admin-bar' );
 		wp_deregister_script( 'wpcom-notes-common' );
+		wp_deregister_style( 'amp-default' );
 		wp_deregister_style( 'dashicons' );
 		wp_deregister_style( 'jetpack-widget-social-icons-admin' );
+		wp_deregister_style( 'jetpack-widget-social-icons-styles' );
+		wp_deregister_style( 'mp-theme' );
 		wp_deregister_style( 'the-neverending-homepage' );
 		wp_deregister_style( 'tiled-gallery' );
 		wp_deregister_style( 'tiled-gallery' );
 		wp_deregister_style( 'wp-parsely-style' );
 		wp_deregister_style( 'wpcom-notes-admin-bar' );
-		wp_deregister_style( 'mp-theme' );
-		wp_deregister_style( 'wp-block-library' );
-		wp_deregister_style( 'amp-default' );
-		wp_deregister_style( 'jetpack-widget-social-icons-styles' );
 	}
 
 	/**
