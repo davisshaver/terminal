@@ -24,42 +24,54 @@ class FM_Featured_Image_Credit {
 	/**
 	 * Register featured image credit for post type.
 	 *
-	 * @param $post_type string Post type.
+	 * @param string $post_type Post type.
 	 */
 	public function register_featured_image_for_post_type( $post_type ) {
 		$fm = new \Fieldmanager_Group( array(
 			'name'           => 'terminal_featured_meta',
 			'serialize_data' => false,
 			'children'       => array(
-				'credit'  => new \Fieldmanager_TextField( array(
+				'credit'                        => new \Fieldmanager_TextField( array(
 					'label' => __( 'Credit', 'terminal' ),
 				) ),
-				'caption' => new \Fieldmanager_RichTextArea( array(
+				'caption'                       => new \Fieldmanager_RichTextArea( array(
 					'label'           => __( 'Caption', 'terminal' ),
 					'editor_settings' => array(
 						'media_buttons' => false,
 					),
 				) ),
-				'add_featured_embed'  => new \Fieldmanager_Checkbox( 'Add featured embed' ),
+				'add_featured_embed'            => new \Fieldmanager_Checkbox( 'Add featured embed' ),
 				'use_featured_embed_on_landing' => new \Fieldmanager_Checkbox( array(
-					'label' => __( 'Use embed on index pages', 'terminal' ),
-					'display_if' => array( 'src' => 'add_featured_embed', 'value' => true ),
-				)	),
-				'use_featured_embed_on_single' => new \Fieldmanager_Checkbox( array(
-					'label' => __( 'Use embed on single pages', 'terminal' ),
-					'display_if' => array( 'src' => 'add_featured_embed', 'value' => true ),
-				)	),
-				'featured_embed' => new \Fieldmanager_RichTextArea( array(
+					'label'      => __( 'Use embed on index pages', 'terminal' ),
+					'display_if' => array(
+						'src'   => 'add_featured_embed',
+						'value' => true,
+					),
+				) ),
+				'use_featured_embed_on_single'  => new \Fieldmanager_Checkbox( array(
+					'label'      => __( 'Use embed on single pages', 'terminal' ),
+					'display_if' => array(
+						'src'   => 'add_featured_embed',
+						'value' => true,
+					),
+				) ),
+				'featured_embed'                => new \Fieldmanager_RichTextArea( array(
 					'label'           => __( 'Use embed on landing', 'terminal' ),
-					'display_if'      => array( 'src' => 'add_featured_embed', 'value' => true ),
+					'display_if'      => array(
+						'src'   => 'add_featured_embed',
+						'value' => true,
+					),
 					'editor_settings' => array(
 						'media_buttons' => false,
 					),
 				) ),
-				'hide_featured_image'  => new \Fieldmanager_Checkbox( array(
-					'label' => __( 'Hide featured image on single', 'terminal' ),
-					'display_if' => array( 'src' => 'use_featured_embed_on_single', 'value' => false ),
-				)	),
+				'hide_featured_image'           => new \Fieldmanager_Checkbox( array(
+					'label'      => __( 'Hide featured image on single', 'terminal' ),
+					'display_if' => array(
+						'src'   => 'use_featured_embed_on_single',
+						'value' => false,
+					),
+				) ),
 			),
 		) );
 		$fm->add_meta_box( 'Featured Image', $post_type );

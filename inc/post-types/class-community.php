@@ -14,7 +14,18 @@ class Community {
 
 	use Singleton;
 
+	/**
+	 * Community post type.
+	 *
+	 * @var string $community_post_type Post type slug.
+	 */
 	private $community_post_type = 'community';
+
+	/**
+	 * Community post type meta key.
+	 *
+	 * @var string $community_post_type_community_key Post meta key slug.
+	 */
 	private $community_post_type_community_key = 'context';
 
 	/**
@@ -22,7 +33,7 @@ class Community {
 	 */
 	public function setup() {
 		if ( getenv( 'TERMINAL_COMMUNITY_POST_TYPE' ) ) {
-			$this->community_post_type =  getenv( 'TERMINAL_COMMUNITY_POST_TYPE' );
+			$this->community_post_type = getenv( 'TERMINAL_COMMUNITY_POST_TYPE' );
 		}
 		if ( getenv( 'TERMINAL_COMMUNITY_POST_TYPE_BIO_KEY' ) ) {
 			$this->community_post_type_community_key = getenv( 'TERMINAL_COMMUNITY_POST_TYPE_BIO_KEY' );
@@ -38,21 +49,26 @@ class Community {
 	/**
 	 * Filter feed author.
 	 *
-	 * @param string $author Current author
-	 * @param int    $id Current post ID.
+	 * @param string $author Current author.
 	 * @return string Filtered author
 	 */
 	public function filter_feed_author( $author ) {
 		$id = get_the_id();
-		if ( $this->community_post_type === get_post_type( $id ) ) {
+		if ( get_post_type( $id ) === $this->community_post_type ) {
 			return $this->get_author();
 		}
 		return $author;
 	}
 
+	/**
+	 * Filter AMP News theme author prefix.
+	 *
+	 * @param string $prefix Current prefix.
+	 * @return string Filtered prefix
+	 */
 	public function filter_ampnews_author_prefix( $prefix ) {
 		$id = get_the_id();
-		if ( $this->community_post_type === get_post_type( $id ) ) {
+		if ( get_post_type( $id ) === $this->community_post_type ) {
 			return __( 'Contributed by', 'terminal' );
 		}
 		return $prefix;
@@ -64,10 +80,11 @@ class Community {
 	public function get_community_post_type() {
 		return $this->community_post_type;
 	}
+
 	/**
 	 * Filter feed title.
 	 *
-	 * @param string $title Current title
+	 * @param string $title Current title.
 	 * @param int    $id Current post ID.
 	 * @return string Filtered title
 	 */
@@ -75,7 +92,7 @@ class Community {
 		if ( ! $id ) {
 			$id = get_the_id();
 		}
-		if ( is_feed() && $this->community_post_type === get_post_type( $id ) ) {
+		if ( is_feed() && get_post_type( $id ) === $this->community_post_type ) {
 			return "[COMMUNITY] ${title}";
 		}
 		return $title;
@@ -95,7 +112,10 @@ class Community {
 	}
 
 	/**
-	 * Get author
+	 * Get post author.
+	 *
+	 * @param int $post_id Post to get author for.
+	 * @return string Author
 	 */
 	public function get_author( $post_id = null ) {
 		if ( ! $post_id ) {
@@ -107,7 +127,7 @@ class Community {
 	/**
 	 * Include community post type.
 	 *
-	 * @param object $query Query
+	 * @param object $query Query.
 	 * @return object Filtered query
 	 */
 	public function include_community_post_type_in_rss( $query ) {
@@ -127,20 +147,20 @@ class Community {
 	 */
 	public function register_community_post_type() {
 		$community_labels = array(
-			'name'                	=> __( 'Community Content', 'terminal' ),
-			'singular_name'       	=> __( 'Community Content', 'terminal' ),
-			'menu_name'           	=> __( 'Community Content', 'terminal' ),
-			'all_items'           	=> __( 'All Community Content', 'terminal' ),
-			'view_item'           	=> __( 'View Community Content', 'terminal' ),
-			'add_new_item'        	=> __( 'Add New Community Content', 'terminal' ),
-			'add_new'             	=> __( 'Add New', 'terminal' ),
-			'edit_item'           	=> __( 'Edit Community Content', 'terminal' ),
-			'update_item'         	=> __( 'Update Community Content', 'terminal' ),
-			'search_items'        	=> __( 'Search Community Content', 'terminal' ),
-			'not_found'           	=> __( 'Not found', 'terminal' ),
-			'not_found_in_trash'  	=> __( 'Not found in Trash', 'terminal' ),
+			'name'               => __( 'Community Content', 'terminal' ),
+			'singular_name'      => __( 'Community Content', 'terminal' ),
+			'menu_name'          => __( 'Community Content', 'terminal' ),
+			'all_items'          => __( 'All Community Content', 'terminal' ),
+			'view_item'          => __( 'View Community Content', 'terminal' ),
+			'add_new_item'       => __( 'Add New Community Content', 'terminal' ),
+			'add_new'            => __( 'Add New', 'terminal' ),
+			'edit_item'          => __( 'Edit Community Content', 'terminal' ),
+			'update_item'        => __( 'Update Community Content', 'terminal' ),
+			'search_items'       => __( 'Search Community Content', 'terminal' ),
+			'not_found'          => __( 'Not found', 'terminal' ),
+			'not_found_in_trash' => __( 'Not found in Trash', 'terminal' ),
 		);
-		$community_args = array(
+		$community_args   = array(
 			'label'               => __( 'community', 'terminal' ),
 			'description'         => __( 'Community Content', 'terminal' ),
 			'labels'              => $community_labels,

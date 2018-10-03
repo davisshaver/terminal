@@ -36,14 +36,26 @@ class Frontend {
 		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
 	}
 
+	/**
+	 * Filter Web App manifest
+	 *
+	 * @param array $manifest Manifest object.
+	 * @return array Filtered manifest object.
+	 */
 	public function filter_web_app_manifest( $manifest ) {
 		// Nothing to see here yet.
 		return $manifest;
 	}
 
+	/**
+	 * Filter Web App manifest
+	 *
+	 * @param array $links Manifest object.
+	 * @return array Filtered manifest object.
+	 */
 	public function wpseo_remove_home_breadcrumb( $links ) {
-		if ( $links[0]['url'] == home_url('/') ) {
-			array_shift($links);
+		if ( ! empty( $links[0]['url'] ) && home_url( '/' ) === $links[0]['url'] ) {
+			array_shift( $links );
 		}
 		return $links;
 	}

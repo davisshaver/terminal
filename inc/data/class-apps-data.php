@@ -29,9 +29,7 @@ class Apps_Data {
 	 */
 	public function get_apps_data( $key = false ) {
 		if ( empty( $this->apps_data ) ) {
-			$this->apps_data = get_option( 'terminal_app_options', array(
-
-			) );
+			$this->apps_data = get_option( 'terminal_app_options', array() );
 		}
 		if ( ! $key ) {
 			return $this->apps_data;

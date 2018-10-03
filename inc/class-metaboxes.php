@@ -31,7 +31,7 @@ class Metaboxes {
 		$fm = new \Fieldmanager_Group( array(
 			'name'           => 'terminal_author_fields',
 			'serialize_data' => false,
-			'children' => array(
+			'children'       => array(
 				'terminal_author_image' => new \Fieldmanager_Media( 'Headshot' ),
 			),
 		) );

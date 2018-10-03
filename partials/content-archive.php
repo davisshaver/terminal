@@ -7,7 +7,7 @@
 
 $single_data = terminal_get_layout_data( array(
 	'single_meta_position' => 'top',
-	'hide_bio_on_single' => false,
+	'hide_bio_on_single'   => false,
 ) );
 
 if ( is_page() ) {
@@ -15,12 +15,12 @@ if ( is_page() ) {
 }
 printf(
 	'<article class="%s" id="terminal-post-%s">',
-	implode( get_post_class( array( 'terminal-card', 'terminal-post-card', 'terminal-card-double' ) ), ' ' ),
-	get_the_ID()
+	esc_attr( implode( get_post_class( array( 'terminal-card', 'terminal-post-card', 'terminal-card-double' ) ), ' ' ) ),
+	esc_attr( get_the_ID() )
 );
 if ( 'top' === $single_data['single_meta_position'] ) :
 	terminal_print_template_part( 'byline', array(
-		'post_type' => $post_type
+		'post_type' => $post_type,
 	) );
 endif;
 if ( function_exists( 'yoast_breadcrumb' ) ) {
@@ -43,39 +43,40 @@ if ( is_active_sidebar( 'terminal-before-article' ) ) {
 }
 if ( 'middle' === $single_data['single_meta_position'] ) :
 	terminal_print_template_part( 'byline', array(
-		'post_type' => $post_type
+		'post_type' => $post_type,
 	) );
 endif;
 printf(
 	'<div class="terminal-card-text terminal-body-font terminal-limit-max-content-width">%s',
+	// phpcs:ignore
 	apply_filters( 'the_content', get_the_content( '<p>Read the rest of this entry &raquo;</p>' ) )
 );
 wp_link_pages();
 ?>
 <div style="display: flex;">
 <div class="archive-months" style="float: left; width: calc(50% - 15px); margin-right: 15px;">
-  <h2><?php esc_html_e( 'Post Archives', 'terminal' ); ?></h2>
-  <ul>
-  <?php
-  $args = array(
-    'type'            => 'monthly',
-    'format'          => 'html',
-    'show_post_count' => true,
-  );
-  wp_get_archives( $args );
-  ?>
-  </ul>
-  </div>
-  <div class="archive-authors" style="float: right; width: calc(50% - 15px); margin-left: 15px;">
-    <h2><?php esc_html_e( 'Author Archives', 'terminal' ); ?></h2>
-    <?php terminal_authors(); ?>
-  </div>
+	<h2><?php esc_html_e( 'Post Archives', 'terminal' ); ?></h2>
+	<ul>
+	<?php
+	$args = array(
+		'type'            => 'monthly',
+		'format'          => 'html',
+		'show_post_count' => true,
+	);
+	wp_get_archives( $args );
+	?>
+	</ul>
+</div>
+<div class="archive-authors" style="float: right; width: calc(50% - 15px); margin-left: 15px;">
+	<h2><?php esc_html_e( 'Author Archives', 'terminal' ); ?></h2>
+	<?php terminal_authors(); ?>
+</div>
 </div>
 <?php
 echo '</div>';
 if ( 'bottom' === $single_data['single_meta_position'] ) :
 	terminal_print_template_part( 'byline', array(
-		'post_type' => $post_type
+		'post_type' => $post_type,
 	) );
 endif;
 if ( is_active_sidebar( 'terminal-after-article' ) ) {
@@ -85,7 +86,7 @@ if ( is_active_sidebar( 'terminal-after-article' ) ) {
 if ( ! is_page() && empty( $single_data['hide_bio_on_single'] ) ) :
 	get_template_part( 'partials/author-snippet' );
 endif;
-$default = ! post_password_required() && comments_open( get_the_ID() );
+$default                = ! post_password_required() && comments_open( get_the_ID() );
 $terminal_comments_open = apply_filters( 'terminal_comments_open', $default );
 if ( ! is_page() && $terminal_comments_open ) :
 	get_template_part( 'comments' );

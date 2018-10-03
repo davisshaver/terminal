@@ -28,80 +28,80 @@ class FM_Sponsors {
 		$fm = new \Fieldmanager_Group(
 			'Sponsor Options',
 			array(
-				'name'     => 'terminal_sponsor_options',
+				'name'           => 'terminal_sponsor_options',
 				'serialize_data' => false,
-				'children' => array(
-					'enable_sponsors' => new \Fieldmanager_Checkbox( 'Enable inline ads' ),
-					'tier_one_sponsors' => new \Fieldmanager_Group(
+				'children'       => array(
+					'enable_sponsors'     => new \Fieldmanager_Checkbox( 'Enable inline ads' ),
+					'tier_one_sponsors'   => new \Fieldmanager_Group(
 						__( 'Tier one sponsors', 'terminal' ),
 						array(
-							'limit'  => 0,
+							'limit'          => 0,
 							'starting_count' => 0,
 							'add_more_label' => 'Add more',
-							'collapsible' => true,
-							'children' => array(
+							'collapsible'    => true,
+							'children'       => array(
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
-								'sponsor_link' => new \Fieldmanager_Link( 'Sponsor Link' ),
-								'sponsor_name' => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
-							)
+								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
+								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+							),
 						)
 					),
-					'tier_two_sponsors' => new \Fieldmanager_Group(
+					'tier_two_sponsors'   => new \Fieldmanager_Group(
 						__( 'Tier two sponsors', 'terminal' ),
 						array(
-							'limit'  => 0,
+							'limit'          => 0,
 							'starting_count' => 0,
 							'add_more_label' => 'Add more',
-							'collapsible' => true,
-							'children' => array(
+							'collapsible'    => true,
+							'children'       => array(
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
-								'sponsor_link' => new \Fieldmanager_Link( 'Sponsor Link' ),
-								'sponsor_name' => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
-							)
+								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
+								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+							),
 						)
 					),
 					'tier_three_sponsors' => new \Fieldmanager_Group(
 						__( 'Tier three sponsors', 'terminal' ),
 						array(
-							'limit'  => 0,
+							'limit'          => 0,
 							'starting_count' => 0,
 							'add_more_label' => 'Add more',
-							'collapsible' => true,
-							'children' => array(
+							'collapsible'    => true,
+							'children'       => array(
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
-								'sponsor_link' => new \Fieldmanager_Link( 'Sponsor Link' ),
-								'sponsor_name' => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
-							)
+								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
+								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+							),
 						)
 					),
-					'tier_four_sponsors' => new \Fieldmanager_Group(
+					'tier_four_sponsors'  => new \Fieldmanager_Group(
 						__( 'Tier four sponsors', 'terminal' ),
 						array(
-							'limit'  => 0,
+							'limit'          => 0,
 							'starting_count' => 0,
 							'add_more_label' => 'Add more',
-							'collapsible' => true,
-							'children' => array(
+							'collapsible'    => true,
+							'children'       => array(
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
-								'sponsor_link' => new \Fieldmanager_Link( 'Sponsor Link' ),
-								'sponsor_name' => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
-							)
+								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
+								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+							),
 						)
 					),
-					'tier_five_sponsors' => new \Fieldmanager_Group(
+					'tier_five_sponsors'  => new \Fieldmanager_Group(
 						__( 'Tier five sponsors', 'terminal' ),
 						array(
-							'limit'  => 0,
+							'limit'          => 0,
 							'starting_count' => 0,
 							'add_more_label' => 'Add more',
-							'collapsible' => true,
-							'children' => array(
+							'collapsible'    => true,
+							'children'       => array(
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
-								'sponsor_link' => new \Fieldmanager_Link( 'Sponsor Link' ),
-								'sponsor_name' => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
-							)
+								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
+								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+							),
 						)
-					)
+					),
 				),
 			)
 		);

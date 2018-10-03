@@ -31,10 +31,10 @@ class FM_Apps {
 				'name'     => 'terminal_app_options',
 				'children' => array(
 					'enable_app_banner'  => new \Fieldmanager_Checkbox( 'Enable app banner' ),
-					'apple_app_id' => new \Fieldmanager_Textfield( 'Apple App ID' ),
+					'apple_app_id'       => new \Fieldmanager_Textfield( 'Apple App ID' ),
 					'apple_app_argument' => new \Fieldmanager_Textfield( 'Apple App Argument' ),
-					'android_app_url' => new \Fieldmanager_Textfield( 'Android App ID' ),
-					'android_app_url' => new \Fieldmanager_Link( 'Android App URL' ),
+					'android_app_url'    => new \Fieldmanager_Textfield( 'Android App ID' ),
+					'android_app_url'    => new \Fieldmanager_Link( 'Android App URL' ),
 				),
 			)
 		);

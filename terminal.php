@@ -1,5 +1,7 @@
 <?php
 /**
+ * Terminal plugin.
+ *
  * @package Terminal
  */
 
@@ -13,15 +15,15 @@ namespace Terminal;
 /**
  * Set root path.
  */
-$rootPath = realpath( __DIR__ );
+$root_path = realpath( __DIR__ );
 
 /**
  * Include the Composer autoload
  */
 if (
-	file_exists( $rootPath . '/vendor/autoload.php' )
+	file_exists( $root_path . '/vendor/autoload.php' )
 ) {
-	require_once( $rootPath . '/vendor/autoload.php' );
+	require_once $root_path . '/vendor/autoload.php';
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {

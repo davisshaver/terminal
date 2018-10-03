@@ -17,16 +17,15 @@ class Membership_Data {
 	/**
 	 * Get membership data.
 	 *
-	 * @param array $default Default options.
 	 * @return array Data.
 	 */
 	public function get_restricted_domains_by_membership() {
 		$restricted_membership = array();
-		$membership_options = get_option( 'terminal_membership_options', array() );
+		$membership_options    = get_option( 'terminal_membership_options', array() );
 		if ( empty( $membership_options['restricted_memberships'] ) ) {
 			return $restricted_membership;
 		}
-		foreach( $membership_options['restricted_memberships'] as $membership ) {
+		foreach ( $membership_options['restricted_memberships'] as $membership ) {
 			$restricted_membership[ $membership['membership_id'] ] = explode( ',', $membership['domains'] );
 		}
 		return $restricted_membership;
@@ -35,7 +34,6 @@ class Membership_Data {
 	/**
 	 * Get membership data.
 	 *
-	 * @param array $default Default options.
 	 * @return array Data.
 	 */
 	public function get_membership_page() {

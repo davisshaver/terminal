@@ -33,7 +33,7 @@ class Layout_Data {
 			return $default;
 		}
 		return array_merge( $default, $layout_options );
-    }
+	}
 
 	/**
 	 * Get byline data.

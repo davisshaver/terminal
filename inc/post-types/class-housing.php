@@ -14,7 +14,19 @@ class Housing {
 
 	use Singleton;
 
+	/**
+	 * Housing post type.
+	 *
+	 * @var string $housing_post_type Post type slug.
+	 */
+
 	private $housing_post_type = 'housing';
+
+	/**
+	 * Housing post type meta key.
+	 *
+	 * @var string $housing_post_type_link_key Post meta key slug.
+	 */
 	private $housing_post_type_link_key = 'link';
 
 	/**
@@ -29,11 +41,11 @@ class Housing {
 		}
 		add_action( 'init', [ $this, 'register_housing_post_type' ] );
 		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
- 		add_filter( 'pre_get_posts', array( $this, 'include_housing_post_type_in_rss' ) );
+		add_filter( 'pre_get_posts', array( $this, 'include_housing_post_type_in_rss' ) );
 		add_filter( 'enter_title_here', [ $this, 'change_headline_to_housing_title' ] );
 		add_action( 'init', [ $this, 'register_housing_fields' ] );
 		add_filter( 'post_type_link', [ $this, 'forward_to_housing_site' ], 10, 3 );
-		add_action('add_meta_boxes', [ $this, 'remove_yoast' ], 100);
+		add_action( 'add_meta_boxes', [ $this, 'remove_yoast' ], 100 );
 		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
 		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
 	}
@@ -41,37 +53,45 @@ class Housing {
 	/**
 	 * Filter feed author.
 	 *
-	 * @param string $author Current author
-	 * @param int    $id Current post ID.
+	 * @param string $author Current author.
 	 * @return string Filtered author
 	 */
 	public function filter_feed_author( $author ) {
 		$id = get_the_id();
-		if ( $this->housing_post_type === get_post_type( $id ) ) {
+		if ( get_post_type( $id ) === $this->housing_post_type ) {
 			$realtor = get_realtor( $id );
-			if ( ! empty ( $realtor ) ) {
+			if ( ! empty( $realtor ) ) {
 				return $realtor;
 			}
 		}
 		return $author;
 	}
 
+	/**
+	 * Filter AMP News theme author prefix.
+	 *
+	 * @param string $prefix Current prefix.
+	 * @return string Filtered prefix
+	 */
 	public function filter_ampnews_author_prefix( $prefix ) {
 		$id = get_the_id();
-		if ( $this->housing_post_type === get_post_type( $id ) ) {
+		if ( get_post_type( $id ) === $this->housing_post_type ) {
 			return __( 'Sponsored by', 'terminal' );
 		}
 		return $prefix;
 	}
 
+	/**
+	 * Remove the Yoast metabox.
+	 */
 	public function remove_yoast() {
-		remove_meta_box('wpseo_meta', $this->housing_post_type, 'normal');
+		remove_meta_box( 'wpseo_meta', $this->housing_post_type, 'normal' );
 	}
 
 	/**
 	 * Filter feed title.
 	 *
-	 * @param string $title Current title
+	 * @param string $title Current title.
 	 * @param int    $id Current post ID.
 	 * @return string Filtered title
 	 */
@@ -79,7 +99,7 @@ class Housing {
 		if ( ! $id ) {
 			$id = get_the_id();
 		}
-		if ( is_feed() && $this->housing_post_type === get_post_type( $id ) ) {
+		if ( is_feed() && get_post_type( $id ) === $this->housing_post_type ) {
 			return "[HOUSING] ${title}";
 		}
 		return $title;
@@ -87,6 +107,9 @@ class Housing {
 
 	/**
 	 * Get link post type.
+	 *
+	 * @param int $post_id Post ID for realtor lookup.
+	 * @return string Realtor
 	 */
 	public function get_realtor( $post_id = null ) {
 		if ( ! $post_id ) {
@@ -96,7 +119,7 @@ class Housing {
 		if ( ! empty( $realtor ) ) {
 			return $realtor;
 		}
-		return parse_url( get_the_permalink( $post_id ), PHP_URL_HOST );
+		return wp_parse_url( get_the_permalink( $post_id ), PHP_URL_HOST );
 	}
 
 	/**
@@ -108,7 +131,8 @@ class Housing {
 
 	/**
 	 * Forward link post type to linked site.
-	 * @param string  $permalink The post's permalink.
+	 *
+	 * @param string  $url The post's permalink.
 	 * @param WP_Post $post      The post in question.
 	 * @param bool    $leavename Whether to keep the post name.
 	 */
@@ -139,6 +163,9 @@ class Housing {
 
 	/**
 	 * Change headline verbiage for housing.
+	 *
+	 * @param string $title current title.
+	 * @return string Filtered title
 	 */
 	public function change_headline_to_housing_title( $title ) {
 		$screen = get_current_screen();
@@ -151,7 +178,7 @@ class Housing {
 	/**
 	 * Include housing post type.
 	 *
-	 * @param object $query Query
+	 * @param object $query Query.
 	 * @return object Filtered query
 	 */
 	public function include_housing_post_type_in_rss( $query ) {
@@ -172,21 +199,21 @@ class Housing {
 	 */
 	public function register_housing_post_type() {
 		$housing_labels = array(
-			'name'                	=> __( 'Housing', 'terminal' ),
-			'singular_name'       	=> __( 'Housing', 'terminal' ),
-			'menu_name'           	=> __( 'Housing', 'terminal' ),
-			'parent_item_colon'   	=> __( 'Parent Housing', 'terminal' ),
-			'all_items'           	=> __( 'All Housing', 'terminal' ),
-			'view_item'           	=> __( 'View Housing', 'terminal' ),
-			'add_new_item'        	=> __( 'Add New Housing', 'terminal' ),
-			'add_new'             	=> __( 'Add New', 'terminal' ),
-			'edit_item'           	=> __( 'Edit Housing', 'terminal' ),
-			'update_item'         	=> __( 'Update Housing', 'terminal' ),
-			'search_items'        	=> __( 'Search Housing', 'terminal' ),
-			'not_found'           	=> __( 'Not found', 'terminal' ),
-			'not_found_in_trash'  	=> __( 'Not found in Trash', 'terminal' ),
+			'name'               => __( 'Housing', 'terminal' ),
+			'singular_name'      => __( 'Housing', 'terminal' ),
+			'menu_name'          => __( 'Housing', 'terminal' ),
+			'parent_item_colon'  => __( 'Parent Housing', 'terminal' ),
+			'all_items'          => __( 'All Housing', 'terminal' ),
+			'view_item'          => __( 'View Housing', 'terminal' ),
+			'add_new_item'       => __( 'Add New Housing', 'terminal' ),
+			'add_new'            => __( 'Add New', 'terminal' ),
+			'edit_item'          => __( 'Edit Housing', 'terminal' ),
+			'update_item'        => __( 'Update Housing', 'terminal' ),
+			'search_items'       => __( 'Search Housing', 'terminal' ),
+			'not_found'          => __( 'Not found', 'terminal' ),
+			'not_found_in_trash' => __( 'Not found in Trash', 'terminal' ),
 		);
-		$housing_args = array(
+		$housing_args   = array(
 			'label'               => __( 'housing', 'terminal' ),
 			'description'         => __( 'Housing', 'terminal' ),
 			'labels'              => $housing_labels,

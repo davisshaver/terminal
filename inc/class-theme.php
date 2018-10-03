@@ -24,13 +24,13 @@ class Theme {
 			'terminal-placement',
 			'post',
 			array(
-				'label' => __( 'Placements', 'terminal' ),
-				'public' => true,
-				'rewrite' => false,
-				'hierarchical' => true,
-				'show_ui' => true,
-				'show_admin_column' => true,
-				'show_in_rest' => true,
+				'label'              => __( 'Placements', 'terminal' ),
+				'public'             => true,
+				'rewrite'            => false,
+				'hierarchical'       => true,
+				'show_ui'            => true,
+				'show_admin_column'  => true,
+				'show_in_rest'       => true,
 				'publicly_queryable' => true,
 			)
 		);
@@ -39,27 +39,32 @@ class Theme {
 		add_action( 'wp_before_admin_bar_render', [ $this, 'admin_bar_disable_comments' ] );
 		add_filter( 'pings_open', '__return_false', 20, 2 );
 		add_filter( 'wpseo_canonical', [ $this, 'ensure_no_www_in_canonical' ] );
-		add_filter ('wp_parsely_page_url', [ $this, 'ensure_no_www_in_canonical' ] );
-		add_filter ('wpseo_json_ld_output', [ $this, 'ensure_no_www_in_canonical' ] );
-		add_filter ( 'post_link', [ $this, 'post_link_www'] );
-		add_filter ( 'post_link', [ $this, 'post_link_www'] );
+		add_filter( 'wp_parsely_page_url', [ $this, 'ensure_no_www_in_canonical' ] );
+		add_filter( 'wpseo_json_ld_output', [ $this, 'ensure_no_www_in_canonical' ] );
+		add_filter( 'post_link', [ $this, 'post_link_www' ] );
+		add_filter( 'post_link', [ $this, 'post_link_www' ] );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
 		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 2 );
-		
 		if ( is_customize_preview() ) {
 			add_filter( 'user_can_richedit', '__return_false' );
 		}
 		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
 		add_filter( 'publishpress_disable_timepicker', '__return_true' );
-		add_action( 'admin_init', [ $this, 'enqueue_wpapi'] );
-		add_filter( 'amp-news-post-type', [ $this, 'filter_amp_news_post_type'] );
+		add_action( 'admin_init', [ $this, 'enqueue_wpapi' ] );
+		add_filter( 'amp-news-post-type', [ $this, 'filter_amp_news_post_type' ] );
 		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
 	}
 
+	/**
+	 * Filter AMP News theme post types.
+	 */
 	public function filter_amp_news_post_type() {
 		return terminal_get_post_types();
 	}
 
+	/**
+	 * Enqueue WP API to ensure better plugin compatibility.
+	 */
 	public function enqueue_wpapi() {
 		wp_enqueue_script( 'wp-api' );
 	}
@@ -81,19 +86,19 @@ class Theme {
 	 * Add amp-ad to allowed wp_kses_post tags
 	 *
 	 * @param string $tags Allowed tags, attributes, and/or entities.
-	 * @param string $context Context to judge allowed tags by. Allowed values are 'post',
+	 * @param string $context Context to judge allowed tags by.
 	 *
 	 * @return mixed
 	 */
 	public function add_amp_ad( $tags, $context ) {
 		if ( 'post' === $context ) {
 			$tags['amp-ad'] = array(
-				'width' => true,
-				'height' => true,
-				'type' => true,
+				'width'          => true,
+				'height'         => true,
+				'type'           => true,
 				'data-ad-client' => true,
-				'data-ad-slot' => true,
-				'layout' => true,
+				'data-ad-slot'   => true,
+				'layout'         => true,
 			);
 		}
 		return $tags;
@@ -102,7 +107,7 @@ class Theme {
 	/**
 	 * Filter WP SEO Canonical
 	 *
-	 * @param $link string Canonical
+	 * @param string $link Canonical.
 	 * @return string Filtered canonical
 	 */
 	public function post_link_www( $link ) {
@@ -112,7 +117,7 @@ class Theme {
 	/**
 	 * Filter WP SEO Canonical
 	 *
-	 * @param $value string Canonical
+	 * @param string $value Canonical.
 	 * @return string Filtered canonical
 	 */
 	public function ensure_no_www_in_canonical( $value ) {
@@ -120,7 +125,7 @@ class Theme {
 		if ( ! $link ) {
 			return $value;
 		}
-		$parsed_link = parse_url( $link );
+		$parsed_link = wp_parse_url( $link );
 		if ( ! empty( $parsed_link['host'] ) ) {
 			return str_replace( $parsed_link['host'], str_replace( 'www.', '', $parsed_link['host'] ), $value );
 		}
@@ -130,14 +135,14 @@ class Theme {
 	/**
 	 * Filter parsely post tags.
 	 *
-	 * @param $tags array Existing tags.
-	 * @param $post_id Post ID
+	 * @param array $tags Existing tags.
+	 * @param int   $post_id Post ID.
 	 * @return array Filtered tags
 	 */
 	public function filter_parsely_post_tags( $tags, $post_id ) {
 		$filtered_tags = $tags;
-		$placements = wp_get_post_terms( $post_id, 'terminal-placement');
-		foreach( $placements as $placement ) {
+		$placements    = wp_get_post_terms( $post_id, 'terminal-placement' );
+		foreach ( $placements as $placement ) {
 			$filtered_tags[] = 'placement|' . $placement->name;
 			$filtered_tags[] = 'placement-id|' . $placement->term_id;
 		}

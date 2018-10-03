@@ -14,6 +14,11 @@ class Books {
 
 	use Singleton;
 
+	/**
+	 * Book post type.
+	 *
+	 * @var string $book_post_type Post type slug.
+	 */
 	private $book_post_type = 'books';
 
 	/**
@@ -21,7 +26,7 @@ class Books {
 	 */
 	public function setup() {
 		if ( getenv( 'TERMINAL_BOOK_POST_TYPE' ) ) {
-			$this->book_post_type =  getenv( 'TERMINAL_BOOK_POST_TYPE' );
+			$this->book_post_type = getenv( 'TERMINAL_BOOK_POST_TYPE' );
 		}
 		add_action( 'init', [ $this, 'register_book_post_type' ] );
 		add_filter( 'pre_get_posts', array( $this, 'include_book_post_type_in_rss' ) );
@@ -38,7 +43,7 @@ class Books {
 	/**
 	 * Filter feed title.
 	 *
-	 * @param string $title Current title
+	 * @param string $title Current title.
 	 * @param int    $id Current post ID.
 	 * @return string Filtered title
 	 */
@@ -46,7 +51,7 @@ class Books {
 		if ( ! $id ) {
 			$id = get_the_id();
 		}
-		if ( is_feed() && $this->book_post_type === get_post_type( $id ) ) {
+		if ( is_feed() && get_post_type( $id ) === $this->book_post_type ) {
 			return "[BOOK] ${title}";
 		}
 		return $title;
@@ -55,7 +60,7 @@ class Books {
 	/**
 	 * Include community post type.
 	 *
-	 * @param object $query Query
+	 * @param object $query Query.
 	 * @return object Filtered query
 	 */
 	public function include_book_post_type_in_rss( $query ) {
@@ -76,20 +81,20 @@ class Books {
 	 */
 	public function register_book_post_type() {
 		$book_labels = array(
-			'name'                	=> __( 'Books', 'terminal' ),
-			'singular_name'       	=> __( 'Books', 'terminal' ),
-			'menu_name'           	=> __( 'Books', 'terminal' ),
-			'all_items'           	=> __( 'All Books', 'terminal' ),
-			'view_item'           	=> __( 'View Book', 'terminal' ),
-			'add_new_item'        	=> __( 'Add New Book', 'terminal' ),
-			'add_new'             	=> __( 'Add New', 'terminal' ),
-			'edit_item'           	=> __( 'Edit Book', 'terminal' ),
-			'update_item'         	=> __( 'Update Books', 'terminal' ),
-			'search_items'        	=> __( 'Search Books', 'terminal' ),
-			'not_found'           	=> __( 'Not found', 'terminal' ),
-			'not_found_in_trash'  	=> __( 'Not found in Trash', 'terminal' ),
+			'name'               => __( 'Books', 'terminal' ),
+			'singular_name'      => __( 'Books', 'terminal' ),
+			'menu_name'          => __( 'Books', 'terminal' ),
+			'all_items'          => __( 'All Books', 'terminal' ),
+			'view_item'          => __( 'View Book', 'terminal' ),
+			'add_new_item'       => __( 'Add New Book', 'terminal' ),
+			'add_new'            => __( 'Add New', 'terminal' ),
+			'edit_item'          => __( 'Edit Book', 'terminal' ),
+			'update_item'        => __( 'Update Books', 'terminal' ),
+			'search_items'       => __( 'Search Books', 'terminal' ),
+			'not_found'          => __( 'Not found', 'terminal' ),
+			'not_found_in_trash' => __( 'Not found in Trash', 'terminal' ),
 		);
-		$book_args = array(
+		$book_args   = array(
 			'label'               => __( 'photo', 'terminal' ),
 			'description'         => __( 'Books', 'terminal' ),
 			'labels'              => $book_labels,

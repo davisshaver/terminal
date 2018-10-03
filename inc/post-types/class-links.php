@@ -14,7 +14,18 @@ class Links {
 
 	use Singleton;
 
+	/**
+	 * Link post type.
+	 *
+	 * @var string $link_post_type_link_key Post type slug.
+	 */
 	private $link_post_type = 'link';
+
+	/**
+	 * Link post type meta key.
+	 *
+	 * @var string $link_post_type_link_key Post meta key slug.
+	 */
 	private $link_post_type_link_key = 'link';
 
 	/**
@@ -31,16 +42,22 @@ class Links {
 		add_filter( 'author_link', [ $this, 'filter_feed_author_link' ], 10 );
 		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
 		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
- 		add_filter( 'pre_get_posts', array( $this, 'include_link_post_type_in_rss' ) );
+		add_filter( 'pre_get_posts', array( $this, 'include_link_post_type_in_rss' ) );
 		add_filter( 'enter_title_here', [ $this, 'change_headline_to_link_title' ] );
 		add_action( 'init', [ $this, 'register_link_fields' ] );
 		add_filter( 'post_type_link', [ $this, 'forward_to_linked_site' ], 10, 3 );
 		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
 	}
 
+	/**
+	 * Filter AMP News theme author prefix.
+	 *
+	 * @param string $prefix Current prefix.
+	 * @return string Filtered prefix
+	 */
 	public function filter_ampnews_author_prefix( $prefix ) {
 		$id = get_the_id();
-		if ( $this->link_post_type === get_post_type( $id ) ) {
+		if ( get_post_type( $id ) === $this->link_post_type ) {
 			return __( 'Via', 'terminal' );
 		}
 		return $prefix;
@@ -49,15 +66,14 @@ class Links {
 	/**
 	 * Filter feed author.
 	 *
-	 * @param string $link Current author
-	 * @param int    $id Current post ID.
+	 * @param string $link Current author.
 	 * @return string Filtered author
 	 */
 	public function filter_feed_author_link( $link ) {
 		$id = get_the_id();
-		if ( $this->link_post_type === get_post_type( $id ) ) {
+		if ( get_post_type( $id ) === $this->link_post_type ) {
 			$url = get_post_meta( $id, $this->link_post_type_link_key, true );
-			if ( ! empty ( $url ) ) {
+			if ( ! empty( $url ) ) {
 				return $url;
 			}
 		}
@@ -67,16 +83,15 @@ class Links {
 	/**
 	 * Filter feed author.
 	 *
-	 * @param string $author Current author
-	 * @param int    $id Current post ID.
+	 * @param string $author Current author.
 	 * @return string Filtered author
 	 */
 	public function filter_feed_author( $author ) {
 		$id = get_the_id();
-		if ( $this->link_post_type === get_post_type( $id ) ) {
+		if ( get_post_type( $id ) === $this->link_post_type ) {
 			$url = get_post_meta( $id, $this->link_post_type_link_key, true );
-			if ( ! empty ( $url ) ) {
-				return parse_url( $url, PHP_URL_HOST );
+			if ( ! empty( $url ) ) {
+				return wp_parse_url( $url, PHP_URL_HOST );
 			}
 		}
 		return $author;
@@ -85,7 +100,7 @@ class Links {
 	/**
 	 * Filter feed title.
 	 *
-	 * @param string $title Current title
+	 * @param string $title Current title.
 	 * @param int    $id Current post ID.
 	 * @return string Filtered title
 	 */
@@ -93,7 +108,7 @@ class Links {
 		if ( ! $id ) {
 			$id = get_the_id();
 		}
-		if ( $this->link_post_type === get_post_type( $id ) ) {
+		if ( get_post_type( $id ) === $this->link_post_type ) {
 			return "[LINK] ${title}";
 		}
 		return $title;
@@ -108,7 +123,8 @@ class Links {
 
 	/**
 	 * Forward link post type to linked site.
-	 * @param string  $permalink The post's permalink.
+	 *
+	 * @param string  $url The post's permalink.
 	 * @param WP_Post $post      The post in question.
 	 * @param bool    $leavename Whether to keep the post name.
 	 */
@@ -134,6 +150,9 @@ class Links {
 
 	/**
 	 * Change headline verbiage for links.
+	 *
+	 * @param string $title current title.
+	 * @return string Filtered title
 	 */
 	public function change_headline_to_link_title( $title ) {
 		$screen = get_current_screen();
@@ -146,7 +165,7 @@ class Links {
 	/**
 	 * Include link post type.
 	 *
-	 * @param object $query Query
+	 * @param object $query Query.
 	 * @return object Filtered query
 	 */
 	public function include_link_post_type_in_rss( $query ) {
@@ -167,21 +186,21 @@ class Links {
 	 */
 	public function register_link_post_type() {
 		$link_labels = array(
-			'name'                	=> __( 'Links', 'terminal' ),
-			'singular_name'       	=> __( 'Links', 'terminal' ),
-			'menu_name'           	=> __( 'Links', 'terminal' ),
-			'parent_item_colon'   	=> __( 'Parent Link', 'terminal' ),
-			'all_items'           	=> __( 'All Links', 'terminal' ),
-			'view_item'           	=> __( 'View Link', 'terminal' ),
-			'add_new_item'        	=> __( 'Add New Link', 'terminal' ),
-			'add_new'             	=> __( 'Add New', 'terminal' ),
-			'edit_item'           	=> __( 'Edit Link', 'terminal' ),
-			'update_item'         	=> __( 'Update Link', 'terminal' ),
-			'search_items'        	=> __( 'Search Link', 'terminal' ),
-			'not_found'           	=> __( 'Not found', 'terminal' ),
-			'not_found_in_trash'  	=> __( 'Not found in Trash', 'terminal' ),
+			'name'               => __( 'Links', 'terminal' ),
+			'singular_name'      => __( 'Links', 'terminal' ),
+			'menu_name'          => __( 'Links', 'terminal' ),
+			'parent_item_colon'  => __( 'Parent Link', 'terminal' ),
+			'all_items'          => __( 'All Links', 'terminal' ),
+			'view_item'          => __( 'View Link', 'terminal' ),
+			'add_new_item'       => __( 'Add New Link', 'terminal' ),
+			'add_new'            => __( 'Add New', 'terminal' ),
+			'edit_item'          => __( 'Edit Link', 'terminal' ),
+			'update_item'        => __( 'Update Link', 'terminal' ),
+			'search_items'       => __( 'Search Link', 'terminal' ),
+			'not_found'          => __( 'Not found', 'terminal' ),
+			'not_found_in_trash' => __( 'Not found in Trash', 'terminal' ),
 		);
-		$link_args = array(
+		$link_args   = array(
 			'label'               => __( 'link', 'terminal' ),
 			'description'         => __( 'Links', 'terminal' ),
 			'labels'              => $link_labels,

@@ -19,9 +19,9 @@ class Data_Layer {
 	 */
 	private function get_post_categories() {
 		$post_categories = wp_get_post_categories( get_the_ID() );
-		$cats = array();
+		$cats            = array();
 		foreach ( $post_categories as $c ) {
-			$cat = get_category( $c );
+			$cat    = get_category( $c );
 			$cats[] = array(
 				'name' => $cat->name,
 				'slug' => $cat->slug,
@@ -38,13 +38,13 @@ class Data_Layer {
 			return array();
 		}
 		return array(
-			'author_name' => get_the_author(),
-			'author_id' => get_the_author_meta( 'ID' ),
-			'post_categories' => $this->get_post_categories(),
+			'author_name'        => get_the_author(),
+			'author_id'          => get_the_author_meta( 'ID' ),
+			'post_categories'    => $this->get_post_categories(),
 			'post_has_thumbnail' => has_post_thumbnail(),
-			'post_title' => the_title_attribute( array( 'echo' => false ) ),
-			'post_id' => get_the_ID(),
-			'post_type' => terminal_get_post_type( get_post() ),
+			'post_title'         => the_title_attribute( array( 'echo' => false ) ),
+			'post_id'            => get_the_ID(),
+			'post_type'          => terminal_get_post_type( get_post() ),
 		);
 	}
 }

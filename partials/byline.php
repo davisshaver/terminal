@@ -10,25 +10,25 @@ $template_data = terminal_get_layout_data( array(
 ) );
 
 $byline_data = terminal_get_byline_options( array(
-	'default_gravatar'     => null,
-	'time_ago_format'      => 'relative',
-	'hide_by'              => false,
-	'loop_hide_avatar'     => true,
-	'loop_avatar_size'     => 25,
-	'loop_hide_date'       => false,
-	'loop_hide_reading_time' => false,
-	'loop_hide_author'     => false,
-	'loop_hide_category'   => false,
-	'loop_hide_comments'   => true,
-	'loop_hide_edit'       => true,
-	'single_hide_avatar'   => false,
-	'single_avatar_size'   => 25,
-	'single_hide_date'     => false,
-	'single_hide_author'   => false,
-	'single_hide_category' => false,
-	'single_hide_comments' => true,
+	'default_gravatar'         => null,
+	'time_ago_format'          => 'relative',
+	'hide_by'                  => false,
+	'loop_hide_avatar'         => true,
+	'loop_avatar_size'         => 25,
+	'loop_hide_date'           => false,
+	'loop_hide_reading_time'   => false,
+	'loop_hide_author'         => false,
+	'loop_hide_category'       => false,
+	'loop_hide_comments'       => true,
+	'loop_hide_edit'           => true,
+	'single_hide_avatar'       => false,
+	'single_avatar_size'       => 25,
+	'single_hide_date'         => false,
+	'single_hide_author'       => false,
+	'single_hide_category'     => false,
+	'single_hide_comments'     => true,
 	'single_hide_reading_time' => false,
-	'single_hide_edit'     => true,
+	'single_hide_edit'         => true,
 ) );
 
 $avatar_size = intval(
@@ -110,12 +110,9 @@ if ( ! $hide_author && 'photo' !== $post_type ) :
 ?>
 	<div class="terminal-author">
 		<?php
-		if ( ! $hide_by ) {
-			
-		}
 		printf(
 			'<span>%s <a class="terminal-link-gray-light" href="%s">',
-			! $hide_by ? esc_html( 'By ', 'terminal' ) : '',
+			esc_html( ! $hide_by ? __( 'By ', 'terminal' ) : '' ),
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) )
 		);
 		the_author();
