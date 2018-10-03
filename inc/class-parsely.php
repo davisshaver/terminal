@@ -50,59 +50,6 @@ class Parsely {
 	}
 
 	/**
-	 * Retrieve social data for a post.
-	 *
-	 * @param int $post_id Post.
-	 */
-	public function retrieve_social_data( $post_id ) {
-		$this->store_social_data( $post_id );
-	}
-
-	/**
-	 * Retrieve general analytics data for a post.
-	 *
-	 * @param int $post_id Post.
-	 */
-	public function retrieve_analytics_data( $post_id ) {
-		$this->store_analytics_data( $post_id );
-	}
-
-	/**
-	 * Retrieve referral data for a post.
-	 *
-	 * @param int $post_id Post.
-	 */
-	public function retrieve_referral_data( $post_id ) {
-		$this->store_referral_data( $post_id );
-	}
-
-	/**
-	 * Run a routine to update analytics data.
-	 */
-	public function check_cached_analytics_values() {
-		$today = getdate();
-		// phpcs:ignore
-		$posts = get_posts( [
-			'post_type'      => \terminal_get_post_types(),
-			// phpcs:ignore
-			'posts_per_page' => -1, // getting all posts of a post type.
-			'no_found_rows'  => true, // speeds up a query significantly and can be set to 'true' if we don't use pagination.
-			'fields'         => 'ids', // again, for performance.
-			'date_query'     => array(
-				array(
-					'after' => '90 days ago',
-				),
-			),
-		] );
-		foreach ( $posts as $post_id ) {
-			$this->possibly_schedule_event(
-				'retrieve_data',
-				$post_id
-			);
-		}
-	}
-
-	/**
 	 * Schedule an analytics update if one does not exist.
 	 */
 	public function possibly_schedule_analytics_update() {
@@ -123,22 +70,11 @@ class Parsely {
 		foreach ( $hours as $hour ) {
 			$target = $timestamp + ( $hour * HOUR_IN_SECONDS );
 			$this->possibly_schedule_event(
-				[ $this, 'retrieve_data' ],
+				'retrieve_all_data',
 				$post_id,
 				$target
 			);
 		}
-	}
-
-	/**
-	 * Run retrieval methods for a post.
-	 *
-	 * @param int $post_id Post ID.
-	 */
-	public function retrieve_data( $post_id ) {
-		$this->store_referral_data( $post_id );
-		$this->store_analytics_data( $post_id );
-		$this->store_social_data( $post_id );
 	}
 
 	/**
@@ -725,3 +661,72 @@ class Parsely {
 }
 
 add_action( 'after_setup_theme', [ '\Terminal\Parsely', 'instance' ] );
+
+
+/**
+ * Run a routine to update analytics data.
+ */
+function terminal_check_cached_analytics_values() {
+	$parsely = Parsely::instance();
+	$today   = getdate();
+	// phpcs:ignore
+	$posts = get_posts( [
+		'post_type'      => \terminal_get_post_types(),
+		// phpcs:ignore
+		'posts_per_page' => -1, // getting all posts of a post type.
+		'no_found_rows'  => true, // speeds up a query significantly and can be set to 'true' if we don't use pagination.
+		'fields'         => 'ids', // again, for performance.
+		'date_query'     => array(
+			array(
+				'after' => '90 days ago',
+			),
+		),
+	] );
+	foreach ( $posts as $post_id ) {
+		$parsely->possibly_schedule_event(
+			'retrieve_all_data',
+			$post_id
+		);
+	}
+}
+
+/**
+ * Retrieve social data for a post.
+ *
+ * @param int $post_id Post.
+ */
+function retrieve_social_data( $post_id ) {
+	$parsely = Parsely::instance();
+	$parsely->store_social_data( $post_id );
+}
+
+/**
+ * Retrieve general analytics data for a post.
+ *
+ * @param int $post_id Post.
+ */
+function retrieve_analytics_data( $post_id ) {
+	$parsely = Parsely::instance();
+	$parsely->store_analytics_data( $post_id );
+}
+
+/**
+ * Retrieve referral data for a post.
+ *
+ * @param int $post_id Post.
+ */
+function retrieve_referral_data( $post_id ) {
+	$parsely = Parsely::instance();
+	$parsely->store_referral_data( $post_id );
+}
+
+/**
+ * Run retrieval methods for a post.
+ *
+ * @param int $post_id Post ID.
+ */
+function retrieve_all_data( $post_id ) {
+	retrieve_referral_data( $post_id );
+	retrieve_analytics_data( $post_id );
+	retrieve_social_data( $post_id );
+}
