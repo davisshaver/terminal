@@ -53,6 +53,9 @@ class Theme {
 		add_action( 'admin_init', [ $this, 'enqueue_wpapi' ] );
 		add_filter( 'amp-news-post-type', [ $this, 'filter_amp_news_post_type' ] );
 		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
+		add_image_size( 'terminal-uncut-thumbnail', 500, 500, false );
+		add_image_size( 'terminal-uncut-thumbnail-large', 775, 500, false );
+		add_image_size( 'terminal-uncut-thumbnail-extra-large', 2000, 1500, false );
 	}
 
 	/**

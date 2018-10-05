@@ -22,6 +22,47 @@ class Apps_Data {
 	private $apps_data = array();
 
 	/**
+	 * Setup actions.
+	 */
+	public function setup() {
+		add_action( 'wp_head', [ $this, 'print_app_tags' ] );
+		add_filter( 'web_app_manifest', [ $this, 'filter_web_app_manifest' ] );
+	}
+
+	/**
+	 * Print app tags.
+	 */
+	public function print_app_tags() {
+		printf(
+			'<meta name="apple-itunes-app" content="app-id=%s, app-argument=%s">',
+			esc_attr( $this->get_apps_data( 'apple_app_id' ) ),
+			esc_attr( $this->get_apps_data( 'apple_app_medium' ) )
+		);
+	}
+
+	/**
+	 * Filter Web App manifest
+	 *
+	 * @param array $manifest Manifest object.
+	 * @return array Filtered manifest object.
+	 */
+	public function filter_web_app_manifest( $manifest ) {
+		$android_id  = $this->get_apps_data( 'android_app_id' );
+		$android_url = $this->get_apps_data( 'android_app_link' );
+		if ( ! empty( $android_id ) ) {
+			$manifest['prefer_related_applications'] = true;
+			$manifest['related_applications']        = [
+				[
+					'platform' => 'play',
+					'id'       => $android_id,
+					'url'      => $android_url,
+				],
+			];
+		}
+		return $manifest;
+	}
+
+	/**
 	 * Get prepared data.
 	 *
 	 * @param string $key Optional key.

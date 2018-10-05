@@ -35,9 +35,9 @@ class Parsely {
 		$this->api_key    = getenv( 'TERMINAL_PARSELY_API_KEY' );
 		$this->api_secret = getenv( 'TERMINAL_PARSELY_API_SECRET' );
 		if ( ! empty( $this->api_key ) && ! empty( $this->api_secret ) && current_user_can( 'edit_others_posts' ) ) {
-			add_filter( 'manage_post_posts_columns', [ $this, 'add_parsely_columns' ] );
-			add_action( 'manage_post_posts_custom_column', [ $this, 'handle_parsely_columns' ], 10, 2 );
-			add_filter( 'manage_edit-post_sortable_columns', [ $this, 'add_parsely_columns_orderby' ] );
+			// add_filter( 'manage_post_posts_columns', [ $this, 'add_parsely_columns' ] );
+			// add_action( 'manage_post_posts_custom_column', [ $this, 'handle_parsely_columns' ], 10, 2 );
+			// add_filter( 'manage_edit-post_sortable_columns', [ $this, 'add_parsely_columns_orderby' ] );
 			add_action( 'pre_get_posts', [ $this, 'parsely_custom_orderby' ] );
 		}
 		add_action( 'retrieve_social_data', 'retrieve_social_data', 10, 1 );

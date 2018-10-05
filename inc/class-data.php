@@ -174,6 +174,22 @@ class Data {
 			'hide_featured_image'           => ! empty( $options['hide_featured_image'] ) ? $options['hide_featured_image'] : $default['hide_featured_image'],
 		);
 	}
+
+	/**
+	 * Get a sponsor data.
+	 *
+	 * @param string $key Optional key.
+	 * @return string Sponsor data.
+	 */
+	public function get_sponsor_data( $key ) {
+		if ( empty( $this->sponsor_data ) ) {
+			$this->sponsor_data = get_option( 'terminal_sponsor_options' );
+		}
+		if ( ! empty( $this->sponsor_data[ $key ] ) ) {
+			return $this->sponsor_data[ $key ];
+		}
+		return null;
+	}
 }
 
 add_action( 'after_setup_theme', [ '\Terminal\Data', 'instance' ] );

@@ -99,7 +99,7 @@ function terminal_get_post_type( $post = false ) {
  * @return string
  */
 function terminal_get_template_part( $template, $vars = array() ) {
-	$full_path = get_template_directory() . '/partials/' . sanitize_file_name( $template ) . '.php';
+	$full_path = dirname( __DIR__ ) . '/partials/' . sanitize_file_name( $template ) . '.php';
 	if ( ! file_exists( $full_path ) ) {
 		return '';
 	}
@@ -123,4 +123,66 @@ function terminal_get_template_part( $template, $vars = array() ) {
 function terminal_print_template_part( $template, $vars = array() ) {
 	// phpcs:ignore
 	echo terminal_get_template_part( $template, $vars );
+}
+
+/**
+ * Get sponsor data.
+ *
+ * @param string $key Key.
+ * @return array data
+ */
+function terminal_get_sponsor_data( $key ) {
+	$data = Terminal\Data::instance();
+	return $data->get_sponsor_data( $key );
+}
+
+/**
+ * Template function to print sponsors header..
+ */
+function terminal_print_sponsors_header() {
+	printf(
+		'<h2>%s</h2>',
+		esc_html( __( 'Sponsors', 'terminal' ) )
+	);
+}
+
+/**
+ * Template function to print featured image credit (if available).
+ */
+function terminal_print_featured_image_caption() {
+	$data = Terminal\Data::instance();
+	$meta = $data->get_post_featured_meta();
+	$meta = apply_filters( 'terminal_featured_meta', $meta );
+	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
+		echo '<div class="terminal-featured-meta">';
+		if ( ! empty( $meta['credit'] ) ) {
+			printf(
+				'<div class="terminal-credit">%s</div>',
+				esc_html( $meta['credit'] )
+			);
+		}
+		if ( ! empty( $meta['caption'] ) ) {
+			printf(
+				'<div class="terminal-featured-caption">%s</div>',
+				wp_kses_post( $meta['caption'] )
+			);
+		}
+		echo '</div>';
+	}
+}
+
+/**
+ * Print signup message
+ */
+function terminal_newsletter_signup_message() {
+	$data = Terminal\Ad_Data::instance();
+	echo esc_html( $data->get_email_signup_text() );
+}
+
+/**
+ * Print signup header
+ */
+function terminal_newsletter_signup_header() {
+	$data = Terminal\Ad_Data::instance();
+	echo esc_html( $data->get_email_signup_header() );
 }

@@ -19,6 +19,7 @@ class Frontend {
 	public function setup() {
 		add_action( 'wp_head', [ $this, 'remove_more_jetpack_crap' ], 130 );
 		add_action( 'admin_init', [ $this, 'wp_api' ], 10 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ], 10 );
 		add_action( 'wp_enqueue_scripts', [ $this, 'remove_jetpack_crap' ], 130 );
 		add_filter( 'feed_links_show_comments_feed', '__return_false' );
 		add_filter( 'jetpack_implode_frontend_css', '__return_false' );
@@ -32,19 +33,14 @@ class Frontend {
 		remove_action( 'wp_head', 'wlwmanifest_link' );
 		remove_action( 'wp_head', 'wp_generator' );
 		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-		add_filter( 'web_app_manifest', [ $this, 'filter_web_app_manifest' ] );
 		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
 	}
 
 	/**
-	 * Filter Web App manifest
-	 *
-	 * @param array $manifest Manifest object.
-	 * @return array Filtered manifest object.
+	 * Enqueue styles.
 	 */
-	public function filter_web_app_manifest( $manifest ) {
-		// Nothing to see here yet.
-		return $manifest;
+	public function enqueue_styles() {
+		wp_enqueue_style( TERMINAL_APP, plugin_dir_url( dirname( __FILE__ ) ) . '/client/build/index.css', array(), TERMINAL_VERSION );
 	}
 
 	/**

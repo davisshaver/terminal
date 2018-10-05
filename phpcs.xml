@@ -2,7 +2,6 @@
 <ruleset name="Terminal">
 	<description>A custom set of rules to check the PHP files in this project</description>
 	<arg name="extensions" value="php"/>
-	<exclude-pattern>TK.php</exclude-pattern>
 	<exclude-pattern>partials/*</exclude-pattern>
 	<rule ref="WordPress">
 		<exclude name="Squiz.Commenting.FileComment.Missing"/>

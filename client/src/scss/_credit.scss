@@ -1,0 +1,24 @@
+.terminal-featured-meta {
+    .terminal-credit {
+        font-size: 11px;
+
+        &::before {
+            display: inline;
+            content: 'Credit: ';
+        }
+    }
+
+    .terminal-featured-caption {
+        font-size: 12px;
+        font-style: italic;
+
+        p {
+            margin: 1em 0;
+
+            &::before {
+                display: inline;
+                content: 'Caption: ';
+            }
+        }
+    }
+}

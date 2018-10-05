@@ -31,7 +31,7 @@ class FM_Sponsors {
 				'name'           => 'terminal_sponsor_options',
 				'serialize_data' => false,
 				'children'       => array(
-					'enable_sponsors'     => new \Fieldmanager_Checkbox( 'Enable inline ads' ),
+					'enable_sponsors'     => new \Fieldmanager_Checkbox( 'Enable sponsors module' ),
 					'tier_one_sponsors'   => new \Fieldmanager_Group(
 						__( 'Tier one sponsors', 'terminal' ),
 						array(

@@ -21,7 +21,6 @@ class Ad_Data {
 	 */
 	private $ad_data = array();
 
-
 	/**
 	 * Get mailchimp list.
 	 *
@@ -32,12 +31,12 @@ class Ad_Data {
 	}
 
 	/**
-	 * Get mailchimp user.
+	 * Get mailchimp api key.
 	 *
-	 * @return string mailchimp user
+	 * @return string mailchimp api key
 	 */
-	public function get_mailchimp_user() {
-		return $this->get_ad_data( 'mailchimp_user' );
+	public function get_mailchimp_api_key() {
+		return $this->get_ad_data( 'mailchimp_api_key' );
 	}
 
 	/**
@@ -108,54 +107,6 @@ class Ad_Data {
 	}
 
 	/**
-	 * Get Ad block link.
-	 *
-	 * @return string Ad block link
-	 */
-	public function get_ad_block_link() {
-		return $this->get_ad_data( 'adblock_link' );
-	}
-
-	/**
-	 * Get membership signup text.
-	 *
-	 * @return string membership signup text
-	 */
-	public function get_bypass_text() {
-		$alert = $this->get_ad_data( 'bypass_text' );
-		if ( ! empty( $alert ) ) {
-			return $alert;
-		}
-		return __( 'Already recieving enough emails?', 'terminal' );
-	}
-
-	/**
-	 * Get membership signup text.
-	 *
-	 * @return string membership signup text
-	 */
-	public function get_membership_signup_button_text() {
-		$alert = $this->get_ad_data( 'membership_signup_button_text' );
-		if ( ! empty( $alert ) ) {
-			return $alert;
-		}
-		return __( 'Purchase a Subscription!', 'terminal' );
-	}
-
-	/**
-	 * Get membership signup text.
-	 *
-	 * @return string membership signup text
-	 */
-	public function get_membership_signup_text() {
-		$alert = $this->get_ad_data( 'membership_signup_text' );
-		if ( ! empty( $alert ) ) {
-			return $alert;
-		}
-		return __( 'Support quality journalism:', 'terminal' );
-	}
-
-	/**
 	 * Get email signup text.
 	 *
 	 * @return string email signup text
@@ -165,35 +116,21 @@ class Ad_Data {
 		if ( ! empty( $alert ) ) {
 			return $alert;
 		}
-		return __( 'Sign up for our e-mail newsletter:', 'terminal' );
+		return __( 'You seem like a real fan. Stay in the loop.', 'terminal' );
 	}
 
 	/**
-	 * Get Ad block alert.
+	 * Get email signup header.
 	 *
-	 * @return string Ad block alert
+	 * @return string email signup header
 	 */
-	public function get_ad_block_header() {
-		$alert = $this->get_ad_data( 'adblock_header' );
+	public function get_email_signup_header() {
+		$alert = $this->get_ad_data( 'email_signup_header' );
 		if ( ! empty( $alert ) ) {
 			return $alert;
 		}
-		return __( 'Your ad blocker is on.', 'terminal' );
+		return __( 'Sign up for our newsletter', 'terminal' );
 	}
-
-	/**
-	 * Get Ad block alert.
-	 *
-	 * @return string Ad block alert
-	 */
-	public function get_ad_block_text() {
-		$alert = $this->get_ad_data( 'adblock_alert' );
-		if ( ! empty( $alert ) ) {
-			return $alert;
-		}
-		return __( 'Please choose an option.', 'terminal' );
-	}
-
 
 	/**
 	 * Get prepared data.
