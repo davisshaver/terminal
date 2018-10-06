@@ -25,6 +25,14 @@ class AMP {
 		add_action( 'ampnews-before-entry-header', [ $this, 'print_featured_image_info' ] );
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
+		add_shortcode( 'terminal-mailchimp', [ $this, 'mailchimp_print' ] );
+	}
+
+	/**
+	 * Shortcode wrapper for mailchimp signup.
+	 */
+	public function mailchimp_print() {
+		return terminal_get_template_part( 'signup-small' );
 	}
 
 	/**
