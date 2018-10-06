@@ -1,7 +1,13 @@
-.span-reading-time {
+.span-reading-time, .terminal-analytics {
     font-size: 80%;
     font-style: italic;
     display: inline-block;
+}
+
+.terminal-analytics {
+    &::before {
+        content: ' • ';
+    }
 }
 
 .entry__summary {

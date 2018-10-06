@@ -22,6 +22,9 @@ class AMP {
 		add_action( 'ampnews-after-body', [ $this, 'print_app_tag' ] );
 		add_action( 'ampnews-before-excerpt', [ $this, 'print_reading_time' ] );
 		add_action( 'ampnews-before-article', [ $this, 'print_reading_time' ] );
+		if ( apply_filters( 'show_analytics', current_user_can( 'edit_posts' ) ) ) {
+			add_action( 'ampnews-before-article', [ $this, 'print_analytics' ] );
+		}
 		add_action( 'ampnews-before-footer', [ $this, 'print_sponsors_module' ] );
 		add_action( 'ampnews-before-entry-header', [ $this, 'print_featured_image_info' ] );
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
@@ -53,6 +56,26 @@ class AMP {
 	}
 
 	/**
+	 * Print analytics
+	 */
+	public function print_analytics() {
+		$parsely = Parsely::instance();
+		$views   = $parsely->get_cached_meta( get_the_id(), 'terminal_parsely_analytics_views', true, 'analytics' );
+		$shares  = $parsely->get_cached_meta( get_the_id(), 'terminal_parsely_facebook_shares', true, 'shares' );
+		if ( empty( $views ) && empty( $shares ) ) {
+			return;
+		}
+		printf(
+			'<span class="terminal-analytics">%s %s %s %s %s</span>',
+			esc_html( $views ),
+			esc_html( __( 'views ', 'terminal' ) ),
+			esc_html( __( 'and ', 'terminal' ) ),
+			esc_html( $shares ),
+			esc_html( __( ' shares', 'terminal' ) )
+		);
+	}
+
+	/**
 	 * Call reading time shortcode.
 	 */
 	public function print_reading_time() {
@@ -60,6 +83,7 @@ class AMP {
 			echo do_shortcode( '[rt_reading_time label="Reading Time:" postfix="mins" postfix_singular="min"]' );
 		}
 	}
+
 	/**
 	 * Add email to list.
 	 *

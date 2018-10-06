@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .terminal-featured-meta .terminal-credit {
   font-size: 11px; }
   .terminal-featured-meta .terminal-credit::before {
@@ -21,9 +22,10 @@
   color: black;
   display: flex;
   flex-wrap: wrap;
-  margin: 1em;
   overflow: hidden;
-  padding: 1em; }
+  padding: 1em;
+  margin: 1em 0;
+  justify-content: center; }
   .terminal-signup h4, .terminal-signup p {
     text-align: center;
     flex: 0 0 100%;
@@ -93,12 +95,20 @@
         opacity: .75;
         filter: grayscale(100%); }
 
-.span-reading-time {
+.span-reading-time, .terminal-analytics {
   font-size: 80%;
   font-style: italic;
   display: inline-block; }
+
+.terminal-analytics::before {
+  content: ' \2022   '; }
 
 .entry__summary .span-reading-time {
   font-size: 70%;
   margin-top: 15px;
   display: inline-block; }
+
+.terminal-ad {
+  display: flex;
+  justify-content: center;
+  width: 100%; }

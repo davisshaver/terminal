@@ -267,9 +267,10 @@ class Parsely {
 	 * @param int     $post_id Post ID.
 	 * @param string  $key Key to retrieve.
 	 * @param boolean $single Single or not.
+	 * @param string  $group Cache group.
 	 * @return mixed Cached meta.
 	 */
-	private function get_cached_meta( $post_id, $key, $single ) {
+	public function get_cached_meta( $post_id, $key, $single, $group) {
 		switch ( $group ) {
 			case 'analytics':
 				$analytics = $this->is_cached( 'terminal_analytics', $post_id );
