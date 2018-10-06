@@ -19,9 +19,8 @@ class AMP {
 	 */
 	public function setup() {
 		add_filter( 'filter_ampnews_amp_plugin_path', [ $this, 'terminal_filter_amp_plugin_path' ] );
-		add_action( 'ampnews-after-wrap', [ $this, 'print_sponsors_module' ] );
-		add_action( 'ampnews-after-wrap-single', [ $this, 'print_sponsors_module' ] );
-		add_action( 'ampnews-before-article', [ $this, 'print_featured_image_info' ] );
+		add_action( 'ampnews-before-footer', [ $this, 'print_sponsors_module' ] );
+		add_action( 'ampnews-before-entry-header', [ $this, 'print_featured_image_info' ] );
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
 	}
@@ -40,7 +39,7 @@ class AMP {
 		$args     = array(
 			'method'  => 'PUT',
 			'headers' => array(
-				'Authorization' => 'Basic ' . base64_encode( 'user:' . $api_key ),
+				'Authorization' => 'Basic ' . base64_encode( 'user:' . $ad_data->get_mailchimp_api_key() ),
 			),
 			'body'    => wp_json_encode( array(
 				'email_address' => $email,
@@ -49,14 +48,17 @@ class AMP {
 		);
 		$response = wp_remote_post(
 			'https://' .
-			substr( $api_key, strpos( $api_key, '-' ) + 1 ) .
+			substr( $ad_data->get_mailchimp_api_key(), strpos( $ad_data->get_mailchimp_api_key(), '-' ) + 1 ) .
 			'.api.mailchimp.com/3.0/lists/' .
-			$list_id .
+			$ad_data->get_mailchimp_list() .
 			'/members/' .
 			md5( strtolower( $email ) ),
 			$args
 		);
-		$body     = json_decode( $response['body'] );
+		if ( is_wp_error( $response ) ) {
+			return 'A server error occurred. Try again later.';
+		}
+		$body = json_decode( $response['body'] );
 		if ( 200 === $response['response']['code'] && $body->status === $status ) {
 			// translators: Success message.
 			return sprintf( __( 'Thanks for signing up, check %s for more.', 'terminal' ), $email );

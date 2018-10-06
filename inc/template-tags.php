@@ -145,7 +145,34 @@ function terminal_print_sponsors_header() {
 		esc_html( __( 'Sponsors', 'terminal' ) )
 	);
 }
+/**
+ * Str_replace() from the end of a string that can also be limited e.g. replace only the last instance of '</div>' with ''
+ *
+ * @param string $find
+ * @param string $replace
+ * @param string $subject
+ * @param int    $replacement_limit | -1 to replace all references
+ *
+ * @return string
+ */
+function terminal_str_replace( $find, $replace, $subject, $replacement_limit = -1 ) {
+	$find_pattern = str_replace( '/', '\/', $find );
+	return preg_replace( '/' . $find_pattern . '/', $replace, $subject, $replacement_limit );
+}
 
+/**
+ * str_replace() from the end of a string that can also be limited e.g. replace only the last instance of '</div>' with ''
+ *
+ * @param string $find
+ * @param string $replace
+ * @param string $subject
+ * @param int    $replacement_limit | -1 to replace all references
+ *
+ * @return string
+ */
+function str_rreplace( $find, $replace, $subject, $replacement_limit = -1 ) {
+	return strrev( str_replace( strrev( $find ), strrev( $replace ), strrev( $subject ), $replacement_limit ) );
+}
 /**
  * Template function to print featured image credit (if available).
  */
@@ -154,20 +181,24 @@ function terminal_print_featured_image_caption() {
 	$meta = $data->get_post_featured_meta();
 	$meta = apply_filters( 'terminal_featured_meta', $meta );
 	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
-		echo '<div class="terminal-featured-meta">';
+		$caption = ! empty( $meta['caption'] ) ? $meta['caption'] : '';
+		$caption = sprintf(
+			'<div class="terminal-featured-caption">%s</div>',
+			wp_kses_post( $caption )
+		);
 		if ( ! empty( $meta['credit'] ) ) {
-			printf(
-				'<div class="terminal-credit">%s</div>',
-				esc_html( $meta['credit'] )
+			$caption = str_rreplace(
+				'</p>',
+				sprintf(
+					' <span class="terminal-featured-credit">%s</span></p>',
+					esc_html( $meta['credit'] )
+				),
+				$caption,
+				1
 			);
 		}
-		if ( ! empty( $meta['caption'] ) ) {
-			printf(
-				'<div class="terminal-featured-caption">%s</div>',
-				wp_kses_post( $meta['caption'] )
-			);
-		}
-		echo '</div>';
+		// phpcs:ignore
+		echo $caption;
 	}
 }
 

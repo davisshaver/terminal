@@ -2,7 +2,7 @@
   font-size: 11px; }
   .terminal-featured-meta .terminal-credit::before {
     display: inline;
-    content: 'Credit: '; }
+    content: 'Photo Credit: '; }
 
 .terminal-featured-meta .terminal-featured-caption {
   font-size: 12px;
@@ -11,7 +11,7 @@
     margin: 1em 0; }
     .terminal-featured-meta .terminal-featured-caption p::before {
       display: inline;
-      content: 'Caption: '; }
+      content: 'Photo Caption: '; }
 
 .terminal-signup {
   background: white;
