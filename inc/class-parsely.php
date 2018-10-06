@@ -270,7 +270,7 @@ class Parsely {
 	 * @param string  $group Cache group.
 	 * @return mixed Cached meta.
 	 */
-	public function get_cached_meta( $post_id, $key, $single, $group) {
+	public function get_cached_meta( $post_id, $key, $single, $group ) {
 		switch ( $group ) {
 			case 'analytics':
 				$analytics = $this->is_cached( 'terminal_analytics', $post_id );
