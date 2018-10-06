@@ -29,6 +29,7 @@ class Widgets {
 			class_exists( '\FM_Widget' )
 		) {
 			require_once __DIR__ . '/widgets/class-broadstreet-ad.php';
+			require_once __DIR__ . '/widgets/class-dfp-ad.php';
 		}
 	}
 }
