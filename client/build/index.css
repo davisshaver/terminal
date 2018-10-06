@@ -92,3 +92,13 @@
         max-height: 50px;
         opacity: .75;
         filter: grayscale(100%); }
+
+.span-reading-time {
+  font-size: 80%;
+  font-style: italic;
+  display: inline-block; }
+
+.entry__summary .span-reading-time {
+  font-size: 70%;
+  margin-top: 15px;
+  display: inline-block; }

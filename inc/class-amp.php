@@ -19,12 +19,22 @@ class AMP {
 	 */
 	public function setup() {
 		add_filter( 'filter_ampnews_amp_plugin_path', [ $this, 'terminal_filter_amp_plugin_path' ] );
+		add_action( 'ampnews-before-excerpt', [ $this, 'print_reading_time' ] );
+		add_action( 'ampnews-before-article', [ $this, 'print_reading_time' ] );
 		add_action( 'ampnews-before-footer', [ $this, 'print_sponsors_module' ] );
 		add_action( 'ampnews-before-entry-header', [ $this, 'print_featured_image_info' ] );
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
 	}
 
+	/**
+	 * Call reading time shortcode.
+	 */
+	public function print_reading_time() {
+		if ( get_post_type() === 'post' ) {
+			echo do_shortcode( '[rt_reading_time label="Reading Time:" postfix="mins" postfix_singular="min"]' );
+		}
+	}
 	/**
 	 * Add email to list.
 	 *
