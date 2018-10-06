@@ -19,6 +19,7 @@ class AMP {
 	 */
 	public function setup() {
 		add_filter( 'filter_ampnews_amp_plugin_path', [ $this, 'terminal_filter_amp_plugin_path' ] );
+		add_action( 'ampnews-after-body', [ $this, 'print_app_tag' ] );
 		add_action( 'ampnews-before-excerpt', [ $this, 'print_reading_time' ] );
 		add_action( 'ampnews-before-article', [ $this, 'print_reading_time' ] );
 		add_action( 'ampnews-before-footer', [ $this, 'print_sponsors_module' ] );
@@ -26,6 +27,22 @@ class AMP {
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_shortcode( 'terminal-mailchimp', [ $this, 'mailchimp_print' ] );
+	}
+
+	/**
+	 * Print app banner tag.
+	 */
+	public function print_app_tag() {
+		printf(
+			'<amp-app-banner
+				layout="nodisplay"
+				id="banner">
+				<div id="app-banner-text">%s</div>
+				<div id="app-banner-action"><button open-button>%s</button></div>
+			</amp-app-banner>',
+			esc_html( $app_data->get_app_banner_text() ),
+			esc_html( $app_data->get_app_banner_view() )
+		);
 	}
 
 	/**

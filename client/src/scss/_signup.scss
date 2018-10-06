@@ -6,9 +6,10 @@
     color: black;
     display: flex;
     flex-wrap: wrap;
-    margin: 1em;
     overflow: hidden;
     padding: 1em;
+    margin: 1em 0;
+    justify-content: center;
 
     h4, p {
         text-align: center;

@@ -30,9 +30,29 @@ class Apps_Data {
 	}
 
 	/**
+	 * Get app banner text.
+	 */
+	public function get_app_banner_text() {
+		return ! empty( $this->get_apps_data( 'app_banner_text' ) ) ? $this->get_apps_data( 'app_banner_text' ) : __( 'Try our app for a native experience.', 'terminal' );
+	}
+
+	/**
+	 * Get app banner view.
+	 */
+	public function get_app_banner_view() {
+		return ! empty( $this->get_apps_data( 'app_banner_view' ) ) ? $this->get_apps_data( 'app_banner_view' ) : __( 'Download', 'terminal' );
+	}
+
+	/**
 	 * Print app tags.
 	 */
 	public function print_app_tags() {
+		if (
+			! empty( $this->get_apps_data( 'apple_app_id' ) ) ||
+			! empty( $this->get_apps_data( 'apple_app_medium' ) )
+		) {
+			return;
+		}
 		printf(
 			'<meta name="apple-itunes-app" content="app-id=%s, app-argument=%s">',
 			esc_attr( $this->get_apps_data( 'apple_app_id' ) ),
@@ -47,6 +67,12 @@ class Apps_Data {
 	 * @return array Filtered manifest object.
 	 */
 	public function filter_web_app_manifest( $manifest ) {
+		if (
+			! empty( $this->get_apps_data( 'android_app_id' ) ) ||
+			! empty( $this->get_apps_data( 'android_app_link' ) )
+		) {
+			return;
+		}
 		$android_id  = $this->get_apps_data( 'android_app_id' );
 		$android_url = $this->get_apps_data( 'android_app_link' );
 		if ( ! empty( $android_id ) ) {

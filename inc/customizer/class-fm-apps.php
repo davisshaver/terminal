@@ -30,7 +30,8 @@ class FM_Apps {
 			array(
 				'name'     => 'terminal_app_options',
 				'children' => array(
-					'enable_app_banner'  => new \Fieldmanager_Checkbox( 'Enable app banner' ),
+					'app_banner_text'    => new \Fieldmanager_Textfield( 'App Banner Text' ),
+					'app_banner_view'    => new \Fieldmanager_Textfield( 'App Banner Link' ),
 					'apple_app_id'       => new \Fieldmanager_Textfield( 'Apple App ID' ),
 					'apple_app_argument' => new \Fieldmanager_Textfield( 'Apple App Argument' ),
 					'android_app_id'     => new \Fieldmanager_Textfield( 'Android App ID' ),
