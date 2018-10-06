@@ -10,7 +10,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 	/**
 	 * Demo Widget.
 	 */
-	class DFP_Widget extends \FM_Widget {
+	class Adense_Widget extends \FM_Widget {
 
 		/**
 		 * Track uses as printing.
@@ -25,7 +25,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'terminal-adsense-widget',
-				__( 'DFP Ad', 'terminal' )
+				__( 'Adsense Ad', 'terminal' )
 			);
 		}
 
@@ -46,15 +46,15 @@ if ( class_exists( '\FM_Widget' ) ) {
 			if ( ! empty( $instance['width'] ) ) {
 				$ad_width = $instance['width'];
 			} else {
-				$ad_width = '300';
+				$ad_width = '320';
 			}
 			if ( ! empty( $instance['height'] ) ) {
 				$ad_height = $instance['height'];
 			} else {
-				$ad_height = '250';
+				$ad_height = '50';
 			}
 			printf(
-				'<div class="terminal-ad"><amp-ad width="%s" height="%s" type="doubleclick" data-ad-client="ca-pub-0809625376938310" data-ad-slot="%s" layout="fixed"></amp-ad></div>',
+				'<div class="terminal-ad"><amp-ad width="%s" height="%s" type="adsense" data-ad-client="ca-pub-0809625376938310" data-ad-slot="%s" layout="fixed"></amp-ad></div>',
 				esc_attr( $ad_width ),
 				esc_attr( $ad_height ),
 				esc_attr( $ad_unit )
@@ -75,5 +75,5 @@ if ( class_exists( '\FM_Widget' ) ) {
 		}
 	}
 
-	register_widget( '\DFP_Widget' );
+	register_widget( '\Adense_Widget' );
 }

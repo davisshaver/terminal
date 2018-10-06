@@ -31,6 +31,10 @@ class FM_Ads {
 				'name'           => 'terminal_ad_options',
 				'serialize_data' => false,
 				'children'       => array(
+					'amp_sticky_ad'       => new \Fieldmanager_Textfield( array(
+						'label'    => 'AMP Sticky Ad',
+						'sanitize' => 'wp_kses_post',
+					) ),
 					'email_signup_header' => new \Fieldmanager_Textfield( 'Email Signup Header' ),
 					'email_signup_text'   => new \Fieldmanager_Textfield( 'Email Signup Text' ),
 					'mailchimp_api_key'   => new \Fieldmanager_Textfield( 'Mailchimp API Key' ),

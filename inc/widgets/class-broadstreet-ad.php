@@ -38,18 +38,18 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 * @param array $instance Saved values from database.
 		 */
 		public function widget( $args, $instance ) {
-			if ( ! empty( $args['unit'] ) ) {
-				$ad_unit = $args['unit'];
+			if ( ! empty( $instance['unit'] ) ) {
+				$ad_unit = $instance['unit'];
 			} else {
 				$ad_unit = '64590';
 			}
-			if ( ! empty( $args['width'] ) ) {
-				$ad_width = $args['width'];
+			if ( ! empty( $instance['width'] ) ) {
+				$ad_width = $instance['width'];
 			} else {
 				$ad_width = '300';
 			}
-			if ( ! empty( $args['height'] ) ) {
-				$ad_height = $args['height'];
+			if ( ! empty( $instance['height'] ) ) {
+				$ad_height = $instance['height'];
 			} else {
 				$ad_height = '250';
 			}

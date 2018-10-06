@@ -25,17 +25,55 @@ class AMP {
 		if ( apply_filters( 'show_analytics', current_user_can( 'edit_posts' ) ) ) {
 			add_action( 'ampnews-before-article', [ $this, 'print_analytics' ] );
 		}
+		add_action( 'ampnews-before-footer', [ $this, 'print_sticky_ad' ] );
 		add_action( 'ampnews-before-footer', [ $this, 'print_sponsors_module' ] );
 		add_action( 'ampnews-before-entry-header', [ $this, 'print_featured_image_info' ] );
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_shortcode( 'terminal-mailchimp', [ $this, 'mailchimp_print' ] );
+		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 2 );
+	}
+
+	/**
+	 * Print sticky ad.
+	 */
+	public function print_sticky_ad() {
+		$ad_data = Ad_Data::instance();
+		$sticky  = $ad_data->get_amp_sticky_ad();
+		if ( empty( $sticky ) ) {
+			return;
+		}
+		// phpcs:ignore
+		echo '<amp-sticky-ad layout="nodisplay">';
+		echo $ad_data->get_amp_sticky_ad();
+		echo '</amp-sticky-ad>';
+	}
+
+	/**
+	 * Add amp-ad to allowed wp_kses_post tags
+	 *
+	 * @param string $tags Allowed tags, attributes, and/or entities.
+	 * @param string $context Context to judge allowed tags by. Allowed values are 'post',
+	 *
+	 * @return mixed
+	 */
+	public function add_amp_ad( $tags, $context ) {
+		$tags['amp-ad'] = array(
+			'width' => true,
+			'height' => true,
+			'type' => true,
+			'data-ad-client' => true,
+			'data-ad-slot' => true,
+			'layout' => true,
+		);
+		return $tags;
 	}
 
 	/**
 	 * Print app banner tag.
 	 */
 	public function print_app_tag() {
+		$app_data = Apps_Data::instance();
 		printf(
 			'<amp-app-banner
 				layout="nodisplay"

@@ -22,6 +22,15 @@ class Ad_Data {
 	private $ad_data = array();
 
 	/**
+	 * Get AMP sticky ad list.
+	 *
+	 * @return string sticky ad
+	 */
+	public function get_amp_sticky_ad() {
+		return $this->get_ad_data( 'amp_sticky_ad' );
+	}
+
+	/**
 	 * Get mailchimp list.
 	 *
 	 * @return string mailchimp list
