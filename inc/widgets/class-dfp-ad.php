@@ -54,7 +54,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				$ad_height = '50';
 			}
 			printf(
-				'<amp-ad width="%s" height="%s" type="adsense" data-ad-client="ca-pub-0809625376938310" data-ad-slot="%s" layout="fixed"></amp-ad>',
+				'<div class="terminal-ad"><amp-ad width="%s" height="%s" type="adsense" data-ad-client="ca-pub-0809625376938310" data-ad-slot="%s" layout="fixed"></amp-ad></div>',
 				esc_attr( $ad_width ),
 				esc_attr( $ad_height ),
 				esc_attr( $ad_unit )
