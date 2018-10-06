@@ -39,12 +39,13 @@ require_once __DIR__ . '/lib/singleton.php';
 require_once __DIR__ . '/inc/class-amp.php';
 require_once __DIR__ . '/inc/class-customizer.php';
 require_once __DIR__ . '/inc/class-data.php';
-require_once __DIR__ . '/inc/data/class-apps-data.php';
-require_once __DIR__ . '/inc/data/class-ad-data.php';
 require_once __DIR__ . '/inc/class-frontend.php';
 require_once __DIR__ . '/inc/class-metaboxes.php';
 require_once __DIR__ . '/inc/class-parsely.php';
 require_once __DIR__ . '/inc/class-theme.php';
+require_once __DIR__ . '/inc/class-widgets.php';
+require_once __DIR__ . '/inc/data/class-ad-data.php';
+require_once __DIR__ . '/inc/data/class-apps-data.php';
 require_once __DIR__ . '/inc/template-tags.php';
 
 add_filter( 'mepr-validate-signup', function( $errors ) {

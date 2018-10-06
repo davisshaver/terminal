@@ -46,6 +46,7 @@ class AMP {
 		if ( empty( $ad_data->get_mailchimp_list() ) || empty( $ad_data->get_mailchimp_api_key() ) ) {
 			return 'Mailchimp is not configured. Try again later.';
 		}
+		$status   = 'subscribed';
 		$args     = array(
 			'method'  => 'PUT',
 			'headers' => array(
@@ -53,7 +54,7 @@ class AMP {
 			),
 			'body'    => wp_json_encode( array(
 				'email_address' => $email,
-				'status'        => 'subscribed',
+				'status'        => $status,
 			) ),
 		);
 		$response = wp_remote_post(
@@ -91,11 +92,7 @@ class AMP {
 		if ( ! is_email( $email ) ) {
 			wp_send_json_error( __( 'Invalid format.', 'terminal' ) );
 		}
-		$signup = $this->add_email_to_list( $email );
-		if ( 'success' !== $signup ) {
-			wp_send_json_error( $signup );
-		}
-		wp_send_json_success( $email );
+		wp_send_json_success( $this->add_email_to_list( $email ) );
 	}
 
 	/**
