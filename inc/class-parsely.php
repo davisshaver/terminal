@@ -41,7 +41,7 @@ class Parsely {
 			add_action( 'pre_get_posts', [ $this, 'parsely_custom_orderby' ] );
 		}
 		add_action( 'retrieve_social_data', 'retrieve_social_data', 10, 1 );
-		add_action( 'check_cached_analytics_values', [ $this, 'check_cached_analytics_values' ], 10 );
+		add_action( 'check_cached_analytics_values', 'terminal_check_cached_analytics_values', 10 );
 		add_action( 'retrieve_analytics_data', [ $this, 'retrieve_analytics_data' ], 10, 1 );
 		add_action( 'retrieve_referral_data', [ $this, 'retrieve_referral_data' ], 10, 1 );
 		add_action( 'retrieve_data', [ $this, 'retrieve_data' ], 10, 1 );
