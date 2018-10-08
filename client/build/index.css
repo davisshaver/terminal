@@ -103,7 +103,7 @@
 .terminal-analytics::before {
   content: ' \2022   '; }
 
-.entry__summary .span-reading-time {
+.entry__summary .span-reading-time, .entry__summary .terminal-analytics {
   font-size: 70%;
   margin-top: 15px;
   display: inline-block; }

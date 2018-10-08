@@ -22,7 +22,8 @@ class AMP {
 		add_action( 'ampnews-after-body', [ $this, 'print_app_tag' ] );
 		add_action( 'ampnews-before-excerpt', [ $this, 'print_reading_time' ] );
 		add_action( 'ampnews-before-article', [ $this, 'print_reading_time' ] );
-		if ( apply_filters( 'show_analytics', current_user_can( 'edit_posts' ) ) ) {
+		if ( apply_filters( 'terminal_show_analytics', current_user_can( 'edit_posts' ) ) ) {
+			add_action( 'ampnews-before-excerpt', [ $this, 'print_analytics' ] );
 			add_action( 'ampnews-before-article', [ $this, 'print_analytics' ] );
 		}
 		add_action( 'ampnews-before-footer', [ $this, 'print_sticky_ad' ] );
@@ -100,7 +101,12 @@ class AMP {
 		$parsely = Parsely::instance();
 		$views   = $parsely->get_cached_meta( get_the_id(), 'terminal_parsely_analytics_views', true, 'analytics' );
 		$shares  = $parsely->get_cached_meta( get_the_id(), 'terminal_parsely_facebook_shares', true, 'shares' );
-		if ( empty( $views ) && empty( $shares ) ) {
+		if (
+			empty( $views ) ||
+			empty( $shares ) ||
+			$views < 2 ||
+			$shares < 2
+		) {
 			return;
 		}
 		printf(
