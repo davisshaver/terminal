@@ -28,6 +28,8 @@ class AMP {
 		}
 		add_action( 'ampnews-before-footer', [ $this, 'print_sticky_ad' ] );
 		add_action( 'ampnews-before-footer', [ $this, 'print_sponsors_module' ] );
+		add_action( 'ampnews-before-footer', [ $this, 'print_signup_module' ], 1 );
+		add_action( 'ampnews-after-comments', [ $this, 'print_signup_module' ] );
 		add_action( 'ampnews-before-entry-header', [ $this, 'print_featured_image_info' ] );
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
@@ -124,7 +126,7 @@ class AMP {
 	 */
 	public function print_reading_time() {
 		if ( get_post_type() === 'post' ) {
-			echo do_shortcode( '[rt_reading_time label="Reading Time:" postfix="mins" postfix_singular="min"]' );
+			echo do_shortcode( '[rt_reading_time label="" postfix="min read" postfix_singular="min read"]' );
 		}
 	}
 
@@ -196,14 +198,20 @@ class AMP {
 	}
 
 	/**
+	 * Print signup module.
+	 */
+	public function print_signup_module() {
+		echo '<div class="wrap">';
+		terminal_print_template_part( 'signup' );
+		echo '</div>';
+	}
+
+	/**
 	 * Print sponsors module.
 	 */
 	public function print_sponsors_module() {
 		echo '<div class="wrap">';
 		terminal_print_template_part( 'sponsors' );
-		echo '</div>';
-		echo '<div class="wrap">';
-		terminal_print_template_part( 'signup' );
 		echo '</div>';
 	}
 
