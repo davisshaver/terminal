@@ -1,4 +1,3 @@
-.wp-block-embed__wrapper div, .wp-block-embed__wrapper span {
-    padding: inherit;
-    position: static;
+.wp-block-embed.wp-embed-aspect-16-9 .wp-block-embed__wrapper::before {
+    padding-top: inherit;
 }
