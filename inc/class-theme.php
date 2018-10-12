@@ -20,20 +20,6 @@ class Theme {
 		add_filter( 'image_size_names_choose', [ $this, 'filter_image_size_names_choose' ] );
 		add_filter( 'parsely_filter_image_size', [ $this, 'filter_parsely_image_size' ] );
 		add_filter( 'parsely_filter_insert_javascript', [ $this, 'filter_parsely_filter_insert_javascript' ] );
-		register_taxonomy(
-			'terminal-placement',
-			'post',
-			array(
-				'label'              => __( 'Placements', 'terminal' ),
-				'public'             => true,
-				'rewrite'            => false,
-				'hierarchical'       => true,
-				'show_ui'            => true,
-				'show_admin_column'  => true,
-				'show_in_rest'       => true,
-				'publicly_queryable' => true,
-			)
-		);
 		add_action( 'admin_init', [ $this, 'remove_unused_meta_box' ] );
 		add_action( 'admin_menu', [ $this, 'remove_unused_admin_menu' ] );
 		add_action( 'wp_before_admin_bar_render', [ $this, 'admin_bar_disable_comments' ] );
@@ -48,7 +34,6 @@ class Theme {
 		if ( is_customize_preview() ) {
 			add_filter( 'user_can_richedit', '__return_false' );
 		}
-		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
 		add_filter( 'publishpress_disable_timepicker', '__return_true' );
 		add_action( 'admin_init', [ $this, 'enqueue_wpapi' ] );
 		add_filter( 'amp-news-post-type', [ $this, 'filter_amp_news_post_type' ] );
@@ -133,23 +118,6 @@ class Theme {
 			return str_replace( $parsed_link['host'], str_replace( 'www.', '', $parsed_link['host'] ), $value );
 		}
 		return $value;
-	}
-
-	/**
-	 * Filter parsely post tags.
-	 *
-	 * @param array $tags Existing tags.
-	 * @param int   $post_id Post ID.
-	 * @return array Filtered tags
-	 */
-	public function filter_parsely_post_tags( $tags, $post_id ) {
-		$filtered_tags = $tags;
-		$placements    = wp_get_post_terms( $post_id, 'terminal-placement' );
-		foreach ( $placements as $placement ) {
-			$filtered_tags[] = 'placement|' . $placement->name;
-			$filtered_tags[] = 'placement-id|' . $placement->term_id;
-		}
-		return $filtered_tags;
 	}
 
 	/**
