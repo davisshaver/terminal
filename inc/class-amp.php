@@ -19,6 +19,7 @@ class AMP {
 	 */
 	public function setup() {
 		add_filter( 'filter_ampnews_amp_plugin_path', [ $this, 'terminal_filter_amp_plugin_path' ] );
+		add_action( 'ampnews-after-body', [ $this, 'print_gtm_container' ] );
 		add_action( 'ampnews-after-body', [ $this, 'print_app_tag' ] );
 		add_action( 'ampnews-before-excerpt', [ $this, 'print_reading_time' ] );
 		add_action( 'ampnews-before-article', [ $this, 'print_reading_time' ] );
@@ -34,7 +35,7 @@ class AMP {
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_shortcode( 'terminal-mailchimp', [ $this, 'mailchimp_print' ] );
-		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 2 );
+		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 1 );
 	}
 
 	/**
@@ -48,6 +49,7 @@ class AMP {
 		}
 		// phpcs:ignore
 		echo '<amp-sticky-ad layout="nodisplay">';
+		// phpcs:ignore
 		echo $ad_data->get_amp_sticky_ad();
 		echo '</amp-sticky-ad>';
 	}
@@ -56,20 +58,32 @@ class AMP {
 	 * Add amp-ad to allowed wp_kses_post tags
 	 *
 	 * @param string $tags Allowed tags, attributes, and/or entities.
-	 * @param string $context Context to judge allowed tags by. Allowed values are 'post',
 	 *
 	 * @return mixed
 	 */
-	public function add_amp_ad( $tags, $context ) {
+	public function add_amp_ad( $tags ) {
 		$tags['amp-ad'] = array(
-			'width' => true,
-			'height' => true,
-			'type' => true,
+			'width'          => true,
+			'height'         => true,
+			'type'           => true,
 			'data-ad-client' => true,
-			'data-ad-slot' => true,
-			'layout' => true,
+			'data-ad-slot'   => true,
+			'layout'         => true,
 		);
 		return $tags;
+	}
+
+	/**
+	 * Print GTM container.
+	 */
+	public function print_gtm_container() {
+		echo '<amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-WSHC4JR&gtm.url=SOURCE_URL" data-credentials="include">';
+		printf(
+			'<script type="application/json">{ "vars": %s }</script>',
+			// phpcs:ignore
+			terminal_print_data_layer_json( false )
+		);
+		echo '</amp-analytics>';
 	}
 
 	/**

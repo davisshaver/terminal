@@ -148,10 +148,10 @@ function terminal_print_sponsors_header() {
 /**
  * Str_replace() from the end of a string that can also be limited e.g. replace only the last instance of '</div>' with ''
  *
- * @param string $find
- * @param string $replace
- * @param string $subject
- * @param int    $replacement_limit | -1 to replace all references
+ * @param string $find String to find.
+ * @param string $replace String to replace.
+ * @param string $subject String to consider.
+ * @param int    $replacement_limit | -1 to replace all references.
  *
  * @return string
  */
@@ -161,12 +161,12 @@ function terminal_str_replace( $find, $replace, $subject, $replacement_limit = -
 }
 
 /**
- * str_replace() from the end of a string that can also be limited e.g. replace only the last instance of '</div>' with ''
+ * Str_replace() from the end of a string that can also be limited e.g. replace only the last instance of '</div>' with ''
  *
- * @param string $find
- * @param string $replace
- * @param string $subject
- * @param int    $replacement_limit | -1 to replace all references
+ * @param string $find String to find.
+ * @param string $replace String to replace.
+ * @param string $subject String to consider.
+ * @param int    $replacement_limit | -1 to replace all references.
  *
  * @return string
  */
@@ -216,4 +216,23 @@ function terminal_newsletter_signup_message() {
 function terminal_newsletter_signup_header() {
 	$data = Terminal\Ad_Data::instance();
 	echo esc_html( $data->get_email_signup_header() );
+}
+
+/**
+ * Print unified JSON for data layers.
+ *
+ * @param boolean $echo Whether to echo JSON or just return.
+ * @return mixed void or an encoded JSON string.
+ */
+function terminal_print_data_layer_json( $echo = true ) {
+	$data       = Terminal\Data::instance();
+	$data_layer = wp_json_encode( array(
+		'single'   => $data->get_single_data_layer(),
+		'isSearch' => is_search(),
+	) );
+	if ( ! $echo ) {
+		return $data_layer;
+	}
+	// phpcs:ignore
+	echo $data_layer;
 }
