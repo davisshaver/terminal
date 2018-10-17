@@ -29,3 +29,26 @@
     text-align: center;
     padding: 20px;
 }
+
+.terminal-contact-inputs {
+    display: flex;
+    flex-wrap: wrap;
+
+    label {
+        margin: 5px 0 10px 0;
+    }
+
+    input {
+        margin-bottom: 15px;
+    }
+
+    textarea {
+        margin: 10px 0;
+    }
+
+    label,
+    input,
+    textarea {
+        flex: 0 0 100%;
+    }
+}

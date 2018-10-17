@@ -57,7 +57,6 @@ class Apps_Data {
 	 * Print app tags.
 	 */
 	public function print_app_tags() {
-		var_dump( $this->apps_enabled() );
 		if ( ! $this->apps_enabled() ) {
 			return;
 		}

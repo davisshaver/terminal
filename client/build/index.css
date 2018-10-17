@@ -40,6 +40,20 @@
   text-align: center;
   padding: 20px; }
 
+.terminal-contact-inputs {
+  display: flex;
+  flex-wrap: wrap; }
+  .terminal-contact-inputs label {
+    margin: 5px 0 10px 0; }
+  .terminal-contact-inputs input {
+    margin-bottom: 15px; }
+  .terminal-contact-inputs textarea {
+    margin: 10px 0; }
+  .terminal-contact-inputs label,
+  .terminal-contact-inputs input,
+  .terminal-contact-inputs textarea {
+    flex: 0 0 100%; }
+
 .terminal-sponsors-container {
   display: flex;
   flex-wrap: wrap;
