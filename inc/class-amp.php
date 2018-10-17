@@ -91,6 +91,9 @@ class AMP {
 	 */
 	public function print_app_tag() {
 		$app_data = Apps_Data::instance();
+		if ( ! $app_data->apps_enabled() ) {
+			return;
+		}
 		printf(
 			'<amp-app-banner
 				layout="nodisplay"
