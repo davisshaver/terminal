@@ -57,7 +57,7 @@ class Contact {
 	 * Print contact form.
 	 */
 	public function terminal_contact() {
-		terminal_print_template_part( 'contact' );
+		return terminal_get_template_part( 'contact' );
 	}
 
 }
