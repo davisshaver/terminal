@@ -62,7 +62,8 @@
   padding: 15px;
   border: none;
   font-weight: 700;
-  text-decoration: none; }
+  text-decoration: none;
+  -webkit-appearance: none; }
   .mepr-submit[type="submit"] {
     color: black; }
 

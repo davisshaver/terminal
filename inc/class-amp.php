@@ -44,6 +44,20 @@ class AMP {
 			wp_enqueue_script( 'amp-social-share' );
 		} );
 		add_filter( 'amp_supportable_templates', function( $templates ) {
+			$templates['is_single_memberpress_page'] = array(
+				'label'     => __( 'Membership Login', 'example' ),
+				'callback'  => function( \WP_Query $query ) {
+					return in_array(
+						$query->get( 'page_name', false ),
+						array(
+							'login',
+							'account',
+						)
+					);
+				},
+				'parent'    => 'is_singular',
+				'supported' => false,
+			);
 			$templates['is_single_membership'] = array(
 				'label'     => __( 'Membership', 'example' ),
 				'callback'  => function( \WP_Query $query ) {
