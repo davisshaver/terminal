@@ -226,6 +226,22 @@ class Data {
 	}
 
 	/**
+	 * Does user have membership id.
+	 *
+	 * @return boolean Whether user has Membership ID.
+	 */
+	 public function user_has_membership_id() {
+		$membership_id = $this->get_membership_id();
+		if ( current_user_can( sprintf(
+			'memberpress_product_authorized_%s',
+			$membership_id
+		) ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Get no AD id.
 	 *
 	 * @return int No AD id.
@@ -240,6 +256,19 @@ class Data {
 			$no_ad_id
 		) ) ) {
 			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Get membership ID.
+	 *
+	 * @return int Membership ID for general subscription.
+	 */
+	 public function get_membership_id() {
+		$membership_options = get_option( 'terminal_membership_options', array() );
+		if ( ! empty( $membership_options['member_subscription'] ) ) {
+			return $membership_options['member_subscription'];
 		}
 		return false;
 	}
@@ -326,7 +355,7 @@ class Data {
 			return false;
 		}
 		$data    = Data::instance();
-		$disable = $data->user_has_no_ad_id();
+		$disable = $data->user_has_membership_id();
 		if ( $disable ) {
 			return false;
 		}
