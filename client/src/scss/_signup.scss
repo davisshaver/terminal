@@ -52,3 +52,21 @@
         flex: 0 0 100%;
     }
 }
+
+//
+// Button.
+//
+.mepr-submit {
+    background: #fcd651;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+	border: none;
+	font-weight: 700;
+    text-decoration: none;
+
+    &[type="submit"] {
+        color: black;
+    }
+}

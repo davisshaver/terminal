@@ -224,6 +224,115 @@ class Data {
 		}
 		return null;
 	}
+
+	/**
+	 * Get no AD id.
+	 *
+	 * @return int No AD id.
+	 */
+	public function user_has_no_ad_id() {
+		$no_ad_id = $this->get_no_ad_id();
+		if ( ! $no_ad_id ) {
+			return current_user_can( 'edit_posts' );
+		}
+		if ( current_user_can( sprintf(
+			'memberpress_product_authorized_%s',
+			$no_ad_id
+		) ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Get ad block membership ID.
+	 *
+	 * @return int Membership ID for ad block subscription.
+	 */
+	public function get_no_ad_id() {
+		$membership_options = get_option( 'terminal_membership_options', array() );
+		if ( ! empty( $membership_options['ad_free_subscription'] ) ) {
+			return $membership_options['ad_free_subscription'];
+		}
+		return false;
+	}
+
+	/**
+	 * Get membership data.
+	 *
+	 * @param array $default Default options.
+	 * @return array Data.
+	 */
+	public function get_restricted_domains_by_membership() {
+		$restricted_membership = array();
+		$membership_options    = get_option( 'terminal_membership_options', array() );
+		if ( empty( $membership_options['restricted_memberships'] ) ) {
+			return $restricted_membership;
+		}
+		foreach ( $membership_options['restricted_memberships'] as $membership ) {
+			$restricted_membership[ $membership['membership_id'] ] = explode( ',', $membership['domains'] );
+		}
+		return $restricted_membership;
+	}
+
+	/**
+	 * Get membership data.
+	 *
+	 * @param array $default Default options.
+	 * @return array Data.
+	 */
+	public function get_prepared_membership_data( $default = array() ) {
+		$membership_options = get_option( 'terminal_membership_options', array() );
+		if ( empty( $membership_options ) ) {
+			return $default;
+		}
+		return array_merge( $default, $membership_options );
+	}
+
+	/**
+	 * Get membership text.
+	 *
+	 * @return array Data.
+	 */
+	public function get_membership_text() {
+		$membership_options = $this->get_prepared_membership_data();
+		if ( empty( $membership_options['membership_text'] ) ) {
+			return false;
+		}
+		return $membership_options['membership_text'];
+	}
+
+	/**
+	 * Get membership data.
+	 *
+	 * @return array Data.
+	 */
+	public function get_membership_page_always() {
+		$membership_options = $this->get_prepared_membership_data();
+		if ( empty( $membership_options['membership_page'] ) ) {
+			return false;
+		}
+		return $membership_options['membership_page'];
+	}
+
+	/**
+	 * Membership page for folks who haven't explicitly opted out.
+	 *
+	 * @return array Data.
+	 */
+	public function get_membership_page() {
+		$membership_options = $this->get_prepared_membership_data();
+		if ( empty( $membership_options['membership_page'] ) ) {
+			return false;
+		}
+		$data    = Data::instance();
+		$disable = $data->user_has_no_ad_id();
+		if ( $disable ) {
+			return false;
+		}
+		return $membership_options['membership_page'];
+	}
+
 }
 
 add_action( 'after_setup_theme', [ '\Terminal\Data', 'instance' ] );

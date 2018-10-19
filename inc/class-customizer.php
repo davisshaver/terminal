@@ -26,9 +26,9 @@ class Customizer {
 			// require_once __DIR__ . '/customizer/class-fm-bylines.php';
 			// require_once __DIR__ . '/customizer/class-fm-fonts.php';
 			// require_once __DIR__ . '/customizer/class-fm-footer.php';
-			// require_once __DIR__ . '/customizer/class-fm-header.php';
+			require_once __DIR__ . '/customizer/class-fm-header.php';
 			// require_once __DIR__ . '/customizer/class-fm-layout.php';
-			// require_once __DIR__ . '/customizer/class-fm-membership.php';
+			require_once __DIR__ . '/customizer/class-fm-membership.php';
 			require_once __DIR__ . '/customizer/class-fm-sponsors.php';
 		}
 	}

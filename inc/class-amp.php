@@ -23,6 +23,7 @@ class AMP {
 		add_action( 'ampnews-after-body', [ $this, 'print_app_tag' ] );
 		add_action( 'ampnews-before-excerpt', [ $this, 'print_reading_time' ] );
 		add_action( 'ampnews-before-article', [ $this, 'print_reading_time' ] );
+		add_action( 'ampnews-after-search-form', [ $this, 'print_example_searches' ] );
 		if ( apply_filters( 'terminal_show_analytics', current_user_can( 'edit_posts' ) ) ) {
 			add_action( 'ampnews-before-excerpt', [ $this, 'print_analytics' ] );
 			add_action( 'ampnews-before-article', [ $this, 'print_analytics' ] );
@@ -36,6 +37,54 @@ class AMP {
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_shortcode( 'terminal-mailchimp', [ $this, 'mailchimp_print' ] );
 		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 1 );
+		add_filter( 'show_admin_bar', '__return_false' );
+		add_filter( 'wp_enqueue_scripts', function() {
+			wp_enqueue_script( 'amp-bind' );
+			wp_enqueue_script( 'amp-analytics' );
+			wp_enqueue_script( 'amp-social-share' );
+		} );
+		add_filter( 'amp_supportable_templates', function( $templates ) {
+			$templates['is_single_membership'] = array(
+				'label'     => __( 'Membership', 'example' ),
+				'callback'  => function( \WP_Query $query ) {
+					return 'memberpressproduct' === $query->get( 'post_type', false );
+				},
+				'parent'    => 'is_singular',
+				'supported' => false,
+			);
+			return $templates;
+		} );
+		add_filter( 'ampnews-signup-link', [ $this, 'get_membership_link' ] );
+		add_filter( 'ampnews-signup-text', [ $this, 'get_membership_text' ] );
+	}
+
+	/**
+	 * Get membership text.
+	 *
+	 * @param string $default Current text.
+	 * @return string Membership text or false.
+	 */
+	public function get_membership_text( $default ) {
+		$data = Data::instance();
+		$text = $data->get_membership_text();
+		if ( empty( $text ) ) {
+			return $default;
+		}
+		return $text;
+	}
+
+	/**
+	 * Get membership link.
+	 *
+	 * @return string Membership link or false.
+	 */
+	public function get_membership_link() {
+		$data = Data::instance();
+		$link = $data->get_membership_page();
+		if ( empty( $link ) ) {
+			return false;
+		}
+		return $link;
 	}
 
 	/**
@@ -77,6 +126,11 @@ class AMP {
 	 * Print GTM container.
 	 */
 	public function print_gtm_container() {
+		$data    = Data::instance();
+		$disable = $data->user_has_no_ad_id();
+		if ( $disable ) {
+			return;
+		}
 		echo '<amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-WSHC4JR&gtm.url=SOURCE_URL" data-credentials="include">';
 		printf(
 			'<script type="application/json">{ "vars": %s }</script>',
@@ -92,6 +146,11 @@ class AMP {
 	public function print_app_tag() {
 		$app_data = Apps_Data::instance();
 		if ( ! $app_data->apps_enabled() ) {
+			return;
+		}
+		$data    = Data::instance();
+		$disable = $data->user_has_no_ad_id();
+		if ( $disable ) {
 			return;
 		}
 		printf(
@@ -218,6 +277,11 @@ class AMP {
 	 * Print signup module.
 	 */
 	public function print_signup_module() {
+		$data    = Data::instance();
+		$disable = $data->user_has_no_ad_id();
+		if ( $disable ) {
+			return;
+		}
 		echo '<div class="wrap">';
 		terminal_print_template_part( 'signup' );
 		echo '</div>';
@@ -227,6 +291,11 @@ class AMP {
 	 * Print sponsors module.
 	 */
 	public function print_sponsors_module() {
+		$data    = Data::instance();
+		$disable = $data->user_has_no_ad_id();
+		if ( $disable ) {
+			return;
+		}
 		echo '<div class="wrap">';
 		terminal_print_template_part( 'sponsors' );
 		echo '</div>';
@@ -239,6 +308,36 @@ class AMP {
 	 */
 	public function terminal_filter_amp_plugin_path() {
 		return 'amp-wp/amp.php';
+	}
+
+	/**
+	 *
+	 * Print example searches.
+	 */
+	public function print_example_searches() {
+		$header_data = terminal_get_header_data( array(
+			'example_searches'       => '',
+			'example_searches_title' => '',
+		) );
+		if ( ! empty( $header_data['example_searches'] ) ) {
+			echo '<div class="terminal-example-searches-container">';
+			$example_searches_title = ! empty( $header_data['example_searches_title'] ) ?
+				$header_data['example_searches_title'] :
+				__( 'Example Searches', 'terminal' );
+			printf(
+				'<h3>%s</h3>',
+				esc_html( $example_searches_title )
+			);
+			echo '<ul class="terminal-example-searches">';
+			foreach ( $header_data['example_searches'] as $search ) {
+				printf(
+					'<li class="terminal-example-search">%s</li>',
+					wp_kses_post( $search['search'] )
+				);
+			}
+			echo '</ul>';
+			echo '</div>';
+		}
 	}
 
 }

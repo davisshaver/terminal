@@ -30,7 +30,6 @@ class Theme {
 		add_filter( 'post_link', [ $this, 'post_link_www' ] );
 		add_filter( 'post_link', [ $this, 'post_link_www' ] );
 		add_filter( 'essb_is_theme_integrated', '__return_true' );
-		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 2 );
 		if ( is_customize_preview() ) {
 			add_filter( 'user_can_richedit', '__return_false' );
 		}
@@ -68,28 +67,6 @@ class Theme {
 			return $insert;
 		}
 		return false;
-	}
-
-	/**
-	 * Add amp-ad to allowed wp_kses_post tags
-	 *
-	 * @param string $tags Allowed tags, attributes, and/or entities.
-	 * @param string $context Context to judge allowed tags by.
-	 *
-	 * @return mixed
-	 */
-	public function add_amp_ad( $tags, $context ) {
-		if ( 'post' === $context ) {
-			$tags['amp-ad'] = array(
-				'width'          => true,
-				'height'         => true,
-				'type'           => true,
-				'data-ad-client' => true,
-				'data-ad-slot'   => true,
-				'layout'         => true,
-			);
-		}
-		return $tags;
 	}
 
 	/**

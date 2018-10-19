@@ -32,8 +32,40 @@ class Frontend {
 		remove_action( 'wp_head', 'rsd_link' );
 		remove_action( 'wp_head', 'wlwmanifest_link' );
 		remove_action( 'wp_head', 'wp_generator' );
+		add_filter( 'sidebars_widgets', [ $this, 'maybe_disable_ads' ] );
 		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
+	}
+
+	/**
+	 * Filter widgets to disable ads.
+	 *
+	 * @param array $widgets Existing widgets.
+	 * @return array Filtered widgets.
+	 */
+	public function maybe_disable_ads( $widgets ) {
+		if ( is_customize_preview() || is_admin() ) {
+			return $widgets;
+		}
+		$use_widgets = $widgets;
+		array_shift( $widgets );
+		$data    = Data::instance();
+		$disable = $data->user_has_no_ad_id();
+		if ( $disable ) {
+			$disable_ads = false;
+			foreach ( $widgets as $sidebar_name => $sidebar_widgets ) {
+				foreach ( $sidebar_widgets as $key => $sidebar_widget ) {
+					if (
+						false !== strpos( $sidebar_widget, 'ad_layers' ) ||
+						false !== strpos( $sidebar_widget, 'terminal-adsense-widget' ) ||
+						false !== strpos( $sidebar_widget, 'terminal-broadstreet-widget' )
+					) {
+						unset( $use_widgets[ $sidebar_name ][ $key ] );
+					}
+				}
+			}
+		}
+		return $use_widgets;
 	}
 
 	/**
@@ -71,7 +103,6 @@ class Frontend {
 			wp_deregister_style( 'dashicons' );
 			wp_deregister_style( 'jetpack-widget-social-icons-admin' );
 			wp_deregister_style( 'jetpack-widget-social-icons-styles' );
-			wp_deregister_style( 'mp-theme' );
 			wp_deregister_style( 'the-neverending-homepage' );
 			wp_deregister_style( 'tiled-gallery' );
 			wp_deregister_style( 'tiled-gallery' );

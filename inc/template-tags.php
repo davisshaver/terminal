@@ -236,3 +236,14 @@ function terminal_print_data_layer_json( $echo = true ) {
 	// phpcs:ignore
 	echo $data_layer;
 }
+
+/**
+ * Template function to get header data for theme.
+ *
+ * @param array $default Template default.
+ * @return array Prepared header data.
+ */
+function terminal_get_header_data( $default = array() ) {
+	$data = Terminal\Data::instance();
+	return $data->get_prepared_header_data( $default );
+}
