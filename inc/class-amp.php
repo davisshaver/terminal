@@ -52,7 +52,8 @@ class AMP {
 						array(
 							'login',
 							'account',
-						)
+						),
+						true
 					);
 				},
 				'parent'    => 'is_singular',
@@ -140,9 +141,10 @@ class AMP {
 	 * Print GTM container.
 	 */
 	public function print_gtm_container() {
-		$data    = Data::instance();
-		$disable = $data->user_has_no_ad_id();
-		if ( $disable ) {
+		$data         = Data::instance();
+		$disable      = $data->user_has_no_ad_id();
+		$do_not_track = $data->is_do_not_track();
+		if ( $disable || $do_not_track ) {
 			return;
 		}
 		echo '<amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-WSHC4JR&gtm.url=SOURCE_URL" data-credentials="include">';

@@ -230,7 +230,7 @@ class Data {
 	 *
 	 * @return boolean Whether user has Membership ID.
 	 */
-	 public function user_has_membership_id() {
+	public function user_has_membership_id() {
 		$membership_id = $this->get_membership_id();
 		if ( current_user_can( sprintf(
 			'memberpress_product_authorized_%s',
@@ -362,6 +362,23 @@ class Data {
 		return $membership_options['membership_page'];
 	}
 
+	/**
+	 * Is Do Not Track?
+	 */
+	public function is_do_not_track() {
+		if (
+			array_key_exists(
+				'HTTP_DNT',
+				$_SERVER
+			) && (
+				1 === (int) $_SERVER['HTTP_DNT']
+			)
+		) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 add_action( 'after_setup_theme', [ '\Terminal\Data', 'instance' ] );

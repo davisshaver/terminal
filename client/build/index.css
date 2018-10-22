@@ -56,16 +56,17 @@
 
 .mepr-submit {
   background: #fcd651;
+  border: none; }
+
+.mepr-submit[type="submit"], .terminal-contact-inputs[type="submit"] {
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px;
-  border: none;
   font-weight: 700;
   text-decoration: none;
   -webkit-appearance: none; }
-  .mepr-submit[type="submit"] {
-    color: black; }
 
 .terminal-sponsors-container {
   display: flex;
