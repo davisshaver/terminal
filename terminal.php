@@ -74,3 +74,7 @@ if ( getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE' ) ) {
 if ( getenv( 'TERMINAL_ENABLE_HOUSING_POST_TYPE' ) ) {
 	require_once __DIR__ . '/inc/post-types/class-housing.php';
 }
+
+if ( getenv( 'TERMINAL_ENABLE_OBITUARY_POST_TYPE' ) ) {
+	require_once __DIR__ . '/inc/post-types/class-obituaries.php';
+}
