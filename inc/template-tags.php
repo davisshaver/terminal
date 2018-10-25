@@ -264,31 +264,47 @@ function retrieve_referral_data( $post_id ) {
 	return $parsely->store_referral_data( $post_id );
 }
 
-function check_cached_analytics_values() {
-	$today = getdate();
-	$posts = get_posts( [
-		'post_type' => terminal_get_post_types(),
-		'posts_per_page' => -1, // getting all posts of a post type
-		'no_found_rows' => true, //speeds up a query significantly and can be set to 'true' if we don't use pagination
-		'fields' => 'ids', //again, for performance
-		'date_query' => array(
-			array(
-				'after' => '90 days ago'
-			)
-		)
-	] );
-	$parsely = Terminal\Parsely::instance();
-	  foreach ( $posts as $post_id ) {
-		$parsely->possibly_schedule_event(
-			'retrieve_data',
-			$post_id
-		);
-	}
-}
-
 function retrieve_data( $post_id ) {
 	$parsely = Terminal\Parsely::instance();
 	return $parsely->store_referral_data( $post_id );
 	return $parsely->store_analytics_data( $post_id );
 	return $parsely->store_social_data( $post_id );
+}
+
+/**
+ * Run a routine to update analytics data.
+ */
+function terminal_check_cached_analytics_values() {
+	$parsely = Terminal\Parsely::instance();
+	$today   = getdate();
+	// phpcs:ignore
+	$posts = get_posts( [
+		'post_type'      => \terminal_get_post_types(),
+		// phpcs:ignore
+		'posts_per_page' => -1, // getting all posts of a post type.
+		'no_found_rows'  => true, // speeds up a query significantly and can be set to 'true' if we don't use pagination.
+		'fields'         => 'ids', // again, for performance.
+		'date_query'     => array(
+			array(
+				'after' => '90 days ago',
+			),
+		),
+	] );
+	foreach ( $posts as $post_id ) {
+		$parsely->possibly_schedule_event(
+			'retrieve_all_data',
+			$post_id
+		);
+	}
+}
+
+/**
+ * Run retrieval methods for a post.
+ *
+ * @param int $post_id Post ID.
+ */
+function retrieve_all_data( $post_id ) {
+	retrieve_referral_data( $post_id );
+	retrieve_analytics_data( $post_id );
+	retrieve_social_data( $post_id );
 }

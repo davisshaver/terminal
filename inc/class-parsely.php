@@ -53,8 +53,8 @@ class Parsely {
 	 * Schedule an analytics update if one does not exist.
 	 */
 	public function possibly_schedule_analytics_update() {
-		if ( ! wp_next_scheduled( 'terminal_check_cached_analytics_values' ) ) {
-			wp_schedule_single_event( current_time( 'timestamp' ) + HOUR_IN_SECONDS * 3, 'terminal_check_cached_analytics_values' );
+		if ( ! wp_next_scheduled( 'check_cached_analytics_values' ) ) {
+			wp_schedule_single_event( current_time( 'timestamp' ) + HOUR_IN_SECONDS * 3, 'check_cached_analytics_values' );
 		}
 	}
 
@@ -663,71 +663,3 @@ class Parsely {
 
 add_action( 'after_setup_theme', [ '\Terminal\Parsely', 'instance' ] );
 
-
-/**
- * Run a routine to update analytics data.
- */
-function terminal_check_cached_analytics_values() {
-	$parsely = Parsely::instance();
-	$today   = getdate();
-	// phpcs:ignore
-	$posts = get_posts( [
-		'post_type'      => \terminal_get_post_types(),
-		// phpcs:ignore
-		'posts_per_page' => -1, // getting all posts of a post type.
-		'no_found_rows'  => true, // speeds up a query significantly and can be set to 'true' if we don't use pagination.
-		'fields'         => 'ids', // again, for performance.
-		'date_query'     => array(
-			array(
-				'after' => '90 days ago',
-			),
-		),
-	] );
-	foreach ( $posts as $post_id ) {
-		$parsely->possibly_schedule_event(
-			'retrieve_all_data',
-			$post_id
-		);
-	}
-}
-
-/**
- * Retrieve social data for a post.
- *
- * @param int $post_id Post.
- */
-function retrieve_social_data( $post_id ) {
-	$parsely = Parsely::instance();
-	$parsely->store_social_data( $post_id );
-}
-
-/**
- * Retrieve general analytics data for a post.
- *
- * @param int $post_id Post.
- */
-function retrieve_analytics_data( $post_id ) {
-	$parsely = Parsely::instance();
-	$parsely->store_analytics_data( $post_id );
-}
-
-/**
- * Retrieve referral data for a post.
- *
- * @param int $post_id Post.
- */
-function retrieve_referral_data( $post_id ) {
-	$parsely = Parsely::instance();
-	$parsely->store_referral_data( $post_id );
-}
-
-/**
- * Run retrieval methods for a post.
- *
- * @param int $post_id Post ID.
- */
-function retrieve_all_data( $post_id ) {
-	retrieve_referral_data( $post_id );
-	retrieve_analytics_data( $post_id );
-	retrieve_social_data( $post_id );
-}
