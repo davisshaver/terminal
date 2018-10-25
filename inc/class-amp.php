@@ -205,10 +205,10 @@ class AMP {
 		}
 		printf(
 			'<span class="terminal-analytics">%s %s %s %s %s</span>',
-			esc_html( $views ),
+			esc_html( number_format( $views ) ),
 			esc_html( __( 'views ', 'terminal' ) ),
 			esc_html( __( 'and ', 'terminal' ) ),
-			esc_html( $shares ),
+			esc_html( number_format( $shares ) ),
 			esc_html( __( ' shares', 'terminal' ) )
 		);
 	}
