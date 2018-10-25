@@ -69,7 +69,7 @@ class Obituaries {
 	public function filter_ampnews_author_prefix( $prefix ) {
 		$id = get_the_id();
 		if ( get_post_type( $id ) === $this->obituary_post_type ) {
-			return __( 'Contributed by', 'terminal' );
+			return __( 'Via', 'terminal' );
 		}
 		return $prefix;
 	}
