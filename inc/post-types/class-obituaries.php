@@ -92,7 +92,7 @@ class Obituaries {
 		if ( ! $id ) {
 			$id = get_the_id();
 		}
-		if ( is_feed() && get_post_type( $id ) === $this->obituary_post_type ) {
+		if ( get_post_type( $id ) === $this->obituary_post_type ) {
 			return "[OBITUARY] ${title}";
 		}
 		return $title;
