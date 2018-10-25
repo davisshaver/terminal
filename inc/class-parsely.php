@@ -44,7 +44,7 @@ class Parsely {
 		add_action( 'check_cached_analytics_values', 'terminal_check_cached_analytics_values', 10 );
 		add_action( 'retrieve_analytics_data', [ $this, 'retrieve_analytics_data' ], 10, 1 );
 		add_action( 'retrieve_referral_data', [ $this, 'retrieve_referral_data' ], 10, 1 );
-		add_action( 'retrieve_data', [ $this, 'retrieve_data' ], 10, 1 );
+		add_action( 'retrieve_all_data', [ $this, 'retrieve_all_data' ], 10, 1 );
 		add_action( 'publish_post', [ $this, 'schedule_some_retrievals' ], 10, 2 );
 		add_action( 'wp', [ $this, 'possibly_schedule_analytics_update' ] );
 	}
