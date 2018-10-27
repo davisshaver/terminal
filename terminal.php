@@ -79,6 +79,6 @@ if ( getenv( 'TERMINAL_ENABLE_OBITUARY_POST_TYPE' ) ) {
 	require_once __DIR__ . '/inc/post-types/class-obituaries.php';
 }
 
-if ( getenv( 'TERMINAL_ENABLE_RELASES_POST_TYPE' ) ) {
+if ( getenv( 'TERMINAL_ENABLE_RELEASES_POST_TYPE' ) ) {
 	require_once __DIR__ . '/inc/post-types/class-releases.php';
 }

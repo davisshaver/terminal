@@ -19,7 +19,7 @@ class Releases {
 	 *
 	 * @var string $releases_post_type Post type slug.
 	 */
-	private $releases_post_type = 'releases';
+	private $releases_post_type = 'release';
 
 	/**
 	 * Setup.
