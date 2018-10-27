@@ -39,7 +39,6 @@ class Obituaries {
 			$this->obituary_post_type_funeral_home = getenv( 'TERMINAL_OBITUARY_POST_TYPE_FUNERAL_HOME_KEY' );
 		}
 		add_action( 'init', [ $this, 'register_obituary_post_type' ] );
-		add_filter( 'pre_get_posts', array( $this, 'include_obituary_post_type_in_rss' ) );
 		add_action( 'init', [ $this, 'register_obituary_fields' ] );
 		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
 		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
@@ -122,24 +121,6 @@ class Obituaries {
 			$post_id = get_the_id();
 		}
 		return get_post_meta( $post_id, $this->obituary_post_type_funeral_home, true );
-	}
-
-	/**
-	 * Include community post type.
-	 *
-	 * @param object $query Query.
-	 * @return object Filtered query
-	 */
-	public function include_obituary_post_type_in_rss( $query ) {
-		if ( ( ! is_singular() && ! is_admin() ) && $query->is_main_query() && ! is_post_type_archive() ) {
-			$existing_post_types = $query->get( 'post_type' );
-			if ( is_array( $existing_post_types ) && ! empty( $existing_post_types ) ) {
-				$query->set( 'post_type', array_merge( $existing_post_types, array( $this->obituary_post_type ) ) );
-			} else {
-				$query->set( 'post_type', array( $this->obituary_post_type, 'post' ) );
-			}
-		}
-		return $query;
 	}
 
 	/**
