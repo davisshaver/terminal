@@ -59,6 +59,14 @@ class AMP {
 				'parent'    => 'is_singular',
 				'supported' => false,
 			);
+			$templates['is_single_itinerary'] = array(
+				'label'     => __( 'Itinerary', 'example' ),
+				'callback'  => function( \WP_Query $query ) {
+					return 'itineraries' === $query->get( 'post_type', false );
+				},
+				'parent'    => 'is_singular',
+				'supported' => false,
+			);
 			$templates['is_single_membership'] = array(
 				'label'     => __( 'Membership', 'example' ),
 				'callback'  => function( \WP_Query $query ) {
