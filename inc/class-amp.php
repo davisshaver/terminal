@@ -30,6 +30,7 @@ class AMP {
 		}
 		add_action( 'ampnews-before-footer', [ $this, 'print_sticky_ad' ] );
 		add_action( 'ampnews-before-footer', [ $this, 'print_sponsors_module' ] );
+		add_action( 'ampnews-before-footer', [ $this, 'print_popular_module' ], 100 );
 		add_action( 'ampnews-before-footer', [ $this, 'print_signup_module' ], 1 );
 		add_action( 'ampnews-after-comments', [ $this, 'print_signup_module' ] );
 		add_action( 'ampnews-before-entry-header', [ $this, 'print_featured_image_info' ] );
@@ -309,6 +310,18 @@ class AMP {
 		echo '<div class="wrap">';
 		terminal_print_template_part( 'signup' );
 		echo '</div>';
+	}
+
+	/**
+	 * Print popular module.
+	 */
+	public function print_popular_module() {
+		$api_key = getenv( 'TERMINAL_PARSELY_API_KEY' );
+		$api_secret = getenv( 'TERMINAL_PARSELY_API_SECRET' );
+		if ( empty( $api_key ) || empty( $api_secret ) ) {
+			return;
+		}
+		terminal_print_template_part( 'popular' );
 	}
 
 	/**
