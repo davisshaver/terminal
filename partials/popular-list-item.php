@@ -24,17 +24,16 @@ printf(
 		);
 	}
 	?>
-	<h4 class="terminal-headline-font">
+	<h5>
 		<?php
 		printf(
-			'<a href="%s" class="terminal-link-gray">%s</a>',
+			'<a href="%s">%s</a>',
 			esc_url( $url ),
 			$title
 		);
 		?>
-	</h4>
-	<div class="terminal-byline terminal-text-gray">
-		<div class="terminal-author terminal-no-select">
+	</h5>
+	<div class="terminal-popular-author">
 		<?php
 		printf(
 			'%s %s',
@@ -42,6 +41,5 @@ printf(
 			esc_html( implode( ', ', $authors ) )
 		);
 		?>
-		</div>
 	</div>
 </div>

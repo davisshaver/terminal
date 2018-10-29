@@ -32,6 +32,7 @@ class AMP {
 		add_action( 'ampnews-before-footer', [ $this, 'print_sponsors_module' ] );
 		add_action( 'ampnews-before-footer', [ $this, 'print_popular_module' ], 100 );
 		add_action( 'ampnews-before-footer', [ $this, 'print_signup_module' ], 1 );
+		add_action( 'ampnews-after-comments', [ $this, 'print_popular_module' ], 100 );
 		add_action( 'ampnews-after-comments', [ $this, 'print_signup_module' ] );
 		add_action( 'ampnews-before-entry-header', [ $this, 'print_featured_image_info' ] );
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
@@ -321,7 +322,9 @@ class AMP {
 		if ( empty( $api_key ) || empty( $api_secret ) ) {
 			return;
 		}
+		echo '<div class="wrap">';
 		terminal_print_template_part( 'popular' );
+		echo '</div>';
 	}
 
 	/**

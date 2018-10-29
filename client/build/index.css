@@ -123,6 +123,59 @@
         opacity: .75;
         filter: grayscale(100%); }
 
+.terminal-popular-container {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap; }
+  .terminal-popular-container h4 {
+    margin: 0;
+    flex: 0 0 100%;
+    text-align: center;
+    margin-bottom: 15px; }
+
+.terminal-popular-select-filter {
+  margin-bottom: 15px; }
+
+.terminal-popular-list {
+  display: none;
+  flex: 0 0 100%;
+  justify-content: space-between; }
+  @media screen and (max-width: 768px) {
+    .terminal-popular-list {
+      flex-wrap: wrap; } }
+  .terminal-popular-list.selected {
+    display: flex; }
+  .terminal-popular-list .terminal-popular-list-item {
+    align-items: flex-end;
+    background: #f2f2f2;
+    box-sizing: border-box;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 0 0 calc(25% - 10px);
+    justify-content: space-between;
+    padding: 10px;
+    position: relative; }
+    @media screen and (max-width: 768px) {
+      .terminal-popular-list .terminal-popular-list-item {
+        flex: 0 0 calc(50% - 5px);
+        margin-bottom: 10px; } }
+    .terminal-popular-list .terminal-popular-list-item::before {
+      bottom: 0;
+      content: attr(data-rank);
+      font-size: 20px;
+      font-weight: bold;
+      opacity: 0.2;
+      position: absolute;
+      right: 10px; }
+    .terminal-popular-list .terminal-popular-list-item h5 {
+      font-size: 15px;
+      margin: 0; }
+    .terminal-popular-list .terminal-popular-list-item .terminal-popular-author {
+      margin: 10px 0 20px 0;
+      font-size: 13px; }
+
 .span-reading-time, .terminal-analytics {
   font-size: 80%;
   font-style: italic;
@@ -143,4 +196,7 @@
   width: 100%; }
 
 .wp-block-embed.wp-embed-aspect-16-9 .wp-block-embed__wrapper::before {
+  padding-top: inherit; }
+
+.wp-block-embed.wp-embed-aspect-4-3 .wp-block-embed__wrapper::before {
   padding-top: inherit; }
