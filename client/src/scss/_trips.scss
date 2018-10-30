@@ -1,0 +1,11 @@
+.ws-theme-cart-list {
+    .coupon {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .update-cart {
+            margin-bottom: 10px;
+        }
+    }
+}
