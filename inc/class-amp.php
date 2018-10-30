@@ -54,6 +54,7 @@ class AMP {
 						array(
 							'login',
 							'account',
+							'cart',
 						),
 						true
 					);
