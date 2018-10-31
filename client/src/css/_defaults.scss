@@ -467,9 +467,11 @@ a[name="recent"], a[name="popular"],  a[name="featured"] {
 		background-color: rgba(203, 32, 39, 0.8) }
 
 .mepr-submit, .uncovered p.terminal-adblock-notice {
-	background: #fff;
+	background: #ffc200;
 	border-radius: 30px;
-	color: #3f3f3f;
+	border: 0;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+	color: black;
 	display: block;
 	height: 50px;
 	line-height: 50px;
