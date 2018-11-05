@@ -32,7 +32,6 @@ class Obituaries {
 			$this->obituary_post_type_funeral_home = getenv( 'TERMINAL_OBITUARY_POST_TYPE_FUNERAL_HOME_KEY' );
 		}
 		add_action( 'init', [ $this, 'register_obituary_post_type' ] );
-		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
 		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
 	}
 
@@ -55,23 +54,6 @@ class Obituaries {
 	 */
 	public function get_obituary_post_type() {
 		return $this->obituary_post_type;
-	}
-
-	/**
-	 * Filter feed title.
-	 *
-	 * @param string $title Current title.
-	 * @param int    $id Current post ID.
-	 * @return string Filtered title
-	 */
-	public function filter_feed_title( $title, $id = null ) {
-		if ( ! $id ) {
-			$id = get_the_id();
-		}
-		if ( get_post_type( $id ) === $this->obituary_post_type ) {
-			return "[OBITUARY] ${title}";
-		}
-		return $title;
 	}
 
 	/**

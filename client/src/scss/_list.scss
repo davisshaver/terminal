@@ -1,0 +1,15 @@
+.terminal-list-item {
+    .entry__thumbnail {
+        opacity: 0.5;
+    }
+
+    &:hover {
+        .entry__thumbnail {
+            opacity: 1;
+        }
+    }
+
+    .entry__title-sidebar {
+        margin: 32px 0;
+    }
+}

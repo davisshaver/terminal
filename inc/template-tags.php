@@ -41,6 +41,16 @@ function terminal_get_post_types( $values_only = true ) {
 		$post_types['deal'] = $deal->get_deal_post_type();
 	}
 
+	if ( getenv( 'TERMINAL_ENABLE_OBITUARY_POST_TYPE' ) ) {
+		$obit                   = Terminal\Obituaries::instance();
+		$post_types['obituary'] = $obit->get_obituary_post_type();
+	}
+
+	if ( getenv( 'TERMINAL_ENABLE_RELEASES_POST_TYPE' ) ) {
+		$obit                  = Terminal\Releases::instance();
+		$post_types['release'] = $obit->get_releases_post_type();
+	}
+
 	if ( $values_only ) {
 		return array_values( $post_types );
 	}

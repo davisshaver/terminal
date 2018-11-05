@@ -32,7 +32,6 @@ class Releases {
 			$this->releases_post_type_org = getenv( 'TERMINAL_RELEASES_POST_TYPE_ORG_KEY' );
 		}
 		add_action( 'init', [ $this, 'register_releases_post_type' ] );
-		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
 		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
 	}
 
@@ -56,23 +55,6 @@ class Releases {
 	 */
 	public function get_releases_post_type() {
 		return $this->releases_post_type;
-	}
-
-	/**
-	 * Filter feed title.
-	 *
-	 * @param string $title Current title.
-	 * @param int    $id Current post ID.
-	 * @return string Filtered title
-	 */
-	public function filter_feed_title( $title, $id = null ) {
-		if ( ! $id ) {
-			$id = get_the_id();
-		}
-		if ( get_post_type( $id ) === $this->releases_post_type ) {
-			return "[RELEASE] ${title}";
-		}
-		return $title;
 	}
 
 	/**

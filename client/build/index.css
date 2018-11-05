@@ -200,3 +200,22 @@
 
 .wp-block-embed.wp-embed-aspect-4-3 .wp-block-embed__wrapper::before {
   padding-top: inherit; }
+
+.ws-theme-cart-list .coupon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .ws-theme-cart-list .coupon .update-cart {
+    margin-bottom: 10px; }
+
+.wp-travel-average-review {
+  display: none; }
+
+.terminal-list-item .entry__thumbnail {
+  opacity: 0.5; }
+
+.terminal-list-item:hover .entry__thumbnail {
+  opacity: 1; }
+
+.terminal-list-item .entry__title-sidebar {
+  margin: 32px 0; }
