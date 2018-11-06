@@ -16,7 +16,7 @@ echo '<div class="terminal-list-item">';
 		<figure class="entry__thumbnail">
 			<?php
 			printf(
-				'<a href="%s">%s</a>',
+				'<a href="%s" title="%s">',
 				esc_url( get_the_permalink() ),
 				esc_attr( get_the_title() )
 			);
