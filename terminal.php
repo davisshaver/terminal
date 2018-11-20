@@ -27,7 +27,7 @@ if (
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {
-	define( 'TERMINAL_VERSION', '4.3' );
+	define( 'TERMINAL_VERSION', '4.31' );
 }
 
 if ( ! defined( 'TERMINAL_APP' ) ) {
