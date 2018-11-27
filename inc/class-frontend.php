@@ -23,6 +23,7 @@ class Frontend {
 			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
 			add_filter( 'feed_links_show_comments_feed', '__return_false' );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+			add_action( 'gform_enqueue_scripts', [ $this, 'enqueue_gravity_form_scripts' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 			add_filter( 'query_vars', [ $this, 'add_query_vars_filter' ] );
 			add_filter( 'simple_local_avatar', [ $this, 'hack_for_ssl' ] );
@@ -290,6 +291,19 @@ class Frontend {
 		add_action( 'init', function() {
 			add_filter( 'the_content', 'wp_staticize_emoji' );
 		});
+	}
+
+	/**
+	 * Enqueue gravity forms.
+	 */
+	public function enqueue_gravity_form_scripts() {
+		wp_enqueue_script(
+			'gforms-wordcount',
+			get_template_directory_uri() . '/client/wordcount.js',
+			array( 'jquery' ),
+			'0.1',
+			true
+		);
 	}
 
 	/**

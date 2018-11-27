@@ -377,3 +377,16 @@ ins {
 	flex: 0 0 100%;
 	margin-bottom: 20px;
 }
+
+.word-count-error-text {
+	color: red;
+	display: none;
+	font-weight: bold;
+	margin-left: 5px;
+}
+
+.word-count-error {
+	.word-count-error-text {
+		display: inline;
+	}
+}
