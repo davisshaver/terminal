@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
             if ($(this).val() === '') {
                 numWords = 0;
             }
-            $(this).siblings('.word-count-wrapper').children('.word-count').text(numWords);
+            $(this).siblings('.word-count-wrapper').children('.word-count').text(`${numWords}/${maxWords}`);
             if (numWords > maxWords && maxWords !== 0) {
                 $(this).siblings('.word-count-wrapper').addClass('word-count-error');
             } else {
