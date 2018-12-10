@@ -48,6 +48,12 @@ class Data {
 				}
 			}
 		});
+		apply_filters( 'duplicate_post_blacklist_filter' , array( $this, 'add_terminal_tags_to_duplicate_post' ) );
+	}
+
+	public function add_terminal_tags_to_duplicate_post( $meta_blacklist ) {
+		$meta_blacklist[] = 'terminal_parsely*';
+		return $meta_blacklist;
 	}
 
 	/**
