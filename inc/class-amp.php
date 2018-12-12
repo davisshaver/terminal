@@ -34,7 +34,7 @@ class AMP {
 		add_action( 'ampnews-before-footer', [ $this, 'print_signup_module' ], 1 );
 		add_action( 'ampnews-after-comments', [ $this, 'print_popular_module' ], 100 );
 		add_action( 'ampnews-after-comments', [ $this, 'print_signup_module' ] );
-		add_action( 'ampnews-before-entry-header', [ $this, 'print_featured_image_info' ] );
+		add_action( 'ampnews-after-entry-thumbnail', [ $this, 'print_featured_image_info' ] );
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_shortcode( 'terminal-mailchimp', [ $this, 'mailchimp_print' ] );
@@ -215,7 +215,7 @@ class AMP {
 			return;
 		}
 		printf(
-			'<span class="terminal-analytics">%s %s %s %s %s</span>',
+			'<span class="terminal-analytics">%s %s %s %s %s</span> ',
 			esc_html( number_format( $views ) ),
 			esc_html( __( 'views ', 'terminal' ) ),
 			esc_html( __( 'and ', 'terminal' ) ),
