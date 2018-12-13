@@ -5,12 +5,14 @@
     display: inline;
     content: 'Photo Credit: '; }
 
-.terminal-featured-meta .terminal-featured-caption {
+.terminal-featured-caption {
   font-size: 12px;
-  font-style: italic; }
-  .terminal-featured-meta .terminal-featured-caption p {
+  font-style: italic;
+  padding: 0 0 15px;
+  width: 100%; }
+  .terminal-featured-caption p {
     margin: 1em 0; }
-    .terminal-featured-meta .terminal-featured-caption p::before {
+    .terminal-featured-caption p::before {
       display: inline;
       content: 'Photo Caption: '; }
 
@@ -203,10 +205,17 @@
 
 .ws-theme-cart-list .coupon {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center; }
   .ws-theme-cart-list .coupon .update-cart {
     margin-bottom: 10px; }
+
+.ws-theme-cart-list .actions {
+  display: flex;
+  flex-wrap: wrap; }
+  .ws-theme-cart-list .actions .btn_full {
+    flex: 1 0 auto;
+    margin: 10px;
+    padding: 12px 30px; }
 
 .wp-travel-average-review {
   display: none; }
