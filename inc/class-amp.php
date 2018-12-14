@@ -49,15 +49,17 @@ class AMP {
 			$templates['is_single_memberpress_page'] = array(
 				'label'     => __( 'Membership Login', 'example' ),
 				'callback'  => function( \WP_Query $query ) {
-					return in_array(
-						$query->get( 'page_name', false ),
+					$exempt = in_array(
+						$query->get( 'pagename', false ),
 						array(
 							'login',
 							'account',
 							'cart',
+							'checkout'
 						),
 						true
 					);
+					return $exempt;
 				},
 				'parent'    => 'is_singular',
 				'supported' => false,
