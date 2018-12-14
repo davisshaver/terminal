@@ -11,12 +11,12 @@
 
 .terminal-featured-caption {
     font-size: 12px;
-    font-style: italic;
     padding: 0 0 15px;
     width: 100%;
 
     p {
         margin: 1em 0;
+        text-align: center;
 
         &::before {
             display: inline;
