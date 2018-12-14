@@ -82,6 +82,16 @@ class AMP {
 		} );
 		add_filter( 'ampnews-signup-link', [ $this, 'get_membership_link' ] );
 		add_filter( 'ampnews-signup-text', [ $this, 'get_membership_text' ] );
+		add_filter ( 'ampnews-show-single-image', [ $this, 'filter_featured_image_amp_single' ], 10, 1 );
+	}
+
+	/**
+	 * Filter featured image on single in AMP theme.
+	 */
+	public function filter_featured_image_amp_single( $show_featured ) {
+		$data = Data::instance();
+		$meta = $data->get_post_featured_meta();
+		return empty( $meta['hide_featured_image'] );
 	}
 
 	/**

@@ -204,7 +204,7 @@ class Data {
 			'featured_embed'                => get_post_meta( get_the_ID(), 'terminal_featured_meta_featured_embed', true ),
 			'hide_featured_image'           => get_post_meta( get_the_ID(), 'terminal_featured_meta_hide_featured_image', true ),
 		);
-		return array(
+		return apply_filters( 'terminal_featured_meta', array(
 			'add_featured_embed'            => ! empty( $options['add_featured_embed'] ) ? $options['add_featured_embed'] : $default['add_featured_embed'],
 			'use_featured_embed_on_landing' => ! empty( $options['use_featured_embed_on_landing'] ) ? $options['use_featured_embed_on_landing'] : $default['use_featured_embed_on_single'],
 			'use_featured_embed_on_single'  => ! empty( $options['use_featured_embed_on_single'] ) ? $options['use_featured_embed_on_single'] : $default['use_featured_embed_on_single'],
@@ -212,7 +212,7 @@ class Data {
 			'caption'                       => ! empty( $options['caption'] ) ? $options['caption'] : $default['caption'],
 			'credit'                        => ! empty( $options['credit'] ) ? $options['credit'] : $default['credit'],
 			'hide_featured_image'           => ! empty( $options['hide_featured_image'] ) ? $options['hide_featured_image'] : $default['hide_featured_image'],
-		);
+		) );
 	}
 
 	/**

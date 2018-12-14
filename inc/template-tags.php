@@ -183,13 +183,13 @@ function terminal_str_replace( $find, $replace, $subject, $replacement_limit = -
 function str_rreplace( $find, $replace, $subject, $replacement_limit = -1 ) {
 	return strrev( str_replace( strrev( $find ), strrev( $replace ), strrev( $subject ), $replacement_limit ) );
 }
+
 /**
  * Template function to print featured image credit (if available).
  */
 function terminal_print_featured_image_caption() {
 	$data = Terminal\Data::instance();
 	$meta = $data->get_post_featured_meta();
-	$meta = apply_filters( 'terminal_featured_meta', $meta );
 	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
 		$caption = ! empty( $meta['caption'] ) ? $meta['caption'] : '';
 		$caption = sprintf(
