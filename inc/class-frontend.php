@@ -35,6 +35,28 @@ class Frontend {
 		add_filter( 'sidebars_widgets', [ $this, 'maybe_disable_ads' ] );
 		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
+		add_filter( 'wp_travel_checkout_fields', [ $this, 'wp_travel_customize_booking_option' ] );
+	}
+
+	/**
+	 * Filter WP Travel booking options.
+	 */
+	public function wp_travel_customize_booking_option( $fields ) {
+		$fields['payment_fields']['booking_option'] = array(
+			'type' => 'select',
+			'label' => __( 'Booking Options', 'terminal' ),
+			'name' => 'wp_travel_booking_option',
+			'id' => 'wp-travel-option',
+			'validations' => array(
+				'required' => 1
+			),
+			'options' => array(
+				'booking_with_payment' => 'Booking with payment'
+			),
+			'default' => 'booking_with_payment',
+			'priority' => 100
+		);
+		return $fields;
 	}
 
 	/**
@@ -100,7 +122,6 @@ class Frontend {
 	 */
 	public function remove_jetpack_crap() {
 		if ( ! is_customize_preview() && ! is_admin() ) {
-			wp_deregister_style( 'dashicons' );
 			wp_deregister_style( 'jetpack-widget-social-icons-admin' );
 			wp_deregister_style( 'jetpack-widget-social-icons-styles' );
 			wp_deregister_style( 'the-neverending-homepage' );

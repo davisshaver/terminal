@@ -220,6 +220,17 @@
 .wp-travel-average-review {
   display: none; }
 
+#wp-travel-note {
+  width: 100%; }
+
+.wp-travel-checkout-section {
+  margin: -5px;
+  padding: 5px; }
+
+.entry__content .checkout-page-wrap .form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0; }
+
 .terminal-list-item .entry__thumbnail {
   opacity: 0.5; }
 
