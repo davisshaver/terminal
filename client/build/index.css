@@ -231,6 +231,9 @@
   margin-left: 0;
   margin-right: 0; }
 
+.accordion-toggle .collapse-icon {
+  display: none; }
+
 .terminal-list-item .entry__thumbnail {
   opacity: 0.5; }
 
