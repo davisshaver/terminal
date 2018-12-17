@@ -122,6 +122,7 @@ class Frontend {
 	 */
 	public function remove_jetpack_crap() {
 		if ( ! is_customize_preview() && ! is_admin() ) {
+			wp_deregister_style( 'dashicons' );
 			wp_deregister_style( 'jetpack-widget-social-icons-admin' );
 			wp_deregister_style( 'jetpack-widget-social-icons-styles' );
 			wp_deregister_style( 'the-neverending-homepage' );
