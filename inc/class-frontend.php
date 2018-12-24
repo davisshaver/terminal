@@ -36,6 +36,19 @@ class Frontend {
 		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
 		add_filter( 'wp_travel_checkout_fields', [ $this, 'wp_travel_customize_booking_option' ] );
+		add_filter('wpseo_opengraph_title', [ $this, 'filter_yoast_og_title' ], 999);
+	}
+
+	/**
+	 * Filter Yoast SEO OG title to remove site name.
+	 *
+	 * @param string $title Title
+	 * @return string Filtered title
+	 */
+	public function filter_yoast_og_title( $title ) {
+		$separator = " - ";
+		$site_name = $separator . get_bloginfo( 'name' );
+		return str_replace( $site_name, '', $title ) ;
 	}
 
 	/**
