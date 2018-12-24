@@ -39,6 +39,19 @@ class Frontend {
 		}
 		$this->disable_emojis();
 		add_filter( 'web_app_manifest', [ $this, 'filter_web_app_manifest' ] );
+		add_filter('wpseo_opengraph_title', [ $this, 'filter_yoast_og_title' ], 999);
+	}
+
+	/**
+	 * Filter Yoast SEO OG title to remove site name.
+	 *
+	 * @param string $title Title
+	 * @return string Filtered title
+	 */
+	public function filter_yoast_og_title( $title ) {
+		$separator = apply_filters( 'terminal_yoast_title_filter', ' - ' );
+		$site_name = $separator . get_bloginfo( 'name' );
+		return str_replace( $site_name, '', $title ) ;
 	}
 
 	public function filter_web_app_manifest( $manifest ) {
