@@ -36,6 +36,7 @@ class Theme {
 		add_filter( 'publishpress_disable_timepicker', '__return_true' );
 		add_action( 'admin_init', [ $this, 'enqueue_wpapi' ] );
 		add_filter( 'amp-news-post-type', [ $this, 'filter_amp_news_post_type' ] );
+		add_filter( 'amp-news-author-post-type', [ $this, 'filter_amp_news_author_post_type' ] );
 		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
 		add_image_size( 'terminal-uncut-thumbnail', 500, 500, false );
 		add_image_size( 'terminal-uncut-thumbnail-large', 775, 500, false );
@@ -45,8 +46,15 @@ class Theme {
 	/**
 	 * Filter AMP News theme post types.
 	 */
+	public function filter_amp_news_author_post_type() {
+		return terminal_get_author_post_types();
+	}
+
+	/**
+	 * Filter AMP News theme post types.
+	 */
 	public function filter_amp_news_post_type() {
-		return terminal_get_news_post_types();
+		return terminal_get_recirc_post_types();
 	}
 
 	/**

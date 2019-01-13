@@ -33,6 +33,31 @@ class Obituaries {
 		}
 		add_action( 'init', [ $this, 'register_obituary_post_type' ] );
 		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
+		if ( getenv( 'TERMINAL_ENABLE_OBITUARY_POST_TYPE_ON_AUTHOR' ) ) {
+			add_filter( 'pre_get_posts', array( $this, 'include_obituary_post_type_on_author' ) );
+		}
+	}
+
+	/**
+	 * Include obituary post type.
+	 *
+	 * @param object $query Query.
+	 * @return object Filtered query
+	 */
+	public function include_obituary_post_type_on_author( $query ) {
+		if (
+			( ! is_singular() && ! is_admin() ) &&
+			$query->is_main_query() &&
+			is_author()
+		) {
+			$existing_post_types = $query->get( 'post_type' );
+			if ( is_array( $existing_post_types ) && ! empty( $existing_post_types ) ) {
+				$query->set( 'post_type', array_merge( $existing_post_types, array( $this->obituary_post_type ) ) );
+			} else {
+				$query->set( 'post_type', array( $this->obituary_post_type, 'post' ) );
+			}
+		}
+		return $query;
 	}
 
 	/**

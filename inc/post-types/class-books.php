@@ -29,7 +29,7 @@ class Books {
 			$this->book_post_type = getenv( 'TERMINAL_BOOK_POST_TYPE' );
 		}
 		add_action( 'init', [ $this, 'register_book_post_type' ] );
-		add_filter( 'pre_get_posts', array( $this, 'include_book_post_type_in_rss' ) );
+		add_filter( 'pre_get_posts', array( $this, 'include_book_post_type' ) );
 		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
 	}
 
@@ -58,12 +58,12 @@ class Books {
 	}
 
 	/**
-	 * Include community post type.
+	 * Include book post type.
 	 *
 	 * @param object $query Query.
 	 * @return object Filtered query
 	 */
-	public function include_book_post_type_in_rss( $query ) {
+	public function include_book_post_type( $query ) {
 		if ( ( ! is_singular() && ! is_admin() ) && $query->is_main_query() && ! is_post_type_archive() ) {
 			$existing_post_types = $query->get( 'post_type' );
 			if ( is_array( $existing_post_types ) && ! empty( $existing_post_types ) ) {
@@ -74,7 +74,6 @@ class Books {
 		}
 		return $query;
 	}
-
 
 	/**
 	 * Register community post type.
