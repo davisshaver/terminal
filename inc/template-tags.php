@@ -59,6 +59,80 @@ function terminal_get_post_types( $values_only = true ) {
 }
 
 /**
+ * Get terminal news post types.
+ *
+ * @param boolean $values_only Return values only.
+ * @return array post types
+ */
+function terminal_get_news_post_types( $values_only = true ) {
+	$post_types = array(
+		'post' => 'post',
+	);
+
+	if (
+		getenv( 'TERMINAL_ENABLE_LINK_POST_TYPE' ) &&
+		getenv( 'TERMINAL_ENABLE_LINK_POST_TYPE_AS_RECIRC' )
+	) {
+		$links              = Terminal\Links::instance();
+		$post_types['link'] = $links->get_link_post_type();
+	}
+
+	if (
+		getenv( 'TERMINAL_ENABLE_BOOK_POST_TYPE' ) &&
+		getenv( 'TERMINAL_ENABLE_BOOK_POST_TYPE_AS_RECIRC' )
+	) {
+		$books              = Terminal\Books::instance();
+		$post_types['book'] = $books->get_book_post_type();
+	}
+
+	if (
+		getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE' ) &&
+		getenv( 'TERMINAL_ENABLE_COMMUNITY_POST_TYPE_AS_RECIRC' )
+	) {
+		$community               = Terminal\Community::instance();
+		$post_types['community'] = $community->get_community_post_type();
+	}
+
+	if (
+		getenv( 'TERMINAL_ENABLE_HOUSING_POST_TYPE' ) &&
+		getenv( 'TERMINAL_ENABLE_HOUSING_POST_TYPE_AS_RECIRC' )
+	) {
+		$housing               = Terminal\Housing::instance();
+		$post_types['housing'] = $housing->get_housing_post_type();
+	}
+
+	if (
+		getenv( 'TERMINAL_ENABLE_DEALS_POST_TYPE' ) &&
+		getenv( 'TERMINAL_ENABLE_DEALS_POST_TYPE_AS_RECIRC' )
+	) {
+		$deal               = Terminal\Deals::instance();
+		$post_types['deal'] = $deal->get_deal_post_type();
+	}
+
+	if (
+		getenv( 'TERMINAL_ENABLE_OBITUARY_POST_TYPE' ) &&
+		getenv( 'TERMINAL_ENABLE_OBITUARY_POST_TYPE_AS_RECIRC' )
+	) {
+		$obit                   = Terminal\Obituaries::instance();
+		$post_types['obituary'] = $obit->get_obituary_post_type();
+	}
+
+	if (
+		getenv( 'TERMINAL_ENABLE_RELEASES_POST_TYPE' ) &&
+		getenv( 'TERMINAL_ENABLE_RELEASES_POST_TYPE_AS_RECIRC' )
+	) {
+		$release                  = Terminal\Releases::instance();
+		$post_types['release'] = $release->get_releases_post_type();
+	}
+
+	if ( $values_only ) {
+		return array_values( $post_types );
+	}
+
+	return $post_types;
+}
+
+/**
  * Get terminal post type.
  *
  * @param object $post Post.

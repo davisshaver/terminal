@@ -46,7 +46,7 @@ class Theme {
 	 * Filter AMP News theme post types.
 	 */
 	public function filter_amp_news_post_type() {
-		return terminal_get_post_types();
+		return terminal_get_news_post_types();
 	}
 
 	/**
