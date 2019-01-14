@@ -109,7 +109,7 @@ class Links {
 			$id = get_the_id();
 		}
 		if ( get_post_type( $id ) === $this->link_post_type ) {
-			return "[LINK] ${title}";
+			return "🔗 ${title}";
 		}
 		return $title;
 	}

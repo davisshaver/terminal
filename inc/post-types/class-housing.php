@@ -77,24 +77,7 @@ class Housing {
 	public function filter_feed_author( $author ) {
 		$id = get_the_id();
 		if ( get_post_type( $id ) === $this->housing_post_type ) {
-			$realtor = get_post_meta( $id, $this->housing_post_type_link_key . '_realtor', true );
-			if ( ! empty( $realtor ) ) {
-				return $realtor;
-			}
-		}
-		return $author;
-	}
-
-	/**
-	 * Filter feed author.
-	 *
-	 * @param string $author Current author.
-	 * @return string Filtered author
-	 */
-	public function filter_feed_author( $author ) {
-		$id = get_the_id();
-		if ( get_post_type( $id ) === $this->housing_post_type ) {
-			$realtor = get_realtor( $id );
+			$realtor = $this->get_realtor( $id );
 			if ( ! empty( $realtor ) ) {
 				return $realtor;
 			}
@@ -134,8 +117,8 @@ class Housing {
 		if ( ! $id ) {
 			$id = get_the_id();
 		}
-		if ( is_feed() && get_post_type( $id ) === $this->housing_post_type ) {
-			return "[HOUSING] ${title}";
+		if ( get_post_type( $id ) === $this->housing_post_type ) {
+			return "🏠 ${title}";
 		}
 		return $title;
 	}

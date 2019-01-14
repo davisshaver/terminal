@@ -93,7 +93,7 @@ class Community {
 			$id = get_the_id();
 		}
 		if ( is_feed() && get_post_type( $id ) === $this->community_post_type ) {
-			return "[COMMUNITY] ${title}";
+			return "✍️ ${title}";
 		}
 		return $title;
 	}
