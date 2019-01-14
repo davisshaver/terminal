@@ -31,7 +31,8 @@ class FM_Sponsors {
 				'name'           => 'terminal_sponsor_options',
 				'serialize_data' => false,
 				'children'       => array(
-					'enable_sponsors'     => new \Fieldmanager_Checkbox( 'Enable sponsors module' ),
+					'title'               => new \Fieldmanager_Textfield( __( 'Title', 'terminal' ) ),
+					'enable_sponsors'     => new \Fieldmanager_Checkbox( __( 'Enable sponsors module', 'terminal' ) ),
 					'tier_one_sponsors'   => new \Fieldmanager_Group(
 						__( 'Tier one sponsors', 'terminal' ),
 						array(

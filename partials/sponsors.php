@@ -5,7 +5,7 @@ if ( empty( terminal_get_sponsor_data( 'enable_sponsors' ) ) ) {
 }
 ?>
 <div id="terminal-sponsors" class="terminal-sponsors-container">
-	<?php terminal_print_sponsors_header(); ?>
+	<?php terminal_print_sponsors_header( terminal_get_sponsor_data( 'title' ) ); ?>
 	<?php
 	$tiers = array( 'one', 'two', 'three', 'four', 'five' );
 	foreach( $tiers as $tier ) :
