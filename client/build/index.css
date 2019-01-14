@@ -56,9 +56,10 @@
   .terminal-contact-inputs textarea {
     flex: 0 0 100%; }
 
-.mepr-submit {
+.mepr-submit, .gform_footer .button {
   background: #fcd651;
-  border: none; }
+  border: none;
+  color: black; }
 
 .mepr-submit[type="submit"], .terminal-contact-inputs[type="submit"] {
   color: black;
