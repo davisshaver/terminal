@@ -48,6 +48,41 @@ class Housing {
 		add_action( 'add_meta_boxes', [ $this, 'remove_yoast' ], 100 );
 		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
 		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
+		add_filter( 'author_link', [ $this, 'filter_feed_author_link' ], 10 );
+	}
+
+	/**
+	 * Filter feed author.
+	 *
+	 * @param string $link Current author.
+	 * @return string Filtered author
+	 */
+	public function filter_feed_author_link( $link ) {
+		$id = get_the_id();
+		if ( get_post_type( $id ) === $this->housing_post_type ) {
+			$url = get_post_meta( $id, $this->housing_post_type_link_key, true );
+			if ( ! empty( $url ) ) {
+				return $url;
+			}
+		}
+		return $link;
+	}
+
+	/**
+	 * Filter feed author.
+	 *
+	 * @param string $author Current author.
+	 * @return string Filtered author
+	 */
+	public function filter_feed_author( $author ) {
+		$id = get_the_id();
+		if ( get_post_type( $id ) === $this->housing_post_type ) {
+			$realtor = get_post_meta( $id, $this->housing_post_type_link_key . '_realtor', true );
+			if ( ! empty( $realtor ) ) {
+				return $realtor;
+			}
+		}
+		return $author;
 	}
 
 	/**
