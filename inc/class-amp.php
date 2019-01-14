@@ -47,6 +47,24 @@ class AMP {
 			wp_enqueue_script( 'amp-social-share' );
 		} );
 		add_filter( 'amp_supportable_templates', function( $templates ) {
+			$templates['is_page_with_form'] = array(
+				'label'     => __( 'Page with Form', 'example' ),
+				'callback'  => function( \WP_Query $query ) {
+					$has_form = false;
+					if ( ! empty( $query->posts ) ) {
+						$post = $query->posts[0];
+						if (
+							! empty( $post->post_content ) &&
+							strpos( $post->post_content, 'gravityform' ) !== false
+						) {
+							$has_form = true;
+						}
+					}
+					return $has_form;
+				},
+				'parent'    => 'is_singular',
+				'supported' => false,
+			);
 			$templates['is_single_memberpress_page'] = array(
 				'label'     => __( 'Membership Login', 'example' ),
 				'callback'  => function( \WP_Query $query ) {
