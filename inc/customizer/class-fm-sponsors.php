@@ -43,6 +43,7 @@ class FM_Sponsors {
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
 								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
 								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+								'hide_name'     => new \Fieldmanager_Checkbox( __( 'Hide Sponsor Name', 'terminal' ) ),
 							),
 						)
 					),
@@ -57,6 +58,7 @@ class FM_Sponsors {
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
 								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
 								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+								'hide_name'     => new \Fieldmanager_Checkbox( __( 'Hide Sponsor Name', 'terminal' ) ),
 							),
 						)
 					),
@@ -71,6 +73,7 @@ class FM_Sponsors {
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
 								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
 								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+								'hide_name'     => new \Fieldmanager_Checkbox( __( 'Hide Sponsor Name', 'terminal' ) ),
 							),
 						)
 					),
@@ -85,6 +88,7 @@ class FM_Sponsors {
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
 								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
 								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+								'hide_name'     => new \Fieldmanager_Checkbox( __( 'Hide Sponsor Name', 'terminal' ) ),
 							),
 						)
 					),
@@ -99,6 +103,7 @@ class FM_Sponsors {
 								'sponsor_media' => new \Fieldmanager_Media( 'Sponsor Media' ),
 								'sponsor_link'  => new \Fieldmanager_Link( 'Sponsor Link' ),
 								'sponsor_name'  => new \Fieldmanager_Textfield( __( 'Sponsor Name', 'terminal' ) ),
+								'hide_name'     => new \Fieldmanager_Checkbox( __( 'Hide Sponsor Name', 'terminal' ) ),
 							),
 						)
 					),

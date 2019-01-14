@@ -25,19 +25,29 @@ if ( empty( terminal_get_sponsor_data( 'enable_sponsors' ) ) ) {
 				} else {
 					$img_size = 'terminal-uncut-thumbnail-large';
 				}
-		
-				$image = wp_get_attachment_image_src( $sponsor['sponsor_media'], $img_size, false, array( 'scheme' => 'https' ) );
+				$image = wp_get_attachment_image(
+					$sponsor['sponsor_media'],
+					$img_size,
+					false,
+					array(
+						'data-amp-layout' => 'responsive',
+						'scheme' => 'https',
+						'alt'    => esc_attr( $sponsor['sponsor_name'] )
+					)
+				);
 				if ( empty( $image ) ) {
 					continue;
 				}
 				printf(
-					'<a href="%s" target="_blank" class="terminal-sponsor terminal-sponsor-tier-%s"><img data-amp-layout="fixed" src="%s" alt="%s">%s</a>',
+					'<a href="%s" target="_blank" class="terminal-sponsor terminal-sponsor-tier-%s">',
 					esc_url( $sponsor['sponsor_link'] ),
-					esc_attr( $tier ),
-					esc_url( $image[0] ),
-					esc_attr( $sponsor['sponsor_name'] ),
-					esc_html( $sponsor['sponsor_name'] )
+					esc_attr( $tier )
 				);
+				echo $image;
+				if ( ! empty( $sponsor['hide_name'] ) ) {
+					esc_html_e( $sponsor['sponsor_name'] );
+				}
+				echo '</a>';
 			endforeach;
 		}
 	endforeach;

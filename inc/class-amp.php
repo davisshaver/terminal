@@ -29,6 +29,7 @@ class AMP {
 			add_action( 'ampnews-before-article', [ $this, 'print_analytics' ] );
 		}
 		add_action( 'ampnews-before-footer', [ $this, 'print_sticky_ad' ] );
+		add_action( 'ampnews-before-footer-single', [ $this, 'print_sponsors_module' ] );
 		add_action( 'ampnews-before-footer', [ $this, 'print_sponsors_module' ] );
 		add_action( 'ampnews-before-footer', [ $this, 'print_popular_module' ], 100 );
 		add_action( 'ampnews-before-footer', [ $this, 'print_signup_module' ], 1 );
@@ -344,11 +345,6 @@ class AMP {
 	 * Print sponsors module.
 	 */
 	public function print_sponsors_module() {
-		$data    = Data::instance();
-		$disable = $data->user_has_no_ad_id();
-		if ( $disable ) {
-			return;
-		}
 		echo '<div class="wrap">';
 		terminal_print_template_part( 'sponsors' );
 		echo '</div>';
