@@ -22,6 +22,13 @@ class Releases {
 	private $releases_post_type = 'release';
 
 	/**
+	 * Release post type link key
+	 *
+	 * @var string $release_post_type_link_key Link slug.
+	 */
+
+	private $release_post_type_link_key = 'link';
+	/**
 	 * Setup.
 	 */
 	public function setup() {
@@ -32,9 +39,78 @@ class Releases {
 			$this->releases_post_type_org = getenv( 'TERMINAL_RELEASES_POST_TYPE_ORG_KEY' );
 		}
 		add_action( 'init', [ $this, 'register_releases_post_type' ] );
+		add_action( 'init', [ $this, 'register_release_fields' ] );
 		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
 		if ( getenv( 'TERMINAL_ENABLE_RELEASES_POST_TYPE_ON_AUTHOR' ) ) {
 			add_filter( 'pre_get_posts', array( $this, 'include_release_post_type_on_author' ) );
+		}
+		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
+		add_filter( 'author_link', [ $this, 'filter_feed_author_link' ], 10 );
+	}
+
+	/**
+	 * Filter feed author.
+	 *
+	 * @param string $link Current author.
+	 * @return string Filtered author
+	 */
+	public function filter_feed_author_link( $link ) {
+		$id = get_the_id();
+		if ( get_post_type( $id ) === $this->releases_post_type ) {
+			$url = get_post_meta( $id, $this->release_post_type_link_key, true );
+			if ( ! empty( $url ) ) {
+				return $url;
+			}
+		}
+		return $link;
+	}
+
+	/**
+	 * Filter feed author.
+	 *
+	 * @param string $author Current author.
+	 * @return string Filtered author
+	 */
+	public function filter_feed_author( $author ) {
+		$id = get_the_id();
+		if ( get_post_type( $id ) === $this->releases_post_type ) {
+			$sponsor = $this->get_org( $id );
+			if ( ! empty( $sponsor ) ) {
+				return $sponsor;
+			}
+		}
+		return $author;
+	}
+
+	/**
+	 * Get link post type.
+	 */
+	public function get_org( $post_id = null ) {
+		if ( ! $post_id ) {
+			$post_id = get_the_id();
+		}
+		$sponsor = get_post_meta( $post_id, $this->release_post_type_link_key . '_org', true );
+		if ( ! empty( $sponsor ) ) {
+			return $sponsor;
+		}
+		return false;
+	}
+
+	/**
+	 * Register release fields.
+	 */
+	public function register_release_fields() {
+		if ( defined( 'FM_VERSION' ) ) {
+			$fm = new \Fieldmanager_Link( array(
+				'name'           => $this->release_post_type_link_key,
+				'serialize_data' => false,
+			) );
+			$fm->add_meta_box( 'Org Link', $this->releases_post_type );
+			$fm = new \Fieldmanager_TextField( array(
+				'name'           => $this->release_post_type_link_key . '_org',
+				'serialize_data' => false,
+			) );
+			$fm->add_meta_box( 'Releasing Org', $this->releases_post_type );
 		}
 	}
 
