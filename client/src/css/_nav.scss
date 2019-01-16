@@ -51,9 +51,9 @@
     display: flex;
     justify-content: left;
 		li {
-			flex: 0 0 auto;
+			flex: 0 0 20%;
 			list-style: none;
-			margin: 10px 50px 10px 10px;
+			margin: 5px;
 			justify-content: space-between;
 		}
 	}
