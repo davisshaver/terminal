@@ -35,7 +35,7 @@ if ( 'link' === $post_type ) {
 	$host = parse_url( get_the_permalink(), PHP_URL_HOST );
 	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $host;
 } elseif ( 'housing' === $post_type ) {
-	$terminal_card_title = __( 'Featured Housing', 'terminal' );
+	$terminal_card_title = __( 'Featured Apartment', 'terminal' );
 	$terminal_card_title_icon = get_template_directory_uri() . '/client/static/images/icons/si-glyph-house.svg';
 	$realtor = terminal_get_realtor( get_the_id() );
 	$terminal_card_title_meta = __( 'via ', 'terminal' ) . $realtor;
