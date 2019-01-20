@@ -86,3 +86,7 @@ if ( getenv( 'TERMINAL_ENABLE_RELEASES_POST_TYPE' ) ) {
 if ( getenv( 'TERMINAL_ENABLE_DEALS_POST_TYPE' ) ) {
 	require_once __DIR__ . '/inc/post-types/class-deals.php';
 }
+
+if ( getenv( 'TERMINAL_ENABLE_JOBS_POST_TYPE' ) ) {
+	require_once __DIR__ . '/inc/post-types/class-jobs.php';
+}
