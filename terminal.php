@@ -34,6 +34,10 @@ if ( ! defined( 'TERMINAL_APP' ) ) {
 	define( 'TERMINAL_APP', 'terminal-app' );
 }
 
+if ( getenv( 'TERMINAL_DISABLE_WP_CRON' ) && ! defined( 'DISABLE_WP_CRON' ) ) {
+	define( 'DISABLE_WP_CRON', true );
+}
+
 require_once __DIR__ . '/lib/singleton.php';
 
 require_once __DIR__ . '/inc/class-amp.php';
