@@ -41,6 +41,7 @@ class Theme {
 		add_image_size( 'terminal-uncut-thumbnail', 500, 500, false );
 		add_image_size( 'terminal-uncut-thumbnail-large', 775, 500, false );
 		add_image_size( 'terminal-uncut-thumbnail-extra-large', 2000, 1500, false );
+		add_filter( 'gform_advancedpostcreation_excerpt', '__return_true' );
 	}
 
 	/**
