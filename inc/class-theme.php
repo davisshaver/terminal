@@ -117,6 +117,7 @@ class Theme {
 		add_filter( 'unipress_facebook_core_meta', '__return_false' );
 
 		add_action( 'admin_init', [ $this, 'enqueue_wpapi'] );
+		add_filter( 'gform_advancedpostcreation_excerpt', '__return_true' );
 	}
 
 	public function enqueue_wpapi() {
