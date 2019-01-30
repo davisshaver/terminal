@@ -104,8 +104,37 @@ class AMP {
 		add_filter( 'ampnews-signup-link', [ $this, 'get_membership_link' ] );
 		add_filter( 'ampnews-signup-text', [ $this, 'get_membership_text' ] );
 		add_filter ( 'ampnews-show-single-image', [ $this, 'filter_featured_image_amp_single' ], 10, 1 );
+		add_filter( 'mepr-unauthorized-login-link-text', '__return_empty_string' );
+		add_filter( 'one-time-login-logged-in', [ $this, 'filter_login_logged_in' ] );
+		add_filter( 'mepr-mailchimptags-add-subscriber-args', 'filter_member_press_tags', 11, 2 );
 	}
 
+	public function filter_member_press_tags( $args, $member ) {
+		$planning = get_user_meta( $member->ID, 'mepr_send_planning_calendar', true );
+		if ( ! empty( $planning ) ) {
+			$args['merge_fields']['MERGE15'] = $planning;
+		}
+		return $args;
+	}
+
+	/**
+	 * Filter login logged in.
+	 *
+	 * @param string $current Current markup.
+	 * @return string Filtered markup.
+	 */
+	public function filter_login_logged_in() {
+		global $wp;
+		return sprintf(
+				'<p>%s <a href="%s">%s</a></p><p>%s <a href="%s">%s</a></p>',
+				__( 'Already logged in.', 'one-time-login' ),
+				esc_url( wp_logout_url( home_url( $wp->request ) ) ),
+				__( 'Logout.', 'one-time-login' ),
+				__( 'Thank you for sponsoring LebTown.', 'one-time-login' ),
+				esc_url( home_url( '/account/' ) ),
+				__( 'Access account settings.', 'one-time-login' )
+		);
+	}
 	/**
 	 * Filter featured image on single in AMP theme.
 	 */
