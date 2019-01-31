@@ -30,6 +30,14 @@
     padding: 20px;
 }
 
+.terminal-contact {
+    &.amp-form-submit-success {
+        .terminal-contact-inputs {
+            display: none;
+        }
+    }
+}
+
 .terminal-contact-inputs {
     display: flex;
     flex-wrap: wrap;
