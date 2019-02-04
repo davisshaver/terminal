@@ -427,9 +427,11 @@ function retrieve_referral_data( $post_id ) {
 
 function retrieve_data( $post_id ) {
 	$parsely = Terminal\Parsely::instance();
-	return $parsely->store_referral_data( $post_id );
-	return $parsely->store_analytics_data( $post_id );
-	return $parsely->store_social_data( $post_id );
+	return array(
+		'referral' => $parsely->store_referral_data( $post_id ),
+		'analytics' => $parsely->store_analytics_data( $post_id ),
+		'social' => $parsely->store_social_data( $post_id )
+	);
 }
 
 /**

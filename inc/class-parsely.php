@@ -35,9 +35,9 @@ class Parsely {
 		$this->api_key    = getenv( 'TERMINAL_PARSELY_API_KEY' );
 		$this->api_secret = getenv( 'TERMINAL_PARSELY_API_SECRET' );
 		if ( ! empty( $this->api_key ) && ! empty( $this->api_secret ) && current_user_can( 'edit_others_posts' ) ) {
-			// add_filter( 'manage_post_posts_columns', [ $this, 'add_parsely_columns' ] );
-			// add_action( 'manage_post_posts_custom_column', [ $this, 'handle_parsely_columns' ], 10, 2 );
-			// add_filter( 'manage_edit-post_sortable_columns', [ $this, 'add_parsely_columns_orderby' ] );
+			add_filter( 'manage_post_posts_columns', [ $this, 'add_parsely_columns' ] );
+			add_action( 'manage_post_posts_custom_column', [ $this, 'handle_parsely_columns' ], 10, 2 );
+			add_filter( 'manage_edit-post_sortable_columns', [ $this, 'add_parsely_columns_orderby' ] );
 			add_action( 'pre_get_posts', [ $this, 'parsely_custom_orderby' ] );
 		}
 		add_action( 'retrieve_social_data', 'retrieve_social_data', 10, 1 );
@@ -518,19 +518,31 @@ class Parsely {
 	}
 
 	/**
+	 * Get the parsely permalink.
+	 */
+	private function get_the_parsely_permalink( $post_id ) {
+		$url          = get_the_permalink( $post_id );
+		if ( getenv( 'TERMINAL_PARSELY_DOMAIN_DEBUG' ) ) {
+			$url = str_replace( get_home_url(), getenv( 'TERMINAL_PARSELY_DOMAIN_DEBUG' ), $url );
+		}
+		return $url;
+	}
+
+	/**
 	 * Store referrers data for post.
 	 *
 	 * @param int $post_id Post ID.
 	 */
 	public function store_referral_data( $post_id ) {
 		$cache_length = $this->get_cache_length( $post_id );
-		$url          = get_the_permalink( $post_id );
+		$url = $this->get_the_parsely_permalink( $post_id );
 		$rest_target  = sprintf(
 			'https://api.parsely.com/v2/referrers/post/detail?apikey=%s&secret=%s&url=%s&period_start=90d',
 			$this->api_key,
 			$this->api_secret,
 			$url
 		);
+
 		$result       = false;
 		try {
 			// phpcs:ignore
@@ -566,7 +578,7 @@ class Parsely {
 	 */
 	public function store_analytics_data( $post_id ) {
 		$cache_length = $this->get_cache_length( $post_id );
-		$url          = get_the_permalink( $post_id );
+		$url = $this->get_the_parsely_permalink( $post_id );
 		$rest_target  = sprintf(
 			'https://api.parsely.com/v2/analytics/post/detail?apikey=%s&secret=%s&url=%s',
 			$this->api_key,
@@ -609,7 +621,7 @@ class Parsely {
 	 */
 	public function store_social_data( $post_id ) {
 		$cache_length = $this->get_cache_length( $post_id );
-		$url          = get_the_permalink( $post_id );
+		$url = $this->get_the_parsely_permalink( $post_id );
 		$rest_target  = sprintf(
 			'https://api.parsely.com/v2/shares/post/detail?apikey=%s&secret=%s&url=%s',
 			$this->api_key,
@@ -656,7 +668,6 @@ class Parsely {
 		if ( empty( $this->api_key ) || empty( $this->api_secret ) ) {
 			return;
 		}
-		$url = get_the_permalink( $post_id );
 		return $this->get_cached( 'terminal_social', $post_id );
 	}
 }

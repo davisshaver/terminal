@@ -10,6 +10,11 @@ if ( empty( $url ) || empty( $title ) ) {
 if ( empty( $rank ) ) {
 	$rank = null;
 }
+
+if ( empty( $image_class ) ) {
+	$image_class = null;
+}
+
 printf(
 	'<div class="terminal-popular-list-item %s" data-rank="%s">',
 	esc_attr( $image_class ),
