@@ -38,6 +38,10 @@ if ( getenv( 'TERMINAL_DISABLE_WP_CRON' ) && ! defined( 'DISABLE_WP_CRON' ) ) {
 	define( 'DISABLE_WP_CRON', true );
 }
 
+if ( getenv( 'TERMINAL_WP_CRON_LOCK_TIMEOUT' ) && ! defined( 'TERMINAL_WP_CRON_LOCK_TIMEOUT' ) ) {
+	define( 'WP_CRON_LOCK_TIMEOUT', getenv( 'TERMINAL_WP_CRON_LOCK_TIMEOUT' ) );
+}
+
 require_once __DIR__ . '/lib/singleton.php';
 
 require_once __DIR__ . '/inc/class-amp.php';
