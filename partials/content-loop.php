@@ -109,11 +109,18 @@ printf(
 				esc_html( $terminal_card_title_meta )
 		);
 	}
-	if ( 'housing' !== $post_type && 'top' === $loop_data['loop_meta_position'] ) :
+	if ( 'housing' !== $post_type && 'top' === $loop_data['loop_meta_position'] ) {
 		terminal_print_template_part( 'byline', array(
 			'post_type' => $post_type
 		) );
-	endif;
+	}
+
+	if ( 'housing' === $post_type) {
+		$post_target = '_blank';
+	} else {
+		$post_target = '_self';
+	}
+
 	if ( has_post_thumbnail() && empty( $use_featured_embed ) ) {
 		$thumb = wp_get_attachment_image_src(
 			get_post_thumbnail_id( $post_id ),
@@ -124,6 +131,7 @@ printf(
 				href="%s"
 				rel="bookmark"
 				class="terminal-tracking terminal-card-image"
+				target="%s"
 				title="%s"
 				data-terminal-post-id="%s"
 				data-terminal-post-type="%s"
@@ -133,6 +141,7 @@ printf(
 				data-terminal-view="loop-image"
 			>',
 			esc_attr( $post_link ),
+			esc_attr( $post_target ),
 			esc_attr( $post_title_attribute ),
 			esc_attr( $post_id ),
 			esc_attr( $post_type ),
@@ -158,6 +167,7 @@ printf(
 				id="%s"
 				href="%s"
 				class="terminal-tracking terminal-link-gray"
+				target="%s"
 				data-terminal-post-id="%s"
 				data-terminal-has-image="%s"
 				data-terminal-author="%s"
@@ -165,6 +175,7 @@ printf(
 				data-terminal-view="loop-headline">%s</a></h1>',
 			esc_attr( $post_type . '-headline-link-' . $post_id ),
 			esc_attr( $post_link ),
+			esc_attr( $post_target ),
 			esc_attr( $post_id ),
 			esc_attr( $post_has_thumbnail ),
 			esc_attr( $post_author_nice_name ),
