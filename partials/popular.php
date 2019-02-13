@@ -10,13 +10,13 @@ $dehydrated_targets = array(
 		'period_start' => '24h',
 		'key' => 'past-day',
 		'label' => __( 'Past Day', 'terminal' ),
-		'initial' => true,
 	),
 	array(
 		'cache' => 'terminal-parsely-popular-last-two-days',
 		'period_start' => '48h',
 		'key' => 'past-two-days',
 		'label' => __( 'Past 48 Hours', 'terminal' ),
+		'initial' => true,
 	),
 	array(
 		'cache' => 'terminal-parsely-popular-last-week',
