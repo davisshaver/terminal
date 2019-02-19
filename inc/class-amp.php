@@ -106,7 +106,7 @@ class AMP {
 		add_filter ( 'ampnews-show-single-image', [ $this, 'filter_featured_image_amp_single' ], 10, 1 );
 		add_filter( 'mepr-unauthorized-login-link-text', '__return_empty_string' );
 		add_filter( 'one-time-login-logged-in', [ $this, 'filter_login_logged_in' ] );
-		add_filter( 'mepr-mailchimptags-add-subscriber-args', 'filter_member_press_tags', 11, 2 );
+		add_filter( 'mepr-mailchimptags-add-subscriber-args', [ $this, 'filter_member_press_tags' ], 11, 2 );
 	}
 
 	public function filter_member_press_tags( $args, $member ) {
