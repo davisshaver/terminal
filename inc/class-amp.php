@@ -107,6 +107,15 @@ class AMP {
 		add_filter( 'mepr-unauthorized-login-link-text', '__return_empty_string' );
 		add_filter( 'one-time-login-logged-in', [ $this, 'filter_login_logged_in' ] );
 		add_filter( 'mepr-mailchimptags-add-subscriber-args', [ $this, 'filter_member_press_tags' ], 11, 2 );
+		add_filter( 'ampnews-index-template', [ $this, 'filter_ampnews_index_template' ] );
+	}
+
+	public function filter_ampnews_index_template( $template ) {
+		$post_type = get_post_type();
+		if ( 'post' !== $post_type ) {
+			return 'templates/entry/slim-minimal';
+		}
+		return $template;
 	}
 
 	public function filter_member_press_tags( $args, $member ) {

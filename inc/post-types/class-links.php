@@ -58,7 +58,7 @@ class Links {
 	public function filter_ampnews_author_prefix( $prefix ) {
 		$id = get_the_id();
 		if ( get_post_type( $id ) === $this->link_post_type ) {
-			return __( 'Via', 'terminal' );
+			return __( 'External link via', 'terminal' );
 		}
 		return $prefix;
 	}

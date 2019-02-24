@@ -11,6 +11,10 @@ if ( empty( terminal_get_sponsor_data( 'enable_sponsors' ) ) ) {
 	foreach( $tiers as $tier ) :
 		$tier_data = terminal_get_sponsor_data( 'tier_' . $tier . '_sponsors' );
 		if ( ! empty( $tier_data ) ) {
+			printf(
+				'<div class="%s">',
+				esc_attr( 'terminal-sponsor terminal-sponsor-level-' . $tier )
+			);
 			foreach( $tier_data as $sponsor ) :
 				if (
 					empty( $sponsor['sponsor_link'] ) ||
@@ -44,11 +48,12 @@ if ( empty( terminal_get_sponsor_data( 'enable_sponsors' ) ) ) {
 					esc_attr( $tier )
 				);
 				echo $image;
-				if ( ! empty( $sponsor['hide_name'] ) ) {
+				if ( empty( $sponsor['hide_name'] ) ) {
 					esc_html_e( $sponsor['sponsor_name'] );
 				}
 				echo '</a>';
 			endforeach;
+			echo '</div>';
 		}
 	endforeach;
 	?>

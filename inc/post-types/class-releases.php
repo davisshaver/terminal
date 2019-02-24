@@ -41,11 +41,39 @@ class Releases {
 		add_action( 'init', [ $this, 'register_releases_post_type' ] );
 		add_action( 'init', [ $this, 'register_release_fields' ] );
 		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
+		// add_filter( 'ampnews_filter_author_suffix', [ $this, 'filter_ampnews_author_suffix' ] );
 		if ( getenv( 'TERMINAL_ENABLE_RELEASES_POST_TYPE_ON_AUTHOR' ) ) {
 			add_filter( 'pre_get_posts', array( $this, 'include_release_post_type_on_author' ) );
 		}
 		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
 		add_filter( 'author_link', [ $this, 'filter_feed_author_link' ], 10 );
+		add_filter( 'pre_get_posts', array( $this, 'include_release_post_type_in_loop' ) );
+	}
+
+	// public function filter_ampnews_author_suffix( $default ) {
+	// 	$id = get_the_id();
+	// 	if ( get_post_type( $id ) === $this->releases_post_type ) {
+	// 		return __( 'ℹ️', 'terminal' );
+	// 	}
+	// 	return $default;
+	// }
+
+	/**
+	 * Include release post type.
+	 *
+	 * @param object $query Query.
+	 * @return object Filtered query
+	 */
+	public function include_release_post_type_in_loop( $query ) {
+		if ( ( ! is_singular() && ! is_admin() ) && $query->is_main_query() && ! is_post_type_archive() ) {
+			$existing_post_types = $query->get( 'post_type' );
+			if ( is_array( $existing_post_types ) && ! empty( $existing_post_types ) ) {
+				$query->set( 'post_type', array_merge( $existing_post_types, array( $this->releases_post_type ) ) );
+			} else {
+				$query->set( 'post_type', array( $this->releases_post_type, 'post' ) );
+			}
+		}
+		return $query;
 	}
 
 	/**
@@ -145,7 +173,7 @@ class Releases {
 	public function filter_ampnews_author_prefix( $prefix ) {
 		$id = get_the_id();
 		if ( get_post_type( $id ) === $this->releases_post_type ) {
-			return __( 'Via', 'terminal' );
+			return __( 'Press release by', 'terminal' );
 		}
 		return $prefix;
 	}
