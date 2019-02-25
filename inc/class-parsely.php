@@ -372,7 +372,7 @@ class Parsely {
 		} elseif ( $time_since_publish > DAY_IN_SECONDS )  {
 			$cache_length = HOUR_IN_SECONDS;
 		} else {
-			$cache_length = MINUTE_IN_SECONDS * 10;
+			$cache_length = MINUTE_IN_SECONDS * 30;
 		}
 		return $cache_length;
 	}
