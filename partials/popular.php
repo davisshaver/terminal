@@ -41,18 +41,19 @@ foreach ( $dehydrated_targets as $target ) {
 			$new_target['data'] = $json->data;
 			$hydrated_targets[] = $new_target;
 		}
-	}
-	$period = $target['period_start'];
-	$result = wp_remote_get(
-		"https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=${period}&limit=4"
-	);
-	if ( false !== $result ) {
-		wp_cache_set( $target['cache'], $result, '', 3600 );
-		$json = json_decode( wp_remote_retrieve_body( $result ) );
-		if ( ! empty ( $json->data ) ) {
-			$new_target = $target;
-			$new_target['data'] = $json->data;
-			$hydrated_targets[] = $new_target;
+	} else {
+		$period = $target['period_start'];
+		$result = wp_remote_get(
+			"https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=${period}&limit=4"
+		);
+		if ( false !== $result ) {
+			wp_cache_set( $target['cache'], $result, '', 3600 );
+			$json = json_decode( wp_remote_retrieve_body( $result ) );
+			if ( ! empty ( $json->data ) ) {
+				$new_target = $target;
+				$new_target['data'] = $json->data;
+				$hydrated_targets[] = $new_target;
+			}
 		}
 	}
 }
