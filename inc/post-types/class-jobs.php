@@ -36,6 +36,21 @@ class Jobs {
 		add_action('add_meta_boxes', [ $this, 'remove_yoast' ], 100);
 		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
 		add_filter( 'author_link', [ $this, 'filter_feed_author_link' ], 10 );
+		add_filter( 'ampnews_filter_author_prefix', [ $this, 'filter_ampnews_author_prefix' ] );
+	}
+
+	/**
+	 * Filter AMP News theme author prefix.
+	 *
+	 * @param string $prefix Current prefix.
+	 * @return string Filtered prefix
+	 */
+	public function filter_ampnews_author_prefix( $prefix ) {
+		$id = get_the_id();
+		if ( get_post_type( $id ) === $this->job_post_type ) {
+			return __( 'Sponsored by', 'terminal' );
+		}
+		return $prefix;
 	}
 
 	/**
