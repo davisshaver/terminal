@@ -39,6 +39,7 @@ class AMP {
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_shortcode( 'terminal-mailchimp', [ $this, 'mailchimp_print' ] );
+		add_shortcode( 'terminal-sponsor', [ $this, 'sponsor_print' ] );
 		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 1 );
 		add_filter( 'show_admin_bar', '__return_false' );
 		add_filter( 'wp_enqueue_scripts', function() {
@@ -108,6 +109,10 @@ class AMP {
 		add_filter( 'one-time-login-logged-in', [ $this, 'filter_login_logged_in' ] );
 		add_filter( 'mepr-mailchimptags-add-subscriber-args', [ $this, 'filter_member_press_tags' ], 11, 2 );
 		add_filter( 'ampnews-index-template', [ $this, 'filter_ampnews_index_template' ] );
+	}
+
+	public function sponsor_print() {
+		return terminal_get_template_part( 'sponsors' );
 	}
 
 	public function filter_ampnews_index_template( $template ) {
