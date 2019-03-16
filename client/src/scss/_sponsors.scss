@@ -37,41 +37,34 @@
     }
 
     &-tier-two {
-        flex: 0 0 33%;
+        flex: 0 0 50%;
 
         @media screen and (max-width: 768px) {
-            flex: 0 0 50%;
+            flex: 0 0 100%;
         }
     }
 
     &-tier-three {
-        flex: 0 0 25%;
+        flex: 0 0 50%;
 
         @media screen and (max-width: 768px) {
-            flex: 0 0 50%;
+            flex: 0 0 100%;
         }
     }
 
     &-tier-four {
-        flex: 0 0 20%;
-        font-size: .8rem;
+        flex: 0 0 50%;
 
         @media screen and (max-width: 768px) {
-            flex: 0 0 25%;
+            flex: 0 0 100%;
         }
     }
 
     &-tier-five {
-        flex-basis: 14.1%;
-        font-size: .8rem;
-        width: 14.1%;
-
-        img {
-            max-height: 50px;
-        }
+        flex: 0 0 50%;
 
         @media screen and (max-width: 768px) {
-            flex: 0 0 25%;
+            flex: 0 0 100%;
         }
     }
 }
