@@ -111,8 +111,21 @@ class AMP {
 		add_filter( 'ampnews-index-template', [ $this, 'filter_ampnews_index_template' ] );
 	}
 
-	public function sponsor_print() {
-		return terminal_get_template_part( 'sponsors' );
+	public function sponsor_print( $atts ) {
+		if ( ! empty( $atts ) && ! empty( $atts['title'] ) ) {
+			$title = $atts['title'];
+		} else {
+			$title = false;
+		}
+		if ( ! empty( $atts ) && ! empty( $atts['heading_tag'] ) ) {
+			$heading_tag = $atts['heading_tag'];
+		} else {
+			$heading_tag = false;
+		}
+		return terminal_get_template_part( 'sponsors', array(
+			'title' => $title,
+			'heading_tag' => $heading_tag
+		) );
 	}
 
 	public function filter_ampnews_index_template( $template ) {

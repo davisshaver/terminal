@@ -297,13 +297,15 @@ function terminal_get_sponsor_data( $key ) {
 /**
  * Template function to print sponsors header..
  */
-function terminal_print_sponsors_header( $title = '' ) {
+function terminal_print_sponsors_header( $title = '', $heading_tag = 'h2' ) {
 	if ( empty( $title ) ) {
 		$title = __( 'Sponsors', 'terminal' );
 	}
 	printf(
-		'<h2>%s</h2>',
-		esc_html( $title )
+		'<%s>%s</%s>',
+		esc_html( $heading_tag ),
+		esc_html( $title ),
+		esc_html( $heading_tag )
 	);
 }
 /**

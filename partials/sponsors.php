@@ -3,9 +3,17 @@
 if ( empty( terminal_get_sponsor_data( 'enable_sponsors' ) ) ) {
 	return;
 }
+
+if ( empty( $title ) ) {
+	$title = terminal_get_sponsor_data( 'title' );
+}
+
+if ( empty( $heading_tag ) ) {
+	$heading_tag = 'h2';
+}
 ?>
 <div id="terminal-sponsors" class="terminal-sponsors-container">
-	<?php terminal_print_sponsors_header( terminal_get_sponsor_data( 'title' ) ); ?>
+	<?php terminal_print_sponsors_header( $title, $heading_tag ); ?>
 	<?php
 	$tiers = array( 'one', 'two', 'three', 'four', 'five' );
 	foreach( $tiers as $tier ) :
