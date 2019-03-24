@@ -6,6 +6,23 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+
+        .terminal-sponsor-name {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            flex: 100%;
+            justify-content: center;
+        }
+
+        .terminal-sponsor-image {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            flex: 100%;
+            justify-content: center;
+            width: 100%;
+        }
     }
 
     h2 {
