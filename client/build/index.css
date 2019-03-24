@@ -81,6 +81,19 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center; }
+    .terminal-sponsors-container .terminal-sponsor .terminal-sponsor-name {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      flex: 100%;
+      justify-content: center; }
+    .terminal-sponsors-container .terminal-sponsor .terminal-sponsor-image {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      flex: 100%;
+      justify-content: center;
+      width: 100%; }
   .terminal-sponsors-container h2 {
     flex: 0 0 100%;
     font-weight: 700;

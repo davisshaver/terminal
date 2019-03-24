@@ -55,9 +55,13 @@ if ( empty( $heading_tag ) ) {
 					esc_url( $sponsor['sponsor_link'] ),
 					esc_attr( $tier )
 				);
+				echo '<div class="terminal-sponsor-image">';
 				echo $image;
+				echo '</div>';
 				if ( empty( $sponsor['hide_name'] ) ) {
+					echo '<div class="terminal-sponsor-name">';
 					esc_html_e( $sponsor['sponsor_name'] );
+					echo '</div>';
 				}
 				echo '</a>';
 			endforeach;
