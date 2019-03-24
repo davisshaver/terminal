@@ -35,6 +35,7 @@ class AMP {
 		add_action( 'ampnews-before-footer', [ $this, 'print_signup_module' ], 1 );
 		add_action( 'ampnews-after-comments', [ $this, 'print_popular_module' ], 100 );
 		add_action( 'ampnews-after-comments', [ $this, 'print_signup_module' ] );
+		add_action( 'ampnews-before-mp-login', [ $this, 'print_login_module' ] );
 		add_action( 'ampnews-after-entry-thumbnail', [ $this, 'print_featured_image_info' ] );
 		add_action( 'wp_ajax_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
@@ -252,6 +253,21 @@ class AMP {
 			terminal_print_data_layer_json( false )
 		);
 		echo '</amp-analytics>';
+	}
+
+	/**
+	 * Print one time login.
+	 */
+	public function print_login_module() {
+		printf(
+			'<h3>%s</h3>',
+			__( 'Get a login link sent to you', 'terminal' )
+		);
+		echo do_shortcode( '[one-time-login]' );
+		printf(
+			'<h3>%s</h3>',
+			__( 'Login with a password', 'terminal' )
+		);
 	}
 
 	/**

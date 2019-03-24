@@ -5,3 +5,12 @@
 	justify-content: center;
 	padding: 15px;
 }
+
+.mp_login_form .one-time-login-form {
+	display: block;
+	margin-bottom: 15px;
+
+	input[type="submit"] {
+		margin-top: 15px;
+	}
+}
