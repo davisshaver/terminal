@@ -473,3 +473,20 @@ function retrieve_all_data( $post_id ) {
 	retrieve_analytics_data( $post_id );
 	retrieve_social_data( $post_id );
 }
+
+/**
+ * Generate a Broadstreet ad unit.
+ *
+ * @param int $height Ad height.
+ * @param int $width Ad width.
+ * @param int $unit Ad unit.
+ * @return string Ad unit markup.
+ */
+function terminal_broadstreet_ad( $height, $width, $unit ) {
+	return sprintf(
+		'<amp-ad width="%s" height="%s" type="broadstreetads" data-network="5918" data-zone="%s"></amp-ad>',
+		esc_attr( $width ),
+		esc_attr( $height ),
+		esc_attr( $unit )
+	);
+}

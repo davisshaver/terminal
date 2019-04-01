@@ -139,6 +139,11 @@ class Releases {
 				'serialize_data' => false,
 			) );
 			$fm->add_meta_box( 'Releasing Org', $this->releases_post_type );
+			$fm = new \Fieldmanager_Checkbox( array(
+				'name'           => $this->release_post_type_link_key . '_sponsored',
+				'serialize_data' => false,
+			) );
+			$fm->add_meta_box( 'Sponsored', $this->releases_post_type );
 		}
 	}
 
@@ -173,6 +178,9 @@ class Releases {
 	public function filter_ampnews_author_prefix( $prefix ) {
 		$id = get_the_id();
 		if ( get_post_type( $id ) === $this->releases_post_type ) {
+			if ( get_post_meta( $id, $this->release_post_type_link_key . '_sponsored', true ) ) {
+				return __( 'Sponsored press release by', 'terminal' );
+			}
 			return __( 'Press release by', 'terminal' );
 		}
 		return $prefix;

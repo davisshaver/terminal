@@ -41,6 +41,7 @@ class AMP {
 		add_action( 'wp_ajax_nopriv_email_signup', [ $this, 'ajax_email_signup' ] );
 		add_shortcode( 'terminal-mailchimp', [ $this, 'mailchimp_print' ] );
 		add_shortcode( 'terminal-sponsor', [ $this, 'sponsor_print' ] );
+		add_shortcode( 'terminal-ad', [ $this, 'print_ad' ] );
 		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 1 );
 		add_filter( 'show_admin_bar', '__return_false' );
 		add_filter( 'wp_enqueue_scripts', function() {
@@ -49,58 +50,51 @@ class AMP {
 			wp_enqueue_script( 'amp-social-share' );
 		} );
 		add_filter( 'amp_supportable_templates', function( $templates ) {
-			$templates['is_page_with_form'] = array(
-				'label'     => __( 'Page with Form', 'example' ),
-				'callback'  => function( \WP_Query $query ) {
-					$has_form = false;
-					if ( ! empty( $query->posts ) ) {
-						$post = $query->posts[0];
-						if (
-							! empty( $post->post_content ) &&
-							strpos( $post->post_content, 'gravityform' ) !== false
-						) {
-							$has_form = true;
+			if ( is_singular() ) {
+				$templates['terminal_single'] = array(
+					'label'     => __( 'Terminal Singular', 'example' ),
+					'callback'  => function( \WP_Query $query ) {
+						if ( 'itineraries' === $query->get( 'post_type', false ) ) {
+							return true;
 						}
-					}
-					return $has_form;
-				},
-				'parent'    => 'is_singular',
-				'supported' => false,
-			);
-			$templates['is_single_memberpress_page'] = array(
-				'label'     => __( 'Membership Login', 'example' ),
-				'callback'  => function( \WP_Query $query ) {
-					$exempt = in_array(
-						$query->get( 'pagename', false ),
-						array(
-							'login',
-							'account',
-							'cart',
-							'checkout'
-						),
-						true
-					);
-					return $exempt;
-				},
-				'parent'    => 'is_singular',
-				'supported' => false,
-			);
-			$templates['is_single_itinerary'] = array(
-				'label'     => __( 'Itinerary', 'example' ),
-				'callback'  => function( \WP_Query $query ) {
-					return 'itineraries' === $query->get( 'post_type', false );
-				},
-				'parent'    => 'is_singular',
-				'supported' => false,
-			);
-			$templates['is_single_membership'] = array(
-				'label'     => __( 'Membership', 'example' ),
-				'callback'  => function( \WP_Query $query ) {
-					return 'memberpressproduct' === $query->get( 'post_type', false );
-				},
-				'parent'    => 'is_singular',
-				'supported' => false,
-			);
+						if ( 'memberpressproduct' === $query->get( 'post_type', false ) ) {
+							return true;
+						}
+						if ( in_array(
+							$query->get( 'pagename', false ),
+							array(
+								'affiliate-login',
+								'affiliate-dashboard',
+								'affiliate-signup',
+								'login',
+								'account',
+								'cart',
+								'checkout'
+							),
+							true
+						) ) {
+							return true;
+						}
+						// If it has a gravity form.
+						$has_form = false;
+						if ( ! empty( $query->posts ) ) {
+							$post = $query->posts[0];
+							if (
+								! empty( $post->post_content ) &&
+								strpos( $post->post_content, 'gravityform' ) !== false
+							) {
+								$has_form = true;
+							}
+						}
+						if ( $has_form ) {
+							return true;
+						}
+						return false;
+					},
+					'parent'    => 'is_singular',
+					'supported' => false,
+				);
+			}
 			return $templates;
 		} );
 		add_filter( 'ampnews-signup-link', [ $this, 'get_membership_link' ] );
@@ -401,6 +395,18 @@ class AMP {
 	 */
 	public function print_featured_image_info() {
 		\terminal_print_featured_image_caption();
+	}
+
+	/**
+	 * Print ad.
+	 */
+	public function print_ad( $atts ) {
+		$data    = Data::instance();
+		$disable = $data->user_has_no_ad_id();
+		// if ( $disable ) {
+		// 	return;
+		// }
+		return terminal_broadstreet_ad( 250, 300, 70108 );
 	}
 
 	/**
