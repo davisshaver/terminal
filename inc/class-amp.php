@@ -403,10 +403,10 @@ class AMP {
 	public function print_ad( $atts ) {
 		$data    = Data::instance();
 		$disable = $data->user_has_no_ad_id();
-		// if ( $disable ) {
-		// 	return;
-		// }
-		return terminal_broadstreet_ad( 250, 300, 70108 );
+		if ( $disable ) {
+			return;
+		}
+		return terminal_broadstreet_ad( 250, 300, 70108, __( 'Advertisement', 'terminal' ) );
 	}
 
 	/**
