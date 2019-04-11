@@ -94,7 +94,7 @@ class Housing {
 	public function filter_ampnews_author_prefix( $prefix ) {
 		$id = get_the_id();
 		if ( get_post_type( $id ) === $this->housing_post_type ) {
-			return __( 'Sponsored by', 'terminal' );
+			return __( 'Sponsored real estate listing by', 'terminal' );
 		}
 		return $prefix;
 	}
