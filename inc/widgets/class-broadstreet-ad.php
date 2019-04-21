@@ -41,7 +41,12 @@ if ( class_exists( '\FM_Widget' ) ) {
 			if ( ! empty( $instance['unit'] ) ) {
 				$ad_unit = $instance['unit'];
 			} else {
-				$ad_unit = '64590';
+				$ad_unit = '70311';
+			}
+			if ( ! empty( $instance['amp_unit'] ) ) {
+				$amp_unit = $instance['unit'];
+			} else {
+				$amp_unit = '70311';
 			}
 			if ( ! empty( $instance['width'] ) ) {
 				$ad_width = $instance['width'];
@@ -59,7 +64,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				// phpcs:ignore
 				echo $args['before_title'] . $widget_title . $args['after_title'];
 			}
-			echo terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit );
+			echo terminal_broadstreet_ad( $ad_height, $ad_width, $amp_unit, $ad_unit );
 			echo $args['after_widget'];
 		}
 
@@ -72,6 +77,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 			return [
 				'disable_ad_header'  => new \Fieldmanager_Checkbox( 'Disable category header' ),
 				'custom_ad_header'   => new \Fieldmanager_Textfield( 'Optional custom header' ),
+				'amp_unit'           => new \Fieldmanager_TextField( __( 'AMP Unit Override', 'terminal' ) ),
 				'unit'               => new \Fieldmanager_TextField( __( 'Unit Override', 'terminal' ) ),
 				'height'             => new \Fieldmanager_TextField( __( 'Height Override', 'terminal' ) ),
 				'width'              => new \Fieldmanager_TextField( __( 'Width Override', 'terminal' ) ),

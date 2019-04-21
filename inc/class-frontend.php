@@ -37,8 +37,16 @@ class Frontend {
 		add_filter( 'filter_ampnews_amp_plugin_dependency', '__return_true' );
 		add_filter( 'wp_travel_checkout_fields', [ $this, 'wp_travel_customize_booking_option' ] );
 		add_filter('wpseo_opengraph_title', [ $this, 'filter_yoast_og_title' ], 999);
+		add_filter( 'body_class', [ $this, 'filter_body_class' ] );
 	}
 
+	/**
+	 * Filter body class.
+	 */
+	public function filter_body_class( $classes ) {
+		$classes[] = is_amp_endpoint() ? 'terminal-amp-active' : 'terminal-amp-inactive';
+		return $classes;
+	}
 	/**
 	 * Filter Yoast SEO OG title to remove site name.
 	 *

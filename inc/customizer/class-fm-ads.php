@@ -31,6 +31,10 @@ class FM_Ads {
 				'name'           => 'terminal_ad_options',
 				'serialize_data' => false,
 				'children'       => array(
+					'extra_ads'    => new \Fieldmanager_Textfield( array(
+						'label'    => 'Extra Ads',
+						'sanitize' => 'wp_kses_post',
+					) ),
 					'amp_sticky_ad'       => new \Fieldmanager_Textfield( array(
 						'label'    => 'AMP Sticky Ad',
 						'sanitize' => 'wp_kses_post',

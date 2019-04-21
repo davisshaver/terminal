@@ -20,6 +20,7 @@ class AMP {
 	public function setup() {
 		add_filter( 'filter_ampnews_amp_plugin_path', [ $this, 'terminal_filter_amp_plugin_path' ] );
 		add_action( 'ampnews-after-body', [ $this, 'print_gtm_container' ] );
+		add_action( 'ampnews-after-body', [ $this, 'print_extra_ads' ] );
 		add_action( 'ampnews-after-body', [ $this, 'print_app_tag' ] );
 		add_action( 'ampnews-before-excerpt', [ $this, 'print_reading_time' ] );
 		add_action( 'ampnews-before-article', [ $this, 'print_reading_time' ] );
@@ -44,10 +45,20 @@ class AMP {
 		add_shortcode( 'terminal-ad', [ $this, 'print_ad' ] );
 		add_filter( 'wp_kses_allowed_html', [ $this, 'add_amp_ad' ], 10, 1 );
 		add_filter( 'show_admin_bar', '__return_false' );
+		add_filter( 'ampnews-facebook-app-id', function() {
+			return '2375172122533060';
+		} );
 		add_filter( 'wp_enqueue_scripts', function() {
 			wp_enqueue_script( 'amp-bind' );
+			wp_enqueue_script( 'amp-img' );
+			wp_enqueue_script( 'amp-mustache' );
+			wp_enqueue_script( 'amp-live-list' );
+			wp_enqueue_script( 'amp-sidebar' );
+			wp_enqueue_script( 'amp-form' );
 			wp_enqueue_script( 'amp-analytics' );
 			wp_enqueue_script( 'amp-social-share' );
+			wp_enqueue_script( 'terminal-broadstreet', 'https://cdn.broadstreetads.com/init-2.min.js' );
+			wp_add_inline_script( 'terminal-broadstreet', 'broadstreet.watch()' );
 		} );
 		add_filter( 'amp_supportable_templates', function( $templates ) {
 			if ( is_singular() ) {
@@ -227,6 +238,9 @@ class AMP {
 			'data-ad-slot'   => true,
 			'layout'         => true,
 		);
+		$tags['broadstreet-zone'] = array(
+			'zone-id' => true,
+		);
 		return $tags;
 	}
 
@@ -247,6 +261,19 @@ class AMP {
 			terminal_print_data_layer_json( false )
 		);
 		echo '</amp-analytics>';
+	}
+
+	/**
+	 * Print extra ads.
+	 */
+	public function print_extra_ads() {
+		$ad_data = Ad_Data::instance();
+		$extra   = $ad_data->get_extra_ads();
+		if ( empty( $extra ) ) {
+			return;
+		}
+		// phpcs:ignore
+		echo $extra;
 	}
 
 	/**
@@ -406,7 +433,37 @@ class AMP {
 		if ( $disable ) {
 			return;
 		}
-		return terminal_broadstreet_ad( 250, 300, 70108, __( 'Advertisement', 'terminal' ) );
+		if ( ! empty( $atts['zone'] ) ) {
+			$ad_unit = $atts['zone'];
+		} else {
+			$ad_unit = '70108';
+		}
+		if ( ! empty( $atts['amp_unit'] ) ) {
+			$amp_unit = $atts['unit'];
+		} else {
+			$amp_unit = '70108';
+		}
+		if ( ! empty( $atts['amp_disable'] ) ) {
+			$amp_disable = true;
+		} else {
+			$amp_disable = false;
+		}
+		if ( ! empty( $atts['width'] ) ) {
+			$ad_width = $atts['width'];
+		} else {
+			$ad_width = '300';
+		}
+		if ( ! empty( $atts['height'] ) ) {
+			$ad_height = $atts['height'];
+		} else {
+			$ad_height = '250';
+		}
+		if ( ! empty( $atts['disable_header'] ) ) {
+			$header = false;
+		} else {
+			$header = __( 'Advertisement', 'terminal' );
+		}
+		return terminal_broadstreet_ad( $ad_width, $ad_height, $ad_unit, $amp_unit, $header, $amp_disable );
 	}
 
 	/**

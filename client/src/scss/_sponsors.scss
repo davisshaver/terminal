@@ -1,5 +1,6 @@
 .terminal-sponsors-container {
     overflow: hidden;
+    width: 100%;
 
     .terminal-sponsor {
         align-items: center;
@@ -16,12 +17,11 @@
         }
 
         .terminal-sponsor-image {
-            align-items: center;
-            display: flex;
-            flex-wrap: wrap;
-            flex: 100%;
-            justify-content: center;
-            width: 100%;
+            width: 50%;
+
+            @media screen and (max-width: 400px) {
+                width: 100%;
+            }
         }
     }
 

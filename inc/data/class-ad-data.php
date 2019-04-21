@@ -22,6 +22,15 @@ class Ad_Data {
 	private $ad_data = array();
 
 	/**
+	 * Get AMP exta ads.
+	 *
+	 * @return string extra ad
+	 */
+	public function get_extra_ads() {
+		return apply_filters( 'the_content', $this->get_ad_data( 'extra_ads' ) );
+	}
+
+	/**
 	 * Get AMP sticky ad list.
 	 *
 	 * @return string sticky ad
