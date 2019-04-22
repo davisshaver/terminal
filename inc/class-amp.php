@@ -463,7 +463,7 @@ class AMP {
 		} else {
 			$header = __( 'Advertisement', 'terminal' );
 		}
-		return terminal_broadstreet_ad( $ad_width, $ad_height, $ad_unit, $amp_unit, $header, $amp_disable );
+		return terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit, $amp_unit, $header, $amp_disable );
 	}
 
 	/**
