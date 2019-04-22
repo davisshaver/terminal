@@ -64,7 +64,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				// phpcs:ignore
 				echo $args['before_title'] . $widget_title . $args['after_title'];
 			}
-			echo terminal_broadstreet_ad( $ad_height, $ad_width, $amp_unit, $ad_unit );
+			echo terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit, $amp_unit );
 			echo $args['after_widget'];
 		}
 
