@@ -27,7 +27,7 @@ class Ad_Data {
 	 * @return string extra ad
 	 */
 	public function get_extra_ads() {
-		return apply_filters( 'the_content', $this->get_ad_data( 'extra_ads' ) );
+		return do_shortcode( $this->get_ad_data( 'extra_ads' ) );
 	}
 
 	/**

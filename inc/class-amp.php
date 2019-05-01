@@ -54,7 +54,25 @@ class AMP {
 			wp_enqueue_script( 'amp-mustache' );
 			wp_enqueue_script( 'amp-live-list' );
 			wp_enqueue_script( 'amp-sidebar' );
-			wp_enqueue_script( 'amp-form' );
+			global $wp_query;
+			if (
+				'memberpressproduct' !== $wp_query->get( 'post_type', false ) &&
+				! in_array(
+					$wp_query->get( 'pagename', false ),
+					array(
+						'affiliate-login',
+						'affiliate-dashboard',
+						'affiliate-signup',
+						'login',
+						'account',
+						'cart',
+						'checkout'
+					),
+					true
+				)
+			) {
+				wp_enqueue_script( 'amp-form' );
+			}
 			wp_enqueue_script( 'amp-analytics' );
 			wp_enqueue_script( 'amp-social-share' );
 			wp_enqueue_script( 'terminal-broadstreet', 'https://cdn.broadstreetads.com/init-2.min.js' );
