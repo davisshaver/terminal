@@ -26,16 +26,7 @@ class Customizer {
 			$data['amp_component_scripts'] = array_merge(
 				$data['amp_component_scripts'],
 				array(
-					'amp-ad' => 'https://cdn.ampproject.org/v0/amp-ad-latest.js',
-				)
-			);
-			return $data;
-		} );
-		add_filter( 'amp_post_template_data', function( $data ) {
-			$data['amp_component_scripts'] = array_merge(
-				$data['amp_component_scripts'],
-				array(
-					'amp-ad' => 'https://cdn.ampproject.org/v0/amp-ad-latest.js',
+					'amp-ad' => 'https://cdn.ampproject.org/v0/amp-ad-0.1.js',
 				)
 			);
 			return $data;

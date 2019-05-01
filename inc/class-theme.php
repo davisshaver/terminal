@@ -159,6 +159,7 @@ class Theme {
 				'data-ad-client' => true,
 				'data-ad-slot' => true,
 				'layout' => true,
+				'data-slot' => true,
 			);
 		}
 		return $tags;
