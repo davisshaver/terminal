@@ -243,7 +243,7 @@ class Data {
 		if ( ! empty( $alert ) ) {
 			return $alert;
 		}
-		return __( 'Already recieving enough emails?', 'terminal' );
+		return __( 'Already receiving enough emails?', 'terminal' );
 	}
 
 	/**
