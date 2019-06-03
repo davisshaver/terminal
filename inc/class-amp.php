@@ -55,6 +55,7 @@ class AMP {
 			wp_enqueue_script( 'amp-live-list' );
 			wp_enqueue_script( 'amp-sidebar' );
 			global $wp_query;
+			$enqueue_amp_form = true;
 			if (
 				'memberpressproduct' !== $wp_query->get( 'post_type', false ) &&
 				! in_array(
@@ -71,6 +72,22 @@ class AMP {
 					true
 				)
 			) {
+				$enqueue_amp_form = false;
+			}
+			$has_gravity_form = false;
+			if ( ! empty( $query->posts ) ) {
+				$post = $query->posts[0];
+				if (
+					! empty( $post->post_content ) &&
+					strpos( $post->post_content, 'gravityform' ) !== false
+				) {
+					$has_gravity_form = true;
+				}
+			}
+			if ( $has_gravity_form ) {
+				$enqueue_amp_form = false;
+			}
+			if ( $enqueue_amp_form ) {
 				wp_enqueue_script( 'amp-form' );
 			}
 			wp_enqueue_script( 'amp-analytics' );

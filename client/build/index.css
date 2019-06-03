@@ -89,7 +89,7 @@
       flex: 100%;
       justify-content: center; }
     .terminal-sponsors-container .terminal-sponsor .terminal-sponsor-image {
-      width: 50%; }
+      width: 75%; }
       @media screen and (max-width: 400px) {
         .terminal-sponsors-container .terminal-sponsor .terminal-sponsor-image {
           width: 100%; } }
