@@ -12,9 +12,6 @@
   .terminal-featured-caption p {
     margin: 1em 0;
     text-align: center; }
-    .terminal-featured-caption p::before {
-      display: inline;
-      content: 'Photo Caption: '; }
 
 .terminal-signup {
   background: white;
