@@ -41,13 +41,13 @@ class Contact {
 			$email = __( 'Not provided', 'terminal' );
 		}
 		if ( isset( $_REQUEST['name'] ) ) {
-			$name = sanitize_email( wp_unslash( $_REQUEST['name'] ) );
+			$name = wp_kses_post( wp_unslash( $_REQUEST['name'] ) );
 		} else {
 			$name = __( 'Not provided', 'terminal' );
 		}
 		wp_mail(
 			get_option( 'admin_email' ),
-			sprintf( 'Message from %s %s', esc_html( $name ), esc_html( $email ) ),
+			sprintf( 'Message from %s <%s>', esc_html( $name ), esc_html( $email ) ),
 			$message
 		);
 		wp_send_json_success( __( 'Thanks for contacting us!', 'terminal' ) );

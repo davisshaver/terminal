@@ -36,8 +36,8 @@ if ( is_user_logged_in() ) {
 				name="name"
 				placeholder="Your Name">
 			<?php else : ?>
-				<input id="email" type="hidden"
-					name="email"
+				<input id="name" type="hidden"
+					name="name"
 					value="<?php echo esc_attr( "{$user->first_name} {$user->last_name}" ); ?>" />
 			<?php endif; ?>
 			<textarea

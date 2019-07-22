@@ -87,9 +87,9 @@ class AMP {
 			if ( $has_gravity_form ) {
 				$enqueue_amp_form = false;
 			}
-			if ( $enqueue_amp_form ) {
+			// if ( $enqueue_amp_form ) {
 				wp_enqueue_script( 'amp-form' );
-			}
+			// }
 			wp_enqueue_script( 'amp-analytics' );
 			wp_enqueue_script( 'amp-social-share' );
 			wp_enqueue_script( 'terminal-broadstreet', 'https://cdn.broadstreetads.com/init-2.min.js' );
