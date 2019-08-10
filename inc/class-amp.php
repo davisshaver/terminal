@@ -57,8 +57,8 @@ class AMP {
 			global $wp_query;
 			$enqueue_amp_form = true;
 			if (
-				'memberpressproduct' !== $wp_query->get( 'post_type', false ) &&
-				! in_array(
+				'memberpressproduct' === $wp_query->get( 'post_type', false ) ||
+				in_array(
 					$wp_query->get( 'pagename', false ),
 					array(
 						'affiliate-login',
@@ -74,22 +74,22 @@ class AMP {
 			) {
 				$enqueue_amp_form = false;
 			}
-			$has_gravity_form = false;
-			if ( ! empty( $query->posts ) ) {
-				$post = $query->posts[0];
-				if (
-					! empty( $post->post_content ) &&
-					strpos( $post->post_content, 'gravityform' ) !== false
-				) {
-					$has_gravity_form = true;
-				}
-			}
-			if ( $has_gravity_form ) {
-				$enqueue_amp_form = false;
-			}
-			// if ( $enqueue_amp_form ) {
-				wp_enqueue_script( 'amp-form' );
+			// $has_gravity_form = false;
+			// if ( ! empty( $query->posts ) ) {
+			// 	$post = $query->posts[0];
+			// 	if (
+			// 		! empty( $post->post_content ) &&
+			// 		strpos( $post->post_content, 'gravityform' ) !== false
+			// 	) {
+			// 		$has_gravity_form = true;
+			// 	}
 			// }
+			// if ( $has_gravity_form ) {
+			// 	$enqueue_amp_form = false;
+			// }
+			if ( $enqueue_amp_form ) {
+				wp_enqueue_script( 'amp-form' );
+			}
 			wp_enqueue_script( 'amp-analytics' );
 			wp_enqueue_script( 'amp-social-share' );
 			wp_enqueue_script( 'terminal-broadstreet', 'https://cdn.broadstreetads.com/init-2.min.js' );
