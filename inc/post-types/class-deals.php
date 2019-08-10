@@ -114,7 +114,7 @@ class Deals {
 	 */
 	public function change_headline_to_deal_title( $title ) {
 		$screen = get_current_screen();
-		if ( $this->deal === $screen->post_type ) {
+		if ( $this->get_deal_post_type() === $screen->post_type ) {
 			$title = __( 'Enter deal title here', 'terminal' );
 		}
 		return $title;
