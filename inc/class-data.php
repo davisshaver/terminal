@@ -550,6 +550,7 @@ class Data {
 		$default = array(
 			'caption' => '',
 			'credit' => '',
+			'credit_user' => '',
 			'add_featured_embed' => false,
 			'use_featured_embed_on_landing' => false,
 			'use_featured_embed_on_single' => false,
@@ -559,6 +560,7 @@ class Data {
 		$options = array(
 			'caption' => get_post_meta( get_the_ID(), 'terminal_featured_meta_caption', true ),
 			'credit' => get_post_meta( get_the_ID(), 'terminal_featured_meta_credit', true ),
+			'credit_user' => get_post_meta( get_the_ID(), 'terminal_featured_meta_credit_user', true ),
 			'add_featured_embed' => get_post_meta( get_the_ID(), 'terminal_featured_meta_add_featured_embed', true ),
 			'use_featured_embed_on_landing' => get_post_meta( get_the_ID(), 'terminal_featured_meta_use_featured_embed_on_landing', true ),
 			'use_featured_embed_on_single' => get_post_meta( get_the_ID(), 'terminal_featured_meta_use_featured_embed_on_single', true ),
@@ -572,6 +574,7 @@ class Data {
 			'featured_embed' => ! empty( $options['featured_embed'] ) ? $options['featured_embed'] : $default['featured_embed'],
 			'caption' => ! empty( $options['caption'] ) ? $options['caption'] : $default['caption'],
 			'credit' => ! empty( $options['credit'] ) ? $options['credit'] : $default['credit'],
+			'credit_user' => ! empty( $options['credit_user'] ) ? $options['credit_user'] : $default['credit_user'],
 			'hide_featured_image' => ! empty( $options['hide_featured_image'] ) ? $options['hide_featured_image'] : $default['hide_featured_image'],
 		);
 	}

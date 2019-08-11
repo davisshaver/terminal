@@ -31,8 +31,15 @@ class FM_Featured_Image_Credit {
 			'name'           => 'terminal_featured_meta',
 			'serialize_data' => false,
 			'children'       => array(
+				'credit_user' => new \Fieldmanager_Select( array(
+					'label'       => __( 'Credit (User) ', 'terminal' ),
+					'first_empty' => true,
+					'datasource'  => new \Fieldmanager_Datasource_User( array(
+						'query_args' => [ 'role__in' => [ 'contributor', 'author', 'editor', 'administrator' ] ],
+					) ),
+				) ),
 				'credit'  => new \Fieldmanager_TextField( array(
-					'label' => __( 'Credit', 'terminal' ),
+					'label' => __( 'Credit (Custom Override)', 'terminal' ),
 				) ),
 				'caption' => new \Fieldmanager_RichTextArea( array(
 					'label'           => __( 'Caption', 'terminal' ),

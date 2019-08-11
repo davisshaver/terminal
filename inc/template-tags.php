@@ -100,9 +100,18 @@ function terminal_print_featured_image_caption() {
 	$data = Terminal\Data::instance();
 	$meta = $data->get_post_featured_meta();
 	$meta = apply_filters( 'terminal_featured_meta', $meta );
-	if ( ! empty( $meta['credit'] ) || ! empty( $meta['caption'] ) ) {
+	$credit = false;
+	if ( ! empty( $meta['credit'] ) ) {
+		$credit = $meta['credit'];
+	} elseif ( ! empty( $meta['credit_user'] ) ) {
+		$user = get_userdata( $meta['credit_user'] );
+		if ( $user !== false ) {
+			$credit = $user->display_name;
+		}
+	}
+	if ( ! empty( $credit ) || ! empty( $meta['caption'] ) ) {
 		echo '<div class="terminal-featured-meta terminal-sidebar-body-font terminal-limit-max-content-width terminal-text-gray-light">';
-		if ( ! empty( $meta['credit'] ) ) {
+		if ( ! empty( $credit ) ) {
 			ob_start();
 			get_template_part( 'partials/svg/camera.svg' );
 			$camera = ob_get_contents();
@@ -110,7 +119,7 @@ function terminal_print_featured_image_caption() {
 			printf(
 				'<div class="terminal-credit terminal-limit-max-content-width-add-margin">%s %s</div>',
 				$camera,
-				esc_html( $meta['credit'] )
+				esc_html( $credit )
 			);
 		}
 		if ( ! empty( $meta['caption'] ) ) {
