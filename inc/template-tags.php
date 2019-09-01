@@ -106,7 +106,10 @@ function terminal_print_featured_image_caption() {
 	} elseif ( ! empty( $meta['credit_user'] ) ) {
 		$user = get_userdata( $meta['credit_user'] );
 		if ( $user !== false ) {
-			$credit = $user->display_name;
+			$credit = apply_filters(
+				'terminal_credit_display_name',
+				$user->display_name
+			);
 		}
 	}
 	if ( ! empty( $credit ) || ! empty( $meta['caption'] ) ) {
