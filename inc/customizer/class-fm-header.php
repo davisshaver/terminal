@@ -80,7 +80,10 @@ class FM_Header {
 					'cta_link'                     => new \Fieldmanager_Link( 'CTA Link' ),
 					'mobile_header_image_override' => new \Fieldmanager_Media( 'Mobile Header Image Override' ),
 					'nav_header_image_override'    => new \Fieldmanager_Media( 'Nav Header Image Override' ),
-					'example_searches'             => new \Fieldmanager_TextArea( 'Example searches' ),
+					'example_searches'             => new \Fieldmanager_TextArea( array(
+						'label'    => __( 'Example searches', 'terminal' ),
+						'sanitize' => 'wp_kses_post'
+					) ),
 				),
 			)
 		);
