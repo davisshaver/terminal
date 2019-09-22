@@ -49,6 +49,37 @@ class Data {
 			}
 		});
 		add_filter( 'duplicate_post_blacklist_filter' , array( $this, 'add_terminal_tags_to_duplicate_post' ) );
+		add_filter( 'pre_get_posts', array( $this, 'exclude_in_loop' ) );
+	}
+
+	/**
+	 * Exclude posts with truthy `exclude_in_loop` value.
+	 *
+	 * @param object $query Query.
+	 * @return object Filtered query. 
+	 */
+	public function exclude_in_loop( $query ) {
+		if (
+			( ! is_singular() && ! is_admin() ) &&
+			$query->is_main_query() && ! is_post_type_archive()
+		) {
+			$query->set( 
+				'meta_query', 
+				array( 
+					'relation' => 'OR',
+					array(
+						'key' => 'exclude_from_loop',
+						'value' => false,
+						'type' => 'BOOLEAN'
+					),
+					array(
+						'key' => 'exclude_from_loop',
+						'compare' => 'NOT EXISTS'
+					)
+				)
+			);
+		}
+		return $query;
 	}
 
 	public function add_terminal_tags_to_duplicate_post( $meta_blacklist ) {

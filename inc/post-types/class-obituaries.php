@@ -37,6 +37,21 @@ class Obituaries {
 			add_filter( 'pre_get_posts', array( $this, 'include_obituary_post_type_on_author' ) );
 		}
 		add_filter( 'pre_get_posts', array( $this, 'include_obituary_post_type_in_loop' ) );
+		add_action( 'init', [ $this, 'register_exclude_from_loop_fields' ] );
+	}
+
+	/**
+	 * Register exclude fields.
+	 */
+	public function register_exclude_from_loop_fields() {
+		if ( defined( 'FM_VERSION' ) ) {
+			$fm = new \Fieldmanager_Checkbox( array(
+				'name'           => 'exclude_from_loop',
+				'serialize_data' => false,
+				'default_value'  => true,
+			) );
+			$fm->add_meta_box( 'Exclude obituary from main index', $this->obituary_post_type );
+		}
 	}
 
 	/**
