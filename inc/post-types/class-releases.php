@@ -101,6 +101,9 @@ class Releases {
 	 */
 	public function filter_feed_author( $author ) {
 		$id = get_the_id();
+		if ( ! is_singular() ) {
+			return $author;
+		}
 		if ( get_post_type( $id ) === $this->releases_post_type ) {
 			$sponsor = $this->get_org( $id );
 			if ( ! empty( $sponsor ) ) {

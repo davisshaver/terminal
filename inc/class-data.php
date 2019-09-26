@@ -61,6 +61,7 @@ class Data {
 	public function exclude_in_loop( $query ) {
 		if (
 			( ! is_singular() && ! is_admin() ) &&
+			! is_author() &&
 			$query->is_main_query() && ! is_post_type_archive()
 		) {
 			$query->set( 

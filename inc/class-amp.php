@@ -67,7 +67,10 @@ class AMP {
 						'login',
 						'account',
 						'cart',
-						'checkout'
+						'checkout',
+						'autumn-happy-hour',
+						'press-releases',
+						'job'
 					),
 					true
 				)

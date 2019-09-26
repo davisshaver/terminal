@@ -38,6 +38,7 @@ class Frontend {
 		add_filter( 'wp_travel_checkout_fields', [ $this, 'wp_travel_customize_booking_option' ] );
 		add_filter('wpseo_opengraph_title', [ $this, 'filter_yoast_og_title' ], 999);
 		add_filter( 'body_class', [ $this, 'filter_body_class' ] );
+		add_action( 'init', [ $this, 'register_disable_ads_fields' ] );
 	}
 
 	/**
@@ -109,6 +110,19 @@ class Frontend {
 			}
 		}
 		return $use_widgets;
+	}
+
+	/**
+	 * Register disable ads fields.
+	 */
+	public function register_disable_ads_fields() {
+		if ( defined( 'FM_VERSION' ) ) {
+			$fm = new \Fieldmanager_Checkbox( array(
+				'name'           => 'terminal_disable_ads',
+				'serialize_data' => false,
+			) );
+			$fm->add_meta_box( 'Disable inline ads on this post', 'post' );
+		}
 	}
 
 	/**
