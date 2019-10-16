@@ -212,6 +212,9 @@
   .entry__content .terminal-inline-ad amp-ad, .entry__content .terminal-inline-ad .broadstreet-zone-container {
     margin: 8px auto; }
 
+.terminal-inline-ad a {
+  opacity: 1; }
+
 .wp-block-embed.wp-embed-aspect-16-9 .wp-block-embed__wrapper::before {
   padding-top: inherit; }
 
