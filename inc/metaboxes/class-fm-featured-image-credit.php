@@ -18,7 +18,8 @@ class FM_Featured_Image_Credit {
 	 * Setup.
 	 */
 	public function setup() {
-		add_action( 'fm_post_post', array( $this, 'register_featured_image_credit' ) );
+		add_action( 'fm_post_post', array( $this, 'register_featured_image_for_post_type' ) );
+		add_action( 'fm_post_release', array( $this, 'register_featured_image_for_post_type' ) );
 	}
 
 	/**
@@ -26,7 +27,7 @@ class FM_Featured_Image_Credit {
 	 *
 	 * @param string $post_type Post type.
 	 */
-	public function register_featured_image_for_post_type( $post_type ) {
+	public function register_featured_image_for_post_type() {
 		$fm = new \Fieldmanager_Group( array(
 			'name'           => 'terminal_featured_meta',
 			'serialize_data' => false,
@@ -74,14 +75,7 @@ class FM_Featured_Image_Credit {
 				) ),
 			),
 		) );
-		$fm->add_meta_box( 'Featured Image', $post_type );
-	}
-
-	/**
-	 * Register featured image credit.
-	 */
-	public function register_featured_image_credit() {
-		$this->register_featured_image_for_post_type( 'post' );
+		$fm->add_meta_box( 'Featured Image', array( 'post', 'release') );
 	}
 }
 
