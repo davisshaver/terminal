@@ -59,9 +59,6 @@ class Releases {
 	 * @return string Filtered title
 	 */
 	public function filter_feed_title( $title, $id = null ) {
-		if ( ! is_feed() ) {
-			return $title;
-		}
 		if ( ! $id ) {
 			$id = get_the_id();
 		}
@@ -69,9 +66,9 @@ class Releases {
 			get_post_type( $id ) === $this->releases_post_type &&
 			get_post_meta( $id, $this->release_post_type_link_key . '_sponsored', true )
 		) {
-			return "[Sponsored Release] ${title}";
+			return "[Sponsored Press Release] ${title}";
 		} elseif ( get_post_type( $id ) === $this->releases_post_type ) {
-			return "[Release] ${title}";
+			return "[Press Release] ${title}";
 		}
 		return $title;
 	}
