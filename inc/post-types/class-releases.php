@@ -45,9 +45,35 @@ class Releases {
 		if ( getenv( 'TERMINAL_ENABLE_RELEASES_POST_TYPE_ON_AUTHOR' ) ) {
 			add_filter( 'pre_get_posts', array( $this, 'include_release_post_type_on_author' ) );
 		}
+		add_filter( 'the_title', [ $this, 'filter_feed_title' ], 10, 2 );
 		add_filter( 'the_author', [ $this, 'filter_feed_author' ], 10, 2 );
 		add_filter( 'author_link', [ $this, 'filter_feed_author_link' ], 10 );
 		add_filter( 'pre_get_posts', array( $this, 'include_release_post_type_in_loop' ) );
+	}
+
+	/**
+	 * Filter feed title.
+	 *
+	 * @param string $title Current title.
+	 * @param int    $id Current post ID.
+	 * @return string Filtered title
+	 */
+	public function filter_feed_title( $title, $id = null ) {
+		if ( ! is_feed() ) {
+			return $title;
+		}
+		if ( ! $id ) {
+			$id = get_the_id();
+		}
+		if (
+			get_post_type( $id ) === $this->releases_post_type &&
+			get_post_meta( $id, $this->release_post_type_link_key . '_sponsored', true )
+		) {
+			return "[Sponsored Release] ${title}";
+		} elseif ( get_post_type( $id ) === $this->releases_post_type ) {
+			return "[Release] ${title}";
+		}
+		return $title;
 	}
 
 	// public function filter_ampnews_author_suffix( $default ) {
