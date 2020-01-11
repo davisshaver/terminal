@@ -501,7 +501,12 @@ class AMP {
 		} else {
 			$header = __( 'Advertisement', 'terminal' );
 		}
-		return terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit, $amp_unit, $header, $amp_disable );
+		if ( ! empty( $atts['keywords'] ) ) {
+			$keywords = __( $atts['keywords'] );
+		} else {
+			$keywords = '';
+		}
+		return terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit, $amp_unit, $header, $amp_disable, $keywords );
 	}
 
 	/**

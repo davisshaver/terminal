@@ -58,13 +58,18 @@ if ( class_exists( '\FM_Widget' ) ) {
 			} else {
 				$ad_height = '250';
 			}
-			$widget_title = ! empty( $instance['custom_header'] ) ? $instance['custom_header'] : __( 'Advertisement', 'terminal' );
+			if ( ! empty( $instance['keywords'] ) ) {
+				$keywords = $instance['keywords'];
+			} else {
+				$keywords = '';
+			}
+			$widget_title = ! empty( $instance['custom_ad_header'] ) ? $instance['custom_ad_header'] : __( 'Advertisement', 'terminal' );
 			echo $args['before_widget'];
-			if ( ! empty( $widget_title ) && empty( $instance['disable_header'] ) ) {
+			if ( ! empty( $widget_title ) && empty( $instance['disable_widget_header'] ) ) {
 				// phpcs:ignore
 				echo $args['before_title'] . $widget_title . $args['after_title'];
 			}
-			echo terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit, $amp_unit );
+			echo terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit, $amp_unit, false, false, $keywords );
 			echo $args['after_widget'];
 		}
 
@@ -75,12 +80,13 @@ if ( class_exists( '\FM_Widget' ) ) {
 		 */
 		protected function fieldmanager_children() {
 			return [
-				'disable_ad_header'  => new \Fieldmanager_Checkbox( 'Disable category header' ),
-				'custom_ad_header'   => new \Fieldmanager_Textfield( 'Optional custom header' ),
-				'amp_unit'           => new \Fieldmanager_TextField( __( 'AMP Unit Override', 'terminal' ) ),
-				'unit'               => new \Fieldmanager_TextField( __( 'Unit Override', 'terminal' ) ),
-				'height'             => new \Fieldmanager_TextField( __( 'Height Override', 'terminal' ) ),
-				'width'              => new \Fieldmanager_TextField( __( 'Width Override', 'terminal' ) ),
+				'disable_widget_header' => new \Fieldmanager_Checkbox( 'Disable widget header' ),
+				'custom_ad_header'      => new \Fieldmanager_Textfield( 'Optional custom header' ),
+				'amp_unit'              => new \Fieldmanager_TextField( __( 'AMP Unit Override', 'terminal' ) ),
+				'unit'                  => new \Fieldmanager_TextField( __( 'Unit Override', 'terminal' ) ),
+				'height'                => new \Fieldmanager_TextField( __( 'Height Override', 'terminal' ) ),
+				'width'                 => new \Fieldmanager_TextField( __( 'Width Override', 'terminal' ) ),
+				'keywords'              => new \Fieldmanager_TextField( __( 'Keywords', 'terminal' ) ),
 			];
 		}
 	}
