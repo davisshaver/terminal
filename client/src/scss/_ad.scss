@@ -28,3 +28,11 @@
 .widget_terminal-broadstreet-widget a {
     opacity: 1;
 }
+
+.site-header {
+    .widget_terminal-broadstreet-widget {
+        margin: auto;
+        max-width: 90vw !important;
+        text-align: center;
+    }
+}
