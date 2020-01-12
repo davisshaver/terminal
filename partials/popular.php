@@ -19,12 +19,12 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
       </select>
     </div>
     <?php
-    $result = wp_cache_get( 'terminal-parsely-popular-last-day' );
+    $result = get_transient( 'terminal-parsely-popular-last-day' );
     if ( false === $result ) {
       $result = wp_remote_get(
         "https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=24h&limit=4"
       );
-      wp_cache_set( 'terminal-parsely-popular-last-day', $result, '', 3600 );
+      set_transient( 'terminal-parsely-popular-last-day', $result, 3600 );
     }
     if ( ! empty( $result ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
@@ -48,12 +48,12 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
         echo '</div>';
       }
     }
-    $result = wp_cache_get( 'terminal-parsely-popular-last-two-days' );
+    $result = get_transient( 'terminal-parsely-popular-last-two-days' );
     if ( false === $result ) {
       $result = wp_remote_get(
         "https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=48h&limit=4"
       );
-      wp_cache_set( 'terminal-parsely-popular-last-two-days', $result, '', 3600 );
+      set_transient( 'terminal-parsely-popular-last-two-days', $result, 3600 );
     }
     if ( ! empty( $result ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
@@ -77,12 +77,12 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
         echo '</div>';
       }
     }
-    $result = wp_cache_get( 'terminal-parsely-popular-last-week' );
+    $result = get_transient( 'terminal-parsely-popular-last-week' );
     if ( false === $result ) {
       $result = wp_remote_get(
         "https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=7d&limit=4"
       );
-      wp_cache_set( 'terminal-parsely-popular-last-week', $result, '', 3600 );
+      set_transient( 'terminal-parsely-popular-last-week', $result, 3600 );
     }
     if ( ! empty( $result ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
@@ -106,12 +106,12 @@ if ( empty( $api_key ) || empty( $api_secret ) ) {
         echo '</div>';
       }
     }
-    $result = wp_cache_get( 'terminal-parsely-popular-last-four-weeks' );
+    $result = get_transient( 'terminal-parsely-popular-last-four-weeks' );
     if ( false === $result ) {
       $result = wp_remote_get(
         "https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=4w&limit=4"
       );
-      wp_cache_set( 'terminal-parsely-popular-last-four-weeks', $result, '', 3600 );
+      set_transient( 'terminal-parsely-popular-last-four-weeks', $result, 3600 );
     }
     if ( ! empty( $result ) ) {
       $json = json_decode( wp_remote_retrieve_body( $result ) );
