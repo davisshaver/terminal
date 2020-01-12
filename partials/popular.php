@@ -33,7 +33,7 @@ $dehydrated_targets = array(
 );
 $hydrated_targets = array();
 foreach ( $dehydrated_targets as $target ) {
-	$cached = wp_cache_get( $target['cache'] );
+	$cached = get_transient( $target['cache'] );
 	if ( $cached ) {
 		$json = json_decode( wp_remote_retrieve_body( $cached ) );
 		if ( ! empty ( $json->data ) ) {
@@ -44,10 +44,10 @@ foreach ( $dehydrated_targets as $target ) {
 	} else {
 		$period = $target['period_start'];
 		$result = wp_remote_get(
-			"https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=${period}&limit=4"
+			"https://api.parsely.com/v2/analytics/posts?apikey=${api_key}&secret=${api_secret}&period_start=${period}&limit=6"
 		);
 		if ( false !== $result ) {
-			wp_cache_set( $target['cache'], $result, '', 3600 );
+			set_transient( $target['cache'], $result, 3600 );
 			$json = json_decode( wp_remote_retrieve_body( $result ) );
 			if ( ! empty ( $json->data ) ) {
 				$new_target = $target;
@@ -90,6 +90,12 @@ if ( empty( $hydrated_targets ) ) {
 		);
 		$rank = 1;
 		foreach( $hydrated_target['data'] as $index => $popular_post ) {
+			if ( $rank > 4 ) {
+				continue;
+			}
+			if ( 'Release' === $popular_post->section ) {
+				continue;
+			}
 			terminal_print_template_part(
 				'popular-list-item',
 				array(
