@@ -66,7 +66,7 @@ class Releases {
 			get_post_type( $id ) === $this->releases_post_type &&
 			get_post_meta( $id, $this->release_post_type_link_key . '_sponsored', true )
 		) {
-			return " ${title} [Sponsored Press Release]";
+			return " ${title} [Paid Press Release]";
 		} elseif ( get_post_type( $id ) === $this->releases_post_type ) {
 			return "${title} [Press Release]";
 		}
@@ -202,7 +202,7 @@ class Releases {
 		$id = get_the_id();
 		if ( get_post_type( $id ) === $this->releases_post_type ) {
 			if ( get_post_meta( $id, $this->release_post_type_link_key . '_sponsored', true ) ) {
-				return __( 'Sponsored press release by', 'terminal' );
+				return __( 'Paid press release by', 'terminal' );
 			}
 			return __( 'Press release by', 'terminal' );
 		}
