@@ -204,7 +204,7 @@ class Links {
 			'label'               => __( 'link', 'terminal' ),
 			'description'         => __( 'Links', 'terminal' ),
 			'labels'              => $link_labels,
-			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+			'supports'            => array( 'title', 'author', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
