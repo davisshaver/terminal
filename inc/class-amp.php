@@ -95,8 +95,8 @@ class AMP {
 			}
 			wp_enqueue_script( 'amp-analytics' );
 			wp_enqueue_script( 'amp-social-share' );
-			wp_enqueue_script( 'terminal-broadstreet', 'https://cdn.broadstreetads.com/init-2.min.js' );
-			wp_add_inline_script( 'terminal-broadstreet', 'broadstreet.watch()' );
+			wp_enqueue_script( 'terminal-broadstreet', 'https://static.lebtown.com/init-2.min.js' );
+			wp_add_inline_script( 'terminal-broadstreet', "broadstreet.watch({ domain: 'sponsors.lebtown.com' })" );
 		} );
 		add_filter( 'amp_supportable_templates', function( $templates ) {
 			if ( is_singular() ) {
