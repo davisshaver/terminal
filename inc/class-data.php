@@ -50,6 +50,7 @@ class Data {
 		});
 		add_filter( 'duplicate_post_blacklist_filter' , array( $this, 'add_terminal_tags_to_duplicate_post' ) );
 		add_filter( 'pre_get_posts', array( $this, 'exclude_in_loop' ) );
+		add_action( 'init', [ $this, 'register_exclude_from_loop_fields' ] );
 	}
 
 	/**
@@ -421,6 +422,20 @@ class Data {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	/**
+	 * Register exclude fields.
+	 */
+	public function register_exclude_from_loop_fields() {
+		if ( defined( 'FM_VERSION' ) ) {
+			$fm = new \Fieldmanager_Checkbox( array(
+				'name'           => 'exclude_from_loop',
+				'serialize_data' => false,
+				'default_value'  => false,
+			) );
+			$fm->add_meta_box( 'Exclude from main index', 'post' );
 		}
 	}
 }

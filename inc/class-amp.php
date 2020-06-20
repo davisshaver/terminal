@@ -70,7 +70,8 @@ class AMP {
 						'checkout',
 						'autumn-happy-hour',
 						'press-releases',
-						'job'
+						'job',
+						'2x-impact-fund-nomination-form'
 					),
 					true
 				)
@@ -130,7 +131,10 @@ class AMP {
 							$post = $query->posts[0];
 							if (
 								! empty( $post->post_content ) &&
-								strpos( $post->post_content, 'gravityform' ) !== false
+								(
+									strpos( $post->post_content, 'gravityform' ) !== false ||
+									strpos( $post->post_content, 'gform_wrapper' ) !== false
+								)
 							) {
 								$has_form = true;
 							}
