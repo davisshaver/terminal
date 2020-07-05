@@ -58,6 +58,20 @@ if ( class_exists( '\FM_Widget' ) ) {
 			} else {
 				$ad_height = '250';
 			}
+			if ( ! empty( $instance['amp_width'] ) ) {
+				$amp_ad_width = $instance['amp_width'];
+			} elseif ( ! empty( $instance['width'] ) ) {
+				$amp_ad_width = $instance['width'];
+			} else {
+				$amp_ad_width = '300';
+			}
+			if ( ! empty( $instance['amp_height'] ) ) {
+				$amp_ad_height = $instance['amp_height'];
+			} elseif ( ! empty( $instance['height'] ) ) {
+				$amp_ad_height = $instance['height'];
+			} else {
+				$amp_ad_height = '250';
+			}
 			if ( ! empty( $instance['keywords'] ) ) {
 				$keywords = $instance['keywords'];
 			} else {
@@ -69,7 +83,7 @@ if ( class_exists( '\FM_Widget' ) ) {
 				// phpcs:ignore
 				echo $args['before_title'] . $widget_title . $args['after_title'];
 			}
-			echo terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit, $amp_unit, false, false, $keywords );
+			echo terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit, $amp_unit, false, false, $keywords, $amp_ad_height, $amp_ad_width );
 			echo $args['after_widget'];
 		}
 
@@ -87,6 +101,8 @@ if ( class_exists( '\FM_Widget' ) ) {
 				'height'                => new \Fieldmanager_TextField( __( 'Height Override', 'terminal' ) ),
 				'width'                 => new \Fieldmanager_TextField( __( 'Width Override', 'terminal' ) ),
 				'keywords'              => new \Fieldmanager_TextField( __( 'Keywords', 'terminal' ) ),
+				'amp_height'            => new \Fieldmanager_TextField( __( 'AMP Height Override', 'terminal' ) ),
+				'amp_width'             => new \Fieldmanager_TextField( __( 'AMP Width Override', 'terminal' ) ),
 			];
 		}
 	}

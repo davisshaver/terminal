@@ -482,7 +482,7 @@ function retrieve_all_data( $post_id ) {
  * @param int $unit Ad unit.
  * @return string Ad unit markup.
  */
-function terminal_broadstreet_ad( $height, $width, $regular_unit, $amp_unit, $header = false, $amp_disable = false, $keywords = '' ) {
+function terminal_broadstreet_ad( $height, $width, $regular_unit, $amp_unit, $header = false, $amp_disable = false, $keywords = '', $amp_height, $amp_width ) {
 	if ( ! is_amp_endpoint() ) {
 		if ( ! empty( $header ) ) {
 			return sprintf(
@@ -505,16 +505,16 @@ function terminal_broadstreet_ad( $height, $width, $regular_unit, $amp_unit, $he
 		return sprintf(
 			'<div class="terminal-inline-ad"><div class="terminal-ad-header">%s</div><amp-ad width="%s" height="%s" type="broadstreetads" data-network="5918" data-zone="%s" data-keywords="%s"></amp-ad></div>',
 			esc_html( $header ),
-			esc_attr( $width ),
-			esc_attr( $height ),
+			esc_attr( $amp_width ),
+			esc_attr( $amp_height ),
 			esc_attr( $amp_unit ),
 			esc_attr( $keywords )
 		);
 	}
 	return sprintf(
 		'<amp-ad width="%s" height="%s" type="broadstreetads" data-network="5918" data-zone="%s" data-keywords="%s"></amp-ad>',
-		esc_attr( $width ),
-		esc_attr( $height ),
+		esc_attr( $amp_width ),
+		esc_attr( $amp_height ),
 		esc_attr( $amp_unit ),
 		esc_attr( $keywords )
 	);

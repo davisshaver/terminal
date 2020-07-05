@@ -510,7 +510,17 @@ class AMP {
 		} else {
 			$keywords = '';
 		}
-		return terminal_broadstreet_ad( $ad_height, $ad_width, $ad_unit, $amp_unit, $header, $amp_disable, $keywords );
+		return terminal_broadstreet_ad(
+			$ad_height,
+			$ad_width,
+			$ad_unit,
+			$amp_unit,
+			$header,
+			$amp_disable,
+			$keywords,
+			$ad_height,
+			$ad_width
+		);
 	}
 
 	/**
