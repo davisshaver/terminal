@@ -50,6 +50,7 @@ require_once __DIR__ . '/inc/class-data.php';
 require_once __DIR__ . '/inc/class-frontend.php';
 require_once __DIR__ . '/inc/class-memberpress.php';
 require_once __DIR__ . '/inc/class-metaboxes.php';
+require_once __DIR__ . '/inc/class-newspack.php';
 require_once __DIR__ . '/inc/class-parsely.php';
 require_once __DIR__ . '/inc/class-contact.php';
 require_once __DIR__ . '/inc/class-theme.php';
