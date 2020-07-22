@@ -5,19 +5,22 @@
     width: 100%;
 }
 
-.entry__content {
-    .terminal-inline-ad {
-        .terminal-ad-header {
-            margin: 8px;
-        }
+.after-header.widget {
+    margin: 0 auto 0 auto;
+    text-align: center;
+}
 
-        padding: 5px;
-        text-align: center;
-        font-size: 12px;
-    
-        amp-ad, .broadstreet-zone-container {
-            margin: 8px auto;
-        }
+.terminal-inline-ad {
+    .terminal-ad-header {
+        margin: 8px;
+    }
+
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+
+    amp-ad, .broadstreet-zone-container {
+        margin: 8px auto;
     }
 }
 
