@@ -5,9 +5,16 @@
     width: 100%;
 }
 
-.after-header.widget {
-    margin: 0 auto 0 auto;
-    text-align: center;
+.after-header {
+    &.widget {
+        margin: 0 auto 0 auto;
+        text-align: center;
+
+        h2 {
+            font-size: 0.75rem;
+            font-style: italic;
+        }
+    }
 }
 
 .terminal-inline-ad {

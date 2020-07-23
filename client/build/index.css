@@ -7,6 +7,9 @@
 .after-header.widget {
   margin: 0 auto 0 auto;
   text-align: center; }
+  .after-header.widget h2 {
+    font-size: 0.75rem;
+    font-style: italic; }
 
 .terminal-inline-ad {
   padding: 5px;
@@ -27,3 +30,61 @@
   margin: auto;
   max-width: 90vw !important;
   text-align: center; }
+
+.terminal-signup {
+  background: white;
+  border-radius: 4px;
+  border: 2px solid red;
+  box-shadow: 0 -2em 10em 2em #f5f7f7, 0 2px 12px grey;
+  color: black;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  padding: 1em;
+  margin: 1em 0;
+  justify-content: center; }
+  .terminal-signup h4, .terminal-signup p {
+    text-align: center;
+    flex: 0 0 100%;
+    margin: 10px; }
+  .terminal-signup .terminal-signup-inputs {
+    justify-content: center;
+    display: flex;
+    flex: 0 0 100%; }
+
+[submit-success] {
+  width: 100%;
+  text-align: center;
+  padding: 20px; }
+
+.terminal-contact.amp-form-submit-success .terminal-contact-inputs {
+  display: none; }
+
+.terminal-contact-inputs {
+  display: flex;
+  flex-wrap: wrap; }
+  .terminal-contact-inputs label {
+    margin: 5px 0 10px 0; }
+  .terminal-contact-inputs input {
+    margin-bottom: 15px; }
+  .terminal-contact-inputs textarea {
+    margin: 10px 0; }
+  .terminal-contact-inputs label,
+  .terminal-contact-inputs input,
+  .terminal-contact-inputs textarea {
+    flex: 0 0 100%; }
+
+.mepr-submit, .gform_footer .button {
+  background: #fcd651;
+  border: none;
+  color: black; }
+
+.mepr-submit[type="submit"], .terminal-contact-inputs[type="submit"] {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  -webkit-appearance: none; }

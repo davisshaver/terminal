@@ -6,6 +6,28 @@
  */
 
 /**
+ * Get a rendered template part
+ *
+ * @param string $template Template path.
+ * @param array  $vars Template variables.
+ * @return string
+ */
+function terminal_get_template_part( $template, $vars = array() ) {
+    $full_path = dirname( __DIR__ ) . '/partials/' . sanitize_file_name( $template ) . '.php';
+    if ( ! file_exists( $full_path ) ) {
+        return '';
+    }
+    ob_start();
+    // @codingStandardsIgnoreStart
+    if ( ! empty( $vars ) ) {
+        extract( $vars );
+    }
+    // @codingStandardsIgnoreEnd
+    include $full_path;
+    return ob_get_clean();
+}
+
+/**
  * Generate a Broadstreet ad unit.
  *
  * @param int $height Ad height.

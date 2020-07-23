@@ -17,11 +17,13 @@ if ( ! defined( 'TERMINAL_APP' ) ) {
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {
-	define( 'TERMINAL_VERSION', '4.45' );
+	define( 'TERMINAL_VERSION', '4. 5' );
 }
 
 require_once __DIR__ . '/lib/singleton.php';
 
+require_once __DIR__ . '/inc/class-contact.php';
+require_once __DIR__ . '/inc/class-metaboxes.php';
 require_once __DIR__ . '/inc/class-newspack.php';
 require_once __DIR__ . '/inc/class-widgets.php';
 require_once __DIR__ . '/inc/template-tags.php';
