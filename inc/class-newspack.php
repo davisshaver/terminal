@@ -69,7 +69,18 @@ class Newspack {
                 wp_enqueue_script( 'amp-form' );
             }
         } );
+        add_action( 'entry_meta', [ $this, 'print_reading_time' ] );
     }
+
+    /**
+     * Call reading time shortcode.
+     */
+    public function print_reading_time() {
+        if ( get_post_type() === 'post' ) {
+            echo do_shortcode( '[rt_reading_time label="" postfix="min read" postfix_singular="min read"]' );
+        }
+    }
+
 
     public function filter_newspack_caption_exists() {
         return (bool) $this->get_featured_image_caption();

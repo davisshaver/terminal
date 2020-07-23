@@ -25,6 +25,7 @@ require_once __DIR__ . '/lib/singleton.php';
 require_once __DIR__ . '/inc/class-contact.php';
 require_once __DIR__ . '/inc/class-metaboxes.php';
 require_once __DIR__ . '/inc/class-newspack.php';
+require_once __DIR__ . '/inc/class-weather.php';
 require_once __DIR__ . '/inc/class-widgets.php';
 require_once __DIR__ . '/inc/template-tags.php';
 

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .terminal-ad {
   display: flex;
   justify-content: center;
@@ -88,3 +89,16 @@
   font-weight: 700;
   text-decoration: none;
   -webkit-appearance: none; }
+
+.span-reading-time, .terminal-analytics {
+  font-size: 80%;
+  font-style: italic;
+  display: inline-block; }
+
+.terminal-analytics::before {
+  content: ' \2022   '; }
+
+.entry__summary .span-reading-time, .entry__summary .terminal-analytics {
+  font-size: 70%;
+  margin-top: 15px;
+  display: inline-block; }
