@@ -32,6 +32,7 @@ class Newspack {
         add_action( 'after_header', [ $this, 'do_after_header' ] );
         add_shortcode( 'terminal-ad', [ $this, 'print_ad' ] );
         add_shortcode( 'terminal-mailchimp', [ $this, 'mailchimp_print' ] );
+        add_action( 'before_footer', [ $this, 'print_sponsors_module' ] );
         add_filter( 'newspack-caption', [ $this, 'filter_newspack_caption' ] );
         add_filter( 'newspack-caption-exists', [ $this, 'filter_newspack_caption_exists' ] );
         add_filter( 'wp_enqueue_scripts', function() {
@@ -188,6 +189,15 @@ class Newspack {
      */
     public function do_after_header() {
         dynamic_sidebar( 'after-header' );
+    }
+
+    /**
+     * Print sponsors module.
+     */
+    public function print_sponsors_module() {
+        echo '<div class="terminal-wrap">';
+        terminal_print_template_part( 'sponsors' );
+        echo '</div>';
     }
 }
 

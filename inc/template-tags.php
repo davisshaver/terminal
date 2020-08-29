@@ -6,6 +6,17 @@
  */
 
 /**
+ * Print a rendered template part
+ *
+ * @param string $template
+ * @param array $vars
+ * @return string
+ */
+function terminal_print_template_part( $template, $vars = array() ) {
+    echo terminal_get_template_part( $template, $vars );
+}
+
+/**
  * Get a rendered template part
  *
  * @param string $template Template path.
@@ -71,4 +82,25 @@ function terminal_broadstreet_ad( $height, $width, $regular_unit, $amp_unit, $he
 		esc_attr( $amp_unit ),
 		esc_attr( $keywords )
 	);
+}
+
+/**
+ * Get sponsor data.
+ *
+ * @param string $key Key.
+ * @return array data
+ */
+function terminal_get_sponsor_data( $key ) {
+    $data = Terminal\Data::instance();
+    return $data->get_sponsor_data( $key );
+}
+
+/**
+ * Template function to print sponsors header..
+ */
+function terminal_print_sponsors_header() {
+    printf(
+        '<div class="terminal-header terminal-header-font"><h2><a id="terminal-sponsors" name="sponsors">%s</a></h2></div>',
+        esc_html( __( 'Sponsors', 'terminal' ) )
+    );
 }
