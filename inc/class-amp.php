@@ -152,7 +152,7 @@ class AMP {
 		} );
 		add_filter( 'ampnews-signup-link', [ $this, 'get_membership_link' ] );
 		add_filter( 'ampnews-signup-text', [ $this, 'get_membership_text' ] );
-		add_filter( 'ampnews-signup-text', [ $this, 'get_membership_class' ] );
+		add_filter( 'ampnews-signup-class', [ $this, 'get_membership_class' ] );
 		add_filter ( 'ampnews-show-single-image', [ $this, 'filter_featured_image_amp_single' ], 10, 1 );
 		add_filter( 'mepr-unauthorized-login-link-text', '__return_empty_string' );
 		add_filter( 'one-time-login-logged-in', [ $this, 'filter_login_logged_in' ] );
