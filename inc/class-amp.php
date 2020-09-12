@@ -152,7 +152,6 @@ class AMP {
 		} );
 		add_filter( 'ampnews-signup-link', [ $this, 'get_membership_link' ] );
 		add_filter( 'ampnews-signup-text', [ $this, 'get_membership_text' ] );
-		add_filter( 'ampnews-signup-class', [ $this, 'get_membership_class' ] );
 		add_filter ( 'ampnews-show-single-image', [ $this, 'filter_featured_image_amp_single' ], 10, 1 );
 		add_filter( 'mepr-unauthorized-login-link-text', '__return_empty_string' );
 		add_filter( 'one-time-login-logged-in', [ $this, 'filter_login_logged_in' ] );
@@ -221,28 +220,12 @@ class AMP {
 	}
 
 	/**
-	 * Get membership class.
-	 *
-	 * @param string $default Current class.
-	 * @return string Membership clas.
-	 */
-	public function get_membership_class( $default ) {
-		if ( is_user_logged_in() ) {
-			return $default . ' terminal-user-logged-in';
-		}
-		return $default;
-	}
-
-	/**
 	 * Get membership text.
 	 *
 	 * @param string $default Current text.
 	 * @return string Membership text or false.
 	 */
 	public function get_membership_text( $default ) {
-		if ( is_user_logged_in() ) {
-			return __( 'Account Details', 'terminal' );
-		}
 		$data = Data::instance();
 		$text = $data->get_membership_text();
 		if ( empty( $text ) ) {
@@ -257,9 +240,6 @@ class AMP {
 	 * @return string Membership link or false.
 	 */
 	public function get_membership_link() {
-		if ( is_user_logged_in() ) {
-			return home_url( '/account/' );
-		}
 		$data = Data::instance();
 		$link = $data->get_membership_page();
 		if ( empty( $link ) ) {

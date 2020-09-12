@@ -18,23 +18,21 @@ class Memberpress {
 	 * Setup Memberpress integration.
 	 */
 	public function setup() {
-		add_action( 'mepr_account_nav', [ $this, 'print_tab' ] );
+		add_filter( 'mepr-account-nav-subscriptions-label', [ $this, 'sub_label' ] );
+		add_filter( 'mepr-account-nav-payments-label', [ $this, 'payments_label' ] );
+		add_filter( 'mepr-account-nav-home-label', [ $this, 'home_label' ] );
 	}
 
-	/**
-	 * Custom print tab action.
-	 */
-	public function print_tab() {
-		$data            = Data::instance();
-		$membership_page = $data->get_membership_page_always();
-		if ( empty( $membership_page ) ) {
-			return;
-		}
-		printf(
-			'<span class="mepr-nav-item"><a href="%s" id="mepr-membership-options">%s</a></span>',
-			esc_url( $membership_page ),
-			esc_html( __( 'Membership Options', 'terminal' ) )
-		);
+	public function home_label() {
+		return __( 'Preferences', 'terminal' );
+	}
+
+	public function payments_label() {
+		return __( 'Transaction History', 'terminal' );
+	}
+
+	public function sub_label() {
+		return __( 'Payment Info', 'terminal' );
 	}
 
 	/**
