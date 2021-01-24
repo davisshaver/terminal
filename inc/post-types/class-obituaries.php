@@ -137,11 +137,12 @@ class Obituaries {
 			'label'               => __( 'obituary', 'terminal' ),
 			'description'         => __( 'Obituaries', 'terminal' ),
 			'labels'              => $obituary_labels,
-			'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions' ),
+			'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'newspack_blocks', ),
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
+			'show_in_rest'        => true,
 			'show_in_nav_menus'   => true,
 			'show_in_admin_bar'   => true,
 			'menu_position'       => 5,
@@ -153,7 +154,6 @@ class Obituaries {
 			'capability_type'     => 'post',
 		);
 		register_post_type( $this->obituary_post_type, $obituary_args );
-		add_post_type_support( $this->obituary_post_type, 'newspack_blocks' );
 	}
 
 }

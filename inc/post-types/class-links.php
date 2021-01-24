@@ -204,12 +204,13 @@ class Links {
 			'label'               => __( 'link', 'terminal' ),
 			'description'         => __( 'Links', 'terminal' ),
 			'labels'              => $link_labels,
-			'supports'            => array( 'title', 'author', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+			'supports'            => array( 'title', 'author', 'editor', 'excerpt', 'thumbnail', 'revisions', 'newspack_blocks', ),
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'show_in_nav_menus'   => true,
+			'show_in_rest'        => true,
 			'show_in_admin_bar'   => true,
 			'menu_position'       => 5,
 			'menu_icon'           => 'dashicons-admin-links',
@@ -220,7 +221,6 @@ class Links {
 			'capability_type'     => 'post',
 		);
 		register_post_type( $this->link_post_type, $link_args );
-		add_post_type_support( $this->link_post_type, 'newspack_blocks' );
 	}
 
 }
