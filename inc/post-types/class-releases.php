@@ -254,6 +254,7 @@ class Releases {
 			'capability_type'     => 'post',
 		);
 		register_post_type( $this->releases_post_type, $release_args );
+		add_post_type_support( $this->releases_post_type, 'newspack_blocks' );
 	}
 
 }

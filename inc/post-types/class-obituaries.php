@@ -153,6 +153,7 @@ class Obituaries {
 			'capability_type'     => 'post',
 		);
 		register_post_type( $this->obituary_post_type, $obituary_args );
+		add_post_type_support( $this->obituary_post_type, 'newspack_blocks' );
 	}
 
 }

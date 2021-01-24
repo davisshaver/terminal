@@ -220,6 +220,7 @@ class Links {
 			'capability_type'     => 'post',
 		);
 		register_post_type( $this->link_post_type, $link_args );
+		add_post_type_support( $this->link_post_type, 'newspack_blocks' );
 	}
 
 }
