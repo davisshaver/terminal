@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     !window.terminal.inlineAds.subscribed
   ) {
     let slotNum = 1;
-    jQuery(document.body).on('post-load', () => {
+    document.body.addEventListener('is.post-load', () => {
       const slotName = `${terminal.inlineAds.unit}_${slotNum}`;
       const infiniteTarget = `.infinite-loader:nth-of-type(${slotNum})`;
       const adTagContainer = jQuery('<div />')
