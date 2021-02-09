@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let slotNum = 1;
     document.body.addEventListener('is.post-load', () => {
       const slotName = `${terminal.inlineAds.unit}_${slotNum}`;
-      const infiniteTarget = `.infinite-loader:nth-of-type(${slotNum})`;
+      const infiniteTarget = '.terminal-content-container';
       const adTagContainer = jQuery('<div />')
         .attr('id', `ad_layers_${slotName}`)
         .attr('class', 'terminal-sidebar-card terminal-card terminal-card-single terminal-alignment-center covered-target widget_ad_layers_ad_widget');
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         10,
         500,
         ([thisSlotName, thisTag, thisTarget]) => {
-          jQuery(thisTarget).after(thisTag);
+          jQuery(thisTarget).append(thisTag);
           (new AdLayersAPI())
             .lazyLoadAd({
               slotName: thisSlotName,

@@ -17,7 +17,7 @@ if ( ! defined( 'TERMINAL_APP' ) ) {
 }
 
 if ( ! defined( 'TERMINAL_VERSION' ) ) {
-	define( 'TERMINAL_VERSION', '4.52' );
+	define( 'TERMINAL_VERSION', '4.53' );
 }
 
 require_once __DIR__ . '/lib/singleton.php';
