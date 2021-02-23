@@ -36,7 +36,9 @@ class Obituaries {
 		if ( getenv( 'TERMINAL_ENABLE_OBITUARY_POST_TYPE_ON_AUTHOR' ) ) {
 			add_filter( 'pre_get_posts', array( $this, 'include_obituary_post_type_on_author' ) );
 		}
-		add_filter( 'pre_get_posts', array( $this, 'include_obituary_post_type_in_loop' ) );
+		if ( getenv( 'TERMINAL_ENABLE_OBITUARY_POST_TYPE_ON_MAIN_LOOP' ) ) {
+			add_filter( 'pre_get_posts', array( $this, 'include_obituary_post_type_in_loop' ) );
+		}
 		add_action( 'init', [ $this, 'register_exclude_from_loop_fields' ] );
 	}
 
