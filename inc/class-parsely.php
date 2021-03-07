@@ -23,19 +23,19 @@ class Parsely {
 	public function setup() {
 		$this->api_key = getenv( 'TERMINAL_PARSELY_API_KEY' );
 		$this->api_secret = getenv( 'TERMINAL_PARSELY_API_SECRET' );
-		if ( ! empty( $this->api_key ) && ! empty( $this->api_secret ) && current_user_can( 'edit_others_posts' ) ) {
-			add_filter( 'manage_post_posts_columns', [ $this, 'add_parsely_columns' ] );
-			add_action( 'manage_post_posts_custom_column' , [ $this, 'handle_parsely_columns' ], 10, 2 );
-			add_filter( 'manage_edit-post_sortable_columns', [ $this, 'add_parsely_columns_orderby' ] );
-			add_action( 'pre_get_posts', [$this, 'parsely_custom_orderby' ] );
-		}
-		add_action( 'retrieve_social_data', 'retrieve_social_data', 10, 1 );
-		add_action( 'check_cached_analytics_values', 'check_cached_analytics_values', 10 );
-		add_action( 'retrieve_analytics_data', 'retrieve_analytics_data', 10, 1 );
-		add_action( 'retrieve_referral_data', 'retrieve_referral_data', 10, 1 );
-		add_action( 'retrieve_data', 'retrieve_data', 10, 1 );
-		add_action( 'publish_post', [ $this, 'schedule_some_retrievals' ], 10, 2 );
-		add_action( 'wp', [ $this, 'possibly_schedule_analytics_update' ] );
+		// if ( ! empty( $this->api_key ) && ! empty( $this->api_secret ) && current_user_can( 'edit_others_posts' ) ) {
+		// 	add_filter( 'manage_post_posts_columns', [ $this, 'add_parsely_columns' ] );
+		// 	add_action( 'manage_post_posts_custom_column' , [ $this, 'handle_parsely_columns' ], 10, 2 );
+		// 	add_filter( 'manage_edit-post_sortable_columns', [ $this, 'add_parsely_columns_orderby' ] );
+		// 	add_action( 'pre_get_posts', [$this, 'parsely_custom_orderby' ] );
+		// }
+		// add_action( 'retrieve_social_data', 'retrieve_social_data', 10, 1 );
+		// add_action( 'check_cached_analytics_values', 'check_cached_analytics_values', 10 );
+		// add_action( 'retrieve_analytics_data', 'retrieve_analytics_data', 10, 1 );
+		// add_action( 'retrieve_referral_data', 'retrieve_referral_data', 10, 1 );
+		// add_action( 'retrieve_data', 'retrieve_data', 10, 1 );
+		// add_action( 'publish_post', [ $this, 'schedule_some_retrievals' ], 10, 2 );
+		// add_action( 'wp', [ $this, 'possibly_schedule_analytics_update' ] );
 	}
 
 	public function possibly_schedule_analytics_update() {
