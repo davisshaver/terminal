@@ -43,9 +43,6 @@ if ( function_exists( 'yoast_breadcrumb' ) && is_singular( terminal_get_post_typ
 	);
 }
 echo '</div>';
-if ( current_user_can( 'edit_others_posts' ) && is_singular( terminal_get_post_types() ) ) {
-	terminal_print_template_part( 'analytics' );
-}
 printf(
 	'<h1 class="terminal-header terminal-header-no-background terminal-headline-featured-font">%s</h1>',
 	get_the_title()
