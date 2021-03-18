@@ -62,7 +62,8 @@ class Newspack {
                         '2x-impact-fund-nomination-form'
                     ),
                     true
-                )
+                ) ||
+                is_single( 85009 )
             ) {
                 $enqueue_amp_form = false;
             }
