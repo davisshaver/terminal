@@ -59,7 +59,8 @@ class Newspack {
                         'autumn-happy-hour',
                         'press-releases',
                         'job',
-                        '2x-impact-fund-nomination-form'
+                        '2x-impact-fund-nomination-form',
+                        'church-listings',
                     ),
                     true
                 ) ||
