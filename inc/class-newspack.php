@@ -61,6 +61,7 @@ class Newspack {
                         'job',
                         '2x-impact-fund-nomination-form',
                         'church-listings',
+                        'job-listings',
                     ),
                     true
                 ) ||
