@@ -198,6 +198,20 @@ class Newspack {
      * Print sponsors module.
      */
     public function print_sponsors_module() {
+        global $wp_query;
+        if (
+            in_array(
+                $wp_query->get( 'pagename', false ),
+                array(
+                    'credit-card-update',
+                    'one-time-login',
+                    'account',
+                ),
+                true
+            )
+        ) {
+            return;
+        }
         echo '<div class="terminal-wrap">';
         terminal_print_template_part( 'sponsors' );
         echo '</div>';
