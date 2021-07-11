@@ -308,33 +308,6 @@
 	}
 }
 
-.terminal-single-analytics {
-	display: flex;
-	padding: 0;
-	flex: auto;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	small {
-		flex: 0 0 100%;
-		text-align: center;
-	}
-	ul, ol {
-		display: flex;
-		flex-basis: 100%;
-    padding: 0;
-    flex-wrap: wrap;
-    margin: 0;
-		li {
-			margin: 5px;
-			flex: 0 0 200px;
-			display: flex;
-			strong {
-				margin-right: 2px;
-			}
-		}
-	}
-}
-
 .terminal-sponsors-container {
 	flex: 1 0 auto;
 

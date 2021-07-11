@@ -22,7 +22,6 @@ terminal_print_template_part(
 	'main-sidebar'
 );
 get_template_part( 'partials/recirc' );
-get_template_part( 'partials/popular' );
 ?>
 </div>
 <?php get_footer(); ?>

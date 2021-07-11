@@ -21,10 +21,6 @@ if ( is_home() && ! is_paged() ) {
 		esc_html( __( 'Featured', 'terminal' ) )
 	);
 	printf(
-		'<a href="#popular" class="terminal-popular-link terminal-viewing-popular-active">%s</a>',
-		esc_html( __( 'Trending', 'terminal' ) )
-	);
-	printf(
 		'<a href="#recent" class="terminal-viewing-content-active">%s</a>',
 		esc_html( __( 'Recent', 'terminal' ) )
 	);
@@ -43,7 +39,6 @@ if ( is_home() && ! is_paged() ) {
 		);
 		echo '</div>';
 		get_template_part( 'partials/breakout' );
-		get_template_part( 'partials/popular' );
 		get_template_part( 'partials/sponsors' );
 		echo '<div id="terminal-content-container" class="terminal-content-container">';
 		terminal_print_index_header();

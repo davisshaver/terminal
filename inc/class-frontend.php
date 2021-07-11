@@ -34,7 +34,6 @@ class Frontend {
 			add_action( 'wp_head', [ $this, 'remove_jetpack_crap' ], 130 );
 			add_filter( 'sidebars_widgets', [ $this, 'maybe_disable_ads' ] );
 			add_filter( 'option_coral_talk_container_classes', [ $this, 'filter_talk_classes' ] );
-			add_filter('essb4_get_cached_counters', [ $this, 'filter_essb4_counters' ] );
 			add_filter( 'wpseo_breadcrumb_links', [ $this, 'wpseo_remove_home_breadcrumb' ] );
 		}
 		$this->disable_emojis();
@@ -85,15 +84,6 @@ class Frontend {
 			}
 		}
 		return $use_widgets;
-	}
-
-	public function filter_essb4_counters( $current ) {
-		$id = get_the_ID();
-		if ( empty( $id ) ) {
-			return;
-		}
-		$parsely = Parsely::instance();
-		return $parsely->filter_essb4_counters( $current, $id );
 	}
 
 	/**
@@ -330,7 +320,6 @@ class Frontend {
 		wp_deregister_script( 'mediaelement-core' );
 		wp_deregister_script( 'mediaelement-migrate' );
 		wp_dequeue_style( 'wp-mediaelement' );
-		wp_deregister_style( 'wp-parsely-style' );
 		wp_dequeue_script( 'devicepx' );
 		wp_deregister_script( 'wp-embed' );
 		wp_deregister_style( 'the-neverending-homepage' );

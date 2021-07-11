@@ -51,10 +51,6 @@ class Theme {
 		add_image_size( 'terminal-thumbnail-small', 100, 100, true );
 		add_image_size( 'terminal-featured', 1404, 740, false );
 		add_filter( 'image_size_names_choose', [ $this, 'filter_image_size_names_choose' ] );
-		add_filter( 'parsely_filter_image_size', [ $this, 'filter_parsely_image_size' ] );
-		$custom_background_args = array(
-			'default-color' => '#f4f4f4',
-		);
 		add_theme_support( 'custom-background', $custom_background_args );
 		add_filter( 'nav_menu_css_class', [ $this, 'add_classes_on_li' ], 1, 3);
 		register_nav_menus( array(
@@ -64,7 +60,6 @@ class Theme {
 			'terminal-footer-more' => esc_html__( 'Footer More Menu', 'terminal' ),
 			'terminal-footer'      => esc_html__( 'Footer Menu', 'terminal' ),
 		) );
-		add_filter( 'parsely_filter_insert_javascript', [ $this, 'filter_parsely_filter_insert_javascript' ] );
 		add_theme_support( 'html5', array(
 			'search-form',
 			'gallery',
@@ -98,7 +93,6 @@ class Theme {
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 		add_filter( 'unipress_push_taxonomies_post_types', [ $this, 'remove_unipress_buggy_tax' ] );
 		add_filter( 'wpseo_canonical', [ $this, 'ensure_no_www_in_canonical' ] );
-		add_filter ('wp_parsely_page_url', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter ('wpseo_json_ld_output', [ $this, 'ensure_no_www_in_canonical' ] );
 		add_filter ( 'post_link', [ $this, 'post_link_www'] );
 		add_filter( 'filter_gutenberg_meta_boxes', [ $this, 'remove_custom_tax_from_gutenberg' ], 999 );
@@ -109,7 +103,6 @@ class Theme {
 		if ( is_customize_preview() ) {
 			add_filter( 'user_can_richedit', '__return_false' );
 		}
-		add_filter( 'wp_parsely_post_tags', [ $this, 'filter_parsely_post_tags' ], 10, 2 );
 		add_filter( 'publishpress_disable_timepicker', '__return_true' );
 
 		// Unipress Metatags.
@@ -130,18 +123,7 @@ class Theme {
 		}
 		return $classes;
 	}
-	/**
-	 * Filter whether parsely inserts JS.
-	 *
-	 * @param bool $insert Whether to insert JS.
-	 * @return bool Filtered value.
-	 */
-	public function filter_parsely_filter_insert_javascript( $insert ) {
-		if ( ! defined( 'NOT_PROD' ) || ! NOT_PROD ) {
-			return $insert;
-		}
-		return false;
-	}
+
 	/**
 	 * Add amp-ad to allowed wp_kses_post tags
 	 *
@@ -191,30 +173,6 @@ class Theme {
 			return str_replace( $parsed_link['host'], str_replace( 'www.', '', $parsed_link['host'] ), $value );
 		}
 		return $value;
-	}
-
-	/**
-	 * Filter parsely post tags.
-	 *
-	 * @param $tags array Existing tags.
-	 * @param $post_id Post ID
-	 * @return array Filtered tags
-	 */
-	public function filter_parsely_post_tags( $tags, $post_id ) {
-		$filtered_tags = $tags;
-		$placements = wp_get_post_terms( $post_id, 'terminal-placement');
-		foreach( $placements as $placement ) {
-			$filtered_tags[] = 'placement|' . $placement->name;
-			$filtered_tags[] = 'placement-id|' . $placement->term_id;
-		}
-		return $filtered_tags;
-	}
-
-	/**
-	 * Filter parsely image size
-	 */
-	public function filter_parsely_image_size() {
-		return 'terminal-uncut-thumbnail';
 	}
 
 	/**
